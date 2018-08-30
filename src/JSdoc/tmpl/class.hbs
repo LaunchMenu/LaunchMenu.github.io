@@ -1,0 +1,18 @@
+<div class=contents>
+    <div class=contents-inner>
+        <div class=title>{{name}}</div>
+        {{#unless static}}
+            <div class=constructor>
+                <div class=constructor-code>
+                    <span class=kw-new>new</span>
+                    <span class=kw-name>{{name}}</span
+                    ><span class=kw-bracket>(</span> {{~#each params~}} {{~#if @index~}}
+                    <span class=kw-comma>,</span>
+                    {{/if~}}
+                    <span class=kw-param>{{name}}</span> {{~/each~}}
+                    <span class=kw-bracket>)</span>
+                </div>
+            </div>
+        {{/unless}}
+    </div>
+</div>

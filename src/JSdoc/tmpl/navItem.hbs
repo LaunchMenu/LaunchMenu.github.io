@@ -1,0 +1,42 @@
+<div class=nav-item>
+    <div class="nav-item-name searchable">
+        <div class=nav-item-arrow>
+            <div class=nav-item-arrow-inner></div>
+        </div>
+        <a href= {{URL}}>{{name}}</a>
+    </div>
+    <div class=nav-item-data>
+        {{!-- Methods: --}}
+        {{#if methods.all.length}}
+            <div class=nav-item-methods>
+                {{#each methods.all}}
+                    <div class="nav-item-method nav-item-field searchable" access= {{access}}>
+                        <a href= {{URL}}>{{name}}</a>
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
+
+        {{!-- Fields/properties: --}}
+        {{#if fields.length}}
+            <div class=nav-item-fields>
+                {{#each fields}}
+                    <div class="nav-item-field nav-item-field searchable">
+                        <a href= {{URL}}>{{name}}</a>
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
+
+        {{!-- Types(custom object formats): --}}
+        {{#if types.length}}
+            <div class=nav-item-types>
+                {{#each types}}
+                    <div class="nav-item-type nav-item-field searchable">
+                        <a href= {{URL}}>{{name}}</a>
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
+    </div>
+</div>

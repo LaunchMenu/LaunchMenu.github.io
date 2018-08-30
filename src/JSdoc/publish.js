@@ -1,4 +1,5 @@
 /** @module publish */
+const copyDir = require("copy-dir");
 
 var template = require("jsdoc/template");
 var doop = require("jsdoc/util/doop");
@@ -20,17 +21,14 @@ function getTemplate(file) {
     var source = fs.readFileSync(path.resolve(__dirname, "tmpl", file), "utf8");
     return (templates[file] = Handlebars.compile(source));
 }
-function generate(title, docs, filename, resolveLinks) {
-    var docData = {
-        env: env,
-        title: title,
-        docs: docs,
-    };
-
+function generate(data, navData) {
     var template = getTemplate("page.hbs");
-    var html = template(docData);
+    var html = template({
+        data: data,
+        navData: navData,
+    });
 
-    var outpath = path.join(outdir, filename);
+    var outpath = path.join(outdir, data.URL);
     mkdir(outdir);
     fs.writeFileSync(outpath, html, "utf8");
 }
@@ -43,34 +41,29 @@ function generate(title, docs, filename, resolveLinks) {
  * @param {object} opts - An object with options information.
  */
 exports.publish = function(taffyData, opts) {
-    var data = taffyData;
+    var data = templateHelper.getJSONobject(taffyData);
     outdir = path.normalize(opts.destination);
 
-    // // Create the homepage
-    // var indexUrl = helper.getUniqueFilename("index");
-    // generate(
-    //     "Home",
-    //     rawPackages
-    //         .concat([
-    //             {
-    //                 kind: "mainpage",
-    //                 readme: opts.readme,
-    //                 longname: opts.mainpagetitle
-    //                     ? opts.mainpagetitle
-    //                     : "Main Page",
-    //             },
-    //         ])
-    //         .concat(rawFiles),
-    //     indexUrl
-    // );
+    // Register partials
+    fs.readdirSync(path.resolve(__dirname, "tmpl")).forEach(file => {
+        Handlebars.registerPartial(
+            path.basename(file, path.extname(file)),
+            getTemplate(file)
+        );
+    });
 
-    // store the data format for development
-    // console.log(
-    //     helper.find(data, {kind: "typedef"}).filter(ext => !ext.undocumented)
-    // );
+    // Copy static files
+    copyDir(path.resolve(__dirname, "static"), path.resolve(outdir, "static"));
+
+    // Generate the files
+    const navData = Object.assign({}, data.classes);
+    if (data.global.types.length || data.global.methods.all.length)
+        navData.global = data.global;
+    generate(data.classes.Module, navData);
+
     fs.writeFileSync(
         path.join(outdir, "data.json"),
-        JSON.stringify(templateHelper.getJSONobject(data), null, 4),
+        JSON.stringify(data, null, 4),
         "utf8"
     );
 };
