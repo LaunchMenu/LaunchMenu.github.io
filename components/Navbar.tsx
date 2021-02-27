@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 
-import {AppBar} from "@material-ui/core";
+import {AppBar, Grid} from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
@@ -12,41 +12,41 @@ export const Navbar: FC = () => {
     return (
         <AppBar position="static">
             <Toolbar>
-                <Container
-                    css={{
-                        display: "flex!important",
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                    }}>
-                    <Box
-                        css={{
-                            display: "inline",
-                        }}>
-                        <Button color="primary">
-                            <Link href="/">
-                                <Typography variant="h6">LaunchMenu</Typography>
-                            </Link>
-                        </Button>
-                    </Box>
+                <Container>
+                    <Grid
+                        container
+                        direction='row'
+                        justify='space-between'>
+                        <Box
+                            css={{
+                                display: "inline",
+                            }}>
+                            <Button color="primary">
+                                <Link href="/">
+                                    <Typography variant="h6">LaunchMenu</Typography>
+                                </Link>
+                            </Button>
+                        </Box>
 
-                    <Box
-                        css={{
-                            display: "flex",
-                            flexDirection: "row" as any,
-                            gap: 20,
-                        }}>
-                        <Button color="primary">
-                            <Link href="/devFeatures">
-                                <Typography variant="h6">Docs</Typography>
-                            </Link>
-                        </Button>
+                        <Box
+                            css={{
+                                display: "flex",
+                                flexDirection: "row" as any,
+                                gap: 20,
+                            }}>
+                            <Button color="primary">
+                                <Link href="/devFeatures">
+                                    <Typography variant="h6">Docs</Typography>
+                                </Link>
+                            </Button>
 
-                        <Button color="primary">
-                            <Link href="/devFeatures">
-                                <Typography variant="h6">About</Typography>
-                            </Link>
-                        </Button>
-                    </Box>
+                            <Button color="primary">
+                                <Link href="/devFeatures">
+                                    <Typography variant="h6">About</Typography>
+                                </Link>
+                            </Button>
+                        </Box>
+                    </Grid>
                 </Container>
             </Toolbar>
         </AppBar>
