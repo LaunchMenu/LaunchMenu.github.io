@@ -1,0 +1,115 @@
+HomePage: 
+    Hero section:
+        Title + picture of LM:
+            - Video starts a search that results in a LaunchMenu note and pauses here:
+                Note / Video editing describes:
+                    - Top bar is the search and input field, where queries can be entered and data can be changed
+                    - Left section is the menu of items that match the query
+                    - This section is the content section, showing data associated to the selected item
+            - Next to video:
+                - download button
+                - Developing applets?
+        Quick selling points below:
+            - What is LaunchMenu
+                - Free and Open source
+                - Multi-platform
+                - SUPER BOLD: A framework that other utilities (applets) can live in:
+                    - link to planned utils or list some
+            - (Why) Utilities at your fingertips:
+                - Always running
+                - Easy to use blabla
+                - Keyboard first solution
+            - Applet customisation
+                - Installable plugins 
+                - Extensive settings
+                - bla bla
+
+    Features area:
+        - LaunchMenu is actively developed:
+            Because of this, some features are partially supported, but not fully there yet, we will use this legend in the features:
+                - S (Green): Supported
+                - C (amber): Coming soon
+                - L (red) : Long term 
+                (These symbols will have tooltips in different sections with more nuanced data)
+        - Full keyboard navigation:
+            Use keyboard controls to:
+                - S: Select items purely
+                - S: Execute item actions
+                - S: Step in and out of menus 
+                - S: Do everything else in LM!
+                - S: Customize any controls
+                - C: Native VIM keys mode
+        - Search anywhere: 
+            - S: Any menu in LM is searchable by default.
+            - S: Searches look through the selected menu and all sub-menus
+            - S: Searches can use patterns to automatically filter results
+            - S: By default fuzzy search is used
+            - L: All searches are tracked and prioritized intelligently
+        - Context menu
+            - S: Items can contain multiple actions
+            - S: A context menu can be opened to show these actions
+            - S: Search context menus for quicker execution 
+            - S: Context menus can contain sub-menus
+            - S: The path shows where you are in the application
+        - Multi-select
+            - S: Multiple items can be selected and executed at once
+            - S: A shared context menu can be opened for these items
+        - Customize:
+            - S: Easy settings that can be searched and altered
+            - S: Many aspects of LaunchMenu can personalized
+            - S: Controls can be customized
+            - S: All applets can be customized
+            - C: Official and 3rd party applets can be browsed and installed:
+                - Tooltip: Infrastructure complete, UI required
+            - C: Themes can be customised:
+                - Tooltip: Infrastructure complete, UI required
+        - Undo Redo facility
+            - C: LaunchMenu allows impactful actions to be undone and redone.
+                - Tooltip: Infrastructure complete, UI Required
+            - L: You can see/visualize undo-redo history
+                - Tooltip: Infrastructure complete, UI Required, low priority
+        
+    Download Area:
+        - S: Windows
+        - C: Mac
+        - L: Linux
+
+
+    Applets Area:
+        - S: Dictionary
+        - S: Notes
+        - C: Calculator
+        - L: Pornhub?: https://www.npmjs.com/package/@justalk/pornhub-api
+
+    Recommendations:
+        - Super cool software! - Tar van Krieken, lead developer of LM
+        - Exactly what I wanted! - Sancarn, product consultant of LM
+        - Cool shit. - Bram Hoven, LM contributor
+
+Developers page:
+
+
+Resources:
+    Alternatives:
+        https://www.alfredapp.com/
+        https://obdev.at/products/launchbar/index.html
+        https://keypirinha.com/
+        https://www.listary.com/
+    Applications:
+        https://code.visualstudio.com/
+        https://www.landingfolio.com/
+        https://strapi.io/
+    Langs:
+        https://www.autohotkey.com/
+        https://www.python.org/
+        https://www.rust-lang.org/
+        https://processing.org/
+        https://www.ruby-lang.org/en/
+        https://crystal-lang.org/
+        https://dotnet.microsoft.com/?utm_source=developermscom
+    Libs:
+        https://reactjs.org/
+        https://angular.io/
+        https://ant.design/
+        https://material-ui.com/
+        https://developer.microsoft.com/en-us/fluentui#/
