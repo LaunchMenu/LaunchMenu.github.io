@@ -20,14 +20,14 @@ export const Layout: FC<{children: NonNullable<ReactNode>}> = ({children}) => {
                         margin: 0,
                         padding: 0,
                         height: "100%",
-                        width: "100%",
+                        width: "100%"
                     },
                 }}></Global>
 
             {/* Components */}
             <Navbar />
 
-            <Container>{children}</Container>
+            {children}
         </div>
     );
 };
