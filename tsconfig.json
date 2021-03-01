@@ -26,5 +26,5 @@
     },
     "types": ["node"],
     "exclude": ["node_modules", "**/node_modules/*", "build", "trash"],
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+    "include": ["src/declarations/next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

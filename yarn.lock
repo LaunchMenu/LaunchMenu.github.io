@@ -2084,6 +2084,11 @@ mkdirp-classic@^0.5.2, mkdirp-classic@^0.5.3:
   resolved "https://registry.yarnpkg.com/mkdirp-classic/-/mkdirp-classic-0.5.3.tgz#fa10c9115cc6d8865be221ba47ee9bed78601113"
   integrity sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==
 
+model-react@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/model-react/-/model-react-4.0.1.tgz#d00f1993d775d83b329a5263ef3b18deb1c41d10"
+  integrity sha512-8gJaKAHRejqQNbuayaqIDShCJC68L7qC64VtNKNn/9H1Kq9UagbQDa4BFYPgDfr9gcHxlDcD0pB/t9docw2QnQ==
+
 ms@2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
