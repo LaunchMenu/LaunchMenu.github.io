@@ -1,5 +1,4 @@
 import {CSSObject} from "@emotion/react";
-import {Theme} from "@material-ui/core";
 import {FC, ReactNode, useRef} from "react";
 
 export const Fade: FC<{
@@ -18,13 +17,18 @@ export const Fade: FC<{
     children,
     childID,
 }) => {
+    const idPrefix = useRef(0); // To prevent interference when switching back to an ID
     const prevChildrenRef = useRef<{child: ReactNode; id: number | string}[]>(
         []
     );
     const prevChildren = prevChildrenRef.current;
     const top = prevChildren[prevChildren.length - 1];
-    if (childID != top?.id) {
-        prevChildren.push({id: childID, child: children});
+    if (`${idPrefix.current}_${childID}` != top?.id) {
+        idPrefix.current++;
+        prevChildren.push({
+            id: `${idPrefix.current}_${childID}`,
+            child: children,
+        });
     }
 
     return (

@@ -63,12 +63,12 @@ function createVideo(
     let rate = 1;
     const controls: IVideoControls = {
         play: () => {
-            videos.forEach(video => video.play());
             playing = true;
+            videos.forEach(video => video.play());
         },
         pause: () => {
-            videos.forEach(video => video.pause());
             playing = false;
+            videos.forEach(video => video.pause());
         },
         isPlaying: () => playing,
         setTime: t => {
@@ -107,7 +107,11 @@ function createVideo(
         };
 
         return (
-            <video width={width} ref={refUpdater}>
+            <video
+                width={width}
+                ref={refUpdater}
+                muted
+                css={{display: "block"}}>
                 <source src={src} type="video/mp4" />
                 <p>
                     Your browser doesn't support HTML5 video. Here is a{" "}

@@ -18,7 +18,6 @@ export const LMVideoProvider: FC<{
 }> = memo(({src, enabled, autoPlay = true, children}) => {
     // Setup a variable to call time listeners, and a function to invoke them
     const listeners = useRef<((time: number) => void)[]>([]);
-    listeners.current = [];
 
     const pauseTime = useRef(Infinity);
     const onTimeChange = useCallback(time => {
@@ -26,6 +25,7 @@ export const LMVideoProvider: FC<{
             const controller = videoController.current;
             controller?.pause();
             controller?.setTime(pauseTime.current);
+            pauseTime.current = Infinity;
         }
         listeners.current.forEach(listener => listener(time));
     }, []);
@@ -50,8 +50,13 @@ export const LMVideoProvider: FC<{
     return (
         <LMVideoContext.Provider
             value={{
-                registerTimeListener: listener =>
-                    listeners.current.push(listener),
+                registerTimeListener: listener => {
+                    listeners.current.push(listener);
+                    return () => {
+                        const index = listeners.current.indexOf(listener);
+                        if (index != -1) listeners.current.splice(index, 1);
+                    };
+                },
                 setPauseTime: time => (pauseTime.current = time),
                 controls: videoController.current,
             }}>
