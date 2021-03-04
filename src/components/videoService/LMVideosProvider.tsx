@@ -5,6 +5,7 @@ import {Fade} from "../Fade";
 import {ILMVideosContext, LMVideosContext} from "./LMVideosContext";
 
 export const LMVideosProvider: FC = ({children}) => {
+    const elRef = useRef<HTMLDivElement>(null);
     const data = useRef<ILMVideosContext>();
     if (!data.current) {
         const videos = new Field<IVideos>([]);
@@ -18,7 +19,11 @@ export const LMVideosProvider: FC = ({children}) => {
                 return controls;
             },
             popVideo: (src: string) => {
-                videos.set(videos.get().filter(({src: s}) => src != s));
+                const current = videos.get();
+                current
+                    .filter(({src: s}) => src == s)
+                    .forEach(({controls}) => controls.pause());
+                videos.set(current.filter(({src: s}) => src != s));
             },
             Video: ({width}: {width: number}) => {
                 const [h] = useDataHook();
@@ -31,13 +36,16 @@ export const LMVideosProvider: FC = ({children}) => {
                     </Fade>
                 );
             },
+            getBoundingRect: () => elRef.current?.getBoundingClientRect(),
         };
     }
 
     return (
-        <LMVideosContext.Provider value={data.current as ILMVideosContext}>
-            {children}
-        </LMVideosContext.Provider>
+        <div ref={elRef}>
+            <LMVideosContext.Provider value={data.current as ILMVideosContext}>
+                {children}
+            </LMVideosContext.Provider>
+        </div>
     );
 };
 
@@ -105,11 +113,18 @@ function createVideo(
                 if (playing) newRef.play();
             }
         };
+        const onClick = () => {
+            if (ref.current) {
+                if (ref.current.paused) ref.current.play();
+                else ref.current.pause();
+            }
+        };
 
         return (
             <video
                 width={width}
                 ref={refUpdater}
+                onClick={onClick}
                 muted
                 css={{display: "block"}}>
                 <source src={src} type="video/mp4" />

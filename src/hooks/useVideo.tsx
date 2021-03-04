@@ -1,4 +1,4 @@
-import {FC, useEffect, useRef} from "react";
+import {FC, Fragment, useEffect, useRef} from "react";
 
 export function useVideo(
     config: IVideoConfig
@@ -45,9 +45,20 @@ export function useVideo(
     const video = useRef<{Comp: FC<{width?: number}>; src: string}>();
     if (!video.current || video.current.src != config.src) {
         const src = config.src;
+        const onClick = () => {
+            if (ref.current) {
+                if (ref.current.paused) ref.current.play();
+                else ref.current.pause();
+            }
+        };
+
         video.current = {
-            Comp: () => (
-                <video ref={ref}>
+            Comp: ({width}) => (
+                <video
+                    onClick={onClick}
+                    ref={ref}
+                    width={width}
+                    muted={config.muted ?? true}>
                     <source src={src} type="video/mp4" />
                     <p>
                         Your browser doesn't support HTML5 video. Here is a{" "}
@@ -67,6 +78,7 @@ export function useVideo(
 
 export type IVideoConfig = {
     src: string;
+    muted?: boolean;
     onTimeUpdate?: (
         currentTime: number,
         video: HTMLVideoElement,

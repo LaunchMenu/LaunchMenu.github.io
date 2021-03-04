@@ -1,9 +1,14 @@
 import {Box, Typography} from "@material-ui/core";
 import React, {FC} from "react";
 
-export const Hero: FC = ({children}) => {
+export const Hero: FC<{title: string; description?: string}> = ({
+    children,
+    title,
+    description,
+}) => {
     return (
         <Box
+            m={4}
             css={{
                 display: "flex",
                 flexDirection: "column" as any,
@@ -12,10 +17,11 @@ export const Hero: FC = ({children}) => {
             <Typography
                 variant="h2"
                 color="primary"
-                css={{
+                css={theme => ({
                     alignSelf: "center",
-                }}>
-                LaunchMenu
+                    marginBottom: theme.spacing(4),
+                })}>
+                {title}
             </Typography>
             {children}
 
@@ -25,8 +31,7 @@ export const Hero: FC = ({children}) => {
                     alignSelf: "center",
                     color: "gray",
                 }}>
-                LaunchMenu is an open source utility application similar to
-                LaunchBar and Spotlight for Mac.
+                {description}
             </Typography>
         </Box>
     );

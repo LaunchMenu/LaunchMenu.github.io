@@ -1,6 +1,8 @@
 import {Box, Container, Grid, Button} from "@material-ui/core";
+import {NextPageContext} from "next";
 import {FC, useContext, useEffect, useState} from "react";
 import TrackVisibility from "react-on-screen";
+import {BackgroundSection} from "../components/BackgroundSection";
 import {Feature} from "../components/features/Feature";
 import {FeatureCategory} from "../components/features/FeatureCategory";
 import {FeatureVideo} from "../components/features/FeatureVideo";
@@ -20,7 +22,7 @@ export default function Home() {
     return (
         <Container>
             <LMVideosProvider>
-                <Hero>
+                <Hero title="LaunchMenu">
                     <FeatureVideo
                         initVideo="videoTest4.mp4"
                         background="videoTest2.jpg"
@@ -29,9 +31,10 @@ export default function Home() {
 
                 <Grid container direction="column" justify="center">
                     <Container
-                        css={{
-                            marginTop: 50,
-                        }}>
+                        css={theme => ({
+                            marginTop: theme.spacing(2),
+                            marginBottom: theme.spacing(4),
+                        })}>
                         <Grid container direction="row" justify="space-between">
                             <SellingPoint
                                 title="Easy to use"
@@ -49,14 +52,58 @@ export default function Home() {
                     </Container>
                 </Grid>
 
-                <FeatureCategory category="Some shit" video="videoTest2.mp4">
-                    <Feature title="stuff" time={{start: 0, end: 3}}>
-                        doShit
+                <BackgroundSection>
+                    <FeatureCategory
+                        category="Some shit"
+                        video="videoTest2.mp4">
+                        <Feature title="stuff" time={{start: 0, end: 3}}>
+                            doShit
+                        </Feature>
+                        <Feature
+                            title="orange"
+                            time={{start: 4, end: 8}}
+                            status="comingSoon">
+                            doShitYes
+                        </Feature>
+                        <Feature
+                            title="shit's planned"
+                            time={{start: 9, end: 12}}
+                            status={{type: "longTerm", tooltip: "hoi"}}>
+                            So it's not here yet
+                        </Feature>
+                    </FeatureCategory>
+                </BackgroundSection>
+
+                <FeatureCategory category="Some stuff" video="videoTest3.mp4">
+                    <Feature title="pop" time={{start: 0, end: 3}}>
+                        orange
                     </Feature>
-                    <Feature title="orange" time={{start: 4, end: 8}}>
-                        doShitYes
+                    <Feature title="smth" time={{start: 4, end: 8}}>
+                        craps
                     </Feature>
                 </FeatureCategory>
+
+                <BackgroundSection>
+                    <FeatureCategory
+                        category="Some shit"
+                        video="videoTest2.mp4">
+                        <Feature title="stuff" time={{start: 0, end: 3}}>
+                            doShit
+                        </Feature>
+                        <Feature
+                            title="orange"
+                            time={{start: 4, end: 8}}
+                            status="comingSoon">
+                            doShitYes
+                        </Feature>
+                        <Feature
+                            title="shit's planned"
+                            time={{start: 9, end: 12}}
+                            status={{type: "longTerm", tooltip: "hoi"}}>
+                            So it's not here yet
+                        </Feature>
+                    </FeatureCategory>
+                </BackgroundSection>
 
                 <FeatureCategory category="Some stuff" video="videoTest3.mp4">
                     <Feature title="pop" time={{start: 0, end: 3}}>
@@ -69,23 +116,10 @@ export default function Home() {
 
                 <div css={{height: 500}} />
             </LMVideosProvider>
+
+            <div css={{height: 1000, marginTop: 20}}>
+                Some extra shit that's not in the video area
+            </div>
         </Container>
     );
 }
-
-const VideoControls: FC = () => {
-    const {controls} = useContext(LMVideoContext);
-    return (
-        <div>
-            <Button variant="contained" onClick={() => controls?.play()}>
-                play
-            </Button>
-            <Button variant="contained" onClick={() => controls?.pause()}>
-                pause
-            </Button>
-            <Button variant="contained" onClick={() => controls?.setTime(5)}>
-                set time 5
-            </Button>
-        </div>
-    );
-};

@@ -8,6 +8,7 @@ export const LMVideosContext = createContext<ILMVideosContext>({
         throw Error("Context can't  be accessed without a provider");
     },
     popVideo: () => {},
+    getBoundingRect: () => undefined,
 });
 
 export type ILMVideosContext = {
@@ -20,4 +21,6 @@ export type ILMVideosContext = {
     ) => IVideoControls;
     /** A function that can be used to stop displaying a video in all elements */
     popVideo: (src: string) => void;
+    /** A function to retrieve the bounding rectangle of the provider */
+    getBoundingRect: () => undefined | DOMRect;
 };

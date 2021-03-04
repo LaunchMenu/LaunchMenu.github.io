@@ -2,12 +2,14 @@ import {
     Accordion,
     AccordionDetails,
     AccordionSummary,
+    Collapse,
     Typography,
+    withStyles,
 } from "@material-ui/core";
 import {FC, useCallback, useContext, useEffect, useRef} from "react";
 import {useLMVideoFragment} from "../videoService/useLMVideoFragment";
 import {FeatureContext} from "./FeatureContext";
-import {IFeatureStatus} from "./FeatureStatusWrapper";
+import {FeatureStatusWrapper, IFeatureStatusData} from "./FeatureStatusWrapper";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 export const Feature: FC<{
@@ -21,7 +23,7 @@ export const Feature: FC<{
         end: number;
     };
     /** The implementation status of this feature, defaults to supported */
-    status?: IFeatureStatus;
+    status?: IFeatureStatusData;
 }> = ({
     title,
     ID = title.replace(/\s/, "_"),
@@ -36,7 +38,7 @@ export const Feature: FC<{
     });
 
     // When the feature is clicked, set the hash and play from here
-    const onSelect = useCallback(() => {
+    const onClick = useCallback(() => {
         try {
             history.replaceState(null, null as any, `#${ID}`);
         } catch (e) {
@@ -53,7 +55,7 @@ export const Feature: FC<{
 
     // Start playing on page reload if this feature was linked
     const init = useRef(Date.now());
-    const elRef = useRef<HTMLDivElement>(null);
+    const elRef = useRef<HTMLLIElement>(null);
     useEffect(() => {
         const justLoaded = init.current + 1000 > Date.now();
         if (justLoaded && window.location.hash == `#${ID}`) {
@@ -70,31 +72,31 @@ export const Feature: FC<{
     }, [play]);
 
     return (
-        <div
+        <li
             ref={elRef}
-            css={{
-                ":target:before": {
-                    content: '""',
-                    display: "block",
-                    height: 500,
-                    marginTop: -500,
-                },
-            }}>
-            <Accordion square expanded={selected == ID} onChange={onSelect}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1bh-content"
-                    id="panel1bh-header">
-                    <Typography
-                        variant="h3"
-                        css={theme => ({
-                            fontSize: theme.typography.pxToRem(15),
-                        })}>
-                        {title}
-                    </Typography>
-                </AccordionSummary>
-                <AccordionDetails>{children}</AccordionDetails>
-            </Accordion>
-        </div>
+            css={theme => ({
+                listStyleType: "none",
+                marginBottom: theme.spacing(1),
+            })}>
+            <Typography
+                variant="h3"
+                onClick={onClick}
+                css={theme => ({
+                    display: "inline",
+                    cursor: "pointer",
+                    fontSize: theme.typography.pxToRem(20),
+                })}>
+                <FeatureStatusWrapper status={status}>
+                    {title}
+                </FeatureStatusWrapper>
+            </Typography>
+            <Collapse in={selected == ID}>
+                <Typography
+                    variant="body1"
+                    css={theme => ({paddingLeft: theme.spacing(4)})}>
+                    {children}
+                </Typography>
+            </Collapse>
+        </li>
     );
 };

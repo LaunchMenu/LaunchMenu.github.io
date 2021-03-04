@@ -1,27 +1,18 @@
 import {Box} from "@material-ui/core";
-import {FC, Fragment, useEffect, useRef, useState} from "react";
+import {FC, Fragment, useContext, useEffect, useRef, useState} from "react";
 import TrackVisibility from "react-on-screen";
+import {useIsMobile} from "../../hooks/useIsMobile";
+import {useBodySize} from "../../hooks/useBodySize";
 import {LMVideoProvider} from "../videoService/LMVideoProvider";
 import {LMVideos} from "../videoService/LMVideos";
-
-// The LM Video data
-const LMWidth = 700;
-const LMHeight = 450;
-const LMMargin = 18 + 1; // R1 as a margin for error regarding rounding
-
-// The component width
-const width = 600;
-
-// Some derived component sizes
-const scale = width / (LMWidth - LMMargin * 2);
-const height = LMHeight * scale - scale * LMMargin * 2;
-const srcWidth = width + scale * LMMargin * 2;
+import {LMVideosContext} from "../videoService/LMVideosContext";
 
 export const FeatureVideo: FC<{initVideo: string; background: string}> = ({
     initVideo,
     background,
 }) => {
-    const ref = useRef<HTMLDivElement>(null);
+    const isMobile = useIsMobile();
+    const {height} = useVideoSizeData();
 
     // Rerender the element if the window size changes
     const [, update] = useState(true);
@@ -38,63 +29,143 @@ export const FeatureVideo: FC<{initVideo: string; background: string}> = ({
         setFixed(true);
     }, []);
 
+    // Get the height during which the element should scroll along
+    const {getBoundingRect} = useContext(LMVideosContext);
+    const elRef = useRef<HTMLDivElement>(null);
+    let scrollHeight = height;
+    if (elRef.current) {
+        const thisRect = elRef.current.getBoundingClientRect();
+        const providerRect = getBoundingRect();
+        if (providerRect)
+            scrollHeight =
+                providerRect.height - (thisRect.top - providerRect.top);
+    }
+
     return (
-        <div ref={ref} css={{position: "relative", height, width: "100%"}}>
+        <div ref={elRef} css={{position: "relative", height, width: "100%"}}>
             <TrackVisibility>
-                {({isVisible}) => {
-                    const rect = ref.current?.getBoundingClientRect();
-                    if (!rect) isVisible = true;
+                {({isVisible: isAtTop}) => {
+                    if (!fixed || isMobile) isAtTop = true;
 
                     return (
-                        <Fragment>
-                            <div
+                        <div
+                            css={{
+                                position: "absolute",
+                                height: scrollHeight,
+                                left: 0,
+                                right: 0,
+                                pointerEvents: "none",
+                            }}>
+                            <FeatureVideoLayout
                                 css={{
-                                    position: fixed ? "fixed" : "relative",
-                                    zIndex: 1,
-                                    width,
-                                    height,
-                                    left: isVisible ? "50%" : rect?.left,
-                                    transform: isVisible
+                                    top: isMobile ? 0 : 100,
+                                    position:
+                                        fixed && !isMobile
+                                            ? "sticky"
+                                            : "relative",
+                                    marginLeft: isAtTop ? "50%" : 0,
+                                    transform: isAtTop
                                         ? "translate(-50%)"
                                         : "translate(0)",
-                                    transition: "left 250ms, transform 250ms",
-                                    backgroundColor: "white",
-                                    overflow: "hidden",
-                                    borderRadius: 20 * scale,
+                                    transition:
+                                        "opacity 250ms, margin-left 250ms, transform 250ms, box-shadow 250ms",
                                     boxShadow:
-                                        "0px 0px 30px -5px rgba(0,0,0,0.25)",
-                                }}>
-                                <div
-                                    css={{
-                                        margin: -(
-                                            (LMMargin * srcWidth) /
-                                            LMWidth
-                                        ),
-                                    }}>
-                                    {/* A background picture for when the video is loading   */}
-
-                                    <img
-                                        src={background}
-                                        width={srcWidth}
-                                        css={{
-                                            display: "block",
-                                            top: -LMMargin * scale,
-                                            position: "absolute",
-                                            zIndex: -1,
-                                        }}
-                                    />
-                                    <LMVideos width={srcWidth} />
-                                </div>
-                            </div>
+                                        "0px 0px 30px -5px rgba(0,0,0,0.3)",
+                                    pointerEvents: "all",
+                                }}
+                                backgroundSrc={background}
+                                VideoComp={LMVideos}
+                            />
 
                             <LMVideoProvider
                                 src={initVideo}
-                                enabled={isVisible}
+                                enabled={isAtTop}
                             />
-                        </Fragment>
+                        </div>
                     );
                 }}
             </TrackVisibility>
         </div>
     );
 };
+
+export const FeatureVideoLayout: FC<{
+    backgroundSrc?: string;
+    className?: string;
+    VideoComp: FC<{width?: number}>;
+}> = ({backgroundSrc, className, children, VideoComp}) => {
+    const {width, height, scale, srcWidth} = useVideoSizeData();
+
+    // Make this element hidden from SSR, and smoothly fade in client side
+    const [visible, setVisible] = useState(false);
+    useEffect(() => {
+        setVisible(true);
+    }, []);
+
+    return (
+        <div
+            className={className}
+            css={{
+                width,
+                height,
+                zIndex: 1,
+                backgroundColor: "white",
+                overflow: "hidden",
+                borderRadius: 20 * scale,
+                opacity: visible ? 1 : 0,
+                transition: "opacity 250ms",
+
+                boxShadow: "0px 0px 30px -5px rgba(0,0,0,0.3)",
+            }}>
+            <div
+                css={{
+                    margin: -((LMMargin * srcWidth) / LMWidth),
+                }}>
+                {/* A background picture for when the video is loading   */}
+
+                <img
+                    src={backgroundSrc}
+                    width={srcWidth}
+                    css={{
+                        display: "block",
+                        top: -LMMargin * scale,
+                        position: "absolute",
+                        zIndex: -1,
+                    }}
+                />
+                <VideoComp width={srcWidth} />
+                {children}
+            </div>
+        </div>
+    );
+};
+
+// The LM Video data
+const LMWidth = 700;
+const LMHeight = 450;
+const LMMargin = 18 + 1; // R1 as a margin for error regarding rounding
+
+export const LMPlayerWidth = LMWidth - LMMargin * 2; // Real size atm
+
+function useVideoSizeData() {
+    const isMobile = useIsMobile();
+    const {width: windowWidth} = useBodySize();
+
+    // The component width
+    const width =
+        isMobile && windowWidth
+            ? Math.min(windowWidth - 40, LMPlayerWidth)
+            : LMPlayerWidth;
+
+    // Some derived component sizes
+    const scale = width / (LMWidth - LMMargin * 2);
+    const height = LMHeight * scale - scale * LMMargin * 2;
+    const srcWidth = width + scale * LMMargin * 2;
+
+    return {
+        width,
+        height,
+        srcWidth,
+        scale,
+    };
+}
