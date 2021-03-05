@@ -3,9 +3,10 @@ import {AppProps} from "next/app";
 import {Layout} from "../components/Layout";
 import {ThemeProvider} from "@emotion/react";
 import {theme} from "../theme";
-import {CssBaseline, MuiThemeProvider} from "@material-ui/core";
+import {CssBaseline, MuiThemeProvider, StylesProvider} from "@material-ui/core";
 import {MDXProvider} from "@mdx-js/react";
 import {CodeBlock} from "../components/CodeBlock";
+import Head from "next/head";
 
 const mdxComponents = {
     code: ({className, children}: {className: string; children: string}) => {
@@ -20,16 +21,23 @@ const App: FC<AppProps> = ({Component, pageProps, router}) => {
     console.log(isGuide);
 
     return (
-        <ThemeProvider theme={theme}>
-            <MuiThemeProvider theme={theme}>
-                <CssBaseline />
-                <MDXProvider components={mdxComponents}>
-                    <Layout>
-                        <Component {...pageProps} />
-                    </Layout>
-                </MDXProvider>
-            </MuiThemeProvider>
-        </ThemeProvider>
+        <StylesProvider injectFirst>
+            <ThemeProvider theme={theme}>
+                <MuiThemeProvider theme={theme}>
+                    <MDXProvider components={mdxComponents}>
+                        <Layout>
+                            <Head>
+                                <meta
+                                    name="viewport"
+                                    content="width=device-width, initial-scale=1.0"
+                                />
+                            </Head>
+                            <Component {...pageProps} />
+                        </Layout>
+                    </MDXProvider>
+                </MuiThemeProvider>
+            </ThemeProvider>
+        </StylesProvider>
     );
 };
 export default App;
