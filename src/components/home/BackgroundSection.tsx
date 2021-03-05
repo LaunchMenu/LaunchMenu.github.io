@@ -1,5 +1,4 @@
-import {FC, useCallback, useEffect, useRef, useState} from "react";
-import {theme} from "../theme";
+import {FC} from "react";
 import useResizeObserver from "use-resize-observer";
 import {useTheme} from "@material-ui/core";
 

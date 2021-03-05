@@ -1,5 +1,6 @@
+import {IDataHook} from "model-react";
 import {createContext, FC} from "react";
-import {IVideoControls} from "../../hooks/useVideo";
+import {IVideoControls} from "../../../hooks/useVideo";
 
 /** A context to manage multiple different videos that will show up one at a time in the same element */
 export const LMVideosContext = createContext<ILMVideosContext>({
@@ -22,5 +23,5 @@ export type ILMVideosContext = {
     /** A function that can be used to stop displaying a video in all elements */
     popVideo: (src: string) => void;
     /** A function to retrieve the bounding rectangle of the provider */
-    getBoundingRect: () => undefined | DOMRect;
+    getBoundingRect: (h?: IDataHook) => undefined | DOMRect;
 };

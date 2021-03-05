@@ -1,13 +1,16 @@
-import {Field, useDataHook} from "model-react";
-import {FC, useRef} from "react";
-import {IVideoControls} from "../../hooks/useVideo";
-import {Fade} from "../Fade";
+import {Field, IDataHook, useDataHook} from "model-react";
+import {FC, useCallback, useEffect, useRef} from "react";
+import useResizeObserver from "use-resize-observer";
+import {IVideoControls} from "../../../hooks/useVideo";
+import {Fade} from "../../Fade";
 import {ILMVideosContext, LMVideosContext} from "./LMVideosContext";
 
 export const LMVideosProvider: FC = ({children}) => {
-    const elRef = useRef<HTMLDivElement>(null);
-    const data = useRef<ILMVideosContext>();
+    const data = useRef<
+        ILMVideosContext & {boundingBox: Field<DOMRect | undefined>}
+    >();
     if (!data.current) {
+        const boundingBox = new Field(undefined);
         const videos = new Field<IVideos>([]);
         data.current = {
             pushVideo: (src: string, onTimeChange: (time: number) => void) => {
@@ -36,17 +39,48 @@ export const LMVideosProvider: FC = ({children}) => {
                     </Fade>
                 );
             },
-            getBoundingRect: () => elRef.current?.getBoundingClientRect(),
+            getBoundingRect: (h?: IDataHook) => boundingBox.get(h),
+            boundingBox,
         };
     }
 
     return (
-        <div ref={elRef}>
+        <VideosContextContainer boundingBox={data.current.boundingBox}>
             <LMVideosContext.Provider value={data.current as ILMVideosContext}>
                 {children}
             </LMVideosContext.Provider>
-        </div>
+        </VideosContextContainer>
     );
+};
+
+export function getPageRect(element: HTMLDivElement): DOMRect {
+    const elRect = element.getBoundingClientRect();
+    const bodyRect = document.body.getBoundingClientRect();
+    elRect.x = elRect.left - bodyRect.x;
+    elRect.y = elRect.top - bodyRect.y;
+
+    return elRect;
+}
+
+const VideosContextContainer: FC<{boundingBox: Field<DOMRect | undefined>}> = ({
+    children,
+    boundingBox,
+}) => {
+    const elRef = useRef<HTMLDivElement | null>(null);
+
+    const setBB = useCallback(() => {
+        if (elRef.current) boundingBox.set(getPageRect(elRef.current));
+    }, []);
+    const {ref} = useResizeObserver({
+        onResize: setBB,
+    });
+    const setRef = useCallback((el: HTMLDivElement | null) => {
+        elRef.current = el;
+        ref(el);
+    }, []);
+    useEffect(setBB, []);
+
+    return <div ref={setRef}>{children}</div>;
 };
 
 type IVideos = {

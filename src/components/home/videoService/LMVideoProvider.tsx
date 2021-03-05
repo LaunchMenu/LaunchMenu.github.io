@@ -7,8 +7,8 @@ import {
     useRef,
     useState,
 } from "react";
-import {useIsMobile} from "../../hooks/useIsMobile";
-import {IVideoControls, useVideo} from "../../hooks/useVideo";
+import {useIsMobile} from "../../../hooks/useIsMobile";
+import {IVideoControls, useVideo} from "../../../hooks/useVideo";
 import {LMVideoContext} from "./LMVideoContext";
 import {LMVideosContext} from "./LMVideosContext";
 

@@ -1,5 +1,5 @@
 import {createContext, FC} from "react";
-import {IVideoControls} from "../../hooks/useVideo";
+import {IVideoControls} from "../../../hooks/useVideo";
 
 /** A context to manage jumping between sections of the same video */
 export const LMVideoContext = createContext<ILMVideoContext>({

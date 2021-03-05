@@ -1,7 +1,7 @@
 import {Box, Typography} from "@material-ui/core";
 import {FC, Fragment, useContext, useState} from "react";
 import TrackVisibility from "react-on-screen";
-import {useIsMobile} from "../../hooks/useIsMobile";
+import {useIsMobile} from "../../../hooks/useIsMobile";
 import {LMVideoContext} from "../videoService/LMVideoContext";
 import {LMVideoProvider} from "../videoService/LMVideoProvider";
 import {FeatureContext} from "./FeatureContext";

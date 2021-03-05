@@ -2,16 +2,16 @@ import {Box, Container, Grid, Button} from "@material-ui/core";
 import {NextPageContext} from "next";
 import {FC, useContext, useEffect, useState} from "react";
 import TrackVisibility from "react-on-screen";
-import {BackgroundSection} from "../components/BackgroundSection";
-import {Feature} from "../components/features/Feature";
-import {FeatureCategory} from "../components/features/FeatureCategory";
-import {FeatureVideo} from "../components/features/FeatureVideo";
+import {BackgroundSection} from "../components/home/BackgroundSection";
+import {Feature} from "../components/home/features/Feature";
+import {FeatureCategory} from "../components/home/features/FeatureCategory";
+import {FeatureVideo} from "../components/home/features/FeatureVideo";
 import {Hero} from "../components/home/Hero";
 import {SellingPoint} from "../components/home/SellingPoint";
-import {LMVideoContext} from "../components/videoService/LMVideoContext";
-import {LMVideoProvider} from "../components/videoService/LMVideoProvider";
-import {LMVideos} from "../components/videoService/LMVideos";
-import {LMVideosProvider} from "../components/videoService/LMVideosProvider";
+import {LMVideoContext} from "../components/home/videoService/LMVideoContext";
+import {LMVideoProvider} from "../components/home/videoService/LMVideoProvider";
+import {LMVideos} from "../components/home/videoService/LMVideos";
+import {LMVideosProvider} from "../components/home/videoService/LMVideosProvider";
 
 // Don't auto scroll to position, since it messes with the hash
 try {

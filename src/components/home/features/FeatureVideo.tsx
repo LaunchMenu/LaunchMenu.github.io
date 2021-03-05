@@ -1,11 +1,12 @@
-import {Box} from "@material-ui/core";
-import {FC, Fragment, useContext, useEffect, useRef, useState} from "react";
+import {FC, useContext, useEffect, useRef, useState} from "react";
 import TrackVisibility from "react-on-screen";
-import {useIsMobile} from "../../hooks/useIsMobile";
-import {useBodySize} from "../../hooks/useBodySize";
+import {useIsMobile} from "../../../hooks/useIsMobile";
+import {useBodySize} from "../../../hooks/useBodySize";
 import {LMVideoProvider} from "../videoService/LMVideoProvider";
 import {LMVideos} from "../videoService/LMVideos";
 import {LMVideosContext} from "../videoService/LMVideosContext";
+import {useDataHook} from "model-react";
+import {getPageRect} from "../videoService/LMVideosProvider";
 
 export const FeatureVideo: FC<{initVideo: string; background: string}> = ({
     initVideo,
@@ -13,6 +14,7 @@ export const FeatureVideo: FC<{initVideo: string; background: string}> = ({
 }) => {
     const isMobile = useIsMobile();
     const {height} = useVideoSizeData();
+    const [h] = useDataHook();
 
     // Rerender the element if the window size changes
     const [, update] = useState(true);
@@ -34,11 +36,12 @@ export const FeatureVideo: FC<{initVideo: string; background: string}> = ({
     const elRef = useRef<HTMLDivElement>(null);
     let scrollHeight = height;
     if (elRef.current) {
-        const thisRect = elRef.current.getBoundingClientRect();
-        const providerRect = getBoundingRect();
-        if (providerRect)
+        const thisRect = getPageRect(elRef.current);
+        const providerRect = getBoundingRect(h);
+        if (providerRect) {
             scrollHeight =
                 providerRect.height - (thisRect.top - providerRect.top);
+        }
     }
 
     return (
