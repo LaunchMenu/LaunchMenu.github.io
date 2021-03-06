@@ -57,9 +57,10 @@ const LMRemoteVideoProvider: FC<IVideoProviderProps> = ({
             const controls = pushVideo(src, onTimeChange);
             videoController.current = controls;
             if (autoPlay) controls.play();
-        } else {
-            popVideo(src);
-            videoController.current = undefined;
+            return () => {
+                popVideo(src);
+                videoController.current = undefined;
+            };
         }
         _forceUpdate(f => !f);
     }, [enabled]);

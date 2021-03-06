@@ -1,16 +1,10 @@
 import {Box, Container, Grid, Button} from "@material-ui/core";
-import {NextPageContext} from "next";
-import {FC, useContext, useEffect, useState} from "react";
-import TrackVisibility from "react-on-screen";
 import {BackgroundSection} from "../components/home/BackgroundSection";
 import {Feature} from "../components/home/features/Feature";
 import {FeatureCategory} from "../components/home/features/FeatureCategory";
 import {FeatureVideo} from "../components/home/features/FeatureVideo";
 import {Hero} from "../components/home/Hero";
 import {SellingPoint} from "../components/home/SellingPoint";
-import {LMVideoContext} from "../components/home/videoService/LMVideoContext";
-import {LMVideoProvider} from "../components/home/videoService/LMVideoProvider";
-import {LMVideos} from "../components/home/videoService/LMVideos";
 import {LMVideosProvider} from "../components/home/videoService/LMVideosProvider";
 
 // Don't auto scroll to position, since it messes with the hash
@@ -22,7 +16,7 @@ export default function Home() {
     return (
         <Container>
             <LMVideosProvider>
-                <Hero title="LaunchMenu">
+                <Hero>
                     <FeatureVideo
                         initVideo="videoTest4.mp4"
                         background="videoTest2.jpg"
@@ -113,8 +107,6 @@ export default function Home() {
                         craps
                     </Feature>
                 </FeatureCategory>
-
-                <div css={{height: 500}} />
             </LMVideosProvider>
 
             <div css={{height: 1000, marginTop: 20}}>

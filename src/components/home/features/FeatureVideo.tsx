@@ -13,7 +13,7 @@ export const FeatureVideo: FC<{initVideo: string; background: string}> = ({
     background,
 }) => {
     const isMobile = useIsMobile();
-    const {height} = useVideoSizeData();
+    const {height, width} = useVideoSizeData();
     const [h] = useDataHook();
 
     // Rerender the element if the window size changes
@@ -45,7 +45,14 @@ export const FeatureVideo: FC<{initVideo: string; background: string}> = ({
     }
 
     return (
-        <div ref={elRef} css={{position: "relative", height, width: "100%"}}>
+        <div
+            ref={elRef}
+            css={{
+                position: "relative",
+                height,
+                minWidth: width,
+                width: "100%",
+            }}>
             <TrackVisibility>
                 {({isVisible: isAtTop}) => {
                     if (!fixed || isMobile) isAtTop = true;
@@ -83,6 +90,7 @@ export const FeatureVideo: FC<{initVideo: string; background: string}> = ({
                             <LMVideoProvider
                                 src={initVideo}
                                 enabled={isAtTop}
+                                forceRemote
                             />
                         </div>
                     );

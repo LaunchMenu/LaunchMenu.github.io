@@ -29,6 +29,9 @@ export const Fade: FC<{
             id: `${idPrefix.current}_${childID}`,
             child: children,
         });
+    } else {
+        // Update the top
+        top.child = children;
     }
 
     return (
