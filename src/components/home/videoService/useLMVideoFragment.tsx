@@ -4,7 +4,7 @@ import {LMVideoContext} from "./LMVideoContext";
 export function useLMVideoFragment({
     startTime,
     endTime,
-    endMargin = 0.25,
+    endMargin = 0.2,
 }: {
     /** The start time of the fragment */
     startTime: number;

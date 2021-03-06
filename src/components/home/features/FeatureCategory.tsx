@@ -1,7 +1,8 @@
-import {Box, Typography} from "@material-ui/core";
-import {FC, Fragment, useContext, useState} from "react";
+import {Box} from "@material-ui/core";
+import {FC, useContext, useState} from "react";
 import TrackVisibility from "react-on-screen";
 import {useIsMobile} from "../../../hooks/useIsMobile";
+import {H2} from "../../textStyles/H2";
 import {LMVideoContext} from "../videoService/LMVideoContext";
 import {LMVideoProvider} from "../videoService/LMVideoProvider";
 import {FeatureContext} from "./FeatureContext";
@@ -24,17 +25,8 @@ export const FeatureCategory: FC<{
                     width: `min(100%, ${LMPlayerWidth}px)`,
                 },
             })}>
-            <Typography
-                variant="h2"
-                css={theme => ({
-                    fontWeight: 800,
-                    fontSize: theme.typography.pxToRem(30),
-                })}>
-                {category}
-            </Typography>
-            <Box mt={1} pl={1}>
-                {children}
-            </Box>
+            <H2>{category}</H2>
+            <Box mt={1}>{children}</Box>
         </Box>
     );
 

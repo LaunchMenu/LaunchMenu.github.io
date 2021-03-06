@@ -1,30 +1,30 @@
-import React, {FC} from "react";
-import {Box, Typography} from "@material-ui/core";
+import React, {FC, ReactNode} from "react";
+import {Box} from "@material-ui/core";
+import {H3} from "../textStyles/H3";
+import {Text} from "../textStyles/Text";
 
-export const SellingPoint: FC<{title: string; body: string}> = ({
+export const SellingPoint: FC<{title: ReactNode; body: ReactNode}> = ({
     title,
     body,
 }) => {
     return (
-        <Box width={300} mb={4}>
-            <Typography
-                variant="h5"
+        <Box maxWidth={400} mb={4}>
+            <H3
                 css={theme => ({
                     alignSelf: "center",
                     color: "rgba(0, 0, 0, 0.75)",
                     marginBottom: theme.spacing(2),
                 })}>
                 {title}
-            </Typography>
+            </H3>
 
-            <Typography
-                variant="body1"
+            <Text
                 css={{
                     alignSelf: "center",
                     color: "rgba(0, 0, 0, 0.5)",
                 }}>
                 {body}
-            </Typography>
+            </Text>
         </Box>
     );
 };

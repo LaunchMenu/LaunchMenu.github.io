@@ -131,23 +131,24 @@ function createVideo(
     // Create a react Component to create new video elements
     const Video: FC<{width?: number}> = ({width}) => {
         const ref = useRef<HTMLVideoElement | null>(null);
-        const refUpdater = (newRef: HTMLVideoElement | null) => {
-            const current = ref.current;
-            if (current) {
-                const index = videos.indexOf(current);
-                if (index != -1) videos.splice(index, 1);
-            }
-            ref.current = newRef;
-            if (newRef) {
-                videos.push(newRef);
+
+        useEffect(() => {
+            const video = ref.current;
+            if (video) {
+                videos.push(video);
                 if (videos.length == 1)
-                    newRef.ontimeupdate = () =>
-                        onTimeUpdate(newRef.currentTime);
-                newRef.playbackRate = rate;
-                newRef.currentTime = time;
-                if (playing) newRef.play();
+                    video.ontimeupdate = () => onTimeUpdate(video.currentTime);
+                video.playbackRate = rate;
+                video.currentTime = time;
+                if (playing) video.play();
+
+                return () => {
+                    const index = videos.indexOf(video);
+                    if (index != -1) videos.splice(index, 1);
+                };
             }
-        };
+        }, []);
+
         const onClick = () => {
             if (ref.current) {
                 if (ref.current.paused) ref.current.play();
@@ -158,7 +159,7 @@ function createVideo(
         return (
             <video
                 width={width}
-                ref={refUpdater}
+                ref={ref}
                 onClick={onClick}
                 muted
                 css={{display: "block"}}>

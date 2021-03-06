@@ -11,6 +11,8 @@ import {useLMVideoFragment} from "../videoService/useLMVideoFragment";
 import {FeatureContext} from "./FeatureContext";
 import {FeatureStatusWrapper, IFeatureStatusData} from "./FeatureStatusWrapper";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import {H3} from "../../textStyles/H3";
+import {Text} from "../../textStyles/Text";
 
 export const Feature: FC<{
     /** The id of the feature, used as url hash */
@@ -74,13 +76,12 @@ export const Feature: FC<{
     return (
         <li
             ref={elRef}
+            onClick={onClick}
             css={theme => ({
                 listStyleType: "none",
                 marginBottom: theme.spacing(1),
             })}>
-            <Typography
-                variant="h3"
-                onClick={onClick}
+            <H3
                 css={theme => ({
                     display: "inline",
                     cursor: "pointer",
@@ -89,13 +90,12 @@ export const Feature: FC<{
                 <FeatureStatusWrapper status={status}>
                     {title}
                 </FeatureStatusWrapper>
-            </Typography>
+            </H3>
+
             <Collapse in={selected == ID}>
-                <Typography
-                    variant="body1"
-                    css={theme => ({paddingLeft: theme.spacing(4)})}>
+                <Text css={theme => ({paddingLeft: theme.spacing(4)})}>
                     {children}
-                </Typography>
+                </Text>
             </Collapse>
         </li>
     );

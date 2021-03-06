@@ -5,6 +5,7 @@ import React, {FC} from "react";
 import Textfit from "react-textfit";
 import {useBodySize} from "../../hooks/useBodySize";
 import Link from "next/link";
+import {Text} from "../textStyles/Text";
 
 export const Hero: FC = ({children}) => {
     return (
@@ -18,16 +19,16 @@ export const Hero: FC = ({children}) => {
             }}>
             <Box css={{maxWidth: "min(400px, 100%)"}} mb={2}>
                 <Title />
-                <Typography
-                    variant="h2"
+
+                <Text
                     css={theme => ({
                         alignSelf: "center",
-                        fontWeight: 400,
+                        fontWeight: 800,
                         fontSize: 18,
                         marginBottom: theme.spacing(2),
                     })}>
                     Do it. Do it now.
-                </Typography>
+                </Text>
                 <Link href="#download">
                     <Button
                         variant="contained"
@@ -38,10 +39,10 @@ export const Hero: FC = ({children}) => {
                 </Link>
 
                 <Box mt={4} mb={2}>
-                    <Typography variant="body1">
+                    <Text>
                         LaunchMenu is an open platform, learn about all the
                         features that applets can take advantage of:
-                    </Typography>
+                    </Text>
                 </Box>
                 <Link href="/dev">
                     <Button

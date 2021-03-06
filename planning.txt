@@ -33,7 +33,7 @@ HomePage:
                 (These symbols will have tooltips in different sections with more nuanced data)
         - Full keyboard navigation:
             Use keyboard controls to:
-                - S: Select items purely
+                - S: Select items
                 - S: Execute item actions
                 - S: Step in and out of menus 
                 - S: Do everything else in LM!
@@ -59,6 +59,7 @@ HomePage:
             - S: Many aspects of LaunchMenu can personalized
             - S: Controls can be customized
             - S: All applets can be customized
+            - C: Import + Export settings.
             - C: Official and 3rd party applets can be browsed and installed:
                 - Tooltip: Infrastructure complete, UI required
             - C: Themes can be customised:
