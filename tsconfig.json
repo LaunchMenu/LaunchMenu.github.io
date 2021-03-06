@@ -22,7 +22,8 @@
         "noEmit": true,
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "jsxImportSource": "@emotion/react"
+        "jsxImportSource": "@emotion/react",
+        "tsBuildInfoFile": "/buildInfo"
     },
     "types": ["node"],
     "exclude": ["node_modules", "**/node_modules/*", "build", "trash"],

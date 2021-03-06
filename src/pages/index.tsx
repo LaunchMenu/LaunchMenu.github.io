@@ -4,6 +4,7 @@ import {Feature} from "../components/home/features/Feature";
 import {FeatureCategory} from "../components/home/features/FeatureCategory";
 import {FeatureVideo} from "../components/home/features/FeatureVideo";
 import {Hero} from "../components/home/Hero";
+import {HorizontalList} from "../components/home/HorizontalList";
 import {SellingPoint} from "../components/home/SellingPoint";
 import {LMVideosProvider} from "../components/home/videoService/LMVideosProvider";
 
