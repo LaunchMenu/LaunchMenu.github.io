@@ -1,0 +1,1540 @@
+<!DOCTYPE html><html lang="en"><head><meta name="theme-color" content="#008DFA"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap"/><meta charSet="utf-8"/><title>LaunchMenu</title><link rel="icon" href="/logo/logo-icon.ico"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="next-head-count" content="4"/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/main-59d22bc39ab1fda6f1ca.js" as="script"/><link rel="preload" href="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework.6e6e40479ef2ab0c5680.js" as="script"/><link rel="preload" href="/_next/static/chunks/3ef630e34cd10ba68f9d468ac363ff81c534e1e9.53053f4a1d32b2e998ce.js" as="script"/><link rel="preload" href="/_next/static/chunks/2803564ae1eaa6c7af983d3cea6bf488ed087096.6af86b3ac01db6e93919.js" as="script"/><link rel="preload" href="/_next/static/chunks/71247caf95475e3ea7f9a0f8a30beb258b23d005.a4c9d1b12395e4e3ec1c.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-df75c1d86f4735d00e06.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/index-ccf1c81195e4f5a80007.js" as="script"/><style id="jss-server-side">.MuiSvgIcon-root {
+  fill: currentColor;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  font-size: 1.5rem;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  flex-shrink: 0;
+  user-select: none;
+}
+.MuiSvgIcon-colorPrimary {
+  color: #008DFA;
+}
+.MuiSvgIcon-colorSecondary {
+  color: #0078d4;
+}
+.MuiSvgIcon-colorAction {
+  color: rgba(0, 0, 0, 0.54);
+}
+.MuiSvgIcon-colorError {
+  color: #f44336;
+}
+.MuiSvgIcon-colorDisabled {
+  color: rgba(0, 0, 0, 0.26);
+}
+.MuiSvgIcon-fontSizeInherit {
+  font-size: inherit;
+}
+.MuiSvgIcon-fontSizeSmall {
+  font-size: 1.25rem;
+}
+.MuiSvgIcon-fontSizeLarge {
+  font-size: 2.1875rem;
+}
+.MuiCollapse-container {
+  height: 0;
+  overflow: hidden;
+  transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.MuiCollapse-entered {
+  height: auto;
+  overflow: visible;
+}
+.MuiCollapse-hidden {
+  visibility: hidden;
+}
+.MuiCollapse-wrapper {
+  display: flex;
+}
+.MuiCollapse-wrapperInner {
+  width: 100%;
+}
+.MuiPaper-root {
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: #fff;
+}
+.MuiPaper-rounded {
+  border-radius: 4px;
+}
+.MuiPaper-outlined {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.MuiPaper-elevation0 {
+  box-shadow: none;
+}
+.MuiPaper-elevation1 {
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation2 {
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation3 {
+  box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation4 {
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation5 {
+  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation6 {
+  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation7 {
+  box-shadow: 0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation8 {
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation9 {
+  box-shadow: 0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation10 {
+  box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation11 {
+  box-shadow: 0px 6px 7px -4px rgba(0,0,0,0.2),0px 11px 15px 1px rgba(0,0,0,0.14),0px 4px 20px 3px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation12 {
+  box-shadow: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 12px 17px 2px rgba(0,0,0,0.14),0px 5px 22px 4px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation13 {
+  box-shadow: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 13px 19px 2px rgba(0,0,0,0.14),0px 5px 24px 4px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation14 {
+  box-shadow: 0px 7px 9px -4px rgba(0,0,0,0.2),0px 14px 21px 2px rgba(0,0,0,0.14),0px 5px 26px 4px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation15 {
+  box-shadow: 0px 8px 9px -5px rgba(0,0,0,0.2),0px 15px 22px 2px rgba(0,0,0,0.14),0px 6px 28px 5px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation16 {
+  box-shadow: 0px 8px 10px -5px rgba(0,0,0,0.2),0px 16px 24px 2px rgba(0,0,0,0.14),0px 6px 30px 5px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation17 {
+  box-shadow: 0px 8px 11px -5px rgba(0,0,0,0.2),0px 17px 26px 2px rgba(0,0,0,0.14),0px 6px 32px 5px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation18 {
+  box-shadow: 0px 9px 11px -5px rgba(0,0,0,0.2),0px 18px 28px 2px rgba(0,0,0,0.14),0px 7px 34px 6px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation19 {
+  box-shadow: 0px 9px 12px -6px rgba(0,0,0,0.2),0px 19px 29px 2px rgba(0,0,0,0.14),0px 7px 36px 6px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation20 {
+  box-shadow: 0px 10px 13px -6px rgba(0,0,0,0.2),0px 20px 31px 3px rgba(0,0,0,0.14),0px 8px 38px 7px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation21 {
+  box-shadow: 0px 10px 13px -6px rgba(0,0,0,0.2),0px 21px 33px 3px rgba(0,0,0,0.14),0px 8px 40px 7px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation22 {
+  box-shadow: 0px 10px 14px -6px rgba(0,0,0,0.2),0px 22px 35px 3px rgba(0,0,0,0.14),0px 8px 42px 7px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation23 {
+  box-shadow: 0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation24 {
+  box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12);
+}
+.MuiButtonBase-root {
+  color: inherit;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  display: inline-flex;
+  outline: 0;
+  padding: 0;
+  position: relative;
+  align-items: center;
+  user-select: none;
+  border-radius: 0;
+  vertical-align: middle;
+  -moz-appearance: none;
+  justify-content: center;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.MuiButtonBase-root::-moz-focus-inner {
+  border-style: none;
+}
+.MuiButtonBase-root.Mui-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+@media print {
+  .MuiButtonBase-root {
+    color-adjust: exact;
+  }
+}
+  .MuiAppBar-root {
+    width: 100%;
+    display: flex;
+    z-index: 1100;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .MuiAppBar-positionFixed {
+    top: 0;
+    left: auto;
+    right: 0;
+    position: fixed;
+  }
+@media print {
+  .MuiAppBar-positionFixed {
+    position: absolute;
+  }
+}
+  .MuiAppBar-positionAbsolute {
+    top: 0;
+    left: auto;
+    right: 0;
+    position: absolute;
+  }
+  .MuiAppBar-positionSticky {
+    top: 0;
+    left: auto;
+    right: 0;
+    position: sticky;
+  }
+  .MuiAppBar-positionStatic {
+    position: static;
+  }
+  .MuiAppBar-positionRelative {
+    position: relative;
+  }
+  .MuiAppBar-colorDefault {
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #f5f5f5;
+  }
+  .MuiAppBar-colorPrimary {
+    color: #FFFFFF;
+    background-color: #008DFA;
+  }
+  .MuiAppBar-colorSecondary {
+    color: #FFFFFF;
+    background-color: #0078d4;
+  }
+  .MuiAppBar-colorInherit {
+    color: inherit;
+  }
+  .MuiAppBar-colorTransparent {
+    color: inherit;
+    background-color: transparent;
+  }
+
+  .jss1 {  }
+  .jss2 {  }
+  .jss3 {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+  .jss4 {
+    margin-bottom: 16px;
+  }
+  .jss5 {
+    margin-top: 32px;
+    margin-bottom: 16px;
+  }
+  .jss6 {
+    flex: 1;
+  }
+  .jss7 {
+    max-width: 400px;
+    margin-bottom: 32px;
+  }
+  .jss8 {
+    max-width: 400px;
+    margin-bottom: 32px;
+  }
+  .jss9 {
+    max-width: 400px;
+    margin-bottom: 32px;
+  }
+  .jss10 {
+    margin-top: 25vh;
+  }
+  .jss11 {
+    margin-left: 16px;
+    margin-bottom: 16px;
+  }
+  .jss12 {
+    margin-top: 8px;
+  }
+  .jss13 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss14 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss15 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss16 {
+    margin-bottom: 16px;
+  }
+  .jss17 {
+    margin-top: 25vh;
+  }
+  .jss18 {
+    margin-left: 16px;
+    margin-bottom: 16px;
+  }
+  .jss19 {
+    margin-top: 8px;
+  }
+  .jss20 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss21 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss22 {  }
+  .jss23 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss24 {  }
+  .jss25 {  }
+  .jss26 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss27 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss28 {
+    margin-bottom: 16px;
+  }
+  .jss29 {
+    margin-top: 25vh;
+  }
+  .jss30 {
+    margin-left: 16px;
+    margin-bottom: 16px;
+  }
+  .jss31 {
+    margin-top: 8px;
+  }
+  .jss32 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss33 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss34 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss35 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss36 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss37 {
+    margin-bottom: 16px;
+  }
+  .jss38 {
+    margin-top: 25vh;
+  }
+  .jss39 {
+    margin-left: 16px;
+    margin-bottom: 16px;
+  }
+  .jss40 {
+    margin-top: 8px;
+  }
+  .jss41 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss42 {  }
+  .jss43 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss44 {  }
+  .jss45 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss46 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss47 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss48 {
+    margin-bottom: 16px;
+  }
+  .jss49 {
+    margin-top: 25vh;
+  }
+  .jss50 {
+    margin-left: 16px;
+    margin-bottom: 16px;
+  }
+  .jss51 {
+    margin-top: 8px;
+  }
+  .jss52 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss53 {  }
+  .jss54 {  }
+  .jss55 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss56 {
+    margin-bottom: 16px;
+  }
+  .jss57 {
+    margin-top: 25vh;
+  }
+  .jss58 {
+    margin-left: 16px;
+    margin-bottom: 16px;
+  }
+  .jss59 {
+    margin-top: 8px;
+  }
+  .jss60 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss61 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss62 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss63 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss64 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss65 {
+    display: inline;
+    margin-right: 8px;
+  }
+  .jss66 {
+    margin-bottom: 16px;
+  }
+  .jss67 {
+    padding: 16px;
+  }
+  .MuiTypography-root {
+    margin: 0;
+  }
+  .MuiTypography-body2 {
+    font-size: 0.875rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+  }
+  .MuiTypography-body1 {
+    font-size: 1rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+  }
+  .MuiTypography-caption {
+    font-size: 0.75rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.66;
+    letter-spacing: 0.03333em;
+  }
+  .MuiTypography-button {
+    font-size: 0.875rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    text-transform: none;
+  }
+  .MuiTypography-h1 {
+    font-size: 6rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 300;
+    line-height: 1.167;
+    letter-spacing: -0.01562em;
+  }
+  .MuiTypography-h2 {
+    font-size: 3.75rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.00833em;
+  }
+  .MuiTypography-h3 {
+    font-size: 3rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.167;
+    letter-spacing: 0em;
+  }
+  .MuiTypography-h4 {
+    font-size: 2.125rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.235;
+    letter-spacing: 0.00735em;
+  }
+  .MuiTypography-h5 {
+    font-size: 1.5rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.334;
+    letter-spacing: 0em;
+  }
+  .MuiTypography-h6 {
+    font-size: 1.25rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: 0.0075em;
+  }
+  .MuiTypography-subtitle1 {
+    font-size: 1rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.75;
+    letter-spacing: 0.00938em;
+  }
+  .MuiTypography-subtitle2 {
+    font-size: 0.875rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1.57;
+    letter-spacing: 0.00714em;
+  }
+  .MuiTypography-overline {
+    font-size: 0.75rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 2.66;
+    letter-spacing: 0.08333em;
+    text-transform: uppercase;
+  }
+  .MuiTypography-srOnly {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+  }
+  .MuiTypography-alignLeft {
+    text-align: left;
+  }
+  .MuiTypography-alignCenter {
+    text-align: center;
+  }
+  .MuiTypography-alignRight {
+    text-align: right;
+  }
+  .MuiTypography-alignJustify {
+    text-align: justify;
+  }
+  .MuiTypography-noWrap {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .MuiTypography-gutterBottom {
+    margin-bottom: 0.35em;
+  }
+  .MuiTypography-paragraph {
+    margin-bottom: 16px;
+  }
+  .MuiTypography-colorInherit {
+    color: inherit;
+  }
+  .MuiTypography-colorPrimary {
+    color: #008DFA;
+  }
+  .MuiTypography-colorSecondary {
+    color: #0078d4;
+  }
+  .MuiTypography-colorTextPrimary {
+    color: rgba(0, 0, 0, 0.87);
+  }
+  .MuiTypography-colorTextSecondary {
+    color: rgba(0, 0, 0, 0.54);
+  }
+  .MuiTypography-colorError {
+    color: #f44336;
+  }
+  .MuiTypography-displayInline {
+    display: inline;
+  }
+  .MuiTypography-displayBlock {
+    display: block;
+  }
+  .MuiButton-root {
+    color: rgba(0, 0, 0, 0.87);
+    padding: 6px 16px;
+    font-size: 0.875rem;
+    min-width: 64px;
+    box-sizing: border-box;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1.75;
+    border-radius: 4px;
+    letter-spacing: 0.02857em;
+    text-transform: none;
+  }
+  .MuiButton-root:hover {
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+  .MuiButton-root.Mui-disabled {
+    color: rgba(0, 0, 0, 0.26);
+  }
+@media (hover: none) {
+  .MuiButton-root:hover {
+    background-color: transparent;
+  }
+}
+  .MuiButton-root:hover.Mui-disabled {
+    background-color: transparent;
+  }
+  .MuiButton-label {
+    width: 100%;
+    display: inherit;
+    align-items: inherit;
+    justify-content: inherit;
+  }
+  .MuiButton-text {
+    padding: 6px 8px;
+  }
+  .MuiButton-textPrimary {
+    color: white;
+  }
+  .MuiButton-textPrimary:hover {
+    background-color: rgba(0, 141, 250, 0.04);
+  }
+@media (hover: none) {
+  .MuiButton-textPrimary:hover {
+    background-color: transparent;
+  }
+}
+  .MuiButton-textSecondary {
+    color: #0078d4;
+  }
+  .MuiButton-textSecondary:hover {
+    background-color: rgba(0, 120, 212, 0.04);
+  }
+@media (hover: none) {
+  .MuiButton-textSecondary:hover {
+    background-color: transparent;
+  }
+}
+  .MuiButton-outlined {
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    padding: 5px 15px;
+  }
+  .MuiButton-outlined.Mui-disabled {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  .MuiButton-outlinedPrimary {
+    color: #008DFA;
+    border: 1px solid rgba(0, 141, 250, 0.5);
+  }
+  .MuiButton-outlinedPrimary:hover {
+    border: 1px solid #008DFA;
+    background-color: rgba(0, 141, 250, 0.04);
+  }
+@media (hover: none) {
+  .MuiButton-outlinedPrimary:hover {
+    background-color: transparent;
+  }
+}
+  .MuiButton-outlinedSecondary {
+    color: #0078d4;
+    border: 1px solid rgba(0, 120, 212, 0.5);
+  }
+  .MuiButton-outlinedSecondary:hover {
+    border: 1px solid #0078d4;
+    background-color: rgba(0, 120, 212, 0.04);
+  }
+  .MuiButton-outlinedSecondary.Mui-disabled {
+    border: 1px solid rgba(0, 0, 0, 0.26);
+  }
+@media (hover: none) {
+  .MuiButton-outlinedSecondary:hover {
+    background-color: transparent;
+  }
+}
+  .MuiButton-contained {
+    color: rgba(0, 0, 0, 0.87);
+    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+    background-color: #e0e0e0;
+  }
+  .MuiButton-contained:hover {
+    box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+    background-color: #d5d5d5;
+  }
+  .MuiButton-contained.Mui-focusVisible {
+    box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
+  }
+  .MuiButton-contained:active {
+    box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+  }
+  .MuiButton-contained.Mui-disabled {
+    color: rgba(0, 0, 0, 0.26);
+    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0.12);
+  }
+@media (hover: none) {
+  .MuiButton-contained:hover {
+    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+    background-color: #e0e0e0;
+  }
+}
+  .MuiButton-contained:hover.Mui-disabled {
+    background-color: rgba(0, 0, 0, 0.12);
+  }
+  .MuiButton-containedPrimary {
+    color: #FFFFFF;
+    background-color: #008DFA;
+  }
+  .MuiButton-containedPrimary:hover {
+    background-color: #006BBE;
+  }
+@media (hover: none) {
+  .MuiButton-containedPrimary:hover {
+    background-color: #008DFA;
+  }
+}
+  .MuiButton-containedSecondary {
+    color: #FFFFFF;
+    background-color: #0078d4;
+  }
+  .MuiButton-containedSecondary:hover {
+    background-color: #006BBE;
+  }
+@media (hover: none) {
+  .MuiButton-containedSecondary:hover {
+    background-color: #0078d4;
+  }
+}
+  .MuiButton-disableElevation {
+    box-shadow: none;
+  }
+  .MuiButton-disableElevation:hover {
+    box-shadow: none;
+  }
+  .MuiButton-disableElevation.Mui-focusVisible {
+    box-shadow: none;
+  }
+  .MuiButton-disableElevation:active {
+    box-shadow: none;
+  }
+  .MuiButton-disableElevation.Mui-disabled {
+    box-shadow: none;
+  }
+  .MuiButton-colorInherit {
+    color: inherit;
+    border-color: currentColor;
+  }
+  .MuiButton-textSizeSmall {
+    padding: 4px 5px;
+    font-size: 0.8125rem;
+  }
+  .MuiButton-textSizeLarge {
+    padding: 8px 11px;
+    font-size: 0.9375rem;
+  }
+  .MuiButton-outlinedSizeSmall {
+    padding: 3px 9px;
+    font-size: 0.8125rem;
+  }
+  .MuiButton-outlinedSizeLarge {
+    padding: 7px 21px;
+    font-size: 0.9375rem;
+  }
+  .MuiButton-containedSizeSmall {
+    padding: 4px 10px;
+    font-size: 0.8125rem;
+  }
+  .MuiButton-containedSizeLarge {
+    padding: 8px 22px;
+    font-size: 0.9375rem;
+  }
+  .MuiButton-fullWidth {
+    width: 100%;
+  }
+  .MuiButton-startIcon {
+    display: inherit;
+    margin-left: -4px;
+    margin-right: 8px;
+  }
+  .MuiButton-startIcon.MuiButton-iconSizeSmall {
+    margin-left: -2px;
+  }
+  .MuiButton-endIcon {
+    display: inherit;
+    margin-left: 8px;
+    margin-right: -4px;
+  }
+  .MuiButton-endIcon.MuiButton-iconSizeSmall {
+    margin-right: -2px;
+  }
+  .MuiButton-iconSizeSmall > *:first-child {
+    font-size: 18px;
+  }
+  .MuiButton-iconSizeMedium > *:first-child {
+    font-size: 20px;
+  }
+  .MuiButton-iconSizeLarge > *:first-child {
+    font-size: 22px;
+  }
+  .MuiContainer-root {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+@media (min-width:700px) {
+  .MuiContainer-root {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+  .MuiContainer-disableGutters {
+    padding-left: 0;
+    padding-right: 0;
+  }
+@media (min-width:400px) {
+  .MuiContainer-fixed {
+    max-width: 400px;
+  }
+}
+@media (min-width:700px) {
+  .MuiContainer-fixed {
+    max-width: 700px;
+  }
+}
+@media (min-width:1000px) {
+  .MuiContainer-fixed {
+    max-width: 1000px;
+  }
+}
+@media (min-width:1300px) {
+  .MuiContainer-fixed {
+    max-width: 1300px;
+  }
+}
+@media (min-width:2500px) {
+  .MuiContainer-fixed {
+    max-width: 2500px;
+  }
+}
+@media (min-width:400px) {
+  .MuiContainer-maxWidthXs {
+    max-width: 444px;
+  }
+}
+@media (min-width:700px) {
+  .MuiContainer-maxWidthSm {
+    max-width: 700px;
+  }
+}
+@media (min-width:1000px) {
+  .MuiContainer-maxWidthMd {
+    max-width: 1000px;
+  }
+}
+@media (min-width:1300px) {
+  .MuiContainer-maxWidthLg {
+    max-width: 1300px;
+  }
+}
+@media (min-width:2500px) {
+  .MuiContainer-maxWidthXl {
+    max-width: 2500px;
+  }
+}
+  .MuiGrid-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+  }
+  .MuiGrid-item {
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .MuiGrid-zeroMinWidth {
+    min-width: 0;
+  }
+  .MuiGrid-direction-xs-column {
+    flex-direction: column;
+  }
+  .MuiGrid-direction-xs-column-reverse {
+    flex-direction: column-reverse;
+  }
+  .MuiGrid-direction-xs-row-reverse {
+    flex-direction: row-reverse;
+  }
+  .MuiGrid-wrap-xs-nowrap {
+    flex-wrap: nowrap;
+  }
+  .MuiGrid-wrap-xs-wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+  .MuiGrid-align-items-xs-center {
+    align-items: center;
+  }
+  .MuiGrid-align-items-xs-flex-start {
+    align-items: flex-start;
+  }
+  .MuiGrid-align-items-xs-flex-end {
+    align-items: flex-end;
+  }
+  .MuiGrid-align-items-xs-baseline {
+    align-items: baseline;
+  }
+  .MuiGrid-align-content-xs-center {
+    align-content: center;
+  }
+  .MuiGrid-align-content-xs-flex-start {
+    align-content: flex-start;
+  }
+  .MuiGrid-align-content-xs-flex-end {
+    align-content: flex-end;
+  }
+  .MuiGrid-align-content-xs-space-between {
+    align-content: space-between;
+  }
+  .MuiGrid-align-content-xs-space-around {
+    align-content: space-around;
+  }
+  .MuiGrid-justify-xs-center {
+    justify-content: center;
+  }
+  .MuiGrid-justify-xs-flex-end {
+    justify-content: flex-end;
+  }
+  .MuiGrid-justify-xs-space-between {
+    justify-content: space-between;
+  }
+  .MuiGrid-justify-xs-space-around {
+    justify-content: space-around;
+  }
+  .MuiGrid-justify-xs-space-evenly {
+    justify-content: space-evenly;
+  }
+  .MuiGrid-spacing-xs-1 {
+    width: calc(100% + 8px);
+    margin: -4px;
+  }
+  .MuiGrid-spacing-xs-1 > .MuiGrid-item {
+    padding: 4px;
+  }
+  .MuiGrid-spacing-xs-2 {
+    width: calc(100% + 16px);
+    margin: -8px;
+  }
+  .MuiGrid-spacing-xs-2 > .MuiGrid-item {
+    padding: 8px;
+  }
+  .MuiGrid-spacing-xs-3 {
+    width: calc(100% + 24px);
+    margin: -12px;
+  }
+  .MuiGrid-spacing-xs-3 > .MuiGrid-item {
+    padding: 12px;
+  }
+  .MuiGrid-spacing-xs-4 {
+    width: calc(100% + 32px);
+    margin: -16px;
+  }
+  .MuiGrid-spacing-xs-4 > .MuiGrid-item {
+    padding: 16px;
+  }
+  .MuiGrid-spacing-xs-5 {
+    width: calc(100% + 40px);
+    margin: -20px;
+  }
+  .MuiGrid-spacing-xs-5 > .MuiGrid-item {
+    padding: 20px;
+  }
+  .MuiGrid-spacing-xs-6 {
+    width: calc(100% + 48px);
+    margin: -24px;
+  }
+  .MuiGrid-spacing-xs-6 > .MuiGrid-item {
+    padding: 24px;
+  }
+  .MuiGrid-spacing-xs-7 {
+    width: calc(100% + 56px);
+    margin: -28px;
+  }
+  .MuiGrid-spacing-xs-7 > .MuiGrid-item {
+    padding: 28px;
+  }
+  .MuiGrid-spacing-xs-8 {
+    width: calc(100% + 64px);
+    margin: -32px;
+  }
+  .MuiGrid-spacing-xs-8 > .MuiGrid-item {
+    padding: 32px;
+  }
+  .MuiGrid-spacing-xs-9 {
+    width: calc(100% + 72px);
+    margin: -36px;
+  }
+  .MuiGrid-spacing-xs-9 > .MuiGrid-item {
+    padding: 36px;
+  }
+  .MuiGrid-spacing-xs-10 {
+    width: calc(100% + 80px);
+    margin: -40px;
+  }
+  .MuiGrid-spacing-xs-10 > .MuiGrid-item {
+    padding: 40px;
+  }
+  .MuiGrid-grid-xs-auto {
+    flex-grow: 0;
+    max-width: none;
+    flex-basis: auto;
+  }
+  .MuiGrid-grid-xs-true {
+    flex-grow: 1;
+    max-width: 100%;
+    flex-basis: 0;
+  }
+  .MuiGrid-grid-xs-1 {
+    flex-grow: 0;
+    max-width: 8.333333%;
+    flex-basis: 8.333333%;
+  }
+  .MuiGrid-grid-xs-2 {
+    flex-grow: 0;
+    max-width: 16.666667%;
+    flex-basis: 16.666667%;
+  }
+  .MuiGrid-grid-xs-3 {
+    flex-grow: 0;
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .MuiGrid-grid-xs-4 {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+  }
+  .MuiGrid-grid-xs-5 {
+    flex-grow: 0;
+    max-width: 41.666667%;
+    flex-basis: 41.666667%;
+  }
+  .MuiGrid-grid-xs-6 {
+    flex-grow: 0;
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+  .MuiGrid-grid-xs-7 {
+    flex-grow: 0;
+    max-width: 58.333333%;
+    flex-basis: 58.333333%;
+  }
+  .MuiGrid-grid-xs-8 {
+    flex-grow: 0;
+    max-width: 66.666667%;
+    flex-basis: 66.666667%;
+  }
+  .MuiGrid-grid-xs-9 {
+    flex-grow: 0;
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+  .MuiGrid-grid-xs-10 {
+    flex-grow: 0;
+    max-width: 83.333333%;
+    flex-basis: 83.333333%;
+  }
+  .MuiGrid-grid-xs-11 {
+    flex-grow: 0;
+    max-width: 91.666667%;
+    flex-basis: 91.666667%;
+  }
+  .MuiGrid-grid-xs-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+@media (min-width:700px) {
+  .MuiGrid-grid-sm-auto {
+    flex-grow: 0;
+    max-width: none;
+    flex-basis: auto;
+  }
+  .MuiGrid-grid-sm-true {
+    flex-grow: 1;
+    max-width: 100%;
+    flex-basis: 0;
+  }
+  .MuiGrid-grid-sm-1 {
+    flex-grow: 0;
+    max-width: 8.333333%;
+    flex-basis: 8.333333%;
+  }
+  .MuiGrid-grid-sm-2 {
+    flex-grow: 0;
+    max-width: 16.666667%;
+    flex-basis: 16.666667%;
+  }
+  .MuiGrid-grid-sm-3 {
+    flex-grow: 0;
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .MuiGrid-grid-sm-4 {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+  }
+  .MuiGrid-grid-sm-5 {
+    flex-grow: 0;
+    max-width: 41.666667%;
+    flex-basis: 41.666667%;
+  }
+  .MuiGrid-grid-sm-6 {
+    flex-grow: 0;
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+  .MuiGrid-grid-sm-7 {
+    flex-grow: 0;
+    max-width: 58.333333%;
+    flex-basis: 58.333333%;
+  }
+  .MuiGrid-grid-sm-8 {
+    flex-grow: 0;
+    max-width: 66.666667%;
+    flex-basis: 66.666667%;
+  }
+  .MuiGrid-grid-sm-9 {
+    flex-grow: 0;
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+  .MuiGrid-grid-sm-10 {
+    flex-grow: 0;
+    max-width: 83.333333%;
+    flex-basis: 83.333333%;
+  }
+  .MuiGrid-grid-sm-11 {
+    flex-grow: 0;
+    max-width: 91.666667%;
+    flex-basis: 91.666667%;
+  }
+  .MuiGrid-grid-sm-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+@media (min-width:1000px) {
+  .MuiGrid-grid-md-auto {
+    flex-grow: 0;
+    max-width: none;
+    flex-basis: auto;
+  }
+  .MuiGrid-grid-md-true {
+    flex-grow: 1;
+    max-width: 100%;
+    flex-basis: 0;
+  }
+  .MuiGrid-grid-md-1 {
+    flex-grow: 0;
+    max-width: 8.333333%;
+    flex-basis: 8.333333%;
+  }
+  .MuiGrid-grid-md-2 {
+    flex-grow: 0;
+    max-width: 16.666667%;
+    flex-basis: 16.666667%;
+  }
+  .MuiGrid-grid-md-3 {
+    flex-grow: 0;
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .MuiGrid-grid-md-4 {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+  }
+  .MuiGrid-grid-md-5 {
+    flex-grow: 0;
+    max-width: 41.666667%;
+    flex-basis: 41.666667%;
+  }
+  .MuiGrid-grid-md-6 {
+    flex-grow: 0;
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+  .MuiGrid-grid-md-7 {
+    flex-grow: 0;
+    max-width: 58.333333%;
+    flex-basis: 58.333333%;
+  }
+  .MuiGrid-grid-md-8 {
+    flex-grow: 0;
+    max-width: 66.666667%;
+    flex-basis: 66.666667%;
+  }
+  .MuiGrid-grid-md-9 {
+    flex-grow: 0;
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+  .MuiGrid-grid-md-10 {
+    flex-grow: 0;
+    max-width: 83.333333%;
+    flex-basis: 83.333333%;
+  }
+  .MuiGrid-grid-md-11 {
+    flex-grow: 0;
+    max-width: 91.666667%;
+    flex-basis: 91.666667%;
+  }
+  .MuiGrid-grid-md-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+@media (min-width:1300px) {
+  .MuiGrid-grid-lg-auto {
+    flex-grow: 0;
+    max-width: none;
+    flex-basis: auto;
+  }
+  .MuiGrid-grid-lg-true {
+    flex-grow: 1;
+    max-width: 100%;
+    flex-basis: 0;
+  }
+  .MuiGrid-grid-lg-1 {
+    flex-grow: 0;
+    max-width: 8.333333%;
+    flex-basis: 8.333333%;
+  }
+  .MuiGrid-grid-lg-2 {
+    flex-grow: 0;
+    max-width: 16.666667%;
+    flex-basis: 16.666667%;
+  }
+  .MuiGrid-grid-lg-3 {
+    flex-grow: 0;
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .MuiGrid-grid-lg-4 {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+  }
+  .MuiGrid-grid-lg-5 {
+    flex-grow: 0;
+    max-width: 41.666667%;
+    flex-basis: 41.666667%;
+  }
+  .MuiGrid-grid-lg-6 {
+    flex-grow: 0;
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+  .MuiGrid-grid-lg-7 {
+    flex-grow: 0;
+    max-width: 58.333333%;
+    flex-basis: 58.333333%;
+  }
+  .MuiGrid-grid-lg-8 {
+    flex-grow: 0;
+    max-width: 66.666667%;
+    flex-basis: 66.666667%;
+  }
+  .MuiGrid-grid-lg-9 {
+    flex-grow: 0;
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+  .MuiGrid-grid-lg-10 {
+    flex-grow: 0;
+    max-width: 83.333333%;
+    flex-basis: 83.333333%;
+  }
+  .MuiGrid-grid-lg-11 {
+    flex-grow: 0;
+    max-width: 91.666667%;
+    flex-basis: 91.666667%;
+  }
+  .MuiGrid-grid-lg-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+@media (min-width:2500px) {
+  .MuiGrid-grid-xl-auto {
+    flex-grow: 0;
+    max-width: none;
+    flex-basis: auto;
+  }
+  .MuiGrid-grid-xl-true {
+    flex-grow: 1;
+    max-width: 100%;
+    flex-basis: 0;
+  }
+  .MuiGrid-grid-xl-1 {
+    flex-grow: 0;
+    max-width: 8.333333%;
+    flex-basis: 8.333333%;
+  }
+  .MuiGrid-grid-xl-2 {
+    flex-grow: 0;
+    max-width: 16.666667%;
+    flex-basis: 16.666667%;
+  }
+  .MuiGrid-grid-xl-3 {
+    flex-grow: 0;
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .MuiGrid-grid-xl-4 {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+  }
+  .MuiGrid-grid-xl-5 {
+    flex-grow: 0;
+    max-width: 41.666667%;
+    flex-basis: 41.666667%;
+  }
+  .MuiGrid-grid-xl-6 {
+    flex-grow: 0;
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+  .MuiGrid-grid-xl-7 {
+    flex-grow: 0;
+    max-width: 58.333333%;
+    flex-basis: 58.333333%;
+  }
+  .MuiGrid-grid-xl-8 {
+    flex-grow: 0;
+    max-width: 66.666667%;
+    flex-basis: 66.666667%;
+  }
+  .MuiGrid-grid-xl-9 {
+    flex-grow: 0;
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+  .MuiGrid-grid-xl-10 {
+    flex-grow: 0;
+    max-width: 83.333333%;
+    flex-basis: 83.333333%;
+  }
+  .MuiGrid-grid-xl-11 {
+    flex-grow: 0;
+    max-width: 91.666667%;
+    flex-basis: 91.666667%;
+  }
+  .MuiGrid-grid-xl-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+  .MuiToolbar-root {
+    display: flex;
+    position: relative;
+    align-items: center;
+  }
+  .MuiToolbar-gutters {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+@media (min-width:700px) {
+  .MuiToolbar-gutters {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+  .MuiToolbar-regular {
+    min-height: 56px;
+  }
+@media (min-width:400px) and (orientation: landscape) {
+  .MuiToolbar-regular {
+    min-height: 48px;
+  }
+}
+@media (min-width:700px) {
+  .MuiToolbar-regular {
+    min-height: 64px;
+  }
+}
+  .MuiToolbar-dense {
+    min-height: 48px;
+  }
+  .MuiTooltip-popper {
+    z-index: 1500;
+    pointer-events: none;
+  }
+  .MuiTooltip-popperInteractive {
+    pointer-events: auto;
+  }
+  .MuiTooltip-popperArrow[x-placement*="bottom"] .MuiTooltip-arrow {
+    top: 0;
+    left: 0;
+    margin-top: -0.71em;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  .MuiTooltip-popperArrow[x-placement*="top"] .MuiTooltip-arrow {
+    left: 0;
+    bottom: 0;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-bottom: -0.71em;
+  }
+  .MuiTooltip-popperArrow[x-placement*="right"] .MuiTooltip-arrow {
+    left: 0;
+    width: 0.71em;
+    height: 1em;
+    margin-top: 4px;
+    margin-left: -0.71em;
+    margin-bottom: 4px;
+  }
+  .MuiTooltip-popperArrow[x-placement*="left"] .MuiTooltip-arrow {
+    right: 0;
+    width: 0.71em;
+    height: 1em;
+    margin-top: 4px;
+    margin-right: -0.71em;
+    margin-bottom: 4px;
+  }
+  .MuiTooltip-popperArrow[x-placement*="left"] .MuiTooltip-arrow::before {
+    transform-origin: 0 0;
+  }
+  .MuiTooltip-popperArrow[x-placement*="right"] .MuiTooltip-arrow::before {
+    transform-origin: 100% 100%;
+  }
+  .MuiTooltip-popperArrow[x-placement*="top"] .MuiTooltip-arrow::before {
+    transform-origin: 100% 0;
+  }
+  .MuiTooltip-popperArrow[x-placement*="bottom"] .MuiTooltip-arrow::before {
+    transform-origin: 0 100%;
+  }
+  .MuiTooltip-tooltip {
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 0.625rem;
+    max-width: 300px;
+    word-wrap: break-word;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1.4em;
+    border-radius: 4px;
+    background-color: rgba(97, 97, 97, 0.9);
+  }
+  .MuiTooltip-tooltipArrow {
+    margin: 0;
+    position: relative;
+  }
+  .MuiTooltip-arrow {
+    color: rgba(97, 97, 97, 0.9);
+    width: 1em;
+    height: 0.71em;
+    overflow: hidden;
+    position: absolute;
+    box-sizing: border-box;
+  }
+  .MuiTooltip-arrow::before {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    content: "";
+    display: block;
+    transform: rotate(45deg);
+    background-color: currentColor;
+  }
+  .MuiTooltip-touch {
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.14286em;
+  }
+  .MuiTooltip-tooltipPlacementLeft {
+    margin: 0 24px ;
+    transform-origin: right center;
+  }
+@media (min-width:700px) {
+  .MuiTooltip-tooltipPlacementLeft {
+    margin: 0 14px;
+  }
+}
+  .MuiTooltip-tooltipPlacementRight {
+    margin: 0 24px;
+    transform-origin: left center;
+  }
+@media (min-width:700px) {
+  .MuiTooltip-tooltipPlacementRight {
+    margin: 0 14px;
+  }
+}
+  .MuiTooltip-tooltipPlacementTop {
+    margin: 24px 0;
+    transform-origin: center bottom;
+  }
+@media (min-width:700px) {
+  .MuiTooltip-tooltipPlacementTop {
+    margin: 14px 0;
+  }
+}
+  .MuiTooltip-tooltipPlacementBottom {
+    margin: 24px 0;
+    transform-origin: center top;
+  }
+@media (min-width:700px) {
+  .MuiTooltip-tooltipPlacementBottom {
+    margin: 14px 0;
+  }
+}</style></head><body><div id="__next"><div class="layout"><style data-emotion="css-global z7yx9f">body,html{margin:0;padding:0;height:100%;width:100%;}</style><header class="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4"><div class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"><div class="MuiContainer-root MuiContainer-maxWidthLg"><div class="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-space-between"><style data-emotion="css 1u4hpl4">.css-1u4hpl4{display:inline;}</style><div class="MuiBox-root jss1 css-1u4hpl4"><button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary" tabindex="0" type="button"><span class="MuiButton-label"><h6 class="MuiTypography-root MuiTypography-h6">LaunchMenu</h6></span></button></div><style data-emotion="css bqf3x">.css-bqf3x{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;gap:20px;}</style><div class="MuiBox-root jss2 css-bqf3x"><button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary" tabindex="0" type="button"><span class="MuiButton-label"><h6 class="MuiTypography-root MuiTypography-h6">Docs</h6></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary" tabindex="0" type="button"><span class="MuiButton-label"><h6 class="MuiTypography-root MuiTypography-h6">About</h6></span></button></div></div></div></div></header><div class="MuiContainer-root MuiContainer-maxWidthLg"><div><style data-emotion="css 1ukjyk4">.css-1ukjyk4{-webkit-flex-direction:row-reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;}</style><div class="MuiBox-root jss3 css-1ukjyk4"><style data-emotion="css dt6o0p">.css-dt6o0p{max-width:min(400px, 100%);max-width:min(400px, 100%);}</style><div class="MuiBox-root jss4 css-dt6o0p"><style data-emotion="css tl05dm">.css-tl05dm{-webkit-align-self:center;-ms-flex-item-align:center;align-self:center;margin-bottom:16px;}</style><h1 class="MuiTypography-root css-tl05dm MuiTypography-h1 MuiTypography-colorPrimary"><div><div style="display:inline-block">LaunchMenu</div></div></h1><style data-emotion="css 1b69low">.css-1b69low{-webkit-align-self:center;-ms-flex-item-align:center;align-self:center;font-weight:800;font-size:18px;margin-bottom:16px;}</style><p class="MuiTypography-root css-1b69low MuiTypography-body1">Do it. Do it now.</p><button class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary" tabindex="0" type="button"><span class="MuiButton-label"><span class="MuiButton-startIcon MuiButton-iconSizeMedium"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"></path></svg></span>Download</span></button><div class="MuiBox-root jss5"><p class="MuiTypography-root MuiTypography-body1">LaunchMenu is an open platform, learn about all the features that applets can take advantage of:</p></div><button class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-disableElevation" tabindex="0" type="button"><span class="MuiButton-label"><span class="MuiButton-startIcon MuiButton-iconSizeMedium"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"></path></svg></span>Applet development</span></button></div><div class="MuiBox-root jss6"><style data-emotion="css 1ibr3we">.css-1ibr3we{position:relative;height:412px;min-width:662px;width:100%;}</style><div class="css-1ibr3we"><div><style data-emotion="css 129l17">.css-129l17{position:absolute;height:412px;left:0;right:0;pointer-events:none;}</style><div class="css-129l17"><style data-emotion="css dz9tu8">.css-dz9tu8{top:100px;position:relative;margin-left:50%;-webkit-transform:translate(-50%);-moz-transform:translate(-50%);-ms-transform:translate(-50%);transform:translate(-50%);-webkit-transition:opacity 250ms,margin-left 250ms,-webkit-transform 250ms,box-shadow 250ms;transition:opacity 250ms,margin-left 250ms,transform 250ms,box-shadow 250ms;box-shadow:0px 0px 30px -5px rgba(0,0,0,0.3);pointer-events:all;}</style><style data-emotion="css 1vkn2lz">.css-1vkn2lz{width:662px;height:412px;z-index:1;background-color:white;overflow:hidden;border-radius:20px;opacity:0;-webkit-transition:opacity 250ms;transition:opacity 250ms;box-shadow:0px 0px 30px -5px rgba(0,0,0,0.3);top:100px;position:relative;margin-left:50%;-webkit-transform:translate(-50%);-moz-transform:translate(-50%);-ms-transform:translate(-50%);transform:translate(-50%);-webkit-transition:opacity 250ms,margin-left 250ms,-webkit-transform 250ms,box-shadow 250ms;transition:opacity 250ms,margin-left 250ms,transform 250ms,box-shadow 250ms;box-shadow:0px 0px 30px -5px rgba(0,0,0,0.3);pointer-events:all;}</style><div class="css-1vkn2lz"><style data-emotion="css ov0b6h">.css-ov0b6h{margin:-19px;}</style><div class="css-ov0b6h"><style data-emotion="css t3xq49">.css-t3xq49{display:block;top:-19px;position:absolute;z-index:-1;}</style><img src="videoTest2.jpg" width="700" class="css-t3xq49"/><style data-emotion="css 12e5m3r">.css-12e5m3r{display:grid;grid-template-columns:1fr;}</style><div class="css-12e5m3r"><style data-emotion="css 7om53l">.css-7om53l{grid-row-start:1;grid-column-start:1;opacity:1;-webkit-transition:opacity 250ms;transition:opacity 250ms;}</style><div class="css-7om53l"></div></div></div></div></div></div></div></div></div><style data-emotion="css 1ebprri">.css-1ebprri{margin-top:16px;margin-bottom:16px;}</style><div class="MuiGrid-root css-1ebprri MuiGrid-container MuiGrid-justify-xs-space-between"><div class="MuiBox-root jss7"><style data-emotion="css e8qlh3">.css-e8qlh3{-webkit-align-self:center;-ms-flex-item-align:center;align-self:center;color:rgba(0, 0, 0, 0.75);margin-bottom:16px;}</style><style data-emotion="css 1gpm6hd">.css-1gpm6hd{font-weight:500;font-size:18px;-webkit-align-self:center;-ms-flex-item-align:center;align-self:center;color:rgba(0, 0, 0, 0.75);margin-bottom:16px;}</style><h3 class="MuiTypography-root css-1gpm6hd MuiTypography-h3">What is LaunchMenu?</h3><style data-emotion="css alr7fw">.css-alr7fw{-webkit-align-self:center;-ms-flex-item-align:center;align-self:center;color:rgba(0, 0, 0, 0.5);}</style><p class="MuiTypography-root css-alr7fw MuiTypography-body1">LaunchMenu is an Open Source, cross-platform application which brings utilities (applets) to your fingertips. Open it at a press of a button, with LaunchMenu&#x27;s keyboard centric design!</p></div><div class="MuiBox-root jss8"><h3 class="MuiTypography-root css-1gpm6hd MuiTypography-h3">Why LaunchMenu?</h3><p class="MuiTypography-root css-alr7fw MuiTypography-body1">LaunchMenu is easy to use, free and allows you to increase your productivity. Customise the application to your needs with<!-- --> <a href="/#theming">advanced theming</a> <!-- -->and<!-- --> <a href="/#settings">applet settings</a>.</p></div><div class="MuiBox-root jss9"><h3 class="MuiTypography-root css-1gpm6hd MuiTypography-h3">Extendable with Applets</h3><p class="MuiTypography-root css-alr7fw MuiTypography-body1"><a href="/#applets">Some applets</a> come preinstalled but additional 3rd party applets<!-- --> <a href="/#thirdPartyApplets">will be available</a>. LaunchMenu relies on applets to serve users, and doesn&#x27;t limit developers in providing their desired user experience.</p></div></div><div><style data-emotion="css pnyu7w">.css-pnyu7w{background-color:#EEEEEE;height:1016px;left:0;right:0;position:absolute;z-index:-1;}</style><div class="css-pnyu7w"><style data-emotion="css 10eyqng">.css-10eyqng{background-color:#EEEEEE;height:100px;left:0;right:0;z-index:1;top:-100px;position:absolute;}.css-10eyqng:after{content:"";background-color:#fff;height:100px;border-bottom-left-radius:100px;left:0;right:0;z-index:1;position:absolute;}</style><div class="css-10eyqng"></div><style data-emotion="css qpnpjy">.css-qpnpjy{background-color:#EEEEEE;height:100px;left:0;right:0;z-index:1;bottom:-100px;position:absolute;}.css-qpnpjy:after{content:"";background-color:#fff;height:100px;border-top-right-radius:100px;left:0;right:0;z-index:1;position:absolute;}</style><div class="css-qpnpjy"></div></div><style data-emotion="css 18nns55">.css-18nns55{display:inline-block;width:100%;}</style><div class="css-18nns55"><div class="MuiBox-root jss10"><div><style data-emotion="css 2s2265">.css-2s2265{padding-bottom:25vh;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row-reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse;-webkit-box-flex-wrap:wrap;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;}@media (max-width:1299.95px){.css-2s2265{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}}</style><section class="css-2s2265"><style data-emotion="css ewzd34">.css-ewzd34{width:40%;}@media (max-width:1299.95px){.css-ewzd34{width:min(100%, 662px);width:min(100%, 662px);}}</style><div class="MuiBox-root jss11 css-ewzd34"><style data-emotion="css 1kxjqf0">.css-1kxjqf0{font-weight:800;font-size:1.875rem;}</style><h2 class="MuiTypography-root css-1kxjqf0 MuiTypography-h2">Actively developed</h2><div class="MuiBox-root jss12"><p class="MuiTypography-root MuiTypography-body1">LaunchMenu is actively developed. Some features are only partially supported, we will use this legend to indicate what features are supported and what features are planned. You can hover your mouse over the symbol for more information:<style data-emotion="css 14rs5ck">.css-14rs5ck{list-style-type:none;padding-left:16px;}</style><ul class="css-14rs5ck"><li><span aria-label="Feature is fully operational" class=""><style data-emotion="css 1i3692z">.css-1i3692z{color:#008DFA;}.css-1i3692z >*{vertical-align:bottom;}</style><div class="MuiBox-root jss13 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Supported</li><li><span aria-label="Not all aspects are implemented yet" class=""><style data-emotion="css b94rcw">.css-b94rcw{color:orange;}.css-b94rcw >*{vertical-align:bottom;}</style><div class="MuiBox-root jss14 css-b94rcw"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"></path></svg></div></span>Coming Soon</li><li><span aria-label="Nothing has been implemented yet" class=""><style data-emotion="css voegr9">.css-voegr9{color:red;}.css-voegr9 >*{vertical-align:bottom;}</style><div class="MuiBox-root jss15 css-voegr9"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"></path></svg></div></span>Long Term</li></ul></p></div></div><style data-emotion="css demfu6">.css-demfu6{width:60%;}@media (max-width:1299.95px){.css-demfu6{width:inherit;}}</style><div class="MuiBox-root jss16 css-demfu6"></div></section></div></div></div></div><div class="MuiBox-root jss17"><div><style data-emotion="css 2s2265">.css-2s2265{padding-bottom:25vh;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row-reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse;-webkit-box-flex-wrap:wrap;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;}@media (max-width:1299.95px){.css-2s2265{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}}</style><section class="css-2s2265"><style data-emotion="css ewzd34">.css-ewzd34{width:40%;}@media (max-width:1299.95px){.css-ewzd34{width:min(100%, 662px);width:min(100%, 662px);}}</style><div class="MuiBox-root jss18 css-ewzd34"><style data-emotion="css 1kxjqf0">.css-1kxjqf0{font-weight:800;font-size:1.875rem;}</style><h2 class="MuiTypography-root css-1kxjqf0 MuiTypography-h2">Keyboard centric</h2><div class="MuiBox-root jss19"><style data-emotion="css 1pumsxy">.css-1pumsxy{list-style-type:none;margin-bottom:8px;}</style><li class="css-1pumsxy"><style data-emotion="css n57i2d">.css-n57i2d{display:inline;cursor:pointer;font-size:1.25rem;}</style><style data-emotion="css 7za4ql">.css-7za4ql{font-weight:500;font-size:18px;display:inline;cursor:pointer;font-size:1.25rem;}</style><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><style data-emotion="css 1i3692z">.css-1i3692z{color:#008DFA;}.css-1i3692z >*{vertical-align:bottom;}</style><div class="MuiBox-root jss20 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Select items</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><style data-emotion="css 1spz1bj">.css-1spz1bj{padding-left:32px;}</style><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">Use the arrow keys to navigate the menu.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><div class="MuiBox-root jss21 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Execute item actions</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">Hit <style data-emotion="css 1aqchct">.css-1aqchct{padding-left:2px;padding-right:2px;display:inline-block;font-family:consolas;background-color:#FAFAFA;border-color:#EEEEEE;border-style:solid;border-width:0;border-left-width:2px;border-right-width:2px;border-bottom-width:4px;}</style><div class="MuiBox-root jss22 css-1aqchct">Enter ↵</div> to perform the primary action of the selected item.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><div class="MuiBox-root jss23 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Step in and out of menus</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">Press the <div class="MuiBox-root jss24 css-1aqchct">Tab ↹</div> key to hop into a context menu and <div class="MuiBox-root jss25 css-1aqchct">Escape</div> to exit out of it again.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><div class="MuiBox-root jss26 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Customise any controls</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">All controls are customisable to fit your needs! Join the ijkl-master race.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Nothing has been implemented yet" class=""><style data-emotion="css voegr9">.css-voegr9{color:red;}.css-voegr9 >*{vertical-align:bottom;}</style><div class="MuiBox-root jss27 css-voegr9"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"></path></svg></div></span>Native VIM keys mode</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">LaunchMenu will have toggle-able custom keyboard layouts, including VIM as standard.</p></div></div></div></li></div></div><style data-emotion="css demfu6">.css-demfu6{width:60%;}@media (max-width:1299.95px){.css-demfu6{width:inherit;}}</style><div class="MuiBox-root jss28 css-demfu6"></div></section></div></div><div><style data-emotion="css pnyu7w">.css-pnyu7w{background-color:#EEEEEE;height:1016px;left:0;right:0;position:absolute;z-index:-1;}</style><div class="css-pnyu7w"><style data-emotion="css 10eyqng">.css-10eyqng{background-color:#EEEEEE;height:100px;left:0;right:0;z-index:1;top:-100px;position:absolute;}.css-10eyqng:after{content:"";background-color:#fff;height:100px;border-bottom-left-radius:100px;left:0;right:0;z-index:1;position:absolute;}</style><div class="css-10eyqng"></div><style data-emotion="css qpnpjy">.css-qpnpjy{background-color:#EEEEEE;height:100px;left:0;right:0;z-index:1;bottom:-100px;position:absolute;}.css-qpnpjy:after{content:"";background-color:#fff;height:100px;border-top-right-radius:100px;left:0;right:0;z-index:1;position:absolute;}</style><div class="css-qpnpjy"></div></div><style data-emotion="css 18nns55">.css-18nns55{display:inline-block;width:100%;}</style><div class="css-18nns55"><div class="MuiBox-root jss29"><div><style data-emotion="css 2s2265">.css-2s2265{padding-bottom:25vh;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row-reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse;-webkit-box-flex-wrap:wrap;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;}@media (max-width:1299.95px){.css-2s2265{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}}</style><section class="css-2s2265"><style data-emotion="css ewzd34">.css-ewzd34{width:40%;}@media (max-width:1299.95px){.css-ewzd34{width:min(100%, 662px);width:min(100%, 662px);}}</style><div class="MuiBox-root jss30 css-ewzd34"><style data-emotion="css 1kxjqf0">.css-1kxjqf0{font-weight:800;font-size:1.875rem;}</style><h2 class="MuiTypography-root css-1kxjqf0 MuiTypography-h2">Search anywhere</h2><div class="MuiBox-root jss31"><style data-emotion="css 1pumsxy">.css-1pumsxy{list-style-type:none;margin-bottom:8px;}</style><li class="css-1pumsxy"><style data-emotion="css n57i2d">.css-n57i2d{display:inline;cursor:pointer;font-size:1.25rem;}</style><style data-emotion="css 7za4ql">.css-7za4ql{font-weight:500;font-size:18px;display:inline;cursor:pointer;font-size:1.25rem;}</style><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><style data-emotion="css 1i3692z">.css-1i3692z{color:#008DFA;}.css-1i3692z >*{vertical-align:bottom;}</style><div class="MuiBox-root jss32 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>All menus are searchable</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><style data-emotion="css 1spz1bj">.css-1spz1bj{padding-left:32px;}</style><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">No matter where you are, simply start typing to start searching!</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><div class="MuiBox-root jss33 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Searches are recursive</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">Searches look through the selected menu as well as all sub-menus.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><div class="MuiBox-root jss34 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Filters</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">Searches can use patterns to automatically filter results.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><div class="MuiBox-root jss35 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Fuzzy Search</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">By default all searches use a fuzzy matching algorithm.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Nothing has been implemented yet" class=""><style data-emotion="css voegr9">.css-voegr9{color:red;}.css-voegr9 >*{vertical-align:bottom;}</style><div class="MuiBox-root jss36 css-voegr9"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"></path></svg></div></span>Prioritised searches</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">All searches will be tracked and prioritised intelligently, bringing frequently used items closer to the top of the list.</p></div></div></div></li></div></div><style data-emotion="css demfu6">.css-demfu6{width:60%;}@media (max-width:1299.95px){.css-demfu6{width:inherit;}}</style><div class="MuiBox-root jss37 css-demfu6"></div></section></div></div></div></div><div class="MuiBox-root jss38"><div><style data-emotion="css 2s2265">.css-2s2265{padding-bottom:25vh;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row-reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse;-webkit-box-flex-wrap:wrap;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;}@media (max-width:1299.95px){.css-2s2265{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}}</style><section class="css-2s2265"><style data-emotion="css ewzd34">.css-ewzd34{width:40%;}@media (max-width:1299.95px){.css-ewzd34{width:min(100%, 662px);width:min(100%, 662px);}}</style><div class="MuiBox-root jss39 css-ewzd34"><style data-emotion="css 1kxjqf0">.css-1kxjqf0{font-weight:800;font-size:1.875rem;}</style><h2 class="MuiTypography-root css-1kxjqf0 MuiTypography-h2">Context menus</h2><div class="MuiBox-root jss40"><style data-emotion="css 1pumsxy">.css-1pumsxy{list-style-type:none;margin-bottom:8px;}</style><li class="css-1pumsxy"><style data-emotion="css n57i2d">.css-n57i2d{display:inline;cursor:pointer;font-size:1.25rem;}</style><style data-emotion="css 7za4ql">.css-7za4ql{font-weight:500;font-size:18px;display:inline;cursor:pointer;font-size:1.25rem;}</style><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><style data-emotion="css 1i3692z">.css-1i3692z{color:#008DFA;}.css-1i3692z >*{vertical-align:bottom;}</style><div class="MuiBox-root jss41 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Item actions</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><style data-emotion="css 1spz1bj">.css-1spz1bj{padding-left:32px;}</style><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">Items can have multiple actions, the primary action is executed on <style data-emotion="css 1aqchct">.css-1aqchct{padding-left:2px;padding-right:2px;display:inline-block;font-family:consolas;background-color:#FAFAFA;border-color:#EEEEEE;border-style:solid;border-width:0;border-left-width:2px;border-right-width:2px;border-bottom-width:4px;}</style><div class="MuiBox-root jss42 css-1aqchct">Enter ↵</div>.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><div class="MuiBox-root jss43 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Opening</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">A context menu can be opened, by pressing<!-- --> <div class="MuiBox-root jss44 css-1aqchct">Tab ↹</div>, to show these actions.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><div class="MuiBox-root jss45 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Searching</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">Context menus, like all menus, can be searched in order to quickly find actions.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><div class="MuiBox-root jss46 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Sub-menus</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">Context menus can contain sub-menus, which hide additional actions which are rarely used.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><div class="MuiBox-root jss47 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>UI Path</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">The path shows where you are in the application.</p></div></div></div></li></div></div><style data-emotion="css demfu6">.css-demfu6{width:60%;}@media (max-width:1299.95px){.css-demfu6{width:inherit;}}</style><div class="MuiBox-root jss48 css-demfu6"></div></section></div></div><div><style data-emotion="css pnyu7w">.css-pnyu7w{background-color:#EEEEEE;height:1016px;left:0;right:0;position:absolute;z-index:-1;}</style><div class="css-pnyu7w"><style data-emotion="css 10eyqng">.css-10eyqng{background-color:#EEEEEE;height:100px;left:0;right:0;z-index:1;top:-100px;position:absolute;}.css-10eyqng:after{content:"";background-color:#fff;height:100px;border-bottom-left-radius:100px;left:0;right:0;z-index:1;position:absolute;}</style><div class="css-10eyqng"></div><style data-emotion="css qpnpjy">.css-qpnpjy{background-color:#EEEEEE;height:100px;left:0;right:0;z-index:1;bottom:-100px;position:absolute;}.css-qpnpjy:after{content:"";background-color:#fff;height:100px;border-top-right-radius:100px;left:0;right:0;z-index:1;position:absolute;}</style><div class="css-qpnpjy"></div></div><style data-emotion="css 18nns55">.css-18nns55{display:inline-block;width:100%;}</style><div class="css-18nns55"><div class="MuiBox-root jss49"><div><style data-emotion="css 2s2265">.css-2s2265{padding-bottom:25vh;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row-reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse;-webkit-box-flex-wrap:wrap;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;}@media (max-width:1299.95px){.css-2s2265{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}}</style><section class="css-2s2265"><style data-emotion="css ewzd34">.css-ewzd34{width:40%;}@media (max-width:1299.95px){.css-ewzd34{width:min(100%, 662px);width:min(100%, 662px);}}</style><div class="MuiBox-root jss50 css-ewzd34"><style data-emotion="css 1kxjqf0">.css-1kxjqf0{font-weight:800;font-size:1.875rem;}</style><h2 class="MuiTypography-root css-1kxjqf0 MuiTypography-h2">Multi-select</h2><div class="MuiBox-root jss51"><style data-emotion="css 1pumsxy">.css-1pumsxy{list-style-type:none;margin-bottom:8px;}</style><li class="css-1pumsxy"><style data-emotion="css n57i2d">.css-n57i2d{display:inline;cursor:pointer;font-size:1.25rem;}</style><style data-emotion="css 7za4ql">.css-7za4ql{font-weight:500;font-size:18px;display:inline;cursor:pointer;font-size:1.25rem;}</style><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><style data-emotion="css 1i3692z">.css-1i3692z{color:#008DFA;}.css-1i3692z >*{vertical-align:bottom;}</style><div class="MuiBox-root jss52 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Select and execute multiple items</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><style data-emotion="css 1spz1bj">.css-1spz1bj{padding-left:32px;}</style><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">You can select multiple items by pressing or holding the <style data-emotion="css 1aqchct">.css-1aqchct{padding-left:2px;padding-right:2px;display:inline-block;font-family:consolas;background-color:#FAFAFA;border-color:#EEEEEE;border-style:solid;border-width:0;border-left-width:2px;border-right-width:2px;border-bottom-width:4px;}</style><div class="MuiBox-root jss53 css-1aqchct">⇧ Shift</div>. Press <div class="MuiBox-root jss54 css-1aqchct"> Enter ↵</div> to execute the primary action.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><div class="MuiBox-root jss55 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Shared context menu</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">Opening a context menu will list actions from all the selected items. Actions executed will operate on all compatible items.</p></div></div></div></li></div></div><style data-emotion="css demfu6">.css-demfu6{width:60%;}@media (max-width:1299.95px){.css-demfu6{width:inherit;}}</style><div class="MuiBox-root jss56 css-demfu6"></div></section></div></div></div></div><div class="MuiBox-root jss57"><div><style data-emotion="css 2s2265">.css-2s2265{padding-bottom:25vh;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row-reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse;-webkit-box-flex-wrap:wrap;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;}@media (max-width:1299.95px){.css-2s2265{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}}</style><section class="css-2s2265"><style data-emotion="css ewzd34">.css-ewzd34{width:40%;}@media (max-width:1299.95px){.css-ewzd34{width:min(100%, 662px);width:min(100%, 662px);}}</style><div class="MuiBox-root jss58 css-ewzd34"><style data-emotion="css 1kxjqf0">.css-1kxjqf0{font-weight:800;font-size:1.875rem;}</style><h2 class="MuiTypography-root css-1kxjqf0 MuiTypography-h2">Customise</h2><div class="MuiBox-root jss59"><style data-emotion="css 1pumsxy">.css-1pumsxy{list-style-type:none;margin-bottom:8px;}</style><li class="css-1pumsxy"><style data-emotion="css n57i2d">.css-n57i2d{display:inline;cursor:pointer;font-size:1.25rem;}</style><style data-emotion="css 7za4ql">.css-7za4ql{font-weight:500;font-size:18px;display:inline;cursor:pointer;font-size:1.25rem;}</style><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><style data-emotion="css 1i3692z">.css-1i3692z{color:#008DFA;}.css-1i3692z >*{vertical-align:bottom;}</style><div class="MuiBox-root jss60 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Settings</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><style data-emotion="css 1spz1bj">.css-1spz1bj{padding-left:32px;}</style><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">Like all other items, settings can be searched, and altered easily.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><div class="MuiBox-root jss61 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Keyboard Shortcuts</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">All keyboard shortcuts / controls can be fully customised to suit your needs.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Feature is fully operational" class=""><div class="MuiBox-root jss62 css-1i3692z"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div></span>Customise applets</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">Like native LaunchMenu features, all applets - including 3rd party applets, will be customisable.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Not all aspects are implemented yet" class=""><style data-emotion="css b94rcw">.css-b94rcw{color:orange;}.css-b94rcw >*{vertical-align:bottom;}</style><div class="MuiBox-root jss63 css-b94rcw"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"></path></svg></div></span>Settings portability</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">Settings will be portable, allowing you to import and export settings.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Not all aspects are implemented yet" class=""><div class="MuiBox-root jss64 css-b94rcw"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"></path></svg></div></span>Applets</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">LaunchMenu will have an applet manager, which allows the installation and removal of both official and 3rd party applets.</p></div></div></div></li><li class="css-1pumsxy"><h3 class="MuiTypography-root css-7za4ql MuiTypography-h3"><span aria-label="Not all aspects are implemented yet" class=""><div class="MuiBox-root jss65 css-b94rcw"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"></path></svg></div></span>Themes</h3><div class="MuiCollapse-container MuiCollapse-hidden" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><p class="MuiTypography-root css-1spz1bj MuiTypography-body1">Colour and Style of the LaunchMenu app and applets will be customisable through themes.</p></div></div></div></li></div></div><style data-emotion="css demfu6">.css-demfu6{width:60%;}@media (max-width:1299.95px){.css-demfu6{width:inherit;}}</style><div class="MuiBox-root jss66 css-demfu6"></div></section></div></div></div><div><style data-emotion="css pnyu7w">.css-pnyu7w{background-color:#EEEEEE;height:1016px;left:0;right:0;position:absolute;z-index:-1;}</style><div class="css-pnyu7w"><style data-emotion="css 10eyqng">.css-10eyqng{background-color:#EEEEEE;height:100px;left:0;right:0;z-index:1;top:-100px;position:absolute;}.css-10eyqng:after{content:"";background-color:#fff;height:100px;border-bottom-left-radius:100px;left:0;right:0;z-index:1;position:absolute;}</style><div class="css-10eyqng"></div><style data-emotion="css qpnpjy">.css-qpnpjy{background-color:#EEEEEE;height:100px;left:0;right:0;z-index:1;bottom:-100px;position:absolute;}.css-qpnpjy:after{content:"";background-color:#fff;height:100px;border-top-right-radius:100px;left:0;right:0;z-index:1;position:absolute;}</style><div class="css-qpnpjy"></div></div><style data-emotion="css 18nns55">.css-18nns55{display:inline-block;width:100%;}</style><div class="css-18nns55"><section><style data-emotion="css 1kxjqf0">.css-1kxjqf0{font-weight:800;font-size:1.875rem;}</style><h2 class="MuiTypography-root css-1kxjqf0 MuiTypography-h2">Downloads</h2><style data-emotion="css 1qd1r5f">.css-1qd1r5f{margin-top:0;margin-bottom:0;}</style><div class="MuiGrid-root css-1qd1r5f MuiGrid-container MuiGrid-justify-xs-space-between"><style data-emotion="css 14r34si">.css-14r34si{background-color:#FFFFFF;}</style><div class="MuiBox-root jss67 css-14r34si"><style data-emotion="css 1siceua">.css-1siceua{font-weight:500;font-size:18px;}</style><h3 class="MuiTypography-root css-1siceua MuiTypography-h3">Windows</h3></div></div></section></div></div></div></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/","query":{},"buildId":"Wo8mA1KKx7mciaoLsQdwS","nextExport":true,"autoExport":true,"isFallback":false}</script><script nomodule="" src="/_next/static/chunks/polyfills-af28de04c604a2479390.js"></script><script src="/_next/static/chunks/main-59d22bc39ab1fda6f1ca.js" async=""></script><script src="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" async=""></script><script src="/_next/static/chunks/framework.6e6e40479ef2ab0c5680.js" async=""></script><script src="/_next/static/chunks/3ef630e34cd10ba68f9d468ac363ff81c534e1e9.53053f4a1d32b2e998ce.js" async=""></script><script src="/_next/static/chunks/2803564ae1eaa6c7af983d3cea6bf488ed087096.6af86b3ac01db6e93919.js" async=""></script><script src="/_next/static/chunks/71247caf95475e3ea7f9a0f8a30beb258b23d005.a4c9d1b12395e4e3ec1c.js" async=""></script><script src="/_next/static/chunks/pages/_app-df75c1d86f4735d00e06.js" async=""></script><script src="/_next/static/chunks/pages/index-ccf1c81195e4f5a80007.js" async=""></script><script src="/_next/static/Wo8mA1KKx7mciaoLsQdwS/_buildManifest.js" async=""></script><script src="/_next/static/Wo8mA1KKx7mciaoLsQdwS/_ssgManifest.js" async=""></script></body></html>

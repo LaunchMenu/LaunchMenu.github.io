@@ -15,6 +15,7 @@
         "skipLibCheck": true,
         "noImplicitAny": true,
         "incremental": true,
+        "tsBuildInfoFile": ".tsbuildinfo",
         "lib": ["dom", "dom.iterable", "esnext"],
         "allowJs": true,
         "strict": false,
