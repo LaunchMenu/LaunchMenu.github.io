@@ -23,28 +23,20 @@ export default function Home() {
                     />
                 </Hero>
 
-                <Grid container direction="column" justify="center">
-                    <Container
-                        css={theme => ({
-                            marginTop: theme.spacing(2),
-                            marginBottom: theme.spacing(4),
-                        })}>
-                        <Grid container direction="row" justify="space-between">
-                            <SellingPoint
-                                title="Easy to use"
-                                body="It's opens with the press of a hotkey and the navigation is quick and simple with the keyboard."
-                            />
-                            <SellingPoint
-                                title="Customizable"
-                                body="With the custom applet system, you can easily customize your LaunchMenu."
-                            />
-                            <SellingPoint
-                                title="Easy to use"
-                                body="It's opens with the press of a hotkey and the navigation is quick and simple with the keyboard."
-                            />
-                        </Grid>
-                    </Container>
-                </Grid>
+                <HorizontalList margin={2}>
+                    <SellingPoint
+                        title="Easy to use"
+                        body="It's opens with the press of a hotkey and the navigation is quick and simple with the keyboard."
+                    />
+                    <SellingPoint
+                        title="Customizable"
+                        body="With the custom applet system, you can easily customize your LaunchMenu."
+                    />
+                    <SellingPoint
+                        title="Easy to use"
+                        body="It's opens with the press of a hotkey and the navigation is quick and simple with the keyboard."
+                    />
+                </HorizontalList>
 
                 <BackgroundSection>
                     <FeatureCategory
