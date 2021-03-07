@@ -28,7 +28,7 @@ export const Feature: FC<{
     status?: IFeatureStatusData;
 }> = ({
     title,
-    ID = title.replace(/\s/, "_"),
+    ID = title.replace(/\s/, "-"),
     time,
     children,
     status = "supported",

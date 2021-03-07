@@ -7,11 +7,13 @@ import {LMVideos} from "../videoService/LMVideos";
 import {LMVideosContext} from "../videoService/LMVideosContext";
 import {useDataHook} from "model-react";
 import {getPageRect} from "../videoService/LMVideosProvider";
+import {useTheme} from "@emotion/react";
 
-export const FeatureVideo: FC<{initVideo: string; background: string}> = ({
-    initVideo,
-    background,
-}) => {
+export const FeatureVideo: FC<{
+    initVideo: string;
+    background: string;
+    endPadding?: number;
+}> = ({initVideo, background, endPadding = 4}) => {
     const isMobile = useIsMobile();
     const {height, width} = useVideoSizeData();
     const [h] = useDataHook();
@@ -33,6 +35,7 @@ export const FeatureVideo: FC<{initVideo: string; background: string}> = ({
 
     // Get the height during which the element should scroll along
     const {getBoundingRect} = useContext(LMVideosContext);
+    const theme = useTheme();
     const elRef = useRef<HTMLDivElement>(null);
     let scrollHeight = height;
     if (elRef.current) {
@@ -40,7 +43,9 @@ export const FeatureVideo: FC<{initVideo: string; background: string}> = ({
         const providerRect = getBoundingRect(h);
         if (providerRect) {
             scrollHeight =
-                providerRect.height - (thisRect.top - providerRect.top);
+                providerRect.height -
+                (thisRect.top - providerRect.top) -
+                theme.spacing(endPadding);
         }
     }
 

@@ -11,6 +11,7 @@ export const H3: FC<{
         css={{
             fontWeight: 500,
             fontSize: 18,
+            color: "rgba(0, 0, 0, 0.8)",
         }}
         {...props}
     />

@@ -3,9 +3,9 @@ import CloudDownload from "@material-ui/icons/CloudDownload";
 import Code from "@material-ui/icons/Code";
 import React, {FC} from "react";
 import Textfit from "react-textfit";
-import {useBodySize} from "../../hooks/useBodySize";
+import {useBodySize} from "../../../hooks/useBodySize";
 import Link from "next/link";
-import {Text} from "../textStyles/Text";
+import {Text} from "../../textStyles/Text";
 
 export const Hero: FC = ({children}) => {
     return (

@@ -19,19 +19,33 @@ import Link from "next/link";
 
 import GitHubIcon from "@material-ui/icons/GitHub";
 import MenuIcon from "@material-ui/icons/Menu";
+import {link} from "fs";
+import {PlainLink} from "./PlainLink";
 
 const useStyles = makeStyles(theme => ({
     hideMobile: {
+        display: "block",
         [theme.breakpoints.down("sm")]: {
             display: "none",
         },
     },
     showMobile: {
-        [theme.breakpoints.up("sm")]: {
-            display: "none",
+        display: "none",
+        [theme.breakpoints.down("sm")]: {
+            display: "block",
         },
     },
 }));
+
+const links = {
+    home: "/",
+    dev: "/developers",
+    download: "/#downloads",
+    applets: "/#applets",
+    docs: "/docs",
+    about: "/about",
+    github: "https://github.com/LaunchMenu/LaunchMenu",
+};
 
 export const Navbar: FC = () => {
     const styles = useStyles();
@@ -51,47 +65,47 @@ export const Navbar: FC = () => {
             style={{paddingLeft: 20}}>
             <List>
                 <ListItem button>
-                    <Link href="/applet development">
+                    <PlainLink href={links.dev}>
                         <ListItemText>
                             <Typography color="primary" variant="h6">
                                 Dev
                             </Typography>
                         </ListItemText>
-                    </Link>
+                    </PlainLink>
                 </ListItem>
                 <ListItem button>
-                    <Link href="#download">
+                    <PlainLink href={links.download}>
                         <ListItemText>
                             <Typography color="primary" variant="h6">
                                 Download
                             </Typography>
                         </ListItemText>
-                    </Link>
+                    </PlainLink>
                 </ListItem>
                 <ListItem button>
-                    <Link href="#applets">
+                    <PlainLink href={links.applets}>
                         <ListItemText>
                             <Typography color="primary" variant="h6">
                                 Applets
                             </Typography>
                         </ListItemText>
-                    </Link>
+                    </PlainLink>
                 </ListItem>
             </List>
             <Divider />
             <List>
                 <ListItem button>
-                    <Link href="/about">
+                    <PlainLink href={links.about}>
                         <ListItemText primary="About" />
-                    </Link>
+                    </PlainLink>
                 </ListItem>
                 <ListItem button>
-                    <Link href="/docs">
+                    <PlainLink href={links.docs}>
                         <ListItemText primary="Docs" />
-                    </Link>
+                    </PlainLink>
                 </ListItem>
                 <ListItem button style={{justifyContent: "unset"}}>
-                    <Link href="https://github.com/LaunchMenu/">
+                    <PlainLink href={links.github}>
                         <a
                             target="_blank"
                             style={{
@@ -102,7 +116,7 @@ export const Navbar: FC = () => {
                                 <GitHubIcon />
                             </ListItemIcon>
                         </a>
-                    </Link>
+                    </PlainLink>
                 </ListItem>
             </List>
         </Box>
@@ -118,11 +132,11 @@ export const Navbar: FC = () => {
                                 display: "inline",
                             }}>
                             <Button color="primary">
-                                <Link href="/">
+                                <PlainLink href={links.home}>
                                     <Typography variant="h5">
                                         LaunchMenu
                                     </Typography>
-                                </Link>
+                                </PlainLink>
                             </Button>
                         </Box>
 
@@ -150,36 +164,36 @@ export const Navbar: FC = () => {
                                     display: "inline",
                                 }}>
                                 <Button color="primary">
-                                    <Link href="/">
+                                    <PlainLink href={links.home}>
                                         <Typography variant="h5">
                                             LaunchMenu
                                         </Typography>
-                                    </Link>
+                                    </PlainLink>
                                 </Button>
                                 <Button
                                     color="primary"
                                     style={{
                                         marginLeft: 20,
                                     }}>
-                                    <Link href="/applet development">
+                                    <PlainLink href={links.dev}>
                                         <Typography variant="h6">
                                             Dev
                                         </Typography>
-                                    </Link>
+                                    </PlainLink>
                                 </Button>
                                 <Button color="primary">
-                                    <Link href="#downloads">
+                                    <PlainLink href={links.download}>
                                         <Typography variant="h6">
                                             Download
                                         </Typography>
-                                    </Link>
+                                    </PlainLink>
                                 </Button>
                                 <Button color="primary">
-                                    <Link href="#applets">
+                                    <PlainLink href={links.applets}>
                                         <Typography variant="h6">
                                             Applets
                                         </Typography>
-                                    </Link>
+                                    </PlainLink>
                                 </Button>
                             </Box>
 
@@ -190,23 +204,23 @@ export const Navbar: FC = () => {
                                     gap: 20,
                                 }}>
                                 <Button color="primary">
-                                    <Link href="/docs">
+                                    <PlainLink href={links.docs}>
                                         <Typography variant="h6">
                                             Docs
                                         </Typography>
-                                    </Link>
+                                    </PlainLink>
                                 </Button>
 
                                 <Button color="primary">
-                                    <Link href="/about">
+                                    <PlainLink href={links.about}>
                                         <Typography variant="h6">
                                             About
                                         </Typography>
-                                    </Link>
+                                    </PlainLink>
                                 </Button>
 
                                 <Button color="primary">
-                                    <Link href="https://github.com/LaunchMenu/">
+                                    <PlainLink href={links.github}>
                                         <a
                                             target="_blank"
                                             style={{
@@ -227,7 +241,7 @@ export const Navbar: FC = () => {
                                                 </Typography>
                                             </Grid>
                                         </a>
-                                    </Link>
+                                    </PlainLink>
                                 </Button>
                             </Box>
                         </Grid>

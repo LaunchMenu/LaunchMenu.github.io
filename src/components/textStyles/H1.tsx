@@ -10,6 +10,7 @@ export const H1: FC<{
         color="primary"
         css={{
             fontSize: 70,
+            color: "rgba(0, 0, 0, 0.8)",
         }}
         {...props}
     />

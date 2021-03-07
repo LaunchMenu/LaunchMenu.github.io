@@ -1,20 +1,34 @@
-import {Box, Typography} from "@material-ui/core";
+import {Box, Paper, Typography} from "@material-ui/core";
 import {FC} from "react";
+import {useHashPos} from "../../../hooks/useHashPos";
 import {H2} from "../../textStyles/H2";
 import {H3} from "../../textStyles/H3";
+import {Text} from "../../textStyles/Text";
+import {FeatureStatusWrapper} from "../features/FeatureStatusWrapper";
 import {HorizontalList} from "../HorizontalList";
+import {DownloadBlock} from "./DownloadBlock";
 
-export const Downloads: FC = ({}) => (
-    <section>
-        <H2>Downloads</H2>
-        <HorizontalList>
-            <Box
-                p={2}
+export const Downloads: FC = ({children}) => {
+    const ref = useHashPos("downloads");
+    return (
+        <section ref={ref}>
+            <H2
                 css={theme => ({
-                    backgroundColor: theme.palette.background.default,
+                    marginTop: theme.spacing(4),
+                    marginBottom: theme.spacing(2),
                 })}>
-                <H3>Windows</H3>
+                Downloads
+            </H2>
+            <HorizontalList>{children}</HorizontalList>
+
+            <Box mt={2}>
+                <Text>
+                    Previous releases of LaunchMenu can be found on{" "}
+                    <a href="https://github.com/LaunchMenu/LaunchMenu/releases">
+                        our github page
+                    </a>
+                </Text>
             </Box>
-        </HorizontalList>
-    </section>
-);
+        </section>
+    );
+};

@@ -11,6 +11,7 @@ export const H2: FC<{
         css={theme => ({
             fontWeight: 800,
             fontSize: theme.typography.pxToRem(30),
+            color: "rgba(0, 0, 0, 0.8)",
         })}
         {...props}
     />
