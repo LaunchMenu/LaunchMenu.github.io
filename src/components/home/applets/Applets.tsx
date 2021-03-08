@@ -9,7 +9,7 @@ export const Applets: FC<{title: string; description?: ReactNode}> = ({
     description,
     children,
 }) => {
-    const ref = useHashPos(title.replace(/ /g, "-"));
+    const ref = useHashPos(title);
     return (
         <section ref={ref}>
             <H2

@@ -15,11 +15,9 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Drawer from "@material-ui/core/Drawer";
-import Link from "next/link";
 
 import GitHubIcon from "@material-ui/icons/GitHub";
 import MenuIcon from "@material-ui/icons/Menu";
-import {link} from "fs";
 import {PlainLink} from "./PlainLink";
 
 const useStyles = makeStyles(theme => ({
@@ -41,7 +39,7 @@ const links = {
     home: "/",
     dev: "/developers",
     download: "/#downloads",
-    applets: "/#applets",
+    applets: "/#utility-applets",
     docs: "/docs",
     about: "/about",
     github: "https://github.com/LaunchMenu/LaunchMenu",
@@ -123,8 +121,11 @@ export const Navbar: FC = () => {
     );
 
     return (
-        <AppBar position="static">
-            <Toolbar>
+        <AppBar position="sticky">
+            <Toolbar
+                css={theme => ({
+                    [theme.breakpoints.down("sm")]: {minHeight: 0},
+                })}>
                 <Box className={styles.showMobile} style={{width: "100%"}}>
                     <Grid container direction="row" justify="space-between">
                         <Box

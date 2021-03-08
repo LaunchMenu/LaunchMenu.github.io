@@ -1,7 +1,8 @@
 import {FC, useContext} from "react";
 import {LMVideosContext} from "./LMVideosContext";
+import {IVideoComp} from "./LMVideosProvider";
 
-export const LMVideos: FC<{width?: number}> = ({width}) => {
+export const LMVideos: IVideoComp = props => {
     const {Video} = useContext(LMVideosContext);
-    return <Video width={width} />;
+    return <Video {...props} />;
 };

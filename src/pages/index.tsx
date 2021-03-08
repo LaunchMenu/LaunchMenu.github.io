@@ -34,11 +34,6 @@ import SnippetIcon from "@material-ui/icons/TextFormat";
 import TimeIcon from "@material-ui/icons/Schedule";
 import CalendarIcon from "@material-ui/icons/Event";
 
-// Don't auto scroll to position, since it messes with the hash
-try {
-    history.scrollRestoration = "manual";
-} catch (e) {}
-
 export default function Home() {
     return (
         <Container>
@@ -46,7 +41,7 @@ export default function Home() {
                 <Hero>
                     <FeatureVideo
                         initVideo="videoTest4.mp4"
-                        background="videoTest2.jpg"
+                        videoPlaceholder="videoTest2.png"
                     />
                 </Hero>
 
@@ -95,7 +90,8 @@ export default function Home() {
                 <BackgroundSection>
                     <FeatureCategory
                         category="Actively developed"
-                        video="videoTest2.mp4">
+                        video="videoTest2.mp4"
+                        videoPlaceholder="videoTest2.png">
                         <Text>
                             LaunchMenu is actively developed. Some features are
                             only partially supported, we will use this legend to
@@ -138,7 +134,8 @@ export default function Home() {
 
                 <FeatureCategory
                     category="Keyboard centric"
-                    video="videoTest3.mp4">
+                    video="videoTest3.mp4"
+                    videoPlaceholder="videoTest2.png">
                     <Feature title="Select items" time={{start: 0, end: 1}}>
                         Use the arrow keys to navigate the menu.
                     </Feature>
@@ -161,8 +158,14 @@ export default function Home() {
                         the ijkl-master race.
                     </Feature>
                     <Feature
-                        title="Native VIM keys mode"
+                        title="Mnemonics"
                         time={{start: 4.3, end: 5}}
+                        status={"longTerm"}>
+                        Navigate menus even faster by making use of Mnemonics.
+                    </Feature>
+                    <Feature
+                        title="Native VIM keys mode"
+                        time={{start: 5.3, end: 6}}
                         status={{
                             type: "longTerm",
                             tooltip:
@@ -176,7 +179,8 @@ export default function Home() {
                 <BackgroundSection>
                     <FeatureCategory
                         category="Search anywhere"
-                        video="videoTest4.mp4">
+                        video="videoTest4.mp4"
+                        videoPlaceholder="videoTest2.png">
                         <Feature
                             title="All menus are searchable"
                             time={{start: 0, end: 1}}>
@@ -216,7 +220,8 @@ export default function Home() {
 
                 <FeatureCategory
                     category="Context menus"
-                    video="videoTest3.mp4">
+                    video="videoTest3.mp4"
+                    videoPlaceholder="videoTest2.png">
                     <Feature title="Item actions" time={{start: 0, end: 1}}>
                         Items can have multiple actions, the primary action is
                         executed on <Key>Enter ↵</Key>.
@@ -241,7 +246,8 @@ export default function Home() {
                 <BackgroundSection>
                     <FeatureCategory
                         category="Multi-select"
-                        video="videoTest4.mp4">
+                        video="videoTest4.mp4"
+                        videoPlaceholder="videoTest2.png">
                         <Feature
                             title="Select and execute multiple items"
                             time={{start: 0, end: 1}}>
@@ -259,7 +265,10 @@ export default function Home() {
                     </FeatureCategory>
                 </BackgroundSection>
 
-                <FeatureCategory category="Customise" video="videoTest3.mp4">
+                <FeatureCategory
+                    category="Customise"
+                    video="videoTest3.mp4"
+                    videoPlaceholder="videoTest2.png">
                     <Feature title="Settings" time={{start: 0, end: 1}}>
                         Like all other items, settings can be searched, and
                         altered easily.
@@ -377,13 +386,13 @@ export default function Home() {
                     />
                     <AppletBlock
                         name="File manager"
-                        description="An advanced file manager find and manipulate files"
+                        description="An advanced file manager to find and manipulate files"
                         status="longTerm"
                         icon={<FileIcon />}
                     />
                     <AppletBlock
                         name="Internet search"
-                        description="A general purpose internet search to find quick factual answers"
+                        description="A general purpose internet search to quickly lookup facts"
                         status="longTerm"
                         icon={<InternetSearchIcon />}
                     />
@@ -401,7 +410,7 @@ export default function Home() {
                     />
                     <AppletBlock
                         name="Snippets"
-                        description="An applet to easy insert often used text sequences"
+                        description="An applet to easily insert often used text sequences"
                         status="longTerm"
                         icon={<SnippetIcon />}
                     />

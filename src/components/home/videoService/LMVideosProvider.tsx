@@ -1,10 +1,11 @@
 import {Field, IDataHook, useDataHook} from "model-react";
-import {FC, useCallback, useEffect, useRef} from "react";
+import {FC, ReactNode, useCallback, useEffect, useRef} from "react";
 import useResizeObserver from "use-resize-observer";
 import {IVideoControls} from "../../../hooks/useVideo";
 import {Fade} from "../../Fade";
 import {ILMVideosContext, LMVideosContext} from "./LMVideosContext";
 
+export type IVideoComp = FC<{width?: number; placeholder?: string}>;
 export const LMVideosProvider: FC = ({children}) => {
     const data = useRef<
         ILMVideosContext & {boundingBox: Field<DOMRect | undefined>}
@@ -28,11 +29,31 @@ export const LMVideosProvider: FC = ({children}) => {
                     .forEach(({controls}) => controls.pause());
                 videos.set(current.filter(({src: s}) => src != s));
             },
-            Video: ({width}: {width: number}) => {
+            Video: ({
+                width,
+                placeholder,
+            }: {
+                width: number;
+                placeholder?: string;
+            }) => {
                 const [h] = useDataHook();
                 const currentVideos = videos.get(h);
                 const video = currentVideos[currentVideos.length - 1];
-                if (!video) return <Fade childID="" />;
+
+                if (!video)
+                    return (
+                        <Fade childID="">
+                            {placeholder && (
+                                <img
+                                    src={placeholder}
+                                    width={width}
+                                    css={{
+                                        display: "block",
+                                    }}
+                                />
+                            )}
+                        </Fade>
+                    );
 
                 return (
                     <Fade childID={video.src}>

@@ -6,14 +6,14 @@ import {LMVideoProvider} from "../videoService/LMVideoProvider";
 import {LMVideos} from "../videoService/LMVideos";
 import {LMVideosContext} from "../videoService/LMVideosContext";
 import {useDataHook} from "model-react";
-import {getPageRect} from "../videoService/LMVideosProvider";
+import {getPageRect, IVideoComp} from "../videoService/LMVideosProvider";
 import {useTheme} from "@emotion/react";
 
 export const FeatureVideo: FC<{
     initVideo: string;
-    background: string;
+    videoPlaceholder: string;
     endPadding?: number;
-}> = ({initVideo, background, endPadding = 4}) => {
+}> = ({initVideo, videoPlaceholder, endPadding = 4}) => {
     const isMobile = useIsMobile();
     const {height, width} = useVideoSizeData();
     const [h] = useDataHook();
@@ -88,7 +88,7 @@ export const FeatureVideo: FC<{
                                         "0px 0px 30px -5px rgba(0,0,0,0.3)",
                                     pointerEvents: "all",
                                 }}
-                                backgroundSrc={background}
+                                backgroundSrc={videoPlaceholder}
                                 VideoComp={LMVideos}
                             />
 
@@ -108,7 +108,7 @@ export const FeatureVideo: FC<{
 export const FeatureVideoLayout: FC<{
     backgroundSrc?: string;
     className?: string;
-    VideoComp: FC<{width?: number}>;
+    VideoComp: IVideoComp;
 }> = ({backgroundSrc, className, children, VideoComp}) => {
     const {width, height, scale, srcWidth} = useVideoSizeData();
 
@@ -139,17 +139,7 @@ export const FeatureVideoLayout: FC<{
                 }}>
                 {/* A background picture for when the video is loading   */}
 
-                <img
-                    src={backgroundSrc}
-                    width={srcWidth}
-                    css={{
-                        display: "block",
-                        top: -LMMargin * scale,
-                        position: "absolute",
-                        zIndex: -1,
-                    }}
-                />
-                <VideoComp width={srcWidth} />
+                <VideoComp width={srcWidth} placeholder={backgroundSrc} />
                 {children}
             </div>
         </div>

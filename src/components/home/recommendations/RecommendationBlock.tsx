@@ -15,9 +15,12 @@ export const RecommendationBlock: FC<{
             m={1}
             component={OutlinePaper}
             maxWidth={700}
-            minWidth={200}
             flexDirection="column"
-            display="flex">
+            display="flex"
+            boxSizing="border-box"
+            css={theme => ({
+                minWidth: `min(100% - ${theme.spacing(1) * 2}px, 250px)`,
+            })}>
             <Box mb={2}>
                 <Text>{quote}</Text>
             </Box>

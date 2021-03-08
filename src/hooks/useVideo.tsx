@@ -1,9 +1,10 @@
 import {FC, Fragment, useEffect, useRef} from "react";
+import {IVideoComp} from "../components/home/videoService/LMVideosProvider";
 
 export function useVideo(
     config: IVideoConfig
 ): {
-    Video: FC<{width?: number}>;
+    Video: IVideoComp;
     controls: IVideoControls;
 } {
     const ref = useRef<HTMLVideoElement>(null);
@@ -42,7 +43,7 @@ export function useVideo(
         }
     }, [ref.current]);
 
-    const video = useRef<{Comp: FC<{width?: number}>; src: string}>();
+    const video = useRef<{Comp: IVideoComp; src: string}>();
     if (!video.current || video.current.src != config.src) {
         const src = config.src;
         const onClick = () => {
@@ -53,8 +54,9 @@ export function useVideo(
         };
 
         video.current = {
-            Comp: ({width}) => (
+            Comp: ({width, placeholder}) => (
                 <video
+                    poster={placeholder}
                     onClick={onClick}
                     ref={ref}
                     width={width}

@@ -12,11 +12,10 @@ export function useHashPos<E extends HTMLElement>(
     useEffect(() => {
         const name = typeof config == "object" ? config.name : config;
         const url = typeof config == "object" ? config.url : "";
-        const stdUrl = name ? name.replaceAll(" ", "-") : url;
+        const stdUrl = name ? name.replaceAll(" ", "-").toLowerCase() : url;
 
         const onHashChange = () => {
             const {hash} = window.location;
-            console.log(ref.current, hash.substring(1), stdUrl);
             if (hash.substring(1) == stdUrl && ref.current) {
                 window.scrollTo({
                     top:

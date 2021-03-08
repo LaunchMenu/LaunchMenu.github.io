@@ -21,11 +21,12 @@ export const DownloadBlock: FC<{
         m={1}
         display="flex"
         flexDirection="column"
-        minWidth={300}
+        boxSizing="border-box"
         flexBasis={1}
         borderRadius={8}
         css={theme => ({
             backgroundColor: theme.palette.background.default,
+            minWidth: `min(100% - ${theme.spacing(1) * 2}px, 300px)`,
         })}>
         <span>
             <FeatureStatusWrapper status={status}>

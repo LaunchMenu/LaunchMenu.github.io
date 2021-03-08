@@ -11,7 +11,8 @@ import {FeatureVideoLayout, LMPlayerWidth} from "./FeatureVideo";
 export const FeatureCategory: FC<{
     category: string;
     video: string;
-}> = ({category, video, children}) => {
+    videoPlaceholder?: string;
+}> = ({category, video, children, videoPlaceholder}) => {
     const [selected, select] = useState("");
     const isMobile = useIsMobile();
 
@@ -50,7 +51,9 @@ export const FeatureCategory: FC<{
                             <FeatureContext.Provider value={{selected, select}}>
                                 {section}
                             </FeatureContext.Provider>
-                            <FeatureLocalVideo />
+                            <FeatureLocalVideo
+                                videoPlaceholder={videoPlaceholder}
+                            />
                         </section>
                     </LMVideoProvider>
                 )}
@@ -59,7 +62,9 @@ export const FeatureCategory: FC<{
     );
 };
 
-const FeatureLocalVideo: FC = () => {
+const FeatureLocalVideo: FC<{videoPlaceholder?: string}> = ({
+    videoPlaceholder,
+}) => {
     const {Video} = useContext(LMVideoContext);
 
     return (
@@ -71,7 +76,12 @@ const FeatureLocalVideo: FC = () => {
                     width: "inherit",
                 },
             })}>
-            {Video && <FeatureVideoLayout VideoComp={Video} />}
+            {Video && (
+                <FeatureVideoLayout
+                    VideoComp={Video}
+                    backgroundSrc={videoPlaceholder}
+                />
+            )}
         </Box>
     );
 };

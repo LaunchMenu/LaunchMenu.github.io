@@ -11,7 +11,7 @@ export const Hero: FC = ({children}) => {
     return (
         <Box
             display="flex"
-            my={4}
+            my={8}
             flexWrap="wrap"
             css={{
                 flexDirection: "row-reverse" as any,
@@ -67,6 +67,7 @@ export const Title: FC = () => {
             color="primary"
             css={theme => ({
                 alignSelf: "center",
+                fontSize: 60,
                 marginBottom: theme.spacing(2),
             })}>
             <Textfit>LaunchMenu</Textfit>
