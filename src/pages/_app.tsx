@@ -1,43 +1,27 @@
-import React, {FC} from "react";
+import React from "react";
 import {AppProps} from "next/app";
 import {Layout} from "../components/Layout";
 import {ThemeProvider} from "@emotion/react";
 import {theme} from "../theme";
-import {CssBaseline, MuiThemeProvider, StylesProvider} from "@material-ui/core";
-import {MDXProvider} from "@mdx-js/react";
-import {CodeBlock} from "../components/CodeBlock";
-import Head from "next/head";
+import {MuiThemeProvider, StylesProvider} from "@material-ui/core";
+import {IIndex} from "../components/sideIndex/Sidebar";
 
-const mdxComponents = {
-    code: ({className, children}: {className: string; children: string}) => {
-        const languageData = className.match(/language-(.*)/);
-        return <CodeBlock code={children} language={languageData?.[1]} />;
-    },
-};
-
-const App: FC<AppProps> = ({Component, pageProps, router}) => {
-    const {route} = router;
-    const isGuide = !!route.match(/docs\//);
-    console.log(isGuide);
+export default function App({Component, pageProps}: AppProps) {
+    const nav: IIndex | undefined = (pageProps as IPageIndexProps).index;
 
     return (
         <StylesProvider injectFirst>
             <ThemeProvider theme={theme}>
                 <MuiThemeProvider theme={theme}>
-                    <MDXProvider components={mdxComponents}>
-                        <Layout>
-                            <Head>
-                                <meta
-                                    name="viewport"
-                                    content="width=device-width, initial-scale=1.0"
-                                />
-                            </Head>
-                            <Component {...pageProps} />
-                        </Layout>
-                    </MDXProvider>
+                    <Layout index={nav}>
+                        <Component {...pageProps} />
+                    </Layout>
                 </MuiThemeProvider>
             </ThemeProvider>
         </StylesProvider>
     );
+}
+
+export type IPageIndexProps = {
+    index?: IIndex;
 };
-export default App;

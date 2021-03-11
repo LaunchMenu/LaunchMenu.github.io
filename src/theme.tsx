@@ -41,4 +41,9 @@ export const theme = createMuiTheme({
             },
         },
     },
+    mixins: {
+        toolbar: {
+            height: 56,
+        },
+    },
 });

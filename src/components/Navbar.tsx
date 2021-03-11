@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {Dispatch, FC, SetStateAction} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {
     AppBar,
@@ -45,7 +45,10 @@ const links = {
     github: "https://github.com/LaunchMenu/LaunchMenu",
 };
 
-export const Navbar: FC = () => {
+export const Navbar: FC<{
+    hasSidebar?: boolean;
+    setSidebarOpen?: Dispatch<SetStateAction<boolean>>;
+}> = ({hasSidebar, setSidebarOpen}) => {
     const styles = useStyles();
 
     const [state, setState] = React.useState({
@@ -132,6 +135,14 @@ export const Navbar: FC = () => {
                             css={{
                                 display: "inline",
                             }}>
+                            {hasSidebar && (
+                                <Button
+                                    color="primary"
+                                    onClick={() => setSidebarOpen?.(d => !d)}
+                                    css={{height: "100%"}}>
+                                    <MenuIcon />
+                                </Button>
+                            )}
                             <Button color="primary">
                                 <PlainLink href={links.home}>
                                     <Typography variant="h5">

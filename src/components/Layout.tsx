@@ -1,33 +1,53 @@
 import {Global} from "@emotion/react";
-import {Container} from "@material-ui/core";
+import {Box} from "@material-ui/core";
 import Head from "next/head";
-import React, {Component, FC, ReactNode} from "react";
+import {FC, useState} from "react";
 import {Navbar} from "./Navbar";
+import {IIndex, Sidebar} from "./sideIndex/Sidebar";
 
-export const Layout: FC<{children: NonNullable<ReactNode>}> = ({children}) => {
+export const Layout: FC<{
+    index?: IIndex;
+}> = ({children, index}) => {
+    const [navVisible, setNavVisible] = useState(false);
+
     return (
         <div className="layout">
             {/* metadata */}
             <Head>
                 <title>LaunchMenu</title>
                 <link rel="icon" href="/logo/logo-icon.ico" />
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0"
+                />
             </Head>
 
             {/* Styling */}
             <Global
-                styles={{
+                styles={theme => ({
                     "body, html": {
                         margin: 0,
                         padding: 0,
                         height: "100%",
-                        width: "100%"
+                        width: "100%",
+                        ...(theme.typography.body1 as any),
                     },
-                }}></Global>
+                })}></Global>
 
             {/* Components */}
-            <Navbar />
+            <Navbar hasSidebar={!!index} setSidebarOpen={setNavVisible} />
 
-            {children}
+            <Box display="flex" flexDirection="row">
+                {index && (
+                    <Sidebar
+                        index={index}
+                        open={navVisible}
+                        setOpen={setNavVisible}
+                    />
+                )}
+
+                <Box flex={1}>{children}</Box>
+            </Box>
         </div>
     );
 };
