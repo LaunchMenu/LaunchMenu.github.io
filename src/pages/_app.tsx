@@ -7,7 +7,8 @@ import {MuiThemeProvider, StylesProvider} from "@material-ui/core";
 import {IIndex} from "../components/sideIndex/Sidebar";
 
 export default function App({Component, pageProps}: AppProps) {
-    const nav: IIndex | undefined = (pageProps as IPageIndexProps).index;
+    let nav: IIndex | undefined = (pageProps as IPageIndexProps).index;
+    if (nav?.items.length == 0) nav = undefined;
 
     return (
         <StylesProvider injectFirst>

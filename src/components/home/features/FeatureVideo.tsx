@@ -153,15 +153,15 @@ const LMMargin = 18 + 1; // R1 as a margin for error regarding rounding
 
 export const LMPlayerWidth = LMWidth - LMMargin * 2; // Real size atm
 
-function useVideoSizeData() {
+export function useVideoSizeData(desiredWidth: number = LMPlayerWidth) {
     const isMobile = useIsMobile();
     const {width: windowWidth} = useBodySize();
 
     // The component width
     const width =
         isMobile && windowWidth
-            ? Math.min(windowWidth - 40, LMPlayerWidth)
-            : LMPlayerWidth;
+            ? Math.min(windowWidth - 40, desiredWidth)
+            : desiredWidth;
 
     // Some derived component sizes
     const scale = width / (LMWidth - LMMargin * 2);

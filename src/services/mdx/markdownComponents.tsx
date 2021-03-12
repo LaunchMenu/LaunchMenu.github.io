@@ -1,5 +1,6 @@
 import {ReactNode} from "react";
 import {CodeBlock} from "../../components/CodeBlock";
+import {ScreenShot} from "./components/ScreenShot";
 
 export const markdownComponents = {
     Test: ({color, children}: {color: string; children?: ReactNode}) => (
@@ -9,4 +10,5 @@ export const markdownComponents = {
         const languageData = className.match(/language-(.*)/);
         return <CodeBlock code={children} language={languageData?.[1]} />;
     },
+    ScreenShot,
 };

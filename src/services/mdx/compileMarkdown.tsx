@@ -1,10 +1,24 @@
 import {promises as FS} from "fs";
 import Path from "path";
+import {FC} from "react";
 import {MdxRemote} from "next-mdx-remote/types";
 import renderToString from "next-mdx-remote/render-to-string";
 import {cleanupPath} from "./createStaticPathsCollector";
 import {getPagesDir} from "./getPagesDir";
 import {markdownComponents} from "./markdownComponents";
+import {MuiThemeProvider} from "@material-ui/core";
+import {theme} from "../../theme";
+import {ThemeProvider} from "@emotion/react";
+
+const Provider: FC = ({children}) => (
+    <ThemeProvider theme={theme}>
+        <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
+    </ThemeProvider>
+);
+const provider = {
+    component: Provider,
+    props: {},
+};
 
 export async function compileMarkdown(
     dir: string,
@@ -36,5 +50,8 @@ export async function compileMarkdown(
     } catch (e) {
         source = await FS.readFile(Path.join(dirPath, "index.mdx"), "utf-8");
     }
-    return await renderToString(source, {components: markdownComponents});
+    return await renderToString(source, {
+        components: markdownComponents,
+        provider,
+    });
 }

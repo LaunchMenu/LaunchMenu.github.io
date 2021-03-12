@@ -213,7 +213,6 @@ export const Navbar: FC<{
                                 css={{
                                     display: "flex",
                                     flexDirection: "row" as any,
-                                    gap: 20,
                                 }}>
                                 <Button color="primary">
                                     <PlainLink href={links.docs}>
@@ -231,7 +230,9 @@ export const Navbar: FC<{
                                     </PlainLink>
                                 </Button>
 
-                                <Button color="primary">
+                                <Button
+                                    color="primary"
+                                    startIcon={<GitHubIcon />}>
                                     <PlainLink href={links.github}>
                                         <a
                                             target="_blank"
@@ -239,19 +240,9 @@ export const Navbar: FC<{
                                                 color: "inherit",
                                                 textDecoration: "inherit",
                                             }}>
-                                            <Grid
-                                                container
-                                                direction="row"
-                                                style={{gap: 10}}>
-                                                <GitHubIcon
-                                                    style={{
-                                                        alignSelf: "center",
-                                                    }}
-                                                />
-                                                <Typography variant="h6">
-                                                    GitHub
-                                                </Typography>
-                                            </Grid>
+                                            <Typography variant="h6">
+                                                GitHub
+                                            </Typography>
                                         </a>
                                     </PlainLink>
                                 </Button>
