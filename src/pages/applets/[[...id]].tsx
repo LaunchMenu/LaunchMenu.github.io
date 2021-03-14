@@ -1,5 +1,5 @@
-import {createStaticPathsCollector} from "../../services/mdx/createStaticPathsCollector";
-import MarkdownPage from "../../services/mdx/MarkdownPage";
+import {createStaticPathsCollector} from "../../services/mdx/pagesIndex/createStaticPathsCollector";
+import MarkdownPage from "../../services/mdx/page/MarkdownPage";
 import {createStaticMdxPropsRetriever} from "../../services/mdx/createStaticMdxPropsRetriever";
 
 export default MarkdownPage;

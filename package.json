@@ -23,6 +23,7 @@
         "react-on-screen": "^2.1.1",
         "react-syntax-highlighter": "^15.4.3",
         "react-textfit": "^1.1.1",
+        "remark-sectionize": "^1.1.1",
         "use-resize-observer": "^7.0.0"
     },
     "devDependencies": {

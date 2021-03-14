@@ -1,5 +1,5 @@
 import {compileMarkdown} from "./compileMarkdown";
-import {createIndex} from "./createIndex";
+import {createIndex} from "./pagesIndex/createIndex";
 
 export const createStaticMdxPropsRetriever = (dir: string) => async ({
     params,
@@ -7,7 +7,7 @@ export const createStaticMdxPropsRetriever = (dir: string) => async ({
     params: {id: string[]};
 }) => ({
     props: {
-        source: await compileMarkdown(dir, params.id),
+        ...(await compileMarkdown(dir, params.id)),
         index: await createIndex(dir, params.id),
     },
 });

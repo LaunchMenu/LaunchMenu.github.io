@@ -153,14 +153,22 @@ const LMMargin = 18 + 1; // R1 as a margin for error regarding rounding
 
 export const LMPlayerWidth = LMWidth - LMMargin * 2; // Real size atm
 
-export function useVideoSizeData(desiredWidth: number = LMPlayerWidth) {
+export function useVideoSizeData<E extends HTMLElement>({
+    desiredWidth = LMPlayerWidth,
+    margin = 20,
+}: {
+    desiredWidth?: number;
+    margin?: number;
+} = {}) {
     const isMobile = useIsMobile();
-    const {width: windowWidth} = useBodySize();
+    let {width: windowWidth} = useBodySize();
+    const ref = useRef<E | null>(null);
+    if (ref.current) windowWidth = ref.current.getBoundingClientRect().width;
 
     // The component width
     const width =
         isMobile && windowWidth
-            ? Math.min(windowWidth - 40, desiredWidth)
+            ? Math.min(windowWidth - margin * 2, desiredWidth)
             : desiredWidth;
 
     // Some derived component sizes
@@ -173,5 +181,7 @@ export function useVideoSizeData(desiredWidth: number = LMPlayerWidth) {
         height,
         srcWidth,
         scale,
+        // A ref for the max width
+        ref,
     };
 }

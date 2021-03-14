@@ -9,7 +9,6 @@ export function createStaticPathsCollector(dir: string) {
             path.map(node => cleanupPath(node))
         );
 
-        console.log(unprefixedPaths);
         return {
             paths: unprefixedPaths.map(path => ({params: {id: path}})),
             fallback: false,

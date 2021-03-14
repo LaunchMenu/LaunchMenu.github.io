@@ -1,10 +1,12 @@
 import {MutableRefObject, useEffect, useRef} from "react";
+import {getUrlHash} from "../services/getUrlHash";
 
 export function useHashPos<E extends HTMLElement>(
     config:
         | {
               name?: string;
               url?: string;
+              offset?: number;
           }
         | string
 ): MutableRefObject<E | null> {
@@ -12,7 +14,9 @@ export function useHashPos<E extends HTMLElement>(
     useEffect(() => {
         const name = typeof config == "object" ? config.name : config;
         const url = typeof config == "object" ? config.url : "";
-        const stdUrl = name ? name.replaceAll(" ", "-").toLowerCase() : url;
+        const offset =
+            (typeof config == "object" ? config.offset : undefined) ?? 60;
+        const stdUrl = name ? getUrlHash(name) : url;
 
         const onHashChange = () => {
             const {hash} = window.location;
@@ -20,7 +24,8 @@ export function useHashPos<E extends HTMLElement>(
                 window.scrollTo({
                     top:
                         ref.current.getBoundingClientRect().top +
-                        window.pageYOffset,
+                        window.pageYOffset -
+                        offset,
                     behavior: "smooth",
                 });
             }

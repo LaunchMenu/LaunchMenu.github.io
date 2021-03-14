@@ -1,14 +1,38 @@
 import {Global} from "@emotion/react";
-import {Box} from "@material-ui/core";
+import {Box, Container} from "@material-ui/core";
 import Head from "next/head";
-import {FC, useState} from "react";
+import {FC, Fragment, useState} from "react";
 import {Navbar} from "./Navbar";
 import {IIndex, Sidebar} from "./sideIndex/Sidebar";
 
 export const Layout: FC<{
     index?: IIndex;
-}> = ({children, index}) => {
+    fullPage?: boolean;
+}> = ({children, index, fullPage}) => {
     const [navVisible, setNavVisible] = useState(false);
+
+    const content = (
+        <Box display="flex" flexDirection="row">
+            {index && (
+                <Sidebar
+                    index={index}
+                    open={navVisible}
+                    setOpen={setNavVisible}
+                />
+            )}
+
+            <Box
+                flex={1}
+                css={theme => ({
+                    maxWidth: "100%",
+                    [theme.breakpoints.up("md")]: {
+                        paddingLeft: theme.spacing(index ? 2 : 0),
+                    },
+                })}>
+                {children}
+            </Box>
+        </Box>
+    );
 
     return (
         <div className="layout">
@@ -37,17 +61,7 @@ export const Layout: FC<{
             {/* Components */}
             <Navbar hasSidebar={!!index} setSidebarOpen={setNavVisible} />
 
-            <Box display="flex" flexDirection="row">
-                {index && (
-                    <Sidebar
-                        index={index}
-                        open={navVisible}
-                        setOpen={setNavVisible}
-                    />
-                )}
-
-                <Box flex={1}>{children}</Box>
-            </Box>
+            {fullPage ? content : <Container>{content}</Container>}
         </div>
     );
 };

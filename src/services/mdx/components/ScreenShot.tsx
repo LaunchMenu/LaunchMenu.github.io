@@ -1,4 +1,5 @@
-import {FC} from "react";
+import {useTheme} from "@emotion/react";
+import {FC, Fragment} from "react";
 import {useVideoSizeData} from "../../../components/home/features/FeatureVideo";
 
 const LMWidth = 700;
@@ -17,7 +18,20 @@ export const ScreenShot: FC<{
     width?: number;
     className?: string;
 }> = ({src, width: desiredWidth, alt, className, section}) => {
-    const {width, height, scale, srcWidth} = useVideoSizeData(desiredWidth);
+    const theme = useTheme();
+    const {
+        width,
+        height,
+        scale,
+        srcWidth,
+        ref,
+    } = useVideoSizeData<HTMLDivElement>({
+        desiredWidth,
+        margin:
+            window.innerWidth < theme.breakpoints.values.md
+                ? 0
+                : theme.spacing(2),
+    });
 
     let frame: {top: number; left: number; width: number; height: number} = {
         top: 0,
@@ -55,27 +69,32 @@ export const ScreenShot: FC<{
     const scalar = srcWidth / LMWidth;
 
     return (
-        <div
-            className={className}
-            css={theme => ({
-                width: frame.width * width,
-                height: frame.height * height,
-                zIndex: 1,
-                margin: theme.spacing(2),
-                backgroundColor: "white",
-                overflow: "hidden",
-                borderRadius: 20 * scale,
-                boxShadow: "0px 0px 30px -5px rgba(0,0,0,0.3)",
-            })}>
+        <Fragment>
+            <div ref={ref} />
             <div
-                css={{
-                    margin: -(LMMargin * scalar),
-                    position: "relative",
-                    left: -frame.left * width,
-                    top: -frame.top * height,
-                }}>
-                <img alt={alt} src={src} width={srcWidth} />
+                className={className}
+                css={theme => ({
+                    width: frame.width * width,
+                    height: frame.height * height,
+                    zIndex: 1,
+                    backgroundColor: "white",
+                    overflow: "hidden",
+                    borderRadius: 20 * scale,
+                    boxShadow: "0px 0px 30px -5px rgba(0,0,0,0.3)",
+                    [theme.breakpoints.up("md")]: {
+                        margin: theme.spacing(2),
+                    },
+                })}>
+                <div
+                    css={{
+                        margin: -(LMMargin * scalar),
+                        position: "relative",
+                        left: -frame.left * width,
+                        top: -frame.top * height,
+                    }}>
+                    <img alt={alt} src={src} width={srcWidth} />
+                </div>
             </div>
-        </div>
+        </Fragment>
     );
 };

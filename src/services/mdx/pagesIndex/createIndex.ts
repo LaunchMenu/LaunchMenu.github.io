@@ -1,7 +1,7 @@
 import {promises as FS} from "fs";
 import Path from "path";
-import {INavItem} from "../../components/sideIndex/NavItem";
-import {IIndex} from "../../components/sideIndex/Sidebar";
+import {INavItem} from "../../../components/sideIndex/NavItem";
+import {IIndex} from "../../../components/sideIndex/Sidebar";
 import {cleanupPath} from "./createStaticPathsCollector";
 import {getPagesDir} from "./getPagesDir";
 
