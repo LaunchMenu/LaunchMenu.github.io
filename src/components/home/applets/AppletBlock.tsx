@@ -17,7 +17,8 @@ export const AppletBlock: FC<{
 }> = ({name, category, description, icon, status}) => (
     <PlainLink
         href={`/applets/${
-            (category ? category + "/" : "") + name.toLowerCase()
+            (category ? category + "/" : "") +
+            name.replace(/\s/g, "-").toLowerCase()
         }`}
         css={theme => ({
             margin: theme.spacing(1),

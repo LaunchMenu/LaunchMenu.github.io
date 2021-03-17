@@ -33,7 +33,8 @@ import TranslateIcon from "@material-ui/icons/Translate";
 import SnippetIcon from "@material-ui/icons/TextFormat";
 import TimeIcon from "@material-ui/icons/Schedule";
 import CalendarIcon from "@material-ui/icons/Event";
-import {ScreenRecording} from "../services/mdx/components/ScreenRecording";
+import UndoIcon from "@material-ui/icons/Undo";
+import ThemeIcon from "@material-ui/icons/Palette";
 
 export default function Home() {
     return (
@@ -481,6 +482,20 @@ export default function Home() {
                         description="Used to create new parallel sessions within LaunchMenu"
                         status="supported"
                         icon={<SessionsIcon />}
+                        category="core"
+                    />
+                    <AppletBlock
+                        name="Theme manager"
+                        description="Used to customize the appearance of LaunchMenu"
+                        status="longTerm"
+                        icon={<ThemeIcon />}
+                        category="core"
+                    />
+                    <AppletBlock
+                        name="Undo-redo manager"
+                        description="Used to control and visualize the undo facility"
+                        status="longTerm"
+                        icon={<UndoIcon />}
                         category="core"
                     />
                 </Applets>

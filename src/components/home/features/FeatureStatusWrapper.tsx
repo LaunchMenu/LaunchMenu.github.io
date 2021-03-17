@@ -46,7 +46,13 @@ export const FeatureStatusWrapper: FC<{
                 aria-label={tooltip}>
                 <span>
                     <Box
-                        css={{color, ">*": {verticalAlign: "bottom"}}}
+                        css={{
+                            color,
+                            ">*": {
+                                verticalAlign: "bottom",
+                                fontSize: "1.5em",
+                            },
+                        }}
                         display="inline"
                         mr={1}>
                         {icon}

@@ -1,10 +1,11 @@
-import {FC, ReactNode} from "react";
+import {FC} from "react";
 import {CodeBlock} from "../../../components/CodeBlock";
 import {createHeaderComp} from "./createHeaderComp";
 import {ScreenShot} from "./ScreenShot";
 import {ScreenRecording} from "./ScreenRecording";
 import {Section} from "./Section";
 import {Video} from "./Video";
+import {StatusNotice} from "./StatusNotice";
 import {Key} from "../../../components/home/Key";
 import {background3} from "../../../theme";
 
@@ -22,11 +23,11 @@ const autoFitImageRenderer: FC<{
         width={width}
     />
 );
-const codeRender: FC<{className: string; children: string}> = ({
+const codeRender: FC<{className?: string; children: string}> = ({
     className,
     children,
 }) => {
-    const languageData = className.match(/language-(.*)/);
+    const languageData = className?.match(/language-(.*)/);
     return <CodeBlock code={children} language={languageData?.[1]} />;
 };
 const inlineCodeRenderer: FC<{children: string}> = ({children}) => (
@@ -58,4 +59,5 @@ export const markdownComponents = {
     ScreenRecording,
     Video,
     Key,
+    StatusNotice,
 };
