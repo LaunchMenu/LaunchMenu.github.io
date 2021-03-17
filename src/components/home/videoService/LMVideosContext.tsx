@@ -19,9 +19,17 @@ export type ILMVideosContext = {
     pushVideo: (
         src: string,
         onTimeChange: (time: number) => void
-    ) => IVideoControls;
+    ) => IBasicVideoControls;
     /** A function that can be used to stop displaying a video in all elements */
     popVideo: (src: string) => void;
     /** A function to retrieve the bounding rectangle of the provider */
     getBoundingRect: (h?: IDataHook) => undefined | DOMRect;
+};
+
+export type IBasicVideoControls = {
+    play: () => void;
+    pause: () => void;
+    isPlaying: () => boolean;
+    setTime: (time: number) => void;
+    setSpeed: (rate: number) => void;
 };

@@ -33,6 +33,7 @@ import TranslateIcon from "@material-ui/icons/Translate";
 import SnippetIcon from "@material-ui/icons/TextFormat";
 import TimeIcon from "@material-ui/icons/Schedule";
 import CalendarIcon from "@material-ui/icons/Event";
+import {ScreenRecording} from "../services/mdx/components/ScreenRecording";
 
 export default function Home() {
     return (
@@ -377,54 +378,63 @@ export default function Home() {
                         description="A dictionary powered by Wiktionary, to quickly lookup word definitions"
                         status="supported"
                         icon={<MenuBookIcon />}
+                        category="utility"
                     />
                     <AppletBlock
                         name="Notes"
                         description="A simple notes manager that supports markdown content rendering"
                         status="supported"
                         icon={<NoteIcon />}
+                        category="utility"
                     />
                     <AppletBlock
                         name="File manager"
                         description="An advanced file manager to find and manipulate files"
                         status="longTerm"
                         icon={<FileIcon />}
+                        category="utility"
                     />
                     <AppletBlock
                         name="Internet search"
                         description="A general purpose internet search to quickly lookup facts"
                         status="longTerm"
                         icon={<InternetSearchIcon />}
+                        category="utility"
                     />
                     <AppletBlock
                         name="Calculator"
                         description="A simple calculator for quick arithmetic"
                         status="longTerm"
                         icon={<MathIcon />}
+                        category="utility"
                     />
                     <AppletBlock
                         name="Translator"
                         description="A basic translator"
                         status="longTerm"
                         icon={<TranslateIcon />}
+                        category="utility"
                     />
                     <AppletBlock
                         name="Snippets"
                         description="An applet to easily insert often used text sequences"
                         status="longTerm"
                         icon={<SnippetIcon />}
+                        category="utility"
                     />
                     <AppletBlock
                         name="Time tracker"
                         description="An applet to keep track of how much time you spend on certain tasks"
                         status="longTerm"
                         icon={<TimeIcon />}
+                        category="utility"
                     />
                     <AppletBlock
                         name="Calendar"
                         description="An advanced calendar to show and plan events"
                         status="longTerm"
                         icon={<CalendarIcon />}
+                        category="utility"
                     />
                 </Applets>
 
@@ -436,6 +446,7 @@ export default function Home() {
                         description="Provides simple quickstart information"
                         status="supported"
                         icon={<HelpIcon />}
+                        category="core"
                     />
                     <AppletBlock
                         name="Applet manager"
@@ -446,12 +457,14 @@ export default function Home() {
                                 "Installation of applets isn't yet supported",
                         }}
                         icon={<AppletsIcon />}
+                        category="core"
                     />
                     <AppletBlock
                         name="Settings manager"
                         description="Used to change any settings within LaunchMenu and applets"
                         status="supported"
                         icon={<SettingsIcon />}
+                        category="core"
                     />
                     <AppletBlock
                         name="Window manager"
@@ -461,12 +474,14 @@ export default function Home() {
                             tooltip: "Doesn't support all planned OSes yet",
                         }}
                         icon={<WindowIcon />}
+                        category="core"
                     />
                     <AppletBlock
                         name="Session manager"
                         description="Used to create new parallel sessions within LaunchMenu"
                         status="supported"
                         icon={<SessionsIcon />}
+                        category="core"
                     />
                 </Applets>
             </BackgroundSection>

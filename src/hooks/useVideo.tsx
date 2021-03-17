@@ -1,3 +1,4 @@
+import {Field, IDataHook} from "model-react";
 import {FC, Fragment, useEffect, useRef} from "react";
 import {IVideoComp} from "../components/home/videoService/LMVideosProvider";
 
@@ -9,37 +10,103 @@ export function useVideo(
 } {
     const ref = useRef<HTMLVideoElement>(null);
 
+    const data = useRef<{
+        buffered: Field<number>;
+        time: Field<number>;
+        playing: Field<boolean>;
+        volume: Field<number>;
+        duration: Field<number>;
+    }>();
     const controls = useRef<IVideoControls>();
     if (!controls.current) {
-        let playing = false;
+        const buffered = new Field(0);
+        const time = new Field(0);
+        const playing = new Field(false);
+        const volume = new Field(0);
+        const duration = new Field(0);
+        data.current = {
+            buffered,
+            time,
+            playing,
+            volume,
+            duration,
+        };
+
         controls.current = {
             play: () => {
                 ref.current?.play();
-                if (ref.current) playing = true;
+                if (ref.current) playing.set(true);
             },
             pause: () => {
                 ref.current?.pause();
-                if (ref.current) playing = false;
+                if (ref.current) playing.set(false);
             },
-            isPlaying: () => playing,
             setTime: time => {
                 if (ref.current) ref.current.currentTime = time;
             },
             setSpeed: rate => {
                 if (ref.current) ref.current.playbackRate = rate;
             },
+            setVolume: volume => {
+                if (ref.current) ref.current.volume = volume;
+            },
+            setFullscreen: () => {
+                const video = ref.current;
+                if (video) {
+                    if (video.requestFullscreen) {
+                        video.requestFullscreen();
+                    } else if ((video as any).webkitRequestFullscreen) {
+                        /* Safari */
+                        (video as any).webkitRequestFullscreen();
+                    } else if ((video as any).msRequestFullscreen) {
+                        /* IE11 */
+                        (video as any).msRequestFullscreen();
+                    }
+                }
+            },
+            isPlaying: (hook?: IDataHook) => playing.get(hook),
+            getBuffered: (hook?: IDataHook) => buffered.get(hook),
+            getTime: (hook?: IDataHook) => time.get(hook),
+            gerDuration: (hook?: IDataHook) => duration.get(hook),
+            getVolume: (hook?: IDataHook) => volume.get(hook),
         };
     }
 
     useEffect(() => {
-        if (ref.current) {
-            ref.current.ontimeupdate = ev =>
-                ref.current &&
-                config.onTimeUpdate?.(
-                    ref.current?.currentTime,
-                    ref.current,
-                    ev
-                );
+        const el = ref.current;
+        if (el && data.current) {
+            const {time, buffered, playing, volume, duration} = data.current;
+
+            const updateBuffered = () => {
+                if (data.current) {
+                    // src: https://stackoverflow.com/a/5182578/8521718
+                    let range = 0;
+                    const bf = el.buffered;
+                    const time = el.currentTime;
+
+                    while (
+                        range < bf.length &&
+                        !(bf.start(range) <= time && time <= bf.end(range))
+                    )
+                        range += 1;
+
+                    buffered.set(range < bf.length ? bf.end(range) : 0);
+                }
+            };
+            el.ontimeupdate = ev => {
+                config.onTimeUpdate?.(el.currentTime, el, ev);
+                if (data.current) time.set(el.currentTime);
+                updateBuffered();
+            };
+            el.onprogress = updateBuffered;
+            el.onplay = () => playing.set(true);
+            el.onpause = () => playing.set(false);
+            el.onvolumechange = () => volume.set(el.volume);
+            el.ondurationchange = () => duration.set(el.duration);
+
+            // init
+            volume.set(el.volume);
+            duration.set(el.duration);
         }
     }, [ref.current]);
 
@@ -54,9 +121,10 @@ export function useVideo(
         };
 
         video.current = {
-            Comp: ({width, placeholder}) => (
+            Comp: ({width, placeholder, className}) => (
                 <video
                     poster={placeholder}
+                    className={className}
                     onClick={onClick}
                     ref={ref}
                     width={width}
@@ -91,7 +159,13 @@ export type IVideoConfig = {
 export type IVideoControls = {
     play: () => void;
     pause: () => void;
-    isPlaying: () => boolean;
     setTime: (time: number) => void;
     setSpeed: (rate: number) => void;
+    setVolume: (volume: number) => void;
+    setFullscreen: () => void;
+    isPlaying: (hook?: IDataHook) => boolean;
+    getBuffered: (hook?: IDataHook) => number;
+    getTime: (hook?: IDataHook) => number;
+    gerDuration: (hook?: IDataHook) => number;
+    getVolume: (hook?: IDataHook) => number;
 };

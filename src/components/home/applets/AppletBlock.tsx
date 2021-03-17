@@ -10,12 +10,15 @@ import {
 
 export const AppletBlock: FC<{
     name: string;
+    category?: string;
     description: ReactNode;
     icon: ReactNode;
     status: IFeatureStatusData;
-}> = ({name, description, icon, status}) => (
+}> = ({name, category, description, icon, status}) => (
     <PlainLink
-        href={`/applets/${name.toLowerCase()}`}
+        href={`/applets/${
+            (category ? category + "/" : "") + name.toLowerCase()
+        }`}
         css={theme => ({
             margin: theme.spacing(1),
             display: "flex",

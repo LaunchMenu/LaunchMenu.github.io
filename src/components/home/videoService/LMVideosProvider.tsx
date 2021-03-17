@@ -1,11 +1,18 @@
 import {Field, IDataHook, useDataHook} from "model-react";
 import {FC, ReactNode, useCallback, useEffect, useRef} from "react";
 import useResizeObserver from "use-resize-observer";
-import {IVideoControls} from "../../../hooks/useVideo";
 import {Fade} from "../../Fade";
-import {ILMVideosContext, LMVideosContext} from "./LMVideosContext";
+import {
+    IBasicVideoControls,
+    ILMVideosContext,
+    LMVideosContext,
+} from "./LMVideosContext";
 
-export type IVideoComp = FC<{width?: number; placeholder?: string}>;
+export type IVideoComp = FC<{
+    width?: number;
+    placeholder?: string;
+    className?: string;
+}>;
 export const LMVideosProvider: FC = ({children}) => {
     const data = useRef<
         ILMVideosContext & {boundingBox: Field<DOMRect | undefined>}
@@ -108,7 +115,7 @@ const VideosContextContainer: FC<{boundingBox: Field<DOMRect | undefined>}> = ({
 type IVideos = {
     src: string;
     Video: FC<{width?: number}>;
-    controls: IVideoControls;
+    controls: IBasicVideoControls;
 }[];
 
 function createVideo(
@@ -116,7 +123,7 @@ function createVideo(
     onTimeUpdate: (time: number) => void = () => {}
 ): {
     Video: FC<{width?: number}>;
-    controls: IVideoControls;
+    controls: IBasicVideoControls;
 } {
     // Keep track of all video elements
     const videos: HTMLVideoElement[] = [];
@@ -125,7 +132,7 @@ function createVideo(
     let playing = false;
     let time = 0;
     let rate = 1;
-    const controls: IVideoControls = {
+    const controls: IBasicVideoControls = {
         play: () => {
             playing = true;
             videos.forEach(video => video.play());

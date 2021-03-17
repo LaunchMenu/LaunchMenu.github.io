@@ -8,9 +8,9 @@ import {
     useState,
 } from "react";
 import {useIsMobile} from "../../../hooks/useIsMobile";
-import {IVideoControls, useVideo} from "../../../hooks/useVideo";
+import {useVideo} from "../../../hooks/useVideo";
 import {LMVideoContext} from "./LMVideoContext";
-import {LMVideosContext} from "./LMVideosContext";
+import {IBasicVideoControls, LMVideosContext} from "./LMVideosContext";
 
 type IVideoProviderProps = {
     src: string;
@@ -51,7 +51,7 @@ const LMRemoteVideoProvider: FC<IVideoProviderProps> = ({
     // Register the video in the videos context when the video is enabled
     const {pushVideo, popVideo} = useContext(LMVideosContext);
     const [, _forceUpdate] = useState(false);
-    const videoController = useRef<IVideoControls>();
+    const videoController = useRef<IBasicVideoControls>();
     useEffect(() => {
         if (enabled) {
             const controls = pushVideo(src, onTimeChange);

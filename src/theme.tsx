@@ -16,8 +16,6 @@ export const theme = createMuiTheme({
         },
         background: {
             default: "#FFFFFF",
-            // light: "#FAFAFA",
-            // dark: "#EEEEEE",
         },
     },
     breakpoints: {
@@ -47,3 +45,7 @@ export const theme = createMuiTheme({
         },
     },
 });
+
+// Really this should be in the theme, but it's too much of a hassle to figure out hwo to properly do this with MUI's theme..
+export const background2 = "#FAFAFA";
+export const background3 = "#EEEEEE";

@@ -1,6 +1,7 @@
 import {useTheme} from "@emotion/react";
-import {FC, Fragment} from "react";
+import {FC, Fragment, ReactNode} from "react";
 import {useVideoSizeData} from "../../../components/home/features/FeatureVideo";
+import {isClient} from "../../isClient";
 
 const LMWidth = 700;
 const LMHeight = 450;
@@ -11,13 +12,25 @@ const LMContentHeight = LMHeight - LMMargin * 2;
 const headerRatio = 60 / LMContentHeight;
 const menuRatio = 0.4;
 
+export type ILMSection = "field" | "content" | "menu" | "bottom";
 export const ScreenShot: FC<{
     src: string;
     alt?: string;
-    section?: "field" | "content" | "menu" | "bottom";
+    section?: ILMSection;
     width?: number;
     className?: string;
-}> = ({src, width: desiredWidth, alt, className, section}) => {
+}> = ({src, width, alt, className, section}) => (
+    <LMFrame className={className} section={section} width={width}>
+        {srcWidth => <img alt={alt} src={src} width={srcWidth} />}
+    </LMFrame>
+);
+
+export const LMFrame: FC<{
+    className?: string;
+    width?: number;
+    section?: ILMSection;
+    children: (width: number) => ReactNode;
+}> = ({className, width: desiredWidth, section, children}) => {
     const theme = useTheme();
     const {
         width,
@@ -28,7 +41,7 @@ export const ScreenShot: FC<{
     } = useVideoSizeData<HTMLDivElement>({
         desiredWidth,
         margin:
-            window.innerWidth < theme.breakpoints.values.md
+            isClient() && window.innerWidth < theme.breakpoints.values.md
                 ? 0
                 : theme.spacing(2),
     });
@@ -67,7 +80,7 @@ export const ScreenShot: FC<{
     }
 
     const scalar = srcWidth / LMWidth;
-
+    const margin = -(LMMargin * scalar);
     return (
         <Fragment>
             <div ref={ref} />
@@ -76,6 +89,7 @@ export const ScreenShot: FC<{
                 css={theme => ({
                     width: frame.width * width,
                     height: frame.height * height,
+                    position: "relative",
                     zIndex: 1,
                     backgroundColor: "white",
                     overflow: "hidden",
@@ -87,12 +101,11 @@ export const ScreenShot: FC<{
                 })}>
                 <div
                     css={{
-                        margin: -(LMMargin * scalar),
-                        position: "relative",
-                        left: -frame.left * width,
-                        top: -frame.top * height,
+                        margin,
+                        marginLeft: -frame.left * width + margin,
+                        marginTop: -frame.top * height + margin,
                     }}>
-                    <img alt={alt} src={src} width={srcWidth} />
+                    {children(srcWidth)}
                 </div>
             </div>
         </Fragment>

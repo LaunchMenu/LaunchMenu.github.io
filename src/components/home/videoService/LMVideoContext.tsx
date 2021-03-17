@@ -1,5 +1,5 @@
 import {createContext, FC} from "react";
-import {IVideoControls} from "../../../hooks/useVideo";
+import {IBasicVideoControls} from "./LMVideosContext";
 
 /** A context to manage jumping between sections of the same video */
 export const LMVideoContext = createContext<ILMVideoContext>({
@@ -19,7 +19,7 @@ export type ILMVideoContext = {
      */
     setPauseTime: (time: number) => void;
     /** The controls for video playback */
-    controls?: IVideoControls | undefined;
+    controls?: IBasicVideoControls | undefined;
     /** The video component to be rendered when using mobile layout (videos aren't shared) */
     Video?: FC<{width?: number}>;
 };
