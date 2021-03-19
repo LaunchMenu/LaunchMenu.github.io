@@ -23,8 +23,10 @@ export const Layout: FC<{
 
             <Box
                 flex={1}
+                flexShrink={1}
                 css={theme => ({
                     maxWidth: "100%",
+                    minWidth: 0,
                     [theme.breakpoints.up("md")]: {
                         paddingLeft: theme.spacing(index ? 2 : 0),
                     },

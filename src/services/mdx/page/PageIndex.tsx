@@ -30,6 +30,10 @@ export const PageIndex: FC<{ToC: ITOC}> = ({ToC}) => {
                     top: theme.mixins.toolbar.height,
                     position: "sticky",
                     paddingTop: theme.spacing(2),
+                    overflowY: "auto",
+                    [theme.breakpoints.up("md")]: {
+                        maxHeight: `calc(100vh - ${theme.mixins.toolbar.height}px)`,
+                    },
                 })}>
                 <Text css={{fontWeight: 800}}>Table of Contents</Text>
                 <List>

@@ -1,15 +1,15 @@
 import {FC} from "react";
-import Link from "next/link";
+import NextLink from "next/link";
 
-export const PlainLink: FC<{href: string; className?: string}> = ({
-    href,
-    children,
-    ...rest
-}) => {
+export const PlainLink: FC<{
+    href: string;
+    className?: string;
+    styled?: boolean;
+}> = ({href, children, styled = false, ...rest}) => {
     return (
-        <Link href={href}>
+        <NextLink href={href}>
             <a
-                css={{textDecoration: "none", color: "inherit"}}
+                css={!styled && {textDecoration: "none", color: "inherit"}}
                 href={href}
                 onClick={() => {
                     // Force a hash update event
@@ -19,6 +19,6 @@ export const PlainLink: FC<{href: string; className?: string}> = ({
                 {...rest}>
                 {children}
             </a>
-        </Link>
+        </NextLink>
     );
 };

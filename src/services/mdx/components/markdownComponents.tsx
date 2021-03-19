@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {FC, ReactNode} from "react";
 import {CodeBlock} from "../../../components/CodeBlock";
 import {createHeaderComp} from "./createHeaderComp";
 import {ScreenShot} from "./ScreenShot";
@@ -8,6 +8,8 @@ import {Video} from "./Video";
 import {StatusNotice} from "./StatusNotice";
 import {Key} from "../../../components/home/Key";
 import {background3} from "../../../theme";
+import {PlainLink} from "../../../components/PlainLink";
+// import {Link} from "../../../components/PlainLink";
 
 const autoFitImageRenderer: FC<{
     alt?: string;
@@ -28,7 +30,7 @@ const codeRender: FC<{className?: string; children: string}> = ({
     children,
 }) => {
     const languageData = className?.match(/language-(.*)/);
-    return <CodeBlock code={children} language={languageData?.[1]} />;
+    return <CodeBlock code={children} language={languageData?.[1] ?? "text"} />;
 };
 const inlineCodeRenderer: FC<{children: string}> = ({children}) => (
     <code
@@ -47,6 +49,9 @@ export const markdownComponents = {
     inlineCode: inlineCodeRenderer,
     img: autoFitImageRenderer,
     section: Section,
+    a: (props: {href: string; children: ReactNode}) => (
+        <PlainLink styled {...props} />
+    ),
     h1: createHeaderComp(1),
     h2: createHeaderComp(2),
     h3: createHeaderComp(3),
