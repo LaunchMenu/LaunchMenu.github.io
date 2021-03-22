@@ -1,7 +1,7 @@
 import {Box, Button, Typography} from "@material-ui/core";
 import CloudDownload from "@material-ui/icons/CloudDownload";
 import Code from "@material-ui/icons/Code";
-import React, {FC} from "react";
+import {FC} from "react";
 import Textfit from "react-textfit";
 import {useBodySize} from "../../../hooks/useBodySize";
 import Link from "next/link";
@@ -29,7 +29,7 @@ export const Hero: FC = ({children}) => {
                     })}>
                     Do it. Do it now.
                 </Text>
-                <Link href="#download">
+                <Link href="#downloads">
                     <Button
                         variant="contained"
                         color="primary"

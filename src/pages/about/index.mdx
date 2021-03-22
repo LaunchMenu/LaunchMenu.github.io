@@ -1,2 +1,251 @@
-oranges
-and things
+# About
+
+LaunchMenu has been a long time in the making, and has been a bumpy ride so far. In spring 2017, Sancarn created the initial version of LaunchMenu in the keyboard scripting language [Autohotkey](https://www.autohotkey.com/). A few months after the initial rendition was created, Sancarn asked Tar for advice on the UI development of LaunchMenu. Tar suggested the use of HTML as the UI part of LaunchMenu, and assisted in the creation of a HTML UI within the [c9 IDE](https://web.archive.org/web/20170630001836/https://c9.io/). Tar fully joined the project in summer 2017. Since then a lot of progress has been made and in 2020 the [LaunchMenu github organization](https://github.com/LaunchMenu) was formed.
+
+Below we'll discuss a more detailed history and give some information about ourselves.
+
+## History
+
+<LMVersionDefinition
+    name="LaunchMenu-ahk"
+    version={1}
+    date="2017-03-01"
+    link="https://github.com/sancarn/LaunchMenu/tree/dd3ee2f902fcd25c17611695d5a5ddab6803b049"
+/>
+<LMVersionDefinition
+    name="LaunchMenu-electron"
+    version={2}
+    date="2017-04-17"
+    link="https://github.com/sancarn/LaunchMenu"
+/>
+<LMVersionDefinition
+    name="LaunchMenu-framework"
+    version={3}
+    date="2018-07-05"
+    link="https://github.com/sancarn/LaunchMenu-Archive_20200609"
+/>
+<LMVersionDefinition
+    name="Adjust"
+    version={4}
+    date="2019-06-18"
+    link="https://github.com/sancarn/Adjust-Archive_20200308"
+/>
+<LMVersionDefinition
+    name="LaunchMenu"
+    version={5}
+    date="2020-06-09"
+    link="https://github.com/LaunchMenu/LaunchMenu"
+/>
+
+### Iterations
+
+#### LaunchMenu-ahk
+
+Mac OS X has a built-in application named "Spotlight", which provides a similar set of functionality to LaunchMenu. However, due to the proprietary nature of Spotlight, it has some flaws:
+
+-   Single Platform
+-   Lack of customisability
+-   Lack of extensibility
+-   Limited interactivity
+
+This led Sancarn to the development of a Windows only version of Spotlight made with [Autohotkey](https://www.autohotkey.com/). This was named <LMVersion v={1} />. Due to limitations in the AHK UI Tar suggested <LMVersion v={1} /> use HTML rendering for the UI at large. LaunchMenu initially booted up an AHK window containing an Internet Explorer control, which rendered the HTML page. You can see the bare-bones AHK application on github, [as early as 2017-4-15.](https://github.com/sancarn/LaunchMenu/tree/ee36e4b234227c1ff2ff2e4745f5e4c643c2bd03)
+
+#### LaunchMenu-electron
+
+It soon became apparent that AHK was not the right tool for developing this application, especially given that we wanted to target it as a cross-platform technology. Tar, now officially joining the project, suggested we stay in JavaScript, and we found a, then, upcoming technology created by Github - [electron](https://www.electronjs.org/). This seemed to give us the flexibility to deploy on multiple platforms, while maintaining the same API set, and so <LMVersion v={2} /> was born.
+
+#### LaunchMenu-framework
+
+In terms of functionality <LMVersion v={2} /> started to get close to a working product. But as we continued improving our software development skills, we started to realize this version wasn't all that great. The code was hard to maintain, the UI wasn't amazing, and bugs kept popping up. This lead us to the first major redesign, where the project was started from scratch. We came up with some grand ideas for the next iteration:
+
+-   LaunchMenu should be completely modular
+-   Modules shouldn't have direct dependencies on each other:
+    -   Modules should be added to a registry
+    -   Modules should request instances of dependencies through the registry
+    -   Modules should be installable, and be able to override other modules in the registry
+-   Modules should have native support for customization by means of settings
+-   Users should be able to resize and move the UI of any module to customize the window
+
+This led to the development of <LMVersion v={3} />. In this version we started using [react](https://reactjs.org/) to render the UI of LaunchMenu. We made a lot of progress on the core aspects, and then decided this should become a stand-alone framework that could be reused for other programs. Some videos of tests of this version have even been uploaded to Youtube and can now be found in [this playlist](https://www.youtube.com/watch?v=oCWHUVwozxE&list=PLpMVskdMCSepvrPeMthTec2DXl67cM5xt&ab_channel=LaunchMenu). Unfortunately a little bit of code of this version has been lost, the code for the tabs that can be seen from the third video on has perished.
+
+<!-- TODO: Youtube Embed of playlist? -->
+
+#### Adjust
+
+After working on <LMVersion v={3} /> for a while, we once again decided it was time for a redesign. During the process of making <LMVersion v={3} /> we noticed several issues, but also realized the great potential of this framework! We set out to make a next version of the this framework to fix the following issues:
+
+-   Modules live in the window that they render in, so in order to move them from one window to another they have to be completely serialized:
+    -   This serialization requires manual code for each module type
+    -   This serialization is the cause of several issues
+-   Modules have to communicate with each other over [IPC](https://en.wikipedia.org/wiki/Inter-process_communication), since they may live in different windows
+-   Modules are referenced and imported by name, but names might not be unique which could cause issues
+
+So we chose to create a new version of the framework using a newly discovered technology, [TypeScript](https://www.typescriptlang.org/), and called it <LMVersion v={4} />. This version of the framework addressed the major issues by making all modules live in the main thread, and use IPC to share content to be rendered to the windows to render them in. We essentially moved to a full [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) setup, where communication happens over IPC.
+This allowed us to seamlessly move modules from 1 window to another, since the module itself actually stays put in the main process. You could also render the same module in multiple places. Some demo/test videos can be found in this [Youtube playlist](https://www.youtube.com/watch?v=XVFariXVOz0&list=PLpMVskdMCSepQhDcyNktQaa9sARCoit1c&ab_channel=LaunchMenu).
+
+<!-- TODO: Youtube Embed of playlist? -->
+
+The addition of TypeScript allowed us to neatly define interfaces of modules and use these to seamlessly obtain module instances that adhere to these interfaces from the registry. At this point we also went overboard with TypeScript definitions, and tried to get perfect intellisense for rather dynamic processes. This is a trend we're continuing to this day, but we try to adapt our code style so it can be strictly typed more easily.
+
+#### LaunchMenu
+
+<LMVersion v={4} /> was taking shape, and was even used as the framework in another
+(private) project by Tar. However, we once again started doubting the code that was
+in place. It became harder to maintain due to tight coupling, and making a whole
+application using this framework seemed like a pain due to the large amounts of required
+boilerplate. At this point it was decided to move to a new version of Adjust, a version
+that wouldn't force such a strict module pattern, and that would come in the form
+of a set of independent utilities rather than a tightly coupled system.
+
+We however realized that at this rate LaunchMenu would never get finished. So we decided to take a step back, move away from all this highly idealistic scenario and instead focus on the aspects that are really important for LaunchMenu itself. We decided to shelve the Adjust framework for a later date, and started planning our requirements for <LMVersion v={5}/>. With a rough roadmap in place, development was started. To be more organized we used a kanban board and github issues and branches to track progress. Around 9 months after starting with <LMVersion v={5}/>, and about 4 years after the initial inception, we finally have a working version of LaunchMenu. We then continued working on a website to document the project and prepare for an initial release.
+
+### Timeline
+
+<Timeline>
+    <TimelineItem
+        date="2017-03-01"
+        name="LaunchMenu idea and AHK demo"
+        description="AHK Version of LaunchMenu."
+    />
+    <TimelineItem
+        date="2017-04-08"
+        name={<LMVersion v={1} />}
+        description="Initial HTML integration into AHK LaunchMenu application. Commits via C9.IO."
+    />
+    <TimelineItem
+        date="2017-04-17"
+        name={<LMVersion v={2} />}
+        description="Move to electron and full JavaScript implementation."
+    />
+    <TimelineItem
+        date="2018-07-05"
+        name={<LMVersion v={3} />}
+        description="Move to react and stand-alone modular framework."
+        link="https://www.youtube.com/watch?v=oCWHUVwozxE&list=PLpMVskdMCSepvrPeMthTec2DXl67cM5xt&ab_channel=LaunchMenu"
+    />
+    <TimelineItem
+        date="2019-05-31"
+        name="InfoLab release"
+        description="Development of LaunchMenu-like system by Sancarn due to lack of actual LaunchMenu system."
+        link="https://github.com/sancarn/InfoLab"
+    />
+    <TimelineItem
+        date="2019-06-18"
+        name={<LMVersion v={4} />}
+        description="Move to typescript and rethinking of framework."
+        link="https://www.youtube.com/watch?v=XVFariXVOz0&list=PLpMVskdMCSepQhDcyNktQaa9sARCoit1c&ab_channel=LaunchMenu"
+    />
+    <TimelineItem
+        date="2020-03-08"
+        name="Adjust v3"
+        description="Start of second rethink of the framework, imminently shelved."
+    />
+    <TimelineItem
+        date="2020-06-09"
+        name={<LMVersion v={5} />}
+        description="Step-back from framework development. Focus on LaunchMenu product."
+    />
+    <TimelineItem
+        date="2021-02-26"
+        name="LaunchMenu documentation"
+        description="Documentation of features, applets, history and developer documentation."
+    />
+    {/* TODO: add date */}
+    <TimelineItem
+        date="2021-xx-xx"
+        name="LaunchMenu initial release"
+        description="The initial release of LaunchMenu."
+        now
+    />
+    <TimelineItem separator />
+    <TimelineItem
+        name="Simple applet development"
+        description="Release some more applets that are simple to implement, such as the calculator and some of the remaining core applets."
+    />
+    <TimelineItem
+        name="General LaunchMenu development"
+        description="LaunchMenu as a system will continue to be developed with new features such as mnemonics and improved searches."
+    />
+    <TimelineItem
+        name="File system applet development"
+        description="The file system applet needs a lot of work and will be in developement for a long time."
+    />
+    <TimelineItem separator />
+    <TimelineItem
+        name="LaunchMenu v2/Adjust v3??"
+        description="We will most likely end up rewriting things again at some point..."
+        last
+    />
+</Timeline>
+
+<!--
+    "2017-04-15 16:25:35Z" https://github.com/sancarn/LaunchMenu
+    "2018-07-05 13:04:23Z" https://github.com/sancarn/LaunchMenu-Archive_20200609
+    "2019-05-31 12:06:43Z" related - https://github.com/sancarn/InfoLab
+    "2019-06-18 12:10:03Z" https://github.com/sancarn/Adjust-Archive_20200308
+    "2020-03-08 00:00:00Z" https://github.com/LaunchMenu/Adjust
+    "2020-06-09 17:56:56Z" https://github.com/LaunchMenu/LaunchMenu
+-->
+
+## Founders
+
+<Collaborator
+    name="Sancarn"
+    role="founder"
+    github="https://github.com/sancarn"
+    youtube="www.youtube.com/sancarn"
+    dateOfBirth="1993"
+/>
+
+Hi there, I'm Sancarn, and I'm the founder of LaunchMenu. For most of my childhood I wanted to be a Physicist. When it finally came to going to university, I decided to do a Theoretical Physics degree. Soon after starting my course at university, my friend introduced me to Minecraft. Through Minecraft, I found redstone which led me to learning a lot about Digital Electronics and Engineering overall. Most of my learning around redstone initially came from experimentation, but when it came to Digital Electronics, most of it I learnt through wikipedia and youtubers who were attending these degrees. Through Minecraft I met many other creators including Tar.
+
+Throughout my degree I never really saw the point of programming. We were often given a task to achieve, but that task was nothing "new" and only serves in developing the student's knowledge of the subject. I was never really interested in that. I wanted to make things which have an impact on other people's lives - and if I can develop in the process, that's a bonus! When I started working for companies I soon realised my programming skills were really beneficial to those around me, which quickly became my soul driver for progressing my programming knowledge. To this day I spend more time programming than anything else, and continuously develop and expand my knowledge - especially through the help of those around me. And most importantly, I love it! I'd definitely be classified as a blue sky thinker and I always love to improve my work, and develop new technologies for people to use!
+
+Besides programming my interests don't really reach out that far... I enjoy playing games and socialising with my friends and I always love a good YouTube binge!
+
+<Collaborator
+    name="Tar van Krieken"
+    role="cofounder"
+    dateOfBirth="1998"
+    github="https://github.com/TarVK"
+    youtube="https://www.youtube.com/channel/UCg3Z2hCQtPCNWBgXOiukV4w"
+    alias="TarVK"
+/>
+
+When I joined the project in 2017 I had some basic experience with web-development. I however learned everything up to that point by experimentation, and most of my code was a mess. I started writing software around 2012, by reverse engineering some lua code I found online. I was decent at turning the ideas in my head into working code right away, but it took me a long time to develop a semi clean/neat code-style. By now I have had some professional web-development experience and gained a bachelors degree in computer science. Obviously I am still not the most skilled developer out there, but I feel like I have become quite good at writing modular and maintainable code. As you might see within LaunchMenu however, some things are still rather messy, probably largely due to not purely following standards and conventions.
+
+Nowadays I mostly enjoy trying to come up with novel ideas, often related to software architecture. I also quite enjoy all my theoretical computer science courses and will most likely pursuit that area in my career. As can be read from our history, I am also not prone to the sunken cost fallacy. Maybe I should be more worried about sunken costs... but I love to continuously improve my work!
+
+writing code takes up the majority of my time, but I do also have some other hobbies. I do enjoy doing some "mechanical Engineering" using lego technics or 3d printing and I also spend time on some physical hobbies such as juggling and doing (beginner-level) parkour from time to time.
+
+## Acknowledgments
+
+<Collaborator name="Bram Hoven" role="code contributor" inline />
+<Collaborator
+    name="Bob bobby"
+    role="cofounder"
+    github="https://github.com/TarVK"
+    youtube="https://www.youtube.com/channel/UCg3Z2hCQtPCNWBgXOiukV4w"
+    phone="0612834"
+    twitter="shit"
+    linkedin="shit"
+/>
+<Collaborator
+    name="Emma johnson"
+    role="developer"
+    github="https://github.com/TarVK"
+    youtube="https://www.youtube.com/channel/UCg3Z2hCQtPCNWBgXOiukV4w"
+    alias="Bobby"
+    email="tar@tar.tar"
+    phone="0612834"
+/>
+<Collaborator
+    name="Tar van Krieken"
+    role="cofounder"
+    github="https://github.com/TarVK"
+    youtube="https://www.youtube.com/channel/UCg3Z2hCQtPCNWBgXOiukV4w"
+    alias="TarVK"
+    email="tar@tar.tar"
+    twitter="shit"
+    linkedin="shit"
+/>

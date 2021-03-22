@@ -35,6 +35,7 @@ import TimeIcon from "@material-ui/icons/Schedule";
 import CalendarIcon from "@material-ui/icons/Event";
 import UndoIcon from "@material-ui/icons/Undo";
 import ThemeIcon from "@material-ui/icons/Palette";
+import CodeIcon from "@material-ui/icons/Code";
 
 export default function Home() {
     return (
@@ -496,6 +497,17 @@ export default function Home() {
                         description="Used to control and visualize the undo facility"
                         status="longTerm"
                         icon={<UndoIcon />}
+                        category="core"
+                    />
+                    <AppletBlock
+                        name="User Scripts"
+                        description="Used for simple LaunchMenu automation"
+                        status={{
+                            type: "longTerm",
+                            tooltip:
+                                "This applet could however be developed rather quickly",
+                        }}
+                        icon={<CodeIcon />}
                         category="core"
                     />
                 </Applets>

@@ -9,7 +9,9 @@ import {StatusNotice} from "./StatusNotice";
 import {Key} from "../../../components/home/Key";
 import {background3} from "../../../theme";
 import {PlainLink} from "../../../components/PlainLink";
-// import {Link} from "../../../components/PlainLink";
+import {Collaborator} from "./Collaborator";
+import {LMVersion, LMVersionDefinition} from "./LMVersion";
+import {Timeline, TimelineItem} from "./Timeline";
 
 const autoFitImageRenderer: FC<{
     alt?: string;
@@ -65,4 +67,9 @@ export const markdownComponents = {
     Video,
     Key,
     StatusNotice,
+    Collaborator,
+    LMVersion,
+    LMVersionDefinition,
+    Timeline,
+    TimelineItem,
 };

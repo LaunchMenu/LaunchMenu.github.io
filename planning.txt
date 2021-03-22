@@ -13,7 +13,7 @@ HomePage:
             - What is LaunchMenu
                 - Free and Open source
                 - Multi-platform
-                - SUPER BOLD: A framework that other utilities (applets) can live in:
+                - BOLD: A framework that other utilities (applets) can live in:
                     - link to planned utils or list some
             - (Why) Utilities at your fingertips:
                 - Always running
@@ -88,6 +88,122 @@ HomePage:
         - Cool shit. - Bram Hoven, LM contributor
 
 Developers page:
+    Hero section: 
+        Hero:
+            ```tsx            
+            export const info = {
+                name: "HelloWorld",
+                description: "A minimal example applet",
+                version: "0.0.0",
+                icon: <MyIcon />,
+            };
+
+            export const settings = createSettings({
+                version: "0.0.0",
+                settings: () => createSettingsFolder({ ...info, children: {
+                    name: createStringSetting({name: "User name", init: "Bob"}),
+                }}),
+            });
+
+            const items = [
+                createStandardMenuItem({
+                    name: "Hello world",
+                    onExecute: ({context}) => 
+                        alert(`Hello ${context.settings.get(settings).name.get()}!`)
+                }),
+            ];
+
+            export default declare({
+                info,
+                settings,
+                async search: (query, hook) => ({ children: searchAction.get(items) })
+            });
+            ```
+            with 3 pictures besides the code, highlighting the effect of the first, second and third sections
+            
+        Quick selling points:
+            - Super flexible
+                - If something is lacking, build your own from scratch, it can still be used as a LM applet. We won't stop you!
+            - Environment:
+                - Common web technologies:  
+                    - Typescript
+                    - React
+                    - Electron
+                - Cross platform (Large potential audience)
+            - Common tasks simplified:
+                - Themed components
+                - Settings configuration
+                - Undo/redo
+                - Menus / Searching etc.
+    Features:
+        - Composability of LaunchMenu
+            - We value your input to fix stuff
+        - Developers Environment:
+            - TypeScript and TSDoc (intellisense)
+            - Automatic applet reload (disclaimer to what degree it works)
+            - Modules can be published to NPM
+        - Menu Items
+        - Search system
+        - Actions system:            
+            ```
+            import {createContextAction, selectExecuteHandler, singlePromptExecuteHandler} from "@launchmenu/core";
+
+            type ITaskPriority = "high" | "medium" | "low";
+            export const setTaskPriority = createContextAction({
+                name: "Set priority level",
+                contextItem: { priority: Priority.MEDIUM }, //Not to be confused with ITaskPriority
+                core: (fields: Field<ITaskPriority>[]) => {
+                    const getExecuteBinding = () => 
+                        singlePromptExecuteHandler.createBinding(
+                            fields, 
+                            field=>selectExecuteHandler.createBinding({
+                                field,
+                                options: ["low", "medium", "high"],
+                                createOptionView: level =>
+                                    createStandardMenuItem({ name: level }),
+                            })
+                        );
+
+                    return {
+                        // Return the bindings for executing the action in the menu
+                        actionBindings: getExecuteBindings,
+                        // As well as some result for programmatic access for extension
+                        result: { getExecuteBindings },
+                    };
+                },
+            });
+            ```
+            ```          
+            import {createStandardMenuItem} from "@launchmenu/core";
+            function createTaskMenuItem({name}: {name: string}) {
+                const level = new Field("medium");
+                return createStandardMenuItem({
+                    name,
+                    description: hook => level.get(hook)
+                });
+            }
+
+            const items = [
+                createTaskMenuItem({name: "Meet Alice"}),
+                createTaskMenuItem({name: "Make pancakes"}),
+                createTaskMenuItem({name: "Free Hat"})
+            ]
+            ```
+
+            - A powerful system to create actions that can be shown in the context menu
+            - Actions support selection of multiple items, and performing of shared functionality
+            - Ability to bundle different behavior depending item type into a single action in the context menu
+            - Can add new behavior to existing actions, without modifying code of existing actions
+            - Most of our actions have undo/redo for free
+        - Settings            
+        - Undo/redo system
+
+    Community:
+
+    References:
+
+
+
 
 
 Resources:
