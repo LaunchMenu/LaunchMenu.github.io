@@ -1,1 +1,0 @@
-_N_E=(window.webpackJsonp_N_E=window.webpackJsonp_N_E||[]).push([[11],{HU5w:function(n,_,w){(window.__NEXT_P=window.__NEXT_P||[]).push(["/about/[[...id]]",function(){return w("LKPS")}])},LKPS:function(n,_,w){"use strict";w.r(_),w.d(_,"__N_SSG",(function(){return u}));var o=w("TUJD"),u=!0;_.default=o.a}},[["HU5w",0,1,2,3,4,5]]]);

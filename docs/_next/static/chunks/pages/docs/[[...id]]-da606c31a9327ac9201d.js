@@ -1,1 +1,0 @@
-_N_E=(window.webpackJsonp_N_E=window.webpackJsonp_N_E||[]).push([[14],{LLKt:function(n,_,o){"use strict";o.r(_),o.d(_,"__N_SSG",(function(){return i}));var t=o("TUJD"),i=!0;_.default=t.a},rG9D:function(n,_,o){(window.__NEXT_P=window.__NEXT_P||[]).push(["/docs/[[...id]]",function(){return o("LLKt")}])}},[["rG9D",0,1,2,3,4,5]]]);

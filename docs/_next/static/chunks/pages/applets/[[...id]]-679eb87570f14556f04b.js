@@ -1,1 +1,0 @@
-_N_E=(window.webpackJsonp_N_E=window.webpackJsonp_N_E||[]).push([[12],{UgEB:function(n,_,i){(window.__NEXT_P=window.__NEXT_P||[]).push(["/applets/[[...id]]",function(){return i("qZ+6")}])},"qZ+6":function(n,_,i){"use strict";i.r(_),i.d(_,"__N_SSG",(function(){return t}));var o=i("TUJD"),t=!0;_.default=o.a}},[["UgEB",0,1,2,3,4,5]]]);
