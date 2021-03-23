@@ -72,7 +72,11 @@ In terms of functionality <LMVersion v={2} /> started to get close to a working 
 
 This led to the development of <LMVersion v={3} />. In this version we started using [react](https://reactjs.org/) to render the UI of LaunchMenu. We made a lot of progress on the core aspects, and then decided this should become a stand-alone framework that could be reused for other programs. Some videos of this version can be found in the following [YouTube playlist](https://www.youtube.com/watch?v=oCWHUVwozxE&list=PLpMVskdMCSepvrPeMthTec2DXl67cM5xt&ab_channel=LaunchMenu). Unfortunately the code for the tabs that can be seen from the third video on was lost when the project was deprecated.
 
-<YouTube playlist="PLpMVskdMCSepvrPeMthTec2DXl67cM5xt"/>
+<YTPlayer
+    video="oCWHUVwozxE"
+    playlist="PLpMVskdMCSepvrPeMthTec2DXl67cM5xt"
+    aspectRatio="auto"
+/>
 
 #### Adjust
 
@@ -87,13 +91,24 @@ After working on <LMVersion v={3} /> for a while, we once again decided it was t
 So we chose to create a new version of the framework using a newly discovered technology, [TypeScript](https://www.typescriptlang.org/), and called it <LMVersion v={4} />. This version of the framework addressed the major issues by making all modules live in the main thread. Modules would then send content, via IPC, to windows for rendering. We essentially moved to a full [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) setup, where communication happens over IPC.
 This allowed us to seamlessly move modules from 1 window to another, without any need for state-transfer of the module's runtime. One benefit of this model allowed users to render the same module in multiple places simultaneously. Some demo/test videos can be found in this [Youtube playlist](https://www.youtube.com/watch?v=XVFariXVOz0&list=PLpMVskdMCSepQhDcyNktQaa9sARCoit1c&ab_channel=LaunchMenu).
 
-<YouTube playlist="PLpMVskdMCSepQhDcyNktQaa9sARCoit1c" />
+<YTPlayer
+    video="XVFariXVOz0"
+    playlist="PLpMVskdMCSepQhDcyNktQaa9sARCoit1c"
+    aspectRatio="auto"
+/>
 
 The addition of TypeScript allowed us to neatly define interfaces of modules and use these to seamlessly obtain module instances that adhere to these interfaces from the registry. At this point we also went overboard with TypeScript definitions, and tried to get perfect intellisense for, what was actually, a rather dynamic process. This is a trend we continue to this day, but we try to adapt our code style to reduce boilerplate and allow simpler type definitions.
 
 #### LaunchMenu
 
-<LMVersion v={4} /> was taking shape, and was even used as the framework in another (private) project by Tar. However, we once again started doubting the code that was in place. It was becoming hard to maintain due to tight coupling, and the large amount of required boilerplate made us doubt whether real applications would be built using this framework. We decided that this warranted a redesign of Adjust to a system. One which wouldn't force a strict module pattern or a tightly coupled system, but instead supply a set of independent utilities with interfaces to interact with the system if wanted/needed.
+<LMVersion v={4} /> was taking shape, and was even used as the framework in another
+(private) project by Tar. However, we once again started doubting the code that was
+in place. It was becoming hard to maintain due to tight coupling, and the large amount
+of required boilerplate made us doubt whether real applications would be built using
+this framework. We decided that this warranted a redesign of Adjust to a system.
+One which wouldn't force a strict module pattern or a tightly coupled system, but
+instead supply a set of independent utilities with interfaces to interact with the
+system if wanted/needed.
 
 We however realized that at this rate LaunchMenu would never get finished. So we decided to rethink the project, to move away from this highly idealistic scenario and instead focus on the aspects that are really important for LaunchMenu itself. We decided to shelve the Adjust framework for a later date, and started planning our requirements for <LMVersion v={5}/>. With a rough roadmap in place, development was started. To be more organized we used a kanban board and github issues and branches to track progress. Around 9 months after starting with <LMVersion v={5}/>, and about 4 years after the initial inception, we finally have a working version of LaunchMenu. We then continued working on a website to document the project and prepare for an initial release.
 
@@ -193,7 +208,7 @@ We however realized that at this rate LaunchMenu would never get finished. So we
     name="Sancarn"
     role="founder"
     github="https://github.com/sancarn"
-    youtube="www.youtube.com/sancarn"
+    youtube="https://www.youtube.com/sancarn"
     dateOfBirth="1993"
 />
 
@@ -212,11 +227,11 @@ In recent years, I have mostly taken a back seat on the developement of LaunchMe
     alias="TarVK"
 />
 
-When I joined the project in 2017 I had some basic experience with web-development. Up to that point, I'd learnt everything by experimentation and most of my code was a mess. I started writing software around 2012, by reverse engineering some Lua code I found online. I quickly noticed I was decent at turning the ideas in my head into working code right away, but it took me a long time to develop a semi clean/neat code-style. Today, I've had some professional web-development experience and gained a bachelors degree in computer science. Obviously, I am still not the most skilled developer out there, but I feel like I have become quite good at writing modular and maintainable code. As you might see within LaunchMenu, however, some things are still rather messy. This is likely due to having my own coding style and not always following standards and conventions.
+When I joined the project in 2017 I had some basic experience with web-development. Up to that point, I'd learned everything by experimentation and most of my code was a mess. I started writing software around 2012, by reverse engineering some Lua code I found online. I quickly noticed I was decent at turning the ideas in my head into working code from the beginning, but it took me a long time to develop a semi clean/neat code style. Today, I've had some professional web-development experience and gained a bachelors degree in computer science. Obviously, I am still not the most skilled developer out there, but I think I have become quite good at writing modular and maintainable code. As you might see within LaunchMenu, however, some things are still rather messy. This is likely due to having my own coding style and not always following standards and conventions.
 
-Nowadays I mostly enjoy trying to come up with novel ideas, often related to software architecture. I also quite enjoy all my theoretical computer science courses and will likely continue to pursue this area throughout my career. As can be read from our history, I am also not prone to the sunken cost fallacy. Perhaps I should be more worried about sunken costs more... but I love to continuously improve my work!
+Nowadays I mostly enjoy trying to come up with novel ideas, often related to software architecture. I also quite enjoy all my theoretical computer science courses and will likely continue to pursue this area throughout my career. As can be read from our history, I am also not prone to the sunken cost fallacy. Perhaps I should be more worried about sunken costs... but I love to continuously improve my work!
 
-Writing code takes up the majority of my time, but I do also have some other hobbies. I do enjoy doing some "mechanical Engineering" using lego technics or 3d printing, and I also spend time on some physical hobbies such as juggling and doing (beginner-level) parkour from time to time.
+Writing code takes up the majority of my time, but I do also have some other hobbies. I do enjoy doing some "mechanical engineering" using lego technics or 3d printing, and I also spend time on some physical hobbies such as juggling and doing (beginner-level) parkour from time to time.
 
 ## Acknowledgments
 

@@ -1,7 +1,6 @@
 import {Tooltip, Box, Typography} from "@material-ui/core";
 import {FC, Fragment} from "react";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
-import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 import {PlainLink} from "../../../components/PlainLink";
 
 // This should really be done with a provider, but it's only for the About page so it shouldn't matter too much
