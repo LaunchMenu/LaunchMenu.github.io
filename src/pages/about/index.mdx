@@ -48,15 +48,15 @@ Mac OS X has a built-in application named "Spotlight", which provides a similar 
 -   Lack of extensibility
 -   Limited interactivity
 
-This led Sancarn to the development of a Windows only version of Spotlight made with [Autohotkey](https://www.autohotkey.com/). This was named <LMVersion v={1} />. Due to limitations in the AHK UI Tar suggested <LMVersion v={1} /> use HTML rendering for the UI at large. LaunchMenu initially booted up an AHK window containing an Internet Explorer control, which rendered the HTML page. You can see the bare-bones AHK application on github, [as early as 2017-4-15.](https://github.com/sancarn/LaunchMenu/tree/ee36e4b234227c1ff2ff2e4745f5e4c643c2bd03)
+This led Sancarn to the development of a Windows only version of Spotlight made with [Autohotkey](https://www.autohotkey.com/). This was named <LMVersion v={1} />. Due to limitations in the AHK UI system, Tar suggested <LMVersion v={1} /> use HTML rendering instead. From then on, LaunchMenu booted up an AHK window containing an Internet Explorer control, which rendered the HTML page. You can see the bare-bones AHK application on github, [as early as 2017-04-15.](https://github.com/sancarn/LaunchMenu/tree/ee36e4b234227c1ff2ff2e4745f5e4c643c2bd03)
 
 #### LaunchMenu-electron
 
-It soon became apparent that AHK was not the right tool for developing this application, especially given that we wanted to target it as a cross-platform technology. Tar, now officially joining the project, suggested we stay in JavaScript, and we found a, then, upcoming technology created by Github - [electron](https://www.electronjs.org/). This seemed to give us the flexibility to deploy on multiple platforms, while maintaining the same API set, and so <LMVersion v={2} /> was born.
+It soon became apparent that AHK was not the right tool for the development of LaunchMenu, especially given that we wanted to target it as a cross-platform technology. Tar, now officially joining the project, suggested we stay in JavaScript, and we found an emerging technology created by Github - [electron](https://www.electronjs.org/). This seemed to give us the flexibility to deploy on multiple platforms, while maintaining our preference for HTML and JavaScript. And so <LMVersion v={2} /> was born.
 
 #### LaunchMenu-framework
 
-In terms of functionality <LMVersion v={2} /> started to get close to a working product. But as we continued improving our software development skills, we started to realize this version wasn't all that great. The code was hard to maintain, the UI wasn't amazing, and bugs kept popping up. This lead us to the first major redesign, where the project was started from scratch. We came up with some grand ideas for the next iteration:
+In terms of functionality <LMVersion v={2} /> started to get close to a working product. But as we continued to improve our software development skills, we started to realize this version wasn't all that great. The code was hard to maintain, the UI wasn't amazing, and bugs kept popping up. This lead us to the first major redesign, where all code was scrapped and rebuilt from the ground up. This time, we established a set of key goals, and tried to design all code to adhere to them. These goals were:
 
 -   LaunchMenu should be completely modular
 -   Modules shouldn't have direct dependencies on each other:
@@ -64,11 +64,15 @@ In terms of functionality <LMVersion v={2} /> started to get close to a working 
     -   Modules should request instances of dependencies through the registry
     -   Modules should be installable, and be able to override other modules in the registry
 -   Modules should have native support for customization by means of settings
--   Users should be able to resize and move the UI of any module to customize the window
+-   Never limit the user
+    -   The theme of the application should be flexible.
+    -   The user is given deep settings which allows full customisation of the product.
+    -   The layout of applications should not be dictated by the developer, but chosen by the user
+    -   The user can choose which modules are used to override other modules (including our own).
 
-This led to the development of <LMVersion v={3} />. In this version we started using [react](https://reactjs.org/) to render the UI of LaunchMenu. We made a lot of progress on the core aspects, and then decided this should become a stand-alone framework that could be reused for other programs. Some videos of tests of this version have even been uploaded to Youtube and can now be found in [this playlist](https://www.youtube.com/watch?v=oCWHUVwozxE&list=PLpMVskdMCSepvrPeMthTec2DXl67cM5xt&ab_channel=LaunchMenu). Unfortunately a little bit of code of this version has been lost, the code for the tabs that can be seen from the third video on has perished.
+This led to the development of <LMVersion v={3} />. In this version we started using [react](https://reactjs.org/) to render the UI of LaunchMenu. We made a lot of progress on the core aspects, and then decided this should become a stand-alone framework that could be reused for other programs. Some videos of this version can be found in the following [YouTube playlist](https://www.youtube.com/watch?v=oCWHUVwozxE&list=PLpMVskdMCSepvrPeMthTec2DXl67cM5xt&ab_channel=LaunchMenu). Unfortunately the code for the tabs that can be seen from the third video on was lost when the project was deprecated.
 
-<!-- TODO: Youtube Embed of playlist? -->
+<YouTube playlist="PLpMVskdMCSepvrPeMthTec2DXl67cM5xt"/>
 
 #### Adjust
 
@@ -80,24 +84,20 @@ After working on <LMVersion v={3} /> for a while, we once again decided it was t
 -   Modules have to communicate with each other over [IPC](https://en.wikipedia.org/wiki/Inter-process_communication), since they may live in different windows
 -   Modules are referenced and imported by name, but names might not be unique which could cause issues
 
-So we chose to create a new version of the framework using a newly discovered technology, [TypeScript](https://www.typescriptlang.org/), and called it <LMVersion v={4} />. This version of the framework addressed the major issues by making all modules live in the main thread, and use IPC to share content to be rendered to the windows to render them in. We essentially moved to a full [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) setup, where communication happens over IPC.
-This allowed us to seamlessly move modules from 1 window to another, since the module itself actually stays put in the main process. You could also render the same module in multiple places. Some demo/test videos can be found in this [Youtube playlist](https://www.youtube.com/watch?v=XVFariXVOz0&list=PLpMVskdMCSepQhDcyNktQaa9sARCoit1c&ab_channel=LaunchMenu).
+So we chose to create a new version of the framework using a newly discovered technology, [TypeScript](https://www.typescriptlang.org/), and called it <LMVersion v={4} />. This version of the framework addressed the major issues by making all modules live in the main thread. Modules would then send content, via IPC, to windows for rendering. We essentially moved to a full [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) setup, where communication happens over IPC.
+This allowed us to seamlessly move modules from 1 window to another, without any need for state-transfer of the module's runtime. One benefit of this model allowed users to render the same module in multiple places simultaneously. Some demo/test videos can be found in this [Youtube playlist](https://www.youtube.com/watch?v=XVFariXVOz0&list=PLpMVskdMCSepQhDcyNktQaa9sARCoit1c&ab_channel=LaunchMenu).
 
-<!-- TODO: Youtube Embed of playlist? -->
+<YouTube playlist="PLpMVskdMCSepQhDcyNktQaa9sARCoit1c" />
 
-The addition of TypeScript allowed us to neatly define interfaces of modules and use these to seamlessly obtain module instances that adhere to these interfaces from the registry. At this point we also went overboard with TypeScript definitions, and tried to get perfect intellisense for rather dynamic processes. This is a trend we're continuing to this day, but we try to adapt our code style so it can be strictly typed more easily.
+The addition of TypeScript allowed us to neatly define interfaces of modules and use these to seamlessly obtain module instances that adhere to these interfaces from the registry. At this point we also went overboard with TypeScript definitions, and tried to get perfect intellisense for, what was actually, a rather dynamic process. This is a trend we continue to this day, but we try to adapt our code style to reduce boilerplate and allow simpler type definitions.
 
 #### LaunchMenu
 
-<LMVersion v={4} /> was taking shape, and was even used as the framework in another
-(private) project by Tar. However, we once again started doubting the code that was
-in place. It became harder to maintain due to tight coupling, and making a whole
-application using this framework seemed like a pain due to the large amounts of required
-boilerplate. At this point it was decided to move to a new version of Adjust, a version
-that wouldn't force such a strict module pattern, and that would come in the form
-of a set of independent utilities rather than a tightly coupled system.
+<LMVersion v={4} /> was taking shape, and was even used as the framework in another (private) project by Tar. However, we once again started doubting the code that was in place. It was becoming hard to maintain due to tight coupling, and the large amount of required boilerplate made us doubt whether real applications would be built using this framework. We decided that this warranted a redesign of Adjust to a system. One which wouldn't force a strict module pattern or a tightly coupled system, but instead supply a set of independent utilities with interfaces to interact with the system if wanted/needed.
 
-We however realized that at this rate LaunchMenu would never get finished. So we decided to take a step back, move away from all this highly idealistic scenario and instead focus on the aspects that are really important for LaunchMenu itself. We decided to shelve the Adjust framework for a later date, and started planning our requirements for <LMVersion v={5}/>. With a rough roadmap in place, development was started. To be more organized we used a kanban board and github issues and branches to track progress. Around 9 months after starting with <LMVersion v={5}/>, and about 4 years after the initial inception, we finally have a working version of LaunchMenu. We then continued working on a website to document the project and prepare for an initial release.
+We however realized that at this rate LaunchMenu would never get finished. So we decided to rethink the project, to move away from this highly idealistic scenario and instead focus on the aspects that are really important for LaunchMenu itself. We decided to shelve the Adjust framework for a later date, and started planning our requirements for <LMVersion v={5}/>. With a rough roadmap in place, development was started. To be more organized we used a kanban board and github issues and branches to track progress. Around 9 months after starting with <LMVersion v={5}/>, and about 4 years after the initial inception, we finally have a working version of LaunchMenu. We then continued working on a website to document the project and prepare for an initial release.
+
+We however realized that at this rate LaunchMenu would never get finished. So we decided to shelve the Adjust framework and to move away from this highly idealistic scenario. Instead we focussed on the aspects that are really important for LaunchMenu itself and started planning our requirements for <LMVersion v={5}/>. With a rough roadmap in place, development was started. To be more organized we used github kanban board, issues and branches to track progress. Around 9 months after starting with <LMVersion v={5}/>, and about 4 years after the initial inception, we finally had a working version LaunchMenu. Now, after filling the documentation gap, we were finally ready for the initial release of <LMVersion v={5}/>.
 
 ### Timeline
 
@@ -197,11 +197,11 @@ We however realized that at this rate LaunchMenu would never get finished. So we
     dateOfBirth="1993"
 />
 
-Hi there, I'm Sancarn, and I'm the founder of LaunchMenu. For most of my childhood I wanted to be a Physicist. When it finally came to going to university, I decided to do a Theoretical Physics degree. Soon after starting my course at university, my friend introduced me to Minecraft. Through Minecraft, I found redstone which led me to learning a lot about Digital Electronics and Engineering overall. Most of my learning around redstone initially came from experimentation, but when it came to Digital Electronics, most of it I learnt through wikipedia and youtubers who were attending these degrees. Through Minecraft I met many other creators including Tar.
+Hi there, I'm Sancarn, and I'm the founder of LaunchMenu. For most of my childhood I wanted to be a Physicist. When it finally came to going to university, I decided to do a Theoretical Physics degree. Soon after starting my course at university, my friend introduced me to Minecraft. Through Minecraft, I found redstone which led me to learning a lot about Digital Electronics and Engineering overall. Most of my learning around redstone initially came from experimentation and reverse engineering of code I found online. However, when it came to Digital Electronics, I learnt a huge amount through wikipedia and youtubers who were studying the topic. Through Minecraft I met many other creators including Tar.
 
-Throughout my degree I never really saw the point of programming. We were often given a task to achieve, but that task was nothing "new" and only serves in developing the student's knowledge of the subject. I was never really interested in that. I wanted to make things which have an impact on other people's lives - and if I can develop in the process, that's a bonus! When I started working for companies I soon realised my programming skills were really beneficial to those around me, which quickly became my soul driver for progressing my programming knowledge. To this day I spend more time programming than anything else, and continuously develop and expand my knowledge - especially through the help of those around me. And most importantly, I love it! I'd definitely be classified as a blue sky thinker and I always love to improve my work, and develop new technologies for people to use!
+Throughout my degree I never really saw the point of programming. We were often given a task to achieve, but that task was nothing "new" and only serves in developing the student's knowledge of the subject. I was never really interested in that. I wanted to make things which have an impact on other people's lives - and if I can develop in the process, that's a bonus! When I started working for companies I soon realised my programming skills were really beneficial to those around me, which quickly became my soul driver for progressing my programming knowledge. To this day I spend more time programming than anything else, and continuously develop and expand my knowledge. I love it! I'd definitely be classified as a blue sky thinker and I always love to improve my work, and develop new technologies for people to use!
 
-Besides programming my interests don't really reach out that far... I enjoy playing games and socialising with my friends and I always love a good YouTube binge!
+In recent years, I have mostly taken a back seat on the developement of LaunchMenu, as I've spent most of my time either working overtime or maintaining [other open source projects](https://github.com/sancarn?tab=overview), but I'm still an active contributor to software architecture discussions and documentation. Besides programming my interests don't really reach out that far... I enjoy data analysis, playing video games, socialising with my friends and I always love a good YouTube binge!
 
 <Collaborator
     name="Tar van Krieken"
@@ -212,11 +212,11 @@ Besides programming my interests don't really reach out that far... I enjoy play
     alias="TarVK"
 />
 
-When I joined the project in 2017 I had some basic experience with web-development. I however learned everything up to that point by experimentation, and most of my code was a mess. I started writing software around 2012, by reverse engineering some lua code I found online. I was decent at turning the ideas in my head into working code right away, but it took me a long time to develop a semi clean/neat code-style. By now I have had some professional web-development experience and gained a bachelors degree in computer science. Obviously I am still not the most skilled developer out there, but I feel like I have become quite good at writing modular and maintainable code. As you might see within LaunchMenu however, some things are still rather messy, probably largely due to not purely following standards and conventions.
+When I joined the project in 2017 I had some basic experience with web-development. Up to that point, I'd learnt everything by experimentation and most of my code was a mess. I started writing software around 2012, by reverse engineering some Lua code I found online. I quickly noticed I was decent at turning the ideas in my head into working code right away, but it took me a long time to develop a semi clean/neat code-style. Today, I've had some professional web-development experience and gained a bachelors degree in computer science. Obviously, I am still not the most skilled developer out there, but I feel like I have become quite good at writing modular and maintainable code. As you might see within LaunchMenu, however, some things are still rather messy. This is likely due to having my own coding style and not always following standards and conventions.
 
-Nowadays I mostly enjoy trying to come up with novel ideas, often related to software architecture. I also quite enjoy all my theoretical computer science courses and will most likely pursuit that area in my career. As can be read from our history, I am also not prone to the sunken cost fallacy. Maybe I should be more worried about sunken costs... but I love to continuously improve my work!
+Nowadays I mostly enjoy trying to come up with novel ideas, often related to software architecture. I also quite enjoy all my theoretical computer science courses and will likely continue to pursue this area throughout my career. As can be read from our history, I am also not prone to the sunken cost fallacy. Perhaps I should be more worried about sunken costs more... but I love to continuously improve my work!
 
-writing code takes up the majority of my time, but I do also have some other hobbies. I do enjoy doing some "mechanical Engineering" using lego technics or 3d printing and I also spend time on some physical hobbies such as juggling and doing (beginner-level) parkour from time to time.
+Writing code takes up the majority of my time, but I do also have some other hobbies. I do enjoy doing some "mechanical Engineering" using lego technics or 3d printing, and I also spend time on some physical hobbies such as juggling and doing (beginner-level) parkour from time to time.
 
 ## Acknowledgments
 
