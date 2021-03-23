@@ -12,6 +12,7 @@ import {PlainLink} from "../../../components/PlainLink";
 import {Collaborator} from "./Collaborator";
 import {LMVersion, LMVersionDefinition} from "./LMVersion";
 import {Timeline, TimelineItem} from "./Timeline";
+import {YTPlayer} from "./YTPlayer";
 
 const autoFitImageRenderer: FC<{
     alt?: string;
@@ -72,4 +73,5 @@ export const markdownComponents = {
     LMVersionDefinition,
     Timeline,
     TimelineItem,
+    YTPlayer,
 };
