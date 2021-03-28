@@ -13,6 +13,7 @@ import {Collaborator} from "./Collaborator";
 import {LMVersion, LMVersionDefinition} from "./LMVersion";
 import {Timeline, TimelineItem} from "./Timeline";
 import {YTPlayer} from "./YTPlayer";
+import {InlineCode} from "./Code";
 
 const autoFitImageRenderer: FC<{
     alt?: string;
@@ -33,23 +34,18 @@ const codeRender: FC<{className?: string; children: string}> = ({
     children,
 }) => {
     const languageData = className?.match(/language-(.*)/);
-    return <CodeBlock code={children} language={languageData?.[1] ?? "text"} />;
+    return (
+        <CodeBlock
+            code={children.trimEnd()}
+            language={languageData?.[1] ?? "text"}
+        />
+    );
 };
-const inlineCodeRenderer: FC<{children: string}> = ({children}) => (
-    <code
-        css={{display: "inline-block", backgroundColor: background3}}
-        dangerouslySetInnerHTML={{
-            __html: children
-                .replace(/[\x26\x0A\<>'"]/g, r => "&#" + r.charCodeAt(0) + ";")
-                .replace(/\s/g, "&nbsp;"),
-        }}
-    />
-);
 
 export const markdownComponents = {
     // Standard
     code: codeRender,
-    inlineCode: inlineCodeRenderer,
+    inlineCode: InlineCode,
     img: autoFitImageRenderer,
     section: Section,
     a: (props: {href: string; children: ReactNode}) => (

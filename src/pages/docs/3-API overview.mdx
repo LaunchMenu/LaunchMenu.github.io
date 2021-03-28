@@ -1,0 +1,37 @@
+# Overview
+
+Below is an overview of most of the available modules/functions in LM together with links to the code and guides if available.
+The code contains TypeScript signatures + TSDoc, and can therefore be used as an API reference until a proper reference is made.
+
+## Actions
+
+-   createActions
+    -   executeAction
+        -   sequentialExecuteHandler
+        -   editExecuteHandler
+        -   exitLMExecuteHandler
+        -   openMenuExecuteHandler
+    -   keyHandlerAction
+        -   forwardKeyEventHandler
+        -   shortcutHandler
+    -   searchAction
+        -   createStandardSearchPatternMatcher
+        -   tracedRecursiveSearchHandler
+            -   simpleSearchHandler
+                -   fuzzySearchMethod
+                -   createSimpleSearchHandlerMethodSetting
+                -   FuzzyRater
+            -   makeItmAlwaysShow
+            -   openInParentAction
+            -   openAtTraceAction
+            -   locationContextFolder
+        -   SearchHighlighter
+    -   resetAction
+    -   deleteAction
+    -   onCursorAction
+    -   onMenuChange
+    -   onSelect
+    -   identityAction
+        -   menuItemIdentityAction
+-   createContextAction
+    -   createContextFolderHandler

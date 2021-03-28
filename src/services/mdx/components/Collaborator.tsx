@@ -2,7 +2,6 @@ import {FC} from "react";
 import Typography from "@material-ui/core/Typography";
 import {PlainLink} from "../../../components/PlainLink";
 import CopyToClipboard from "react-copy-to-clipboard";
-import MuiAlert from "@material-ui/lab/Alert";
 import IconButton from "@material-ui/core/IconButton";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import LinkedinIcon from "@material-ui/icons/Linkedin";
@@ -16,8 +15,7 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import {Fragment} from "react";
 import {createHeaderComp} from "./createHeaderComp";
 import {useHashPos} from "../../../hooks/useHashPos";
-import {Snackbar} from "@material-ui/core";
-import {useState} from "react";
+import {CopyText} from "../../../components/CopyText";
 
 const H3 = createHeaderComp(3);
 
@@ -47,7 +45,6 @@ export const Collaborator: FC<{
     email,
     phone,
 }) => {
-    const [open, setOpen] = useState(false);
     const ref = useHashPos(name);
     return (
         <section ref={ref}>
@@ -159,26 +156,14 @@ export const Collaborator: FC<{
                         </PlainLink>
                     )}
                     {phone && (
-                        <CopyToClipboard
+                        <CopyText
                             text={phone}
-                            onCopy={() => setOpen(true)}>
+                            copyMessage={`Phone number ${phone} copied to clipboard`}>
                             <IconButton aria-label="phone">
                                 <PhoneIcon />
                             </IconButton>
-                        </CopyToClipboard>
+                        </CopyText>
                     )}
-                    <Snackbar
-                        open={open}
-                        autoHideDuration={4000}
-                        onClose={() => setOpen(false)}>
-                        <MuiAlert
-                            elevation={6}
-                            variant="filled"
-                            onClose={() => setOpen(false)}
-                            severity="success">
-                            Phone number {phone} copied to clipboard
-                        </MuiAlert>
-                    </Snackbar>
                 </div>
             </div>
         </section>

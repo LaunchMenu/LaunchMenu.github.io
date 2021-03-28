@@ -136,13 +136,15 @@ Developers page:
                 - Undo/redo
                 - Menus / Searching etc.
     Features:
-        - Composability of LaunchMenu
+        - Ease of developement
+            - Composability of LaunchMenu
+            - Developer Environment:
+                - TypeScript and TSDoc (intellisense)
+                - Automatic applet reload (disclaimer to what degree it works)
+                - Modules can be published to NPM
             - We value your input to fix stuff
-        - Developers Environment:
-            - TypeScript and TSDoc (intellisense)
-            - Automatic applet reload (disclaimer to what degree it works)
-            - Modules can be published to NPM
         - Menu Items
+            - Mnemonics
         - Search system
         - Actions system:            
             ```

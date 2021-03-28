@@ -160,16 +160,15 @@ export function useVideoSizeData<E extends HTMLElement>({
     desiredWidth?: number;
     margin?: number;
 } = {}) {
-    const isMobile = useIsMobile();
+    useIsMobile();
     let {width: windowWidth} = useBodySize();
     const ref = useRef<E | null>(null);
     if (ref.current) windowWidth = ref.current.getBoundingClientRect().width;
 
     // The component width
-    const width =
-        isMobile && windowWidth
-            ? Math.min(windowWidth - margin * 2, desiredWidth)
-            : desiredWidth;
+    const width = windowWidth
+        ? Math.min(windowWidth - margin * 2, desiredWidth)
+        : desiredWidth;
 
     // Some derived component sizes
     const scale = width / (LMWidth - LMMargin * 2);

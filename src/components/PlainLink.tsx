@@ -22,3 +22,8 @@ export const PlainLink: FC<{
         </NextLink>
     );
 };
+
+export const Link: FC<{
+    href: string;
+    className?: string;
+}> = props => <PlainLink {...props} styled />;

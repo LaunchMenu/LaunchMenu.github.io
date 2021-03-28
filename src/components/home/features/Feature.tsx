@@ -59,18 +59,28 @@ export const Feature: FC<{
     const init = useRef(Date.now());
     const elRef = useRef<HTMLLIElement>(null);
     useEffect(() => {
-        const justLoaded = init.current + 1000 > Date.now();
-        if (justLoaded && window.location.hash == `#${ID}`) {
-            play();
+        const update = () => {
+            const justLoaded = init.current + 1000 > Date.now();
+            if (justLoaded && window.location.hash == `#${ID}`) {
+                play();
 
-            if (elRef.current) {
-                const y =
-                    elRef.current.getBoundingClientRect().top +
-                    window.pageYOffset -
-                    300;
-                window.scrollTo({top: y, behavior: "smooth"});
+                if (elRef.current) {
+                    const y =
+                        elRef.current.getBoundingClientRect().top +
+                        window.pageYOffset -
+                        300;
+                    window.scrollTo({top: y, behavior: "smooth"});
+                }
             }
-        }
+        };
+        update();
+
+        const onHashChange = () => {
+            init.current = Date.now();
+            update();
+        };
+        window.addEventListener("hashchange", onHashChange);
+        return () => window.removeEventListener("hashchange", onHashChange);
     }, [play]);
 
     return (
