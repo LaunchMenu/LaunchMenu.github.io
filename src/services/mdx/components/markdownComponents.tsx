@@ -7,13 +7,14 @@ import {Section} from "./Section";
 import {Video} from "./Video";
 import {StatusNotice} from "./StatusNotice";
 import {Key} from "../../../components/home/Key";
-import {background3} from "../../../theme";
 import {PlainLink} from "../../../components/PlainLink";
 import {Collaborator} from "./Collaborator";
 import {LMVersion, LMVersionDefinition} from "./LMVersion";
 import {Timeline, TimelineItem} from "./Timeline";
 import {YTPlayer} from "./YTPlayer";
 import {InlineCode} from "./Code";
+import {ComponentReference} from "./ComponentReference";
+import {Fragment} from "react";
 
 const autoFitImageRenderer: FC<{
     alt?: string;
@@ -29,15 +30,18 @@ const autoFitImageRenderer: FC<{
         width={width}
     />
 );
-const codeRender: FC<{className?: string; children: string}> = ({
-    className,
-    children,
-}) => {
+const codeRender: FC<{
+    className?: string;
+    children: string;
+    showHeader?: string;
+}> = ({className, children, showHeader, ...rest}) => {
     const languageData = className?.match(/language-(.*)/);
     return (
         <CodeBlock
             code={children.trimEnd()}
             language={languageData?.[1] ?? "text"}
+            showHeader={showHeader != "false"}
+            {...rest}
         />
     );
 };
@@ -57,6 +61,7 @@ export const markdownComponents = {
     h4: createHeaderComp(4),
     h5: createHeaderComp(5),
     h6: createHeaderComp(6),
+    pre: (props: any) => <Fragment {...props} />,
 
     // Custom
     ScreenShot,
@@ -70,4 +75,5 @@ export const markdownComponents = {
     Timeline,
     TimelineItem,
     YTPlayer,
+    ComponentReference,
 };

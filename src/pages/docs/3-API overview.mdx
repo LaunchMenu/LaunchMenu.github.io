@@ -1,37 +1,257 @@
 # Overview
 
-Below is an overview of most of the available modules/functions in LM together with links to the code and guides if available.
-The code contains TypeScript signatures + TSDoc, and can therefore be used as an API reference until a proper reference is made.
+Below is an overview of the most interesting available modules/functions in LM together with links to the code and guides if available.
+The code contains TypeScript signatures + TSDoc, and can therefore be used as a makeshift API reference until a proper reference is made.
+
+Not all components are listed here in order to keep things somewhat manageable. We listed the components that can easily be directly applied when making an applet instead. In order to find useful intermediate building blocks it's recommended to search for something that does almost what you're after and look through the source code for things can be reused. All intermediate building blocks are exported from LaunchMenu, despite possibly not being listed in this overview.
 
 ## Actions
 
--   createActions
-    -   executeAction
-        -   sequentialExecuteHandler
-        -   editExecuteHandler
-        -   exitLMExecuteHandler
-        -   openMenuExecuteHandler
-    -   keyHandlerAction
-        -   forwardKeyEventHandler
-        -   shortcutHandler
-    -   searchAction
-        -   createStandardSearchPatternMatcher
-        -   tracedRecursiveSearchHandler
-            -   simpleSearchHandler
-                -   fuzzySearchMethod
-                -   createSimpleSearchHandlerMethodSetting
-                -   FuzzyRater
-            -   makeItmAlwaysShow
-            -   openInParentAction
-            -   openAtTraceAction
-            -   locationContextFolder
-        -   SearchHighlighter
-    -   resetAction
-    -   deleteAction
-    -   onCursorAction
-    -   onMenuChange
-    -   onSelect
-    -   identityAction
-        -   menuItemIdentityAction
--   createContextAction
-    -   createContextFolderHandler
+The action system is used to add functionality to menu items in a way way that's flexible and provides good intellisense.
+
+<ul>
+    <ComponentReference
+        name="createAction"
+        link="core/src/actions/createAction.ts">
+        <ComponentReference
+            name="executeAction"
+            link="core/src/actions/types/execute/executeAction.ts"
+            description="Executes the primary action of the menu item">
+            <ComponentReference
+                name="sequentialExecuteHandler"
+                link="core/src/actions/types/execute/sequentialExecuteHandler.ts"
+                description="Executes all its bindings sequentially, instead of in parallel"
+            />
+            <ComponentReference
+                name="exitLMExecuteHandler"
+                link="core/src/actions/types/execute/types/exitLMExecuteHandler.ts"
+                description="Exits LM before performing the action, for instance used to paste a result"
+            />
+            <ComponentReference
+                name="openMenuExecuteHandler"
+                link="core/src/actions/types/execute/types/openMenuExecuteHandler.ts"
+                description="Opens a menu on top of the current UI"
+            />
+            <ComponentReference
+                name="singlePromptExecuteHandler"
+                link="core/src/actions/types/execute/types/singlePromptExecuteHandler.ts"
+                description="Executes a given field alteration action once, and spreads the results to a number of bindings"
+            />
+            <ComponentReference
+                name="editExecuteHandler"
+                link="core/src/actions/types/execute/types/editExecuteHandler.ts"
+                description="A sequential execute handler, that shows 'edit' instead of 'execute' in the context menu">
+                <ComponentReference
+                    name="promptInputExecuteHandler"
+                    link="core/src/uiLayers/types/input/promptInputExecuteHandler.ts"
+                    description="An execute handler that prompts the user for a textual input">
+                    <ComponentReference
+                        name="promptNumberInputExecuteHandler"
+                        link="core/src/menus/items/inputs/handlers/number/promptNumberInputExecuteHandler.ts"
+                        description="An execute handler that prompts the user to input a number"
+                    />
+                    <ComponentReference
+                        name="promptColorInputExecuteHandler"
+                        link="core/src/menus/items/inputs/handlers/color/promptColorInputExecuteHandler.ts"
+                        description="An execute handler that prompts the user to input a css color"
+                    />
+                </ComponentReference>
+                <ComponentReference
+                    name="promptSelectExecuteHandler"
+                    link="core/src/uiLayers/types/select/promptSelectExecuteHandler.ts"
+                    description="An execute handler that prompts the user to choose one of the presented options">
+                    <ComponentReference
+                        name="promptBooleanInputExecuteHandler"
+                        link="core/src/menus/items/inputs/handlers/boolean/promptBooleanInputExecuteHandler.ts"
+                        description="An execute handler that prompts the user to select a boolean value"
+                    />
+                    <ComponentReference
+                        name="promptNumberInputSelectExecuteHandler"
+                        link="core/src/menus/items/inputs/handlers/number/promptNumberInputSelectExecuteHandler.ts"
+                        description="An execute handler that prompts the user to select a number"
+                    />
+                </ComponentReference>
+                <ComponentReference
+                    name="promptMultiSelectExecuteHandler"
+                    link="core/src/uiLayers/types/multiSelect/promptMultiSelectExecuteHandler.ts"
+                    description="An execute handler that prompts the user to make a selection of the presented options"
+                />
+                <ComponentReference
+                    name="promptFileInputExecuteHandler"
+                    link="core/src/menus/items/inputs/handlers/file/promptFileInputExecuteHandler.ts"
+                    description="An execute handler that allows the user to select a fule"
+                />
+                <ComponentReference
+                    name="promptKeyInputExecuteHandler"
+                    link="core/src/menus/items/inputs/handlers/keyPattern/promptKeyInputExecuteHandler.ts"
+                    description="An execute handler that prompts the user to select a key pattern"
+                />
+            </ComponentReference>
+        </ComponentReference>
+        <ComponentReference
+            name="keyHandlerAction"
+            link="core/src/actions/types/keyHandler/keyHandlerAction.ts"
+            description="An action to handle and capture keyboard events">
+            <ComponentReference
+                name="forwardKeyEventHandler"
+                link="core/src/actions/types/keyHandler/forwardKeyEventHandler.ts"
+                description="A key handler to forward key events to other menu items"
+            />
+            <ComponentReference
+                name="shortcutHandler"
+                link="core/src/actions/types/keyHandler/shortcutHandler.ts"
+                description="A key handler to trigger an item's execute action when a pattern is matched"
+            />
+        </ComponentReference>
+        <ComponentReference
+            name="searchAction"
+            link="core/src/actions/types/search/searchAction.ts"
+            description="An action to handle retrieving searchables from menu items">
+            <ComponentReference
+                name="createStandardSearchPatternMatcher"
+                link="core/src/actions/types/search/createStandardSearchPatternMatcher.ts"
+                description="Creates a standard search pattern to be highlighted"
+            />
+            <ComponentReference
+                name="tracedRecursiveSearchHandler"
+                link="core/src/actions/types/search/tracedRecursiveSearch/tracedRecursiveSearchHandler.ts"
+                description="A search handler that takes care of recursively searching through items, and of adding context actions to the results to show them in their original location">
+                <ComponentReference
+                    name="simpleSearchHandler"
+                    link="core/src/actions/types/search/tracedRecursiveSearch/simpleSearch/simpleSearchHandler.tsx"
+                    description="The standard search handler that can be user customized and defaults to a fuzzy search"
+                />
+                <ComponentReference
+                    name="locationContextFolder"
+                    link="core/src/actions/types/search/tracedRecursiveSearch/locationContextFolder.ts"
+                    description="The context folder to put the original location actions in">
+                    <ComponentReference
+                        name="openInParentAction"
+                        link="core/src/actions/types/search/tracedRecursiveSearch/openInParentAction.ts"
+                        description="A context action to open a found menu item in its parent menu (showing all the item's siblings)"
+                    />
+                    <ComponentReference
+                        name="openAtTraceAction"
+                        link="core/src/actions/types/search/tracedRecursiveSearch/openAtTraceAction.ts"
+                        description="A context action to open a found menu item at the location it was originally stored, opening all its ancestor menus"
+                    />
+                </ComponentReference>
+            </ComponentReference>
+        </ComponentReference>
+        <ComponentReference
+            name="getContentAction"
+            link="core/src/actions/types/content/getContentAction.ts"
+            description="An action to retrieve the content to show when the item is selected">
+            <ComponentReference
+                name="hideContentHandler"
+                link="core/src/actions/types/content/hideContentHandler.ts"
+                description="An getContent handler that will hide the content section when an item with this binding is selected"
+            />
+            <ComponentReference
+                name="scrollableContentHandler"
+                link="core/src/actions/types/content/scrollableContentHandler.tsx"
+                description="An getContent handler that will wrap the provided content in a component that can be scrolled up and down using keyboard shortcuts"
+            />
+        </ComponentReference>
+        <ComponentReference
+            name="getCategoryAction"
+            link="core/src/actions/types/category/getCategoryAction.ts"
+            description="An action that retrieves the menu category that an item should be in"
+        />
+        <ComponentReference
+            name="getConnectionGroupAction"
+            link="core/src/actions/types/connectionGroup/getConnectionGroupAction.ts"
+            description="An action that retrieves the connection group of a menu item, used to decide whether it should visually connect to other items in the menu"
+        />
+        <ComponentReference
+            name="resetAction"
+            link="core/src/actions/types/reset/resetAction.ts"
+            description="A context action representing that an item will be reset"
+        />
+        <ComponentReference
+            name="deleteAction"
+            link="core/src/actions/types/delete/deleteAction.ts"
+            description="A context action representing that the selected item wil be removed"
+        />
+        <ComponentReference
+            name="onCursorAction"
+            link="core/src/actions/types/onCursor/onCursorAction.ts"
+            description="An event handler action to react to the item being the new cursor"
+        />
+        <ComponentReference
+            name="onSelect"
+            link="core/src/actions/types/onSelect/onSelectAction.ts"
+            description="An event handler action to react to the item being added to or remove from a selection"
+        />
+        <ComponentReference
+            name="onMenuChange"
+            link="core/src/actions/types/onMenuChange/onMenuChangeAction.ts"
+            description="An event handler action to react to the item being added to or removed from a menu"
+        />
+        <ComponentReference
+            name="identityAction"
+            link="core/src/actions/types/identity/identityAction.ts"
+            description="An action that can be used to store a reference to the 'actionTarget' in a way that it can be used by other actions">
+            <ComponentReference
+                name="menuItemIdentityAction"
+                link="core/src/actions/types/identity/menuItemIdentityAction.ts"
+                description="An action that can be used to store a reference to the menu item in a way that it can be used by other actions, for instance used by the search action"
+            />
+        </ComponentReference>
+        <ComponentReference
+            name="copyExitPasteHandler"
+            link="core/src/actions/types/copyPaste/copyExitPasteHandler.ts"
+            description="An execute handler that can be used to copy some input, exit LM and then paste this input in the previously selected program">
+            <ComponentReference
+                name="copyAction"
+                link="core/src/actions/types/copyPaste/copy/copyAction.ts"
+                description="A context action that can take a copy execute handler and show it in the context menu">
+                <ComponentReference
+                    name="copyExecuteHandler"
+                    link="core/src/actions/types/copyPaste/copy/copyExecuteHandler.ts"
+                    description="An execute handler representing that something will be copied">
+                    <ComponentReference
+                        name="copyClipboardHandler"
+                        link="core/src/actions/types/copyPaste/copy/handler/copyClipboardHandler.ts"
+                        description="A copy execute handler that copies the given content (text/image/html/etc.) to the clipboard">
+                        <ComponentReference
+                            name="copyTextHandler"
+                            link="core/src/actions/types/copyPaste/copy/handler/copyTextHandler.ts"
+                            description="A copy execute handler that copies the given text to the clipboard"
+                        />
+                    </ComponentReference>
+                </ComponentReference>
+            </ComponentReference>
+            <ComponentReference
+                name="pasteExecuteHandler"
+                link="core/src/actions/types/copyPaste/paste/pasteExecuteHandler.ts"
+                description="An execute handler representing that something will be pasted">
+                <ComponentReference
+                    name="OSPasteHandler"
+                    link="core/src/actions/types/copyPaste/paste/handlers/OSPasteHandler/OSPasteHandler.ts"
+                    description="A paste execute handler that will send a paste command to the OS">
+                    <ComponentReference
+                        name="exitPasteHandler"
+                        link="core/src/actions/types/copyPaste/paste/handlers/OSPasteHandler/exitPasteHandler.ts"
+                        description="A paste execute handler that will close LM and then send a paste command to the OS"
+                    />
+                </ComponentReference>
+            </ComponentReference>
+        </ComponentReference>
+    </ComponentReference>
+    <ComponentReference
+        name="createContextAction"
+        link="core/src/actions/contextMenuAction/createContextAction.ts"
+        description="Creates an action that will show up in the context menu">
+        <ComponentReference
+            name="createContextFolderHandler"
+            link="core/src/actions/contextMenuAction/createContextFoldHandler.ts"
+            description="Creates a context folder action which can be passed to 'createContextAction' to make actions show up in this subdirectory in the context menu"
+        />
+        <ComponentReference
+            name="contextMenuAction"
+            link="core/src/actions/contextMenuAction/contextMenuAction.ts"
+            description="The context menu action itself, which can be used to collect all items to be shown in a context menu for a given set of items"
+        />
+    </ComponentReference>
+</ul>

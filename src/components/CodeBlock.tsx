@@ -36,6 +36,7 @@ export const CodeBlock: FC<{
     showHeader = language != "text",
     ...rest
 }) => {
+    console.log(title, className);
     const theme = useTheme();
     const [h] = useDataHook();
     const InlineCodeWrapper = useCallback(
