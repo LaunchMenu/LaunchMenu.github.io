@@ -12,6 +12,7 @@ export const InlineCode: FC<{children: string}> = ({children}) => {
                     bg == background3
                         ? theme.palette.background.default
                         : background3,
+                wordBreak: "break-word",
             })}
             dangerouslySetInnerHTML={{
                 __html: children

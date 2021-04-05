@@ -1,4 +1,4 @@
-import {FC, ReactNode} from "react";
+import {FC, ReactNode, Fragment} from "react";
 import {CodeBlock} from "../../../components/CodeBlock";
 import {createHeaderComp} from "./createHeaderComp";
 import {ScreenShot} from "./ScreenShot";
@@ -14,7 +14,7 @@ import {Timeline, TimelineItem} from "./Timeline";
 import {YTPlayer} from "./YTPlayer";
 import {InlineCode} from "./Code";
 import {ComponentReference} from "./ComponentReference";
-import {Fragment} from "react";
+import {GuideNav} from "./GuideNav";
 
 const autoFitImageRenderer: FC<{
     alt?: string;
@@ -34,13 +34,24 @@ const codeRender: FC<{
     className?: string;
     children: string;
     showHeader?: string;
-}> = ({className, children, showHeader, ...rest}) => {
+    spoiler?: string;
+    highlight?: string;
+}> = ({className, children, showHeader, spoiler, highlight, ...rest}) => {
     const languageData = className?.match(/language-(.*)/);
+    const language = languageData?.[1] || "text";
     return (
         <CodeBlock
             code={children.trimEnd()}
-            language={languageData?.[1] ?? "text"}
-            showHeader={showHeader != "false"}
+            language={language}
+            showHeader={
+                showHeader == undefined
+                    ? language != "text"
+                    : showHeader != "false"
+            }
+            spoiler={spoiler ? spoiler != "false" : false}
+            highlight={highlight
+                ?.split(",")
+                .map(p => p.split(":").map(n => Number(n)) as [number, number])}
             {...rest}
         />
     );
@@ -76,4 +87,5 @@ export const markdownComponents = {
     TimelineItem,
     YTPlayer,
     ComponentReference,
+    GuideNav,
 };

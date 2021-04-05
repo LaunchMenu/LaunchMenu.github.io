@@ -25,6 +25,8 @@ export const CodeBlock: FC<{
     result?: ReactNode;
     source?: string;
     showHeader?: boolean;
+    spoiler?: boolean;
+    highlight?: [number, number][];
 }> = ({
     code,
     language = "tsx",
@@ -34,9 +36,10 @@ export const CodeBlock: FC<{
     result,
     source,
     showHeader = language != "text",
+    spoiler,
+    highlight,
     ...rest
 }) => {
-    console.log(title, className);
     const theme = useTheme();
     const [h] = useDataHook();
     const InlineCodeWrapper = useCallback(
@@ -57,6 +60,18 @@ export const CodeBlock: FC<{
         []
     );
 
+    const codeElement = (
+        <Prism
+            PreTag={InlineCodeWrapper}
+            style={vs}
+            language={language}
+            children={code}
+            wrapLongLines={true}
+            lineProps={{style: {flexWrap: "wrap"}}}
+            showLineNumbers={showLineNumbers.get(h)}
+            {...rest}
+        />
+    );
     return (
         <div
             css={{
@@ -71,6 +86,26 @@ export const CodeBlock: FC<{
                 span: {
                     wordBreak: "break-all",
                 },
+                ...(highlight && {
+                    code: {
+                        [highlight
+                            .flatMap(([start, end]) =>
+                                new Array(end - start + 1)
+                                    .fill(null)
+                                    .map(
+                                        (_, i) =>
+                                            `> span:nth-child(${i + start})`
+                                    )
+                            )
+                            .join(",")]: {
+                            backgroundColor: theme.palette.primary.main + "20",
+                        },
+                        "> span": {
+                            display: "inline-block",
+                            minWidth: "100%",
+                        },
+                    },
+                }),
             }}
             {...rest}>
             {showHeader && (
@@ -81,16 +116,16 @@ export const CodeBlock: FC<{
                     result={result}
                 />
             )}
-            <Prism
-                PreTag={InlineCodeWrapper}
-                style={vs}
-                language={language}
-                children={code}
-                wrapLongLines={true}
-                lineProps={{style: {flexWrap: "wrap"}}}
-                showLineNumbers={showLineNumbers.get(h)}
-                {...rest}
-            />
+            {spoiler ? (
+                <details>
+                    <summary css={theme => ({paddingLeft: theme.spacing(1)})}>
+                        View code
+                    </summary>{" "}
+                    {codeElement}
+                </details>
+            ) : (
+                codeElement
+            )}
         </div>
     );
 };

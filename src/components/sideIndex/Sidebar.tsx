@@ -102,7 +102,6 @@ export const Sidebar: FC<{
             <Hidden smDown implementation="css">
                 <Box
                     css={theme => ({
-                        backgroundColor: theme.palette.background.default,
                         overflowY: "auto",
                         height: `calc(100vh - ${theme.mixins.toolbar.height}px)`,
                     })}>

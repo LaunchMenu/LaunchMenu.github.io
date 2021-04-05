@@ -11,7 +11,7 @@ export const PageIndex: FC<{ToC: ITOC}> = ({ToC}) => {
     const navItems = useMemo(() => {
         const createNav = (ToC: ITOC): INavItem[] =>
             ToC.map(({name, children}) => ({
-                name,
+                name: name.replace(/\-/g, " "),
                 selected: name == section,
                 children: createNav(children),
                 link: `#${getUrlHash(name)}`,

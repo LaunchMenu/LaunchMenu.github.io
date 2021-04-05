@@ -5,7 +5,7 @@ export const theme = createMuiTheme({
         primary: {
             dark: "#006BBE",
             light: "#0078d4",
-            main: "#008DFA",
+            main: "#008DFA", // Should be a hex representation (allows for simple alpha changes)
             contrastText: "#FFFFFF",
         },
         secondary: {

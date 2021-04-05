@@ -28,6 +28,7 @@ export const NavItem: FC<{
     }, [item.children]);
     const theme = useTheme();
 
+    const name = item.name.replace(/\-/g, " ");
     const titleEl = (
         <ListItem
             button
@@ -46,10 +47,10 @@ export const NavItem: FC<{
                                 fontWeight: 800,
                                 color: theme.palette.primary.main,
                             }}>
-                            {item.name}
+                            {name}
                         </span>
                     ) : (
-                        item.name
+                        name
                     )
                 }
             />
