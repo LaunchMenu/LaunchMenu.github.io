@@ -1,0 +1,221 @@
+# Search system
+
+LaunchMenu has a search system which it uses for both its main search and menu searches. This system consists of two parts:
+
+-   Searchables, which are the items being searched/performing the search
+-   Search executers, which manage the asynchronous execution of a search, given a root searchable
+
+## Searchables
+
+A `searchable` is a searchable object. It has to contain a unique identifier `ID` and a `search` function. This search function receives a `query` and should return an object with possibly a result item, sub-searchables and/or a pattern match.
+
+This is more concretely expressed in the following TypeScript interface:
+
+```ts title=ISearchable.tsx source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/utils/searchExecuter/_types/ISearchable.ts
+export type ISearchable<Q, I> = {
+    /** The ID for this search (used to diff children) */
+    ID: IUUID;
+    /**
+     * Searches for items, by possibly returning an item, and a collection of sub-searches.
+     * May also return a matched pattern to ignore all items that don't match a pattern.
+     * @param query The query to be checked against
+     * @param hook A data hook to listen for changes
+     * @param executer The executer performing the search, for possible advanced optimizations
+     * @returns The search result
+     **/
+    search(
+        query: Q,
+        hook: IDataHook,
+        executer?: SearchExecuter<Q, I>
+    ): Promise<ISearchableResult<Q, I>>;
+};
+
+/**
+ * The result of an invocation of a searchable
+ */
+export type ISearchableResult<Q, I> = {
+    /** The item that may have been found */
+    item?: I;
+    /** The child items to search through */
+    children?: ISearchable<Q, I>[];
+    /** A pattern that this item matches, hiding all items that don't match any pattern */
+    patternMatch?: IPatternMatch;
+};
+```
+
+In most of LaunchMenu these interfaces are instantiated with `IQuery` and `IPrioritizedMenuItem` for these generic types `Q` and `I`:
+
+```ts title=IQuery.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/menus/menu/_types/IQuery.ts
+export type IQuery = {
+    search: string;
+    /** The context that can be used for E.G. settings */
+    context: IIOContext;
+};
+```
+
+```ts title=IPrioritizedMenuItem.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/menus/menu/_types/IPrioritizedMenuItem.ts
+export type IPrioritizedMenuItem = {
+    priority: IPriority;
+    item: IMenuItem;
+    ID?: string | number;
+};
+```
+
+Each searchable can only return a single result directly, but by returning sub-searchables you can still make it find multiple results. The search function is also invoked with a [model-react](https://github.com/TarVK/model-react) data hook. This hook can be used to let the search system know a search result has possibly changed. This can for instance happen when a item changes its name.
+
+The [search function](/docs/Concepts/Applet-format#search) of applets uses the same interface as the `search` function of searchables. So we can easily test out some simple search behavior:
+
+```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchHookBasic
+const text = new Field("orange");
+const item = createStandardMenuItem({name: h => text.get(h)});
+
+export default declare({
+    info,
+    settings,
+    async search(query, hook) {
+        // Check if the search exactly matches the text, and indicate a dependency on text using `hook`
+        if (query.search == text.get(hook)) {
+            // If the  text matched, toggle it to some other text after 2 seconds (such that it no longer matches)
+            setTimeout(() => {
+                if (text.get() == "orange") text.set("potato");
+                else text.set("orange");
+            }, 2000);
+
+            // Return some item result
+            return {
+                item: {
+                    priority: Priority.EXTRAHIGH,
+                    item,
+                },
+            };
+        }
+
+        // Otherwise return no result
+        return {};
+    },
+});
+```
+
+Here you can see that an item result is returned if the search fully matches some given text. When this happens, we also change the required text after 2 seconds to demonstrate how the search automatically updates.
+
+Now if we want to return multiple results, we can create a set of searchables that we can return as children. These searchables can also have sub searchables themselves.
+
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchNested
+// A collection of items and searchables that always return no matter what the query is
+const staticSubSearchables: IMenuSearchable[] = [
+    "Bob",
+    "Henry",
+    "Emma",
+    "Tim",
+].map((name, i) => {
+    const item = {
+        priority: [Priority.MEDIUM, i],
+        item: createStandardMenuItem({name}),
+    };
+    return {
+        ID: uuid(),
+        search: async () => ({item}),
+    };
+});
+
+// Create two items and searchables for them
+const searchables: IMenuSearchable[] = [
+    {name: "people", children: staticSubSearchables},
+    {name: "not people"},
+].map(({name, children}, i) => {
+    const item = {
+        priority: [Priority.HIGH, i],
+        item: createStandardMenuItem({name}),
+    };
+    return {
+        ID: uuid(),
+        async search({search}) {
+            // Perform some shitty text match, and if matched return both the item and children
+            if (search.length > 2 && name.includes(search))
+                return {item, children};
+
+            return {};
+        },
+    };
+});
+
+export default declare({
+    info,
+    settings,
+    search: async (query, hook) => ({children: searchables}),
+});
+```
+
+New if you search for `"peo"` you will find both the results of the main searchables, since they test for a substring match, as well as all the people that were passed as children of `people`. `staticSubSearchables` also is a list of searchables, but these searchables don't have any criteria for returning their item. For that reason, if `people` matches the query, all these children come with them for free.
+
+As you can tell by these examples, making your own custom searches would be a lot of effort, but possible. In addition to what we've seen so far, you would also need to take care of item result highlighting. Currently some text in the retrieved items does highlight, but this highlighting is done based on the default simple search action. These search actions will be discussed in more detail the [search action section](#Search-action) since they allow to use a much simpler standardized search implementation instead. You can learn more about adding your own highlighting on the in-depth [menu item page]().
+
+<!-- TODO: add reference -->
+
+### Search patterns
+
+In addition to returning results and children, searchables can also return pattern matches. These pattern matches indicate that a certain pattern was found within the query. This can be used to indicate that you want to search in a specific category. For instance, `settings: [search]` is a pattern that's used to search for settings, where `[search]` would be replaced with the actual search.
+
+A pattern is able to highlight text within the search field and will automatically stop other results that didn't match any pattern from appearing. Additionally, patterns could be used as a guard. The settings-manager applet checks if the pattern is present in the root searchable, and doesn't return any children if this is not the case. This makes it so results only show up when the pattern is present, and that no children have to be queried if it's not.
+
+A search pattern itself is only a set of properties describing the pattern, and how thing should be highlighted:
+
+```ts title=IPatternMatch.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/utils/searchExecuter/_types/IPatternMatch.ts
+export type IPatternMatch = {
+    /** The name of the pattern type that was matched  */
+    name: string;
+    /** A unique identifier for pattern comparisons */
+    id?: IUUID;
+    /** The remaining text that should be used for the search (search text minus pattern identifier) */
+    searchText?: string;
+    /** Syntax highlighting information to show the pattern */
+    highlight?: (IHighlightNode | ITextSelection)[];
+    /** A syntax highlighter to use to highlight the search field */
+    highlighter?: IHighlighter;
+};
+```
+
+You can create a pattern matcher using the built-in `createStandardSearchPatternMatcher` function, or take care of matching patterns yourself:
+
+```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchPattern
+const patternMatcher = createStandardSearchPatternMatcher({
+    name: "my pattern",
+    matcher: /^orange:/,
+});
+
+export default declare({
+    info,
+    settings,
+    async search(query, hook) {
+        const match = patternMatcher(query);
+        if (match) {
+            const text = match.searchText; // The query search with the pattern subtracted
+            return {
+                patternMatch: match,
+            };
+        }
+
+        // If this pattern doesn't match, manually create a custom match
+        return {
+            patternMatch: {
+                name: "my other pattern",
+                highlight: [
+                    {
+                        start: 0,
+                        end: query.search.length,
+                        style: {color: "purple"},
+                    },
+                ],
+            },
+        };
+    },
+});
+```
+
+In this example if you search for anything, the `my other pattern` will be used by default, and highlighted purple. If you search for `"orange: smth"`, `my pattern` is used instead, only highlighting the `orange:` part. You can also use the match of this standard pattern to extract the actual searched text, in this case ` smth`.
+
+## Search executer
+
+## FuzzyRater
+
+## Search action
