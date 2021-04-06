@@ -234,3 +234,22 @@ Resources:
         https://developer.microsoft.com/en-us/fluentui#/
     Products: 
         https://www.dji.com/nl/dji-fpv
+
+in-depth:
+    - applet format/declare
+    - base:
+        - LaunchMenu
+        - Session
+        - IOContext
+    - UI:
+        - menu items
+        - UILayer (include views)
+            - Menu
+            - Field
+            - Content
+    - Interaction
+        - Actions
+        - Key events (+shortcuts)
+        - search system
+    - Settings
+
