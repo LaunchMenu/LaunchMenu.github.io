@@ -20,7 +20,10 @@ export const Section: FC<{
 
     const [visibilityRef] = useVisibleInWindow({
         onVisibilityChange,
-        area: {height: Math.min(isClient() ? window.innerHeight : 200, 200)},
+        area: {
+            top: 80,
+            height: Math.min(isClient() ? window.innerHeight : 200, 200),
+        },
     });
     const setRef = useCallback((el: HTMLElement) => {
         visibilityRef.current = el;

@@ -94,7 +94,7 @@ export const CodeBlock: FC<{
                                     .fill(null)
                                     .map(
                                         (_, i) =>
-                                            `> span:nth-child(${i + start})`
+                                            `> span:nth-of-type(${i + start})`
                                     )
                             )
                             .join(",")]: {
