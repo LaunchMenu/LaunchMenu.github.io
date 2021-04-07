@@ -249,7 +249,7 @@ in-depth:
             - Content
     - Interaction
         - Actions
-        - Key events (+shortcuts)
         - search system
+        - Key events (+shortcuts)
     - Settings
 
