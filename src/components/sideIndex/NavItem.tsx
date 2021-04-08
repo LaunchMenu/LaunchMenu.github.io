@@ -82,13 +82,17 @@ export const NavItem: FC<{
         else
             return (
                 <>
-                    <PlainLink href={item.link ?? path}>{titleEl}</PlainLink>
+                    <PlainLink href={item.link ?? path.toLowerCase()}>
+                        {titleEl}
+                    </PlainLink>
                     {children}
                 </>
             );
     }
 
-    return <PlainLink href={item.link ?? path}>{titleEl}</PlainLink>;
+    return (
+        <PlainLink href={item.link ?? path.toLowerCase()}>{titleEl}</PlainLink>
+    );
 };
 
 export type INavItem =

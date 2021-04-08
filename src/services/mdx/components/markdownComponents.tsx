@@ -36,7 +36,20 @@ const codeRender: FC<{
     showHeader?: string;
     spoiler?: string;
     highlight?: string;
-}> = ({className, children, showHeader, spoiler, highlight, ...rest}) => {
+    screenRecording?: string;
+    screenShot?: string;
+    video?: string;
+}> = ({
+    className,
+    children,
+    showHeader,
+    spoiler,
+    highlight,
+    screenRecording,
+    screenShot,
+    video,
+    ...rest
+}) => {
     const languageData = className?.match(/language-(.*)/);
     const language = languageData?.[1] || "text";
     return (
@@ -49,6 +62,15 @@ const codeRender: FC<{
                     : showHeader != "false"
             }
             spoiler={spoiler ? spoiler != "false" : false}
+            result={
+                screenRecording ? (
+                    <ScreenRecording src={screenRecording} />
+                ) : screenShot ? (
+                    <ScreenShot src={screenShot} />
+                ) : video ? (
+                    <Video src={video} />
+                ) : undefined
+            }
             highlight={highlight
                 ?.split(",")
                 .map(p => p.split(":").map(n => Number(n)) as [number, number])}

@@ -298,6 +298,26 @@ export default declare({
 });
 ```
 
+### Core type
+
+Applets can also indicate they are intended to be a core applet (applet taking care of core functionality) by specifying a `coreCategory` in the config. The available categories are:
+
+-   `CoreAppletType.SETTINGS`
+-   `CoreAppletType.APPLETS`
+-   `CoreAppletType.HELP`
+-   `CoreAppletType.SESSION`
+-   `CoreAppletType.WINDOW`
+-   `CoreAppletType.STYLING`
+-   `CoreAppletType.UNDO`
+
+```ts title=src/index.tsx
+export default declare({
+    info,
+    settings,
+    coreCategory: CoreAppletType.SESSIONS,
+});
+```
+
 ## Development
 
 The configuration also has a `development` property you can specify, which should be an object 3 optional fields:

@@ -37,10 +37,10 @@ async function getFiles(
     ).flat();
 }
 
-export function cleanupPath(path: string): string {
-    return (
+export function cleanupPath(path: string, lowerCase: boolean = true): string {
+    const cleaned =
         Path.parse(path)
             .name.match(/^(\d+\-)?(.*)$/)?.[2]
-            ?.replace(/ /g, "-") ?? ""
-    );
+            ?.replace(/ /g, "-") ?? "";
+    return lowerCase ? cleaned.toLowerCase() : cleaned;
 }

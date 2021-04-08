@@ -6,7 +6,7 @@ import {useVideo} from "../../../hooks/useVideo";
 export const Video: FC<{
     src: string;
     width?: number;
-    volumeControls: boolean;
+    volumeControls?: boolean;
     fullscreenControls?: boolean;
 }> = ({
     src,

@@ -27,7 +27,7 @@ export async function createIndex(
 
 async function createNavItem(dir: string): Promise<INavItem | undefined> {
     const stat = await FS.lstat(dir);
-    const name = cleanupPath(Path.basename(dir));
+    const name = cleanupPath(Path.basename(dir), false);
 
     if (!stat.isDirectory()) {
         if (Path.extname(dir) == ".mdx" && name != "index")
