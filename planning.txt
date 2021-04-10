@@ -244,12 +244,14 @@ in-depth:
     - UI:
         - menu items
         - UILayer (include views)
-            - Menu
+            - Menu (+categories)
             - Field
             - Content
     - Interaction
-        - Actions
+        - Actions basics
+        - Common menu item actions
         - search system
+        - Undo/redo
         - Key events (+shortcuts)
     - Settings
 
