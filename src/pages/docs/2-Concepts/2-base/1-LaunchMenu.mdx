@@ -58,6 +58,19 @@ export class LaunchMenu {
      */
     public async setWindowOpen(open: boolean): Promise<void> {}
 
+    /**
+     * Sets the frame component to wrap all LM sessions in
+     * @param frame The component to use
+     */
+    public setWindowFrame(frame: FC<IWindowFrameProps>): void {}
+
+    /**
+     * Retrieves the currently used frame component
+     * @param hook The hook to subscribe to changes
+     * @returns The functional component to use as the window frame
+     */
+    public getWindowFrame(hook?: IDataHook): FC<IWindowFrameProps> {}
+
     // Utils
     /**
      * Fully restarts the LaunchMenu window

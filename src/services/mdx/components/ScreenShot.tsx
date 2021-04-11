@@ -1,15 +1,14 @@
 import {useTheme} from "@emotion/react";
 import {FC, Fragment, ReactNode} from "react";
-import {useVideoSizeData} from "../../../components/home/features/FeatureVideo";
+import {
+    LMHeight,
+    LMRadius,
+    useVideoSizeData,
+} from "../../../components/home/features/FeatureVideo";
 import {isClient} from "../../isClient";
 
-const LMWidth = 700;
-const LMHeight = 450;
-const LMMargin = 18 + 1; // R1 as a margin for error regarding rounding
-const LMContentHeight = LMHeight - LMMargin * 2;
-
 // Ratios
-const headerRatio = 60 / LMContentHeight;
+const headerRatio = 60 / LMHeight;
 const menuRatio = 0.4;
 
 export type ILMSection = "field" | "content" | "menu" | "bottom";
@@ -32,13 +31,7 @@ export const LMFrame: FC<{
     children: (width: number) => ReactNode;
 }> = ({className, width: desiredWidth, section, children}) => {
     const theme = useTheme();
-    const {
-        width,
-        height,
-        scale,
-        srcWidth,
-        ref,
-    } = useVideoSizeData<HTMLDivElement>({
+    const {width, height, scale, ref} = useVideoSizeData<HTMLDivElement>({
         desiredWidth,
         margin:
             isClient() && window.innerWidth < theme.breakpoints.values.md
@@ -79,8 +72,6 @@ export const LMFrame: FC<{
         }
     }
 
-    const scalar = srcWidth / LMWidth;
-    const margin = -(LMMargin * scalar);
     return (
         <Fragment>
             <div ref={ref} />
@@ -93,7 +84,7 @@ export const LMFrame: FC<{
                     zIndex: 1,
                     backgroundColor: "white",
                     overflow: "hidden",
-                    borderRadius: 20 * scale,
+                    borderRadius: LMRadius * scale,
                     boxShadow: "0px 0px 30px -5px rgba(0,0,0,0.3)",
                     [theme.breakpoints.up("md")]: {
                         margin: theme.spacing(2),
@@ -101,11 +92,10 @@ export const LMFrame: FC<{
                 })}>
                 <div
                     css={{
-                        margin,
-                        marginLeft: -frame.left * width + margin,
-                        marginTop: -frame.top * height + margin,
+                        marginLeft: -frame.left * width,
+                        marginTop: -frame.top * height,
                     }}>
-                    {children(srcWidth)}
+                    {children(width)}
                 </div>
             </div>
         </Fragment>

@@ -110,7 +110,7 @@ export const FeatureVideoLayout: FC<{
     className?: string;
     VideoComp: IVideoComp;
 }> = ({backgroundSrc, className, children, VideoComp}) => {
-    const {width, height, scale, srcWidth} = useVideoSizeData();
+    const {width, height, scale} = useVideoSizeData();
 
     // Make this element hidden from SSR, and smoothly fade in client side
     const [visible, setVisible] = useState(false);
@@ -127,31 +127,25 @@ export const FeatureVideoLayout: FC<{
                 zIndex: 1,
                 backgroundColor: "white",
                 overflow: "hidden",
-                borderRadius: 20 * scale,
+                borderRadius: LMRadius * scale,
                 opacity: visible ? 1 : 0,
                 transition: "opacity 250ms",
 
                 boxShadow: "0px 0px 30px -5px rgba(0,0,0,0.3)",
             }}>
-            <div
-                css={{
-                    margin: -((LMMargin * srcWidth) / LMWidth),
-                }}>
-                {/* A background picture for when the video is loading   */}
+            {/* A background picture for when the video is loading   */}
 
-                <VideoComp width={srcWidth} placeholder={backgroundSrc} />
-                {children}
-            </div>
+            <VideoComp width={width} placeholder={backgroundSrc} />
+            {children}
         </div>
     );
 };
 
 // The LM Video data
-const LMWidth = 700;
-const LMHeight = 450;
-const LMMargin = 18 + 1; // R1 as a margin for error regarding rounding
-
-export const LMPlayerWidth = LMWidth - LMMargin * 2; // Real size atm
+export const LMRadius = 10;
+export const LMWidth = 700;
+export const LMHeight = 450;
+export const LMPlayerWidth = LMWidth;
 
 export function useVideoSizeData<E extends HTMLElement>({
     desiredWidth = LMPlayerWidth,
@@ -169,18 +163,12 @@ export function useVideoSizeData<E extends HTMLElement>({
     const width = windowWidth
         ? Math.min(windowWidth - margin * 2, desiredWidth)
         : desiredWidth;
-
-    // Some derived component sizes
-    const scale = width / (LMWidth - LMMargin * 2);
-    const height = LMHeight * scale - scale * LMMargin * 2;
-    const srcWidth = width + scale * LMMargin * 2;
+    const height = (width / LMWidth) * LMHeight;
 
     return {
         width,
         height,
-        srcWidth,
-        scale,
-        // A ref for the max width
+        scale: width / LMWidth,
         ref,
     };
 }

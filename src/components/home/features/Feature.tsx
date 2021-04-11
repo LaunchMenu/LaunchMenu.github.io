@@ -103,7 +103,7 @@ export const Feature: FC<{
             </H3>
 
             <Collapse in={selected == ID}>
-                <Text css={theme => ({paddingLeft: theme.spacing(4)})}>
+                <Text css={theme => ({paddingLeft: theme.spacing(5)})}>
                     {children}
                 </Text>
             </Collapse>
