@@ -1,4 +1,3 @@
-import {Box} from "@material-ui/core";
 import {FC, Fragment} from "react";
 import {LMWidth} from "../../../components/home/features/FeatureVideo";
 import {VideoControls} from "../../../components/VideoControls";
