@@ -119,14 +119,13 @@ export namespace Priority {
      * @param priority The priority to be checked
      * @returns Whether this priority is not zero
      */
-    export function isNonZero(priority: IPriority): boolean {}
-
+    export function isNonZero(priority: IPriority): boolean;
     /**
      * Checks whether a given priority is positive
      * @param priority The priority to be checked
      * @returns Whether this priority is positive
      */
-    export function isPositive(priority: IPriority): boolean {}
+    export function isPositive(priority: IPriority): boolean;
 }
 ```
 
@@ -305,41 +304,36 @@ class SearchExecuter<Q, I> {
      * Creates a new search executor
      * @param config The search configuration
      */
-    public constructor(config: ISearchExecuterConfig<Q, I>) {}
-
+    public constructor(config: ISearchExecuterConfig<Q, I>);
     /**
      * Sets the new query
      * @param query The new query to look for
      * @returns A promise that resolves once the query completes
      */
-    public async setQuery(query: Q | null): Promise<void> {}
-
+    public async setQuery(query: Q | null): Promise<void>;
     /**
      * Retrieves the current query
      * @param hook The hook to subscribe to changes
      * @returns The current query
      */
-    public getQuery(hook?: IDataHook): Q | null {}
-
+    public getQuery(hook?: IDataHook): Q | null;
     /**
      * Retrieves whether a search is currently in progress
      * @param hook The hook to subscribe to changes
      * @returns Whether any search is in progress
      */
-    public isSearching(hook?: IDataHook): boolean {}
-
+    public isSearching(hook?: IDataHook): boolean;
     /**
      * Retrieves the obtained patterns
      * @param hook The hook to subscribe to changes
      * @returns The patterns that were found
      */
-    public getPatterns(hook?: IDataHook): IPatternMatch[] {}
-
+    public getPatterns(hook?: IDataHook): IPatternMatch[];
     /**
      * Destroys the search executer
      * @param keepResults Whether to preserve the items (instead of calling onRemove for all)
      */
-    public destroy(keepResults?: boolean): void {}
+    public destroy(keepResults?: boolean): void;
 }
 ```
 

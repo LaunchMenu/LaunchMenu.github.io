@@ -52,61 +52,52 @@ export class LMSession {
      * Creates a new app session
      * @param lm The LM instance this is a session for
      */
-    public constructor(lm: LaunchMenu) {}
-
+    public constructor(lm: LaunchMenu);
     /**
      * Disposes of all data attached to this session
      */
-    public destroy() {}
-
+    public destroy();
     /**
      * Emits a key event to the session
      * @param event The event to dispatch
      * @returns Whether the event was caught
      */
-    public emit(event: KeyEvent): Promise<boolean> {}
-
+    public emit(event: KeyEvent): Promise<boolean>;
     // Close listeners
     /**
      * Adds a listener that listens for close events
      * @param listener The listener to be added
      */
-    public addCloseListener(listener: () => void): void {}
-
+    public addCloseListener(listener: () => void): void;
     /**
      * Removes a listener that listens for close events
      * @param listener The listener to be removed
      */
-    public removeCloseListener(listener: () => void): void {}
-
+    public removeCloseListener(listener: () => void): void;
     /**
      * Checks whether this session is on the "home screen", I.e. has no menu opens on top
      * @param hook The hook to subscribe to changes
      * @returns Whether on the home screen
      */
-    public isHome(hook?: IDataHook): boolean {}
-
+    public isHome(hook?: IDataHook): boolean;
     /**
      * Closes all layers and removes the search input
      * @param close Whether to also exit LM
      */
-    public async goHome(close?: boolean): Promise<void> {}
-
+    public async goHome(close?: boolean): Promise<void>;
     // Applet management
     /**
      * Retrieves the applets initialized with this session data
      * @param hook The hook to subscribe to changes
      * @returns The initialized applets
      */
-    public getApplets(hook?: IDataHook): IApplet[] {}
-
+    public getApplets(hook?: IDataHook): IApplet[];
     /**
      * Retrieves the searchables in this session
      * @param hook The hook to subscribe to changes
      * @returns The searchables
      */
-    public getSearchables(hook?: IDataHook): IMenuSearchable[] {}
-
+    public getSearchables(hook?: IDataHook): IMenuSearchable[];
     /**
      * The applet data obtained from the applet manager
      */
@@ -143,47 +134,41 @@ export class SessionManager {
      * Creates a new session manager for the given LM instance
      * @param LM The LM instance to create a manager for
      */
-    public constructor(LM: LaunchMenu) {}
-
+    public constructor(LM: LaunchMenu);
     /**
      * Disposes of all data in this session manager (destroying sessions)
      */
-    public destroy(): void {}
-
+    public destroy(): void;
     // Getters
     /**
      * Retrieves the sessions that are currently open
      * @param hook The hook to subscribe to changes
      * @returns The sessions that are currently open
      */
-    public getSessions(hook?: IDataHook): LMSession[] {}
-
+    public getSessions(hook?: IDataHook): LMSession[];
     /**
      * Retrieves the session that is currently selected (the session in the last position)
      * @param hook The hook to subscribe to changes
      * @returns The current top session
      */
-    public getSelectedSession(hook?: IDataHook): LMSession | null {}
-
+    public getSelectedSession(hook?: IDataHook): LMSession | null;
     // Management
     /**
      * Either adds or creates and adds a session
      * @param session The session to be added
      * @returns The created and added session
      */
-    public addSession(session: LMSession = new LMSession(this.LM)): LMSession {}
-
+    public addSession(session: LMSession = new LMSession(this.LM)): LMSession;
     /**
      * Removes the given session
      * @param session The session to be removed
      */
-    public removeSession(session: LMSession): void {}
-
+    public removeSession(session: LMSession): void;
     /**
      * Selects the given session to be displayed
      * @param session The session to be displayed
      */
-    public selectSession(session: LMSession): void {}
+    public selectSession(session: LMSession): void;
 }
 ```
 

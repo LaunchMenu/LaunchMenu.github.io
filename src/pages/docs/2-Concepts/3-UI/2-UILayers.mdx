@@ -973,29 +973,26 @@ export class InputLayer<T> extends AbstractUILayer {
      * @param config The configuration for the field
      */
     public constructor(field: IField<T>, config: IInputConfig<T>);
-    public constructor(field: IField<T>, config?: IInputConfig<T>) {}
-
+    public constructor(field: IField<T>, config?: IInputConfig<T>);
     // Value helpers
     /**
      * Retrieves the resulting value if valid, or an error otherwise
      * @param hook The data hook to subscribe to changes
      * @returns The resulting value, or error
      */
-    public getValue(hook?: IDataHook): T | IInputError {}
-
+    public getValue(hook?: IDataHook): T | IInputError;
     /**
      * Commits the current text value to the target field, if the input value is valid
      * @returns Whether the input was valid
      */
-    public updateField(): boolean {}
-
+    public updateField(): boolean;
     // Error handling
     /**
      * Retrieves the input error if any
      * @param hook The hook to subscribe to changes
      * @returns The error with the current input if any
      */
-    public getError(hook?: IDataHook): IInputError | null {}
+    public getError(hook?: IDataHook): IInputError | null;
 }
 
 type IInputConfig<T> = {
@@ -1039,37 +1036,33 @@ export class SelectLayer<T> extends InputLayer<T> {
      * @param field The data field to target
      * @param config The configuration for the UI
      */
-    public constructor(field: IField<T>, config: ISelectConfig<T>) {}
-
+    public constructor(field: IField<T>, config: ISelectConfig<T>);
     // Value helpers
     /**
      * Retrieves the resulting value if valid, or an error otherwise
      * @param hook The data hook to subscribe to changes
      * @returns The resulting value, or error
      */
-    public getValue(hook?: IDataHook): T | IInputError {}
-
+    public getValue(hook?: IDataHook): T | IInputError;
     /**
      * Commits the current text value to the target field, if the input value is valid
      * @returns Whether the input was valid
      */
-    public updateField(): boolean {}
-
+    public updateField(): boolean;
     // Error handling
     /**
      * Retrieves the input error if any
      * @param hook The hook to subscribe to changes
      * @returns The error with the current input if any
      */
-    public getError(hook?: IDataHook): IInputError | null {}
-
+    public getError(hook?: IDataHook): IInputError | null;
     // Custom value menu item handling
     /**
      * Retrieves whether custom is currently selected
      * @param hook The hook to subscribe to changes
      * @returns Whether custom input is selected
      */
-    public isCustomSelected(hook?: IDataHook): boolean {}
+    public isCustomSelected(hook?: IDataHook): boolean;
 }
 
 type ISelectConfig<T> = {
@@ -1134,36 +1127,32 @@ export class MultiSelectLayer<T> extends AbstractUILayer {
      * @param field The data field to target
      * @param config The configuration for the UI
      */
-    public constructor(field: IField<T[]>, config: IMultiSelectConfig<T>) {}
-
+    public constructor(field: IField<T[]>, config: IMultiSelectConfig<T>);
     // Error handling
     /**
      * Retrieves the input error if any
      * @param hook The hook to subscribe to changes
      * @returns The error with the current input if any
      */
-    public getError(hook?: IDataHook): IInputError | null {}
-
+    public getError(hook?: IDataHook): IInputError | null;
     // Value selection handling
     /**
      * Retrieves the current value
      * @param hook The hook to subscribe to changes
      * @returns The current selection
      */
-    public getValue(hook?: IDataHook): T[] {}
-
+    public getValue(hook?: IDataHook): T[];
     /**
      * Commits the current text value to the target field
      */
-    public updateField() {}
-
+    public updateField();
     // Custom value menu item handling
     /**
      * Retrieves whether custom is currently selected
      * @param hook The hook to subscribe to changes
      * @returns Whether custom input is selected
      */
-    public isCustomSelected(hook?: IDataHook): boolean {}
+    public isCustomSelected(hook?: IDataHook): boolean;
 }
 
 type IMultiSelectConfig<T> = {
@@ -1235,14 +1224,13 @@ export class MenuSearch extends AbstractUILayer {
      * Creates a new SearchField which can be used to search within a menu
      * @param data The menu, context and config data
      */
-    public constructor(data: IMenuSearchConfig) {}
-
+    public constructor(data: IMenuSearchConfig);
     /**
      * Retrieves whether the search menu is opened
      * @param hook The hook to subscribe to changes
      * @returns Whether the search menu is opened
      */
-    public hasSearch(hook: IDataHook): boolean {}
+    public hasSearch(hook: IDataHook): boolean;
 }
 
 type IMenuSearchConfig = {
