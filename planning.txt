@@ -236,22 +236,22 @@ Resources:
         https://www.dji.com/nl/dji-fpv
 
 in-depth:
-    - applet format/declare
+    - [x] applet format/declare
     - base:
-        - LaunchMenu
-        - Session
-        - IOContext
+        - [x] LaunchMenu
+        - [x] Session
+        - [x] IOContext
     - UI:
-        - menu items
-        - UILayer (include views)
-            - Menu (+categories)
-            - Field
-            - Content
+        - [x] menu items
+        - [x] UILayer (include views)
+        - [x] Menu (+categories)
+        - [x] Field
+        - [ ] Content
     - Interaction
-        - Actions basics
-        - Common menu item actions
-        - search system
-        - Undo/redo
-        - Key events (+shortcuts)
-    - Settings
+        - [ ] Actions basics
+        - [ ] Common menu item actions
+        - [x] search system
+        - [ ] Undo/redo
+        - [ ] Key events (+shortcuts)
+    - [ ] Settings
 
