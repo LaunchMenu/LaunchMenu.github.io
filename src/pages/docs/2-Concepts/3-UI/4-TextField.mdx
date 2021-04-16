@@ -14,7 +14,7 @@ The data model is rather simple, and takes care of the following functionality:
 -   Track the text selection/cursor
 -   Possibly provide a resource for locking this field to allow only 1 edit at a time
 
-```tsx title=ITextField source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/textFields/_types/ITextField.ts
+```tsx title=ITextField.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/textFields/_types/ITextField.ts
 export type ITextField = {
     /** The lock for this text resource */
     resource?: Resource;
@@ -63,7 +63,7 @@ Finally the controller is a simple [key handler]() and takes care of these aspec
 
 <!-- TODO: add reference -->
 
-For simple usage of a text field, all you have to do is create the data structure and pass it using a [UILayer]() class instance, which will take care of creating the `createStandardTextFieldKeyHandler` and `TextFieldView`:
+For simple usage of a text field, all you have to do is create the data structure and open it using a [UILayer]() class instance, which will take care of creating the `createStandardTextFieldKeyHandler` and `TextFieldView`:
 
 <!-- TODO: add reference -->
 
