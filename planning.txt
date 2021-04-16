@@ -246,12 +246,12 @@ in-depth:
         - [x] UILayer (include views)
         - [x] Menu (+categories)
         - [x] Field
-        - [ ] Content
+        - [x] Content
     - Interaction
         - [ ] Actions basics
         - [ ] Common menu item actions
         - [x] search system
-        - [ ] Undo/redo
+        - [x] Undo/redo
         - [ ] Key events (+shortcuts)
     - [ ] Settings
 

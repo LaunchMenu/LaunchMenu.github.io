@@ -166,6 +166,14 @@ const myView: IVisibleViewStackItem = {
 };
 ```
 
+### Data storage
+
+Note that `useState` and other component based state management should be avoided because of how views are managed. Views may be removed from both the virtual and real dom at any point, if they are covered by other layers on top. This means that when you return to this view, it will be instantiated from scratch and thus not maintain its state.
+
+Data storage should therefor be done in react life-cycle independent facilities, such as using [model-react fields](https://tarvk.github.io/model-react/examples/build/#Field).
+
+This choice may be worth reconsidering, but so far it hasn't been problematic in my experience.
+
 ## Paths
 
 UI layers can specify a path to give the user a rough idea of where in the application they are. This helps to visualize how many UI layers are opened below the current layer. The path specified by an `IUILayer` may be any path at all, and is a simple string. When you make a UI layer that extends `AbstractUILayer` you're however supposed to specify relative paths. These paths are automatically merged with the path of the layer below to obtain the absolute path. In these relative paths, you can use `..` to remove the last item of the parent path, and `.` to add yourself to to the same path as the parent.
