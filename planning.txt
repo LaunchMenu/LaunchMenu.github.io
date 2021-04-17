@@ -252,6 +252,6 @@ in-depth:
         - [ ] Common menu item actions
         - [x] search system
         - [x] Undo/redo
-        - [ ] Key events (+shortcuts)
-    - [ ] Settings
+        - [x] Key events (+shortcuts)
+    - [x] Settings
 

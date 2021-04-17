@@ -261,7 +261,7 @@ In this example we show the two most interesting ways of defining children:
 
 Lastly we have a menu item type that can be used to store data at the same time as providing a UI to alter this data. So field menu items are essentially exactly what the name imples: A field as well as a menu item. These fields are [model-react fields](https://tarvk.github.io/model-react/examples/build/#Field), which means that it's simple to listen for the user altering its value.
 
-These field menu items allow us to easily create a menu of properties that the user can update. LaunchMenu comes with several build in types of field items, but also has a [`createFieldMenuItem` factory function](https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/menus/items/inputs/createFieldMenuItem.tsx) to create your own.
+These field menu items allow us to easily create a menu of properties that the user can update. LaunchMenu comes with several built-in types of field items, but also has a [`createFieldMenuItem` factory function](https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/menus/items/inputs/createFieldMenuItem.tsx) to create your own.
 
 ```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuItemsCustomField
 function createCheckboxMenuItem({
@@ -340,14 +340,14 @@ This example shows how a custom "checkbox" field item is created, and can then b
 Several factories for field menu items already exist and can be used directly.
 The following functions are available:
 
--   `createBooleanMenuItem`
--   `createStringMenuItem`
--   `createNumberMenuItem`
--   `createOptionMenuItem`
--   `createKeyPatternMenuItem`
--   `createGlobalKeyPatternMenuItem`
--   `createFileMenuItem`
--   `createColorMenuItem`
+-   [`createBooleanMenuItem`](#createBooleanMenuItem)
+-   [`createStringMenuItem`](#createStringMenuItem)
+-   [`createNumberMenuItem`](#createNumberMenuItem)
+-   [`createOptionMenuItem`](#createOptionMenuItem)
+-   [`createKeyPatternMenuItem`](#createKeyPatternMenuItem)
+-   [`createGlobalKeyPatternMenuItem`](#createGlobalKeyPatternMenuItem)
+-   [`createFileMenuItem`](#createFileMenuItem)
+-   [`createColorMenuItem`](#createColorMenuItem)
 
 Each of these allows for at least the following properties:
 
@@ -367,6 +367,11 @@ export type IInputTypeMenuItemData = {
     category?: ICategory;
     /** Content to show when this item is selected */
     content?: IViewStackItemView;
+    /** The icon for the item */
+    icon?:
+        | IThemeIcon
+        | ReactElement
+        | ((h?: IDataHook) => IThemeIcon | ReactElement | undefined);
     /** The extra action bindings */
     actionBindings?: ISubscribableActionBindings;
     /** Whether the field should be resetable to the initial value, defaults to false */

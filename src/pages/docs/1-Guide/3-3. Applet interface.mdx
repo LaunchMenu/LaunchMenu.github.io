@@ -31,7 +31,7 @@ We declared 4 bits of information about the applet:
 -   `name`: The title to use to display this applet as from within LaunchMenu
 -   `description`: A single line description of the applet
 -   `version`: The current version number of the applet
--   `icon`: Either the name of a build-in icon, or a custom react component used as an icon
+-   `icon`: Either the name of a built-in icon, or a custom react component used as an icon
 -   `tags` (optional): A list of additional terms associated to the applet, used for searching
 
 `as const` on line 7 (tip: line numbers can be toggled with the button at the top right of the code section) is a TypeScript construct that makes sure that `icon`'s type stores the literal icon name. This is required for `declare` not to error, since only some strings are available as icons. This is not required when you provide your own react element as an icon.
