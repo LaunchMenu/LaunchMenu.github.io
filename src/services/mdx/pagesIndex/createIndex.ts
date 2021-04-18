@@ -16,7 +16,10 @@ export async function createIndex(
         let p: INavItem | undefined = item;
         while (p && "children" in p && p.children && selected.length > 0) {
             const part = selected.shift();
-            p = p.children.find(item => "name" in item && item.name == part);
+            p.opened = true;
+            p = p.children.find(
+                item => "name" in item && item.name.toLowerCase() == part
+            );
         }
         if (p && "name" in p) p.selected = true;
 
@@ -40,6 +43,7 @@ async function createNavItem(dir: string): Promise<INavItem | undefined> {
     const files = await FS.readdir(dir);
     return {
         name,
+        opened: false,
         children: (
             await Promise.all(
                 files

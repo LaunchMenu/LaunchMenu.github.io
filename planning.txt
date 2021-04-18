@@ -248,8 +248,8 @@ in-depth:
         - [x] Field
         - [x] Content
     - Interaction
-        - [ ] Actions basics
-        - [ ] Common menu item actions
+        - [x] Actions basics
+        - [ ] Common actions
         - [x] search system
         - [x] Undo/redo
         - [x] Key events (+shortcuts)

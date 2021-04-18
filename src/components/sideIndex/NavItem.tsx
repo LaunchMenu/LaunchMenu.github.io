@@ -7,7 +7,8 @@ import {
     ListItemText,
     useTheme,
 } from "@material-ui/core";
-import {ExpandLess, ExpandMore} from "@material-ui/icons";
+import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import React, {FC, useCallback, useState} from "react";
 import {PlainLink} from "../PlainLink";
 
@@ -20,7 +21,7 @@ export const NavItem: FC<{
 
     path += "/" + item.name.replace(/ /g, "-");
 
-    const [opened, setOpened] = useState(true);
+    const [opened, setOpened] = useState(item.opened ?? true);
 
     const expandable = item.children && !item.link;
     const onClickCallback = useCallback(() => {
@@ -38,7 +39,12 @@ export const NavItem: FC<{
                 paddingLeft: depth * theme.spacing(3),
             }}>
             {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
-            {expandable && (opened ? <ExpandLess /> : <ExpandMore />)}
+            {expandable &&
+                (opened ? (
+                    <KeyboardArrowDownIcon />
+                ) : (
+                    <KeyboardArrowRightIcon />
+                ))}
             <ListItemText
                 primary={
                     item.selected ? (
@@ -102,5 +108,6 @@ export type INavItem =
           icon?: JSX.Element;
           children?: INavItem[];
           link?: string;
+          opened?: boolean;
       }
     | {divider: true};

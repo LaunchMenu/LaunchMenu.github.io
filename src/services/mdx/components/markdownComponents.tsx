@@ -15,6 +15,8 @@ import {YTPlayer} from "./YTPlayer";
 import {InlineCode} from "./Code";
 import {ComponentReference} from "./ComponentReference";
 import {GuideNav} from "./GuideNav";
+import {Tooltip} from "@material-ui/core";
+import {Text} from "../../../components/textStyles/Text";
 
 const autoFitImageRenderer: FC<{
     alt?: string;
@@ -79,6 +81,14 @@ const codeRender: FC<{
     );
 };
 
+const TooltipRenderer: FC<{title: ReactNode}> = ({title, children}) => (
+    <Tooltip
+        placement="bottom-start"
+        title={<Text css={{color: "white"}}>{title}</Text>}>
+        <span>{children}</span>
+    </Tooltip>
+);
+
 export const markdownComponents = {
     // Standard
     code: codeRender,
@@ -110,4 +120,5 @@ export const markdownComponents = {
     YTPlayer,
     ComponentReference,
     GuideNav,
+    Tooltip: TooltipRenderer,
 };
