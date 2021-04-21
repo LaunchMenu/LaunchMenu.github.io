@@ -44,17 +44,13 @@ This context can for instance be used to extract settings. The `dataHook` is a [
 
 This function can return only a single search result directly, but it can also return children and a pattern matcher. These children aren't straight up results themselves, they are instead `ISearchable`s. This is essentially a function of the same shape as the `search` function we're describing here is. This allows for execution of recursive searches, that can quickly dynamically update.
 
-You can learn more about this on the in-depth [search page]().
-
-<!-- TODO: add reference -->
+You can learn more about this on the in-depth [search page](/docs/concepts/interaction/search-system).
 
 ### Open
 
 The open function is called with an object including the IOContext `context` and a `onClose` callback. This `onClose` callback should be invoked when you close your UI again. The context can be used to open any UI, extract settings, etc.
 
-You can learn more about this on the in-depth [IOContext page]() and the in-depth [UILayer page]().
-
-<!-- TODO: add references -->
+You can learn more about this on the in-depth [IOContext page](/docs/concepts/base/iocontext) and the in-depth [UILayer page](/docs/concepts/ui/uilayers).
 
 ### GlobalContextMenuBindings
 
@@ -113,9 +109,7 @@ export default declare({
 
 Note that in the second example we created a binding for `globalContextFolderHandler`. You can create bindings to other folders in a similar way, or directly for `contextMenuAction`.
 
-To learn more about actions and the context menu, check the in-depth [actions page]().
-
-<!-- TODO: add reference -->
+To learn more about actions and the context menu, check the in-depth [actions page](/docs/concepts/interaction/actions) and [common actions page](/docs/concepts/interaction/common-actions#context-menu-action).
 
 ## Core access
 
@@ -198,9 +192,7 @@ export default declare({
 });
 ```
 
-To learn more about the `LaunchMenu` instance, see the in-depth [LaunchMenu page]().
-
-<!-- TODO: add reference -->
+To learn more about the `LaunchMenu` instance, see the in-depth [LaunchMenu page](/docs/concepts/base/launchmenu).
 
 ### WithSession
 
@@ -247,9 +239,7 @@ export default declare({
 });
 ```
 
-To learn more about sessions, see the in-depth [sessions page]().
-
-<!-- TODO: add reference -->
+To learn more about sessions, see the in-depth [sessions page](/docs/concepts/base/session).
 
 ### Init + withSession
 

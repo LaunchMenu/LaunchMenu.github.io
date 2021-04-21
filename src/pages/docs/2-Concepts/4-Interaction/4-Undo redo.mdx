@@ -3,9 +3,9 @@
 In many cases users want to have the ability to undo an action they just performed. LaunchMenu's `UndoRedoFacility` and `ICommand` can be used to provide this functionality to users.
 Not all events have to have undo functionality. We generally think that UI interactions don't have to allow undoing from users, but meaningful state changes should be undoable. For example, opening of a menu doesn't have to be undoable, but something like moving a note to a new category should be undoable.
 
-Commands are simply objects that allow for executing and reverting of actions. The `UndoRedoFacility` takes care of tracking these commands, and executing or reverting them in the right order. A shared instance of this facility can be found in the [`IOContext`](). <!-- TODO: add reference -->
+Commands are simply objects that allow for executing and reverting of actions. The `UndoRedoFacility` takes care of tracking these commands, and executing or reverting them in the right order. A shared instance of this facility can be found in the [`IOContext`](/docs/concepts/base/iocontext).
 
-The execute action also has built-in support for command execution, which you can learn more about on the [actions page](). <!-- TODO: add reference -->
+The execute action also has built-in support for command execution, which you can learn more about on the [actions page](/docs/concepts/interaction/actions).
 
 Below is an example of using one of the simplest built-in commands, the `SetFieldCommand`:
 

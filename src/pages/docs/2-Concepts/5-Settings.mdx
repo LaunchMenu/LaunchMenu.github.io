@@ -1,6 +1,6 @@
 # Settings
 
-Every applet can define a set of settings that users can then adjust. The settings structure is essentially built-up of [folder items]() and [field items](). This allows use to create a logical data hierarchy for accessing the settings, as well as a user interface that can be used to navigate and alter these settings. <!-- TODO: add references -->
+Every applet can define a set of settings that users can then adjust. The settings structure is essentially built-up of [folder items](/docs/concepts/ui/menuitems#folder-menu-items) and [field items](/docs/concepts/ui/menuitems#field-menu-items). This allows use to create a logical data hierarchy for accessing the settings, as well as a user interface that can be used to navigate and alter these settings.
 
 Instead of using the normal `createFolderMenuItem` and e.g. `createBooleanMenuItem` we make use of `createSettingsFolder` and `createBooleanSetting`. These functions still create menu items - and are in fact only light wrappers of the other functions - but already configure these items to make use of the `settingPatternMatcher`, add an icon, and configure the field to be resetable.
 
@@ -47,11 +47,11 @@ Now the `Hello world` and `Bye world` items both have content that uses the `use
 
 ## Settings context
 
-The settings context is used to store instances of the setting trees that can be created from the settings declaration. The [`IOContext`]() <!-- TODO: add link --> will contain such a settings context. The settings context within the `IOContext` obtained from a [`session`]() <!-- TODO: add link --> will contain instances of the settings trees that have been loaded with the settings as saved on disk.
+The settings context is used to store instances of the setting trees that can be created from the settings declaration. The [`IOContext`](/docs/concepts/base/iocontext) will contain such a settings context. The settings context within the `IOContext` obtained from a [`session`](/docs/concepts/base/session) will contain instances of the settings trees that have been loaded with the settings as saved on disk.
 
 In case you try to access settings from a settings context that doesn't contain these settings, a fresh instance will be returned with the initial setting values. That means that these settings won't be saved on disk, but can still be used as normal.
 
-```ts title=SettingsContext.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/feature/globalKeyListener/packages/core/src/settings/SettingsContext.ts
+```ts title=SettingsContext.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/settings/SettingsContext.ts
 export class SettingsContext {
     /**
      * Creates a new empty settings context
@@ -290,9 +290,9 @@ So overall we recommend to try and change the structure of your settings as litt
 
 The `SettingsFile` class is used to synchronize the settings with a file on disk. You probably won't have to worry about this, since it's take care of by LaunchMenu, but it might be good to know about for advanced usage. You could for instance create your own settings structure that's not managed by LaunchMenu to manage other data within your application.
 
-The `SettingsFile` class builds on top of several layers of file management classes. These classes can be used for other file management too, and can be viewed on [github](https://github.com/LaunchMenu/LaunchMenu/tree/feature/globalKeyListener/packages/core/src/settings/storage/fileTypes).
+The `SettingsFile` class builds on top of several layers of file management classes. These classes can be used for other file management too, and can be viewed on [github](https://github.com/LaunchMenu/LaunchMenu/tree/master/packages/core/src/settings/storage/fileTypes).
 
-```ts title=SettingsFile.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/feature/globalKeyListener/packages/core/src/settings/storage/fileTypes/SettingsFile.ts
+```ts title=SettingsFile.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/settings/storage/fileTypes/SettingsFile.ts
 export class SettingsFile<
         F extends ISettingsFolderMenuItem = ISettingsFolderMenuItem,
         V extends IJSON = IJSON
@@ -622,12 +622,10 @@ const items = [
 
 Now when we open the `example` applet, we can search for `hello world` and see that the content contains a date. We can then go into the settings and change `Date of birth` (by for instance searching for `"setting: date"`) and we will see the date in the content update. We could probably create a nicer interface for entering dates, but for this example we kept it rather simplistic.
 
-You can also have a look at the custom [field menu item example]() on the menu items page. This is essentially a setting, except that you will additionally have to add the following config to the field item:
+You can also have a look at the custom [field menu item example](/docs/concepts/ui/menuitems#field-menu-items) on the menu items page. This is essentially a setting, except that you will additionally have to add the following config to the field item:
 
 ```ts title=settingsItemProperties.ts
 icon: "settings",
 searchPattern: settingPatternMatcher,
 resetable: true,
 ```
-
-<!-- TODO: add reference -->

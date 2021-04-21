@@ -23,9 +23,7 @@ export type IDisposableKeyEventListener = {
 };
 ```
 
-<!-- TODO: add references -->
-
-Below is an example from the [menus page]() where we can see disposal of such a handler:
+Below is an example from the [menus page](/docs/concepts/ui/menu) where we can see disposal of such a handler:
 
 ```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuKeyHandler
 export default declare({
@@ -64,11 +62,9 @@ export default declare({
 
 ## Propagation
 
-Using the [`UILayer`]() and [`IOContext`]() components a stack of these listeners will be created. Events are then dispatched from top to bottom. Whenever propagation is stopped by the callback returning `true`, it will prevent the listeners below from receiving the event.
+Using the [`UILayer`](/docs/concepts/ui/uilayers) and [`IOContext`](/docs/concepts/base/iocontext) components a stack of these listeners will be created. Events are then dispatched from top to bottom. Whenever propagation is stopped by the callback returning `true`, it will prevent the listeners below from receiving the event.
 
-<!-- TODO: add references -->
-
-The [`createStandardMenuKeyHandler`]() <!-- TODO: add reference to menu controller section --> will also use the [`keyHandlerAction`]() <!-- TODO: add reference to action page keyhandler section --> to propagate key events to items in the menu, as well as the [`contextMenuAction`]() <!-- TODO: add reference to action page keyhandler section --> to propagate events to items in the context menu of the current selection. Bindings of the `keyHandlerAction` are event listeners similar to `IKeyEventListener`, except they can indicate to stop `immediate propagation` as well, and contain some more context data:
+The [`createStandardMenuKeyHandler`](/docs/concepts/ui/menu#controller) will also use the [`keyHandlerAction`](/docs/concepts/interaction/common-actions#key-handler-action) to propagate key events to items in the menu, as well as the [`contextMenuAction`](/docs/concepts/interaction/common-actions#context-menu-action) to propagate events to items in the context menu of the current selection. Bindings of the `keyHandlerAction` are event listeners similar to `IKeyEventListener`, except they can indicate to stop `immediate propagation` as well, and contain some more context data:
 
 ```ts title=IItemKeyHandler.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/actions/types/keyHandler/_types/IItemKeyHandler.ts
 export type IItemKeyHandler = {
@@ -100,7 +96,7 @@ type ISyncItemKeyHandlerResponse =
 
 The items are logically on the same level, so when propagation is stopped all items will still receive the events, but layers below won't receive them. If immediate propagation is stopped even items on the same level but later in line won't receive the event anymore.
 
-For usage examples see the [`keyHandlerAction`]() <!-- TODO: add reference --> on the actions page.
+For usage examples see the [`keyHandlerAction`](/docs/concepts/interaction/common-actions#key-handler-action) on the actions page.
 
 ## Key event
 
@@ -448,7 +444,7 @@ export class KeyHandler {
 }
 ```
 
-The global instance of this class within the instance of LaunchMenu could be used to emit your own fake/virtual key events, adding global listeners, or checking if a key is currently held down. To access this instance, see the [LaunchMenu class page](). <!-- TODO: add reference -->
+The global instance of this class within the instance of LaunchMenu could be used to emit your own fake/virtual key events, adding global listeners, or checking if a key is currently held down. To access this instance, see the [LaunchMenu class page](/docs/concepts/base/launchmenu).
 
 ## Global key listeners
 

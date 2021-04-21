@@ -54,18 +54,14 @@ The views are pretty advanced react components and take care of the following fu
 -   Handle mouse text selection
 -   Perform syntax highlighting
 
-Finally the controller is a simple [key handler]() and takes care of these aspects:
+Finally the controller is a simple [key handler](/docs/concepts/interaction/key-handlers) and takes care of these aspects:
 
 -   Text entering
 -   Text deletion
 -   Cursor movement/text selection (arrows + home/end, ctrl, shift)
 -   Text copy and paste
 
-<!-- TODO: add reference -->
-
-For simple usage of a text field, all you have to do is create the data structure and open it using a [UILayer]() class instance, which will take care of creating the `createStandardTextFieldKeyHandler` and `TextFieldView`:
-
-<!-- TODO: add reference -->
+For simple usage of a text field, all you have to do is create the data structure and open it using a [UILayer](/docs/concepts/ui/uilayers) class instance, which will take care of creating the `createStandardTextFieldKeyHandler` and `TextFieldView`:
 
 ```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/textField
 export default declare({

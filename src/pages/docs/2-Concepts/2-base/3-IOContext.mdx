@@ -60,10 +60,10 @@ export type IIOContext = {
 
 ## Usage
 
-There are several situations in whichthe context becomes of use:
+There are several situations in which the context becomes of use:
 
--   Wanting to dispatch [undoable commands]() <!-- TODO: add reference -->
--   Wanting to open new UI [using UI layers]() <!-- TODO: add reference -->
+-   Wanting to dispatch [undoable commands](/docs/concepts/interaction/undo-redo#commands)
+-   Wanting to open new UI [using UI layers](/docs/concepts/ui/uilayers)
 -   Wanting to extract settings
 
 And since all of these are quite common, we're passing the context around to as manu places as possible. Here's a list of common places that you have access to the context:
@@ -71,7 +71,7 @@ And since all of these are quite common, we're passing the context around to as 
 -   From [a search query](/docs/concepts/interaction/search-system#searchables)
 -   From [a open callback](http://localhost:3000/docs/concepts/applet-format#open)
 -   From a ui component using the `useIOContext` React hook
--   From [an execute handler]() <!-- TODO: add reference -->
+-   From [an execute handler](/docs/concepts/interaction/common-actions#execute-action)
 
 ## Overriding
 
@@ -88,7 +88,7 @@ const subContext = new IOContext({
 });
 ```
 
-By specifying an existing context as the parent, the parent's properties are inheretted. Additionally, the newly made sub-context is wrapped in a `SubIOContextLayer` [ui layer]() <!-- TODO: add reference --> and added to the original context's UI. This way, when any UI is added to the sub-context, it will also become part of the orginal context. When you're done with your custom context, you can call `.destroy()` to close all its UI and remove it from its parent.
+By specifying an existing context as the parent, the parent's properties are inheretted. Additionally, the newly made sub-context is wrapped in a `SubIOContextLayer` [ui layer](/docs/concepts/ui/uilayers) and added to the original context's UI. This way, when any UI is added to the sub-context, it will also become part of the orginal context. When you're done with your custom context, you can call `.destroy()` to close all its UI and remove it from its parent.
 
 ## Custom context
 

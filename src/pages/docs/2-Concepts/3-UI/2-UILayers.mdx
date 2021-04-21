@@ -215,12 +215,11 @@ When this example is opened, 3 layers are added to the context. You will see tha
 
 A standard UILayer class is provided that can be used to easily construct a UILayer from a collection of separate components. This class will also supplement your data to the best of its abilities using default implementations and features:
 
--   Model completion: If you provide an [`IMenu`]() -, [`ITextField`]() -, or [`IContent`]() data model, standard key handlers and views are automatically added if absent to make your data interactive and visualize it
--   Searchable menu: If you provide an [`IMenu`]() data model, it will automatically add a searchfield to search in that menu unless `searchable` is explicitly set to false
--   Menu content: If you provide an [`IMenu`]() data model, it will automatically show the content of the selected menu item, unless `hideItemContent` is explicitly set to true
+-   Model completion: If you provide an [`IMenu`](/docs/concepts/ui/menu) -, [`ITextField`](/docs/concepts/ui/textfield) -, or [`IContent`](/docs/concepts/ui/content) data model, standard key handlers and views are automatically added if absent to make your data interactive and visualize it
+-   Searchable menu: If you provide an [`IMenu`](/docs/concepts/ui/menu) data model, it will automatically add a searchfield to search in that menu unless `searchable` is explicitly set to false
+-   Menu content: If you provide an [`IMenu`](/docs/concepts/ui/menu) data model, it will automatically show the content of the selected menu item, unless `hideItemContent` is explicitly set to true
 -   Overlays: Transparent overlays are automatically added for sections that no content was provided for, to indicate that data doesn't belong to this layer
 -   Key barrier: The opened UILayer automatically prevents layers below from receiving key events
-<!-- TODO: add references -->
 
 ### Interface
 
@@ -335,10 +334,9 @@ This example simply opens up a text field and content with the same text as the 
 
 To learn more about the used views and handlers, check the the corresponding section for each of the UI types:
 
--   [Menu]()
--   [TextField]()
--   [Content]()
-<!-- TODO: add reference -->
+-   [Menu](/docs/concepts/ui/menu)
+-   [TextField](/docs/concepts/ui/textfield)
+-   [Content](/docs/concepts/ui/content)
 
 ### Searchable menu
 
@@ -963,11 +961,11 @@ LaunchMenu has several built-in layers that are used throughout the application,
 
 ### InputLayer
 
-The [`InputLayer`](https://github.com/LaunchMenu/LaunchMenu/blob/feature/globalKeyListener/packages/core/src/uiLayers/types/input/InputLayer.tsx) class takes in a [model-react field](https://tarvk.github.io/model-react/examples/build/#Field) and a config. When opened, it allows the user to update this field's value using a text field.
+The [`InputLayer`](https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/uiLayers/types/input/InputLayer.tsx) class takes in a [model-react field](https://tarvk.github.io/model-react/examples/build/#Field) and a config. When opened, it allows the user to update this field's value using a text field.
 
 Below is the interface of the class:
 
-```ts title=InputLayer.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/feature/globalKeyListener/packages/core/src/uiLayers/types/input/InputLayer.tsx spoiler
+```ts title=InputLayer.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/uiLayers/types/input/InputLayer.tsx spoiler
 export class InputLayer<T> extends AbstractUILayer {
     /**
      * Creates a new input field
@@ -1033,11 +1031,11 @@ There is also a corresponding `promptInputExecuteHandler` to open this layer wit
 
 ### SelectLayer
 
-The [`SelectLayer`](https://github.com/LaunchMenu/LaunchMenu/blob/feature/globalKeyListener/packages/core/src/uiLayers/types/select/SelectLayer.tsx) class takes in a [model-react field](https://tarvk.github.io/model-react/examples/build/#Field) and a config. When opened, it allows the user to update this field's value by selecting one of the options. Depending on the configuration it also allows for entering a custom option.
+The [`SelectLayer`](https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/uiLayers/types/select/SelectLayer.tsx) class takes in a [model-react field](https://tarvk.github.io/model-react/examples/build/#Field) and a config. When opened, it allows the user to update this field's value by selecting one of the options. Depending on the configuration it also allows for entering a custom option.
 
 Below is the interface of the class:
 
-```ts title=SelectLayer.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/feature/globalKeyListener/packages/core/src/uiLayers/types/select/SelectLayer.tsx spoiler
+```ts title=SelectLayer.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/uiLayers/types/select/SelectLayer.tsx spoiler
 export class SelectLayer<T> extends InputLayer<T> {
     /**
      * Creates a new select UI
@@ -1124,11 +1122,11 @@ There is also a corresponding `promptSelectExecuteHandler` to open this layer wi
 
 ### MultiSelectLayer
 
-The [`MultiSelectLayer`](https://github.com/LaunchMenu/LaunchMenu/blob/feature/globalKeyListener/packages/core/src/uiLayers/types/multiSelect/MultiSelectLayer.tsx) class takes in a [model-react field](https://tarvk.github.io/model-react/examples/build/#Field) and a config. When opened, it allows the user to update this field's value by selecting one or more options. Depending on the configuration it also allows for entering a custom option.
+The [`MultiSelectLayer`](https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/uiLayers/types/multiSelect/MultiSelectLayer.tsx) class takes in a [model-react field](https://tarvk.github.io/model-react/examples/build/#Field) and a config. When opened, it allows the user to update this field's value by selecting one or more options. Depending on the configuration it also allows for entering a custom option.
 
 Below is the interface of the class:
 
-```ts title=MultiSelectLayer.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/feature/globalKeyListener/packages/core/src/uiLayers/types/multiSelect/MultiSelectLayer.tsx spoiler
+```ts title=MultiSelectLayer.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/uiLayers/types/multiSelect/MultiSelectLayer.tsx spoiler
 export class MultiSelectLayer<T> extends AbstractUILayer {
     /**
      * Creates a new select UI
@@ -1220,13 +1218,13 @@ There is also a corresponding `promptMultiSelectExecuteHandler` to open this lay
 
 ### ContextMenuLayer
 
-The [ContextMenuLayer](https://github.com/LaunchMenu/LaunchMenu/blob/feature/globalKeyListener/packages/core/src/uiLayers/types/context/ContextMenuLayer.tsx) is a rather specific layer, just for correctly showing a context menu. It probably won't see much reuse within LaunchMenu for other purpose than showing the context menu, but it could serve as a simple example.
+The [ContextMenuLayer](https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/uiLayers/types/context/ContextMenuLayer.tsx) is a rather specific layer, just for correctly showing a context menu. It probably won't see much reuse within LaunchMenu for other purpose than showing the context menu, but it could serve as a simple example.
 
 ### MenuSearchLayer
 
-The [MenuSearch](https://github.com/LaunchMenu/LaunchMenu/blob/feature/globalKeyListener/packages/core/src/uiLayers/types/menuSearch/MenuSearch.tsx) layer is a layer that takes care of all searching needs. It will show a search field, and open up a dedicated search menu when a query is entered. The constructor takes a simple configuration:
+The [MenuSearch](https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/uiLayers/types/menuSearch/MenuSearch.tsx) layer is a layer that takes care of all searching needs. It will show a search field, and open up a dedicated search menu when a query is entered. The constructor takes a simple configuration:
 
-```ts title=MenuSearch.tsx source=https://github.com/LaunchMenu/LaunchMenu/blob/feature/globalKeyListener/packages/core/src/uiLayers/types/menuSearch/MenuSearch.tsx spoiler
+```ts title=MenuSearch.tsx source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/uiLayers/types/menuSearch/MenuSearch.tsx spoiler
 export class MenuSearch extends AbstractUILayer {
     /**
      * Creates a new SearchField which can be used to search within a menu

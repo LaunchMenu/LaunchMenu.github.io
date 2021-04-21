@@ -6,9 +6,7 @@ The content section can be used to provide the user with readable content. It's 
 -   view: A react component to visualize the data
 -   controller: A key handler to interact with the data
 
-When talking about content we're either talking about the data model, or the entire setup that includes all 3 aspects. There is only a single standard implementation provided for each component, but as can be read on the [UILayers page]() as well as seen on the [text fields page]() and the [controller section](#controller) any custom data can be shown in the content section of LaunchMenu.
-
-<!-- TODO: add references -->
+When talking about content we're either talking about the data model, or the entire setup that includes all 3 aspects. There is only a single standard implementation provided for each component, but as can be read on the [UILayers page](/docs/concepts/ui/uilayers) as well as seen on the [text fields page](/docs/concepts/ui/textfield#multiline) and the [controller section](#controller) any custom data can be shown in the content section of LaunchMenu.
 
 The data model of content is quite simple because of this limited behavior, and takes care of the following functionality:
 
@@ -64,13 +62,11 @@ The view is once again a rather simple, and is a React component wrapping the co
 -   Measure the content's height
 -   Smoothly scroll to the content's offset
 
-Finally the controller is a simple [key handler]() and takes care of these aspects:
+Finally the controller is a simple [key handler](/docs/concepts/interaction/key-handlers) and takes care of these aspects:
 
 -   Set the scroll percentage of the content
 
-<!-- TODO: add reference -->
-
-For simple usage of the content class, all you have to do is create the data structure and open it using a [UILayer]() class instance, which will take care of creating the `createStandardContentKeyHandler` and `ContentView`:
+For simple usage of the content class, all you have to do is create the data structure and open it using a [UILayer](/docs/concepts/ui/uilayers) class instance, which will take care of creating the `createStandardContentKeyHandler` and `ContentView`:
 
 ```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/content
 export default declare({

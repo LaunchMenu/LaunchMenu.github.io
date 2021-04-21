@@ -2,7 +2,7 @@
 
 Actions are a way of dynamically adding data to menu items, which also allow data to be extracted from a selection of items at a time.
 
-Actions are a little difficult to grasp, but very powerful and flexible. This page will talk about the general concept of actions, while the [action types page]() <!-- TODO: add reference --> goes over specific action instances used in LaunchMenu.
+Actions are a little difficult to grasp, but very powerful and flexible. This page will talk about the general concept of actions, while the [common actions page](/docs/concepts/interaction/common-actions) goes over specific action instances used in LaunchMenu.
 
 ## Justification
 
@@ -850,7 +850,7 @@ The interface of the standard `createAction` factory to create these actions is 
 
 The exact interface looks as follows:
 
-```ts title=createAction.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/feature/globalKeyListener/packages/core/src/actions/createAction.ts spoiler
+```ts title=createAction.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/actions/createAction.ts spoiler
 /**
  * Creates an action that conforms to all constraints of a proper action
  * @param actionInput The data to construct the action from
@@ -891,7 +891,7 @@ IAction<I, O, P> & {
 
 Actions created using this factory will automatically contain a `.createBinding` method that can be used to create a binding for this action. Action bindings follow a quite simple interface:
 
-```ts title=IActionBinding.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/feature/globalKeyListener/packages/core/src/actions/_types/IActionBinding.ts
+```ts title=IActionBinding.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/actions/_types/IActionBinding.ts
 export type IActionBinding<A extends IAction = IAction> = {
     /** The action that this binding is for */
     action: A;
@@ -951,7 +951,7 @@ listBulletPointHandler.setBulletPoint("*");
 
 In addition to binding data, the `core` function actually also receives: the binding indices, model-react date hook; and items `.get` was called on:
 
-```ts title=IActionTransformer.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/feature/globalKeyListener/packages/core/src/actions/_types/IActionTransformer.ts
+```ts title=IActionTransformer.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/actions/_types/IActionTransformer.ts
 export type IActionTransformer<I, O, AB extends IActionBinding | void> = {
     /**
      * Applies this action transformer to the given bindings, used internally for the `get` method
@@ -981,4 +981,4 @@ type IActionResult<AB extends IActionBinding | void, O> = {
 
 ## Common LaunchMenu usage
 
-Actions have several common usages within LaunchMenu, all related to menu items. The different kinds of uses are discussed on the [Common actions page](). <!-- TODO: add reference -->
+Actions have several common usages within LaunchMenu, all related to menu items. The different kinds of uses are discussed on the [common actions page](/docs/concepts/interaction/common-actions).

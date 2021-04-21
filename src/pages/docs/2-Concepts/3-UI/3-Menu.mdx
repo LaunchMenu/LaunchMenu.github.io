@@ -101,7 +101,7 @@ The views are simply react components and take care of the following functionali
 -   Visually scrolling to the cursor in the menu
 -   Providing item highlight styling and passing highlight data to item views
 
-Finally the controller is just a [key handler]() and takes care of these aspects:
+Finally the controller is just a [key handler](/docs/concepts/interaction/key-handlers) and takes care of these aspects:
 
 -   Moving the cursor
 -   Changing the selection
@@ -110,11 +110,9 @@ Finally the controller is just a [key handler]() and takes care of these aspects
 -   Opening the context menu for a selection
 -   Forwarding key events to items
 
-<!-- TODO: add reference -->
-
 ## Categories
 
-Items in menus can be categorized (I.e. grouped according to a category) based on the categories they specify using the [`getCategoryAction`]() <!-- TODO: add reference -->. These categories are simply menu items with a bit of extra fixed contextual data:
+Items in menus can be categorized (I.e. grouped according to a category) based on the categories they specify using the [`getCategoryAction`](/docs/concepts/interaction/common-actions#category-action). These categories are simply menu items with a bit of extra fixed contextual data:
 
 ```ts title=ICategory source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/actions/types/category/_types/ICategory.ts
 export type ICategory = {
@@ -167,7 +165,7 @@ How categories are sorted can be configured on the menu data models, but by defa
 The items created with the `createStandardCategory` factory don't contain any execute handlers, and are therefore not selectable in the menu. In some cases you do want categories themselves to be selectable however. For these situations we have the `createAdvancedCategory` factory function.
 This factory will create items that also have some styling to appropriately visually disconnect different categories of items, but also remains visually in the foreground and selectable like other items.
 
-The example below shows off a very basic interactive category, but the possible config data is roughly equivalent to what can be passed to [`createStandardMenuItem`]() <!-- TODO: add docs reference -->.
+The example below shows off a very basic interactive category, but the possible config data is roughly equivalent to what can be passed to [`createStandardMenuItem`](/docs/concepts/ui/menuitems#standard-menu-items).
 
 ```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuAdvancedCategories
 const interactiveCategory = createAdvancedCategory({
@@ -197,7 +195,7 @@ We can also add whatever other action bindings to the advanced categories, meani
 
 ## View
 
-There is only 1 standard view for menus as of right now: `MenuView`. This is simply a react component that can be instantiated given a menu to show. When using the [`UILayer` class]() <!-- TODO: add reference --> this view will automatically be created for any specified menus without views, but it's also possible to create your own views.
+There is only 1 standard view for menus as of right now: `MenuView`. This is simply a react component that can be instantiated given a menu to show. When using the [`UILayer` class](/docs/concepts/ui/uilayers#uilayer-class) this view will automatically be created for any specified menus without views, but it's also possible to create your own views.
 
 The example below is rather extensive, but shows off how a loading indicator could be added to a menu. The [`SearchMenu`](#searchmenu) (an implementation of `IMenu`) automatically adds a loading state metadata to `getItems`, allowing the view to show whether the menu is still searching. This metadata is transferred through the [model-react data hooks](https://tarvk.github.io/model-react/examples/build/).
 
@@ -328,7 +326,7 @@ export default declare({
 });
 ```
 
-When the `example` applet is opened, any searches will show a spinner as long as a search is going on. By providing a custom search binding for our items we are able to simulate some asynchronous data loading. In this case it will allow `subitems` to be found only if the query contains the character `r`. To learn more about the search system, check the [search page]() <!-- TODO: add reference -->. Our custom `LoadingMenuView` then uses the model-react `Loader`component supplied with a simple spinner to show as long as data is loading.
+When the `example` applet is opened, any searches will show a spinner as long as a search is going on. By providing a custom search binding for our items we are able to simulate some asynchronous data loading. In this case it will allow `subitems` to be found only if the query contains the character `r`. To learn more about the search system, check the [search page](/docs/concepts/interaction/search-system). Our custom `LoadingMenuView` then uses the model-react `Loader`component supplied with a simple spinner to show as long as data is loading.
 
 ### Search highlight
 
@@ -379,7 +377,7 @@ Now when `example` is opened, it will automatically highlight `world` in its ite
 
 ## Controller
 
-most of the interaction with the menu is performed through keyboard controls. We have one primary factory called `createStandardMenuKeyHandler` which allows you to create a standard keyboard controller for any menu. When using the [`UILayer` class]() <!-- TODO: add reference --> this controller will automatically be created for any specified menus without views, but it's also possible to create your own controller or customize this standard controller:
+most of the interaction with the menu is performed through keyboard controls. We have one primary factory called `createStandardMenuKeyHandler` which allows you to create a standard keyboard controller for any menu. When using the [`UILayer` class](/docs/concepts/ui/uilayers#uilayer-class) this controller will automatically be created for any specified menus without views, but it's also possible to create your own controller or customize this standard controller:
 
 ```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuKeyHandler
 const settings = createSettings({
@@ -861,7 +859,7 @@ When you open `example` you will see two items sorted by their priority. Items w
 
 ### SearchMenu
 
-`SearchMenu` allows us to easily search within a list of items using a given query. By using the [`SearchExecuter`]() <!-- TODO: add reference --> searches will automatically change when the query is updated.
+`SearchMenu` allows us to easily search within a list of items using a given query. By using the [`SearchExecuter`](/docs/concepts/interaction/search-system#search-executer) searches will automatically change when the query is updated.
 
 ```ts title=SearchMenu.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/menus/menu/SearchMenu.tsx spoiler
 export class SearchMenu extends PrioritizedMenu {
@@ -966,4 +964,4 @@ export default declare({
 });
 ```
 
-When you open `example` you will see that only `Hello world` was found, and that `Hell` was highlighted. Since we didn't indicate `searchable: false` on the UILayer, we can still search within this menu too. You can learn more about this on the [`UILayer` page ]() <!-- TODO: add reference to searchable section -->.
+When you open `example` you will see that only `Hello world` was found, and that `Hell` was highlighted. Since we didn't indicate `searchable: false` on the UILayer, we can still search within this menu too. You can learn more about this on the [`UILayer` page ](/docs/concepts/ui/uilayers#searchable-menu).

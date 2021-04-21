@@ -19,9 +19,7 @@ Finally, all 4 of the sections can be hidden at any time. This can for instance 
 
 These different sections are managed using `UILayers`. Each session in LaunchMenu has its own `IOContext` which is - amongst other things - used to store a stack of `UILayers`.
 
-<!-- TODO: add page reference -->
-
-We can obtain the `IOContext` in a number of ways which you can read about on the in-depth [IOContext page](), but for now we will obtain it through the `open` callback function:
+We can obtain the `IOContext` in a number of ways which you can read about on the in-depth [IOContext page](/docs/concepts/base/iocontext), but for now we will obtain it through the `open` callback function:
 
 ```tsx title=index.tsx
 ...
@@ -100,9 +98,7 @@ There are several built-in UI layer implementations, but the most general of the
 
 ### Advanced
 
-There are several built-in UI layer types, and you can easily make your own layers too. These layers themselves are also reusable. The standard `UILayer` makes use of the `MenuSearch` layer to provide search functionality. You can learn more about these layers on the in-depth [UILayer page]().
-
-<!-- TODO: add reference -->
+There are several built-in UI layer types, and you can easily make your own layers too. These layers themselves are also reusable. The standard `UILayer` makes use of the `MenuSearch` layer to provide search functionality. You can learn more about these layers on the in-depth [UILayer page](/docs/concepts/ui/uilayers).
 
 ## Menus
 
@@ -358,10 +354,8 @@ Fields and content follow the same structure as menus in the sense that they are
 
 You can learn about each section by checking their in-depth page:
 
--   [Menu page]()
--   [Field page]()
--   [Content page]()
-
-<!-- TODO: add references -->
+-   [Menu page](/docs/concepts/ui/menu)
+-   [Field page](/docs/concepts/ui/textfield)
+-   [Content page](/docs/concepts/ui/content)
 
 <GuideNav prev="Guide/5.-Content-and-theming" next="Guide/7.-Settings" />

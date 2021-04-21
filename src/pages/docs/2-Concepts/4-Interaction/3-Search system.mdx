@@ -205,9 +205,7 @@ export default declare({
 
 New if you search for `"peo"` you will find both the results of the main searchables, since they test for a substring match, as well as all the people that were passed as children of `people`. `staticSubSearchables` also is a list of searchables, but these searchables don't have any criteria for returning their item. For that reason, if `people` matches the query, all these children come with them for free.
 
-As you can tell by these examples, making your own custom searches would be a lot of effort, but possible. In addition to what we've seen so far, you would also need to take care of item result highlighting. Currently some text in the retrieved items does highlight, but this highlighting is done based on the default simple search action. These search actions will be discussed in more detail the [search action section](#Search-action) since they allow to use a much simpler standardized search implementation instead. You can learn more about adding your own highlighting on the in-depth [menu item page]().
-
-<!-- TODO: add reference -->
+As you can tell by these examples, making your own custom searches would be a lot of effort, but possible. In addition to what we've seen so far, you would also need to take care of item result highlighting. Currently some text in the retrieved items does highlight, but this highlighting is done based on the default simple search action. These search actions will be discussed in more detail the [search action section](#Search-action) since they allow to use a much simpler standardized search implementation instead. You can learn more about adding your own highlighting on the in-depth [menu item page](/docs/concepts/ui/menuitems).
 
 ### Search patterns
 

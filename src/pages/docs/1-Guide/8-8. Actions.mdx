@@ -10,9 +10,7 @@ Actions provide a means for menu items to dynamically interface with other aspec
 -   Retrieving actions to show in the context menu of the selected items
 -   Handling events such as `onSelect` or `onCursor`
 
-Actions are constructed in such a way that one action `A` can specialize another action `B`. We refer to such a specialization `A` as a handler of action `B`, since it handles some of the implementation details. A handler action can also be made for another handler action. We will however only introduce the basics on this page, to learn more about handlers checkout the in-depth [actions page]().
-
-<!-- TODO: add reference -->
+Actions are constructed in such a way that one action `A` can specialize another action `B`. We refer to such a specialization `A` as a handler of action `B`, since it handles some of the implementation details. A handler action can also be made for another handler action. We will however only introduce the basics on this page, to learn more about handlers checkout the in-depth [actions page](/docs/concepts/interaction/actions).
 
 I will demonstrate the basic idea of actions with an isolated example:
 
@@ -71,10 +69,8 @@ These actions might seem a little confusing and unnecessarily complex, but they 
 -   Action bindings can't clash with each other like keys on an object would (yes I know this could alternatively be achieved using symbols)
 -   Actions don't need to know anything about the items they operate on, they don't depend on bindings being present or not
 -   Actions are completely strictly typed
--   Actions can be specialized/extended, you can learn more about this on the in-depth [actions page]()
+-   Actions can be specialized/extended, you can learn more about this on the in-depth [actions page](/docs/concepts/interaction/actions)
 -   Actions can operate on multiple items at once
-
-<!-- TODO: add reference -->
 
 ## Context actions
 
@@ -212,9 +208,7 @@ The priority is represented as an array of numbers, where we start at the first 
 -   `[Priority.MEDIUM, Priority.MEDIUM, Priority.MEDIUM, Priority.HIGH] > [Priority.MEDIUM, Priority.MEDIUM, Priority.MEDIUM, Priority.MEDIUM]`
 -   `[12, 8] < [12, 12]`
 
-You can learn more about these priorities on the in-depth [search page]() (priorities are also very important for search results).
-
-<!-- TODO: add reference -->
+You can learn more about these priorities on the in-depth [search page](/docs/concepts/interaction/search-system#priorities) (priorities are also very important for search results).
 
 The `contextItem` support several more properties, or even a completely custom item. One particularly interesting property is the shortcut property, which allows you to attach a shortcut that can trigger this action when the item is selected:
 
@@ -337,8 +331,6 @@ Now when you search for `world` and have a selection of items, you can execute t
 
 ## Advanced
 
-Actions are very powerful and allow you to do much more than just adding new context items. If you wan to learn more about them, check the in-depth [actions page]().
-
-<!-- TODO: add reference -->
+Actions are very powerful and allow you to do much more than just adding new context items. If you wan to learn more about them, check the in-depth [actions page](/docs/concepts/interaction/actions).
 
 <GuideNav prev="Guide/7.-Settings" next="Guide/9.-Publishing-and-usage" />

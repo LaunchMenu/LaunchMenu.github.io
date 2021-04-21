@@ -1,6 +1,6 @@
 # Common actions
 
-This page contains an overview of common menu item actions in LaunchMenu. To learn what `actions` are exactly, you can check the general [actions page](). <!-- TODO: add reference -->
+This page contains an overview of common menu item actions in LaunchMenu. To learn what `actions` are exactly, you can check the general [actions page](/docs/concepts/interaction/actions).
 
 ## Execute action
 
@@ -39,13 +39,13 @@ export type IExecutableResponse =
 
 As shown by the interface, the IO context is passed as an argument, allowing you to do things like reading settings or opening UI.
 
-These executables can optionally return [commands]() <!--TODO: add reference -->. These commands will automatically be executed and are undoable by the user. If multiple items are selected, and multiple commands are obtained, all these commands are combined. This means that the user can undo and redo them all at once.
+These executables can optionally return [commands](/docs/concepts/interaction/undo-redo#commands). These commands will automatically be executed and are undoable by the user. If multiple items are selected, and multiple commands are obtained, all these commands are combined. This means that the user can undo and redo them all at once.
 
 The executables can also indicate to be `passive`. This is used by the context menu to decide when the menu should be closed. When a sub-menu is opened, the main context menu should also remain opened. So opening of UI like this indicates it was a passive executable. But for most of the other executables the context menu should automatically close when they are preformed, so those aren't passive. By default executables will be considered as non-passive. The `onExecute` callback that can be passed to a menu will only be invoked when all bindings that are execute at some point are non-passive bindings.
 
 The interface also shows you that the executables may be asynchronous. If multiple items are selected at once, these will all start executing at once. All executables are waited on, and any commands are combined and also executed together at once when ready.
 
-The `onExecute` property of the [`createStandardMenuItem`]() <!-- TODO: add reference --> creates a direct binding to this action from the passed function. You can however still choose to create your own bindings if you're creating a custom item type, or if you want to add multiple bindings on one item:
+The `onExecute` property of the [`createStandardMenuItem`](/docs/concepts/ui/menuitems#standard-menu-items) creates a direct binding to this action from the passed function. You can however still choose to create your own bindings if you're creating a custom item type, or if you want to add multiple bindings on one item:
 
 ```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsExecute
 const items = [
@@ -155,7 +155,7 @@ const items = [
 
 Now if you select multiple of these items, you will see that their contents will show up together in a single alert prompt. The order in which the data shows up is based on the sequence in which items are selected.
 
-The execute action also has a context-menu item. We are able to override this item for our custom handler however. This is discussed in more detail in the [... section]() <!-- TODO: add reference + text -->, but the code below is a quick example:
+The execute action also has a context-menu item. We are able to override this item for our custom handler however. This is discussed in more detail in the [item overrides section](#item-overrides), but the code below is a quick example:
 
 ```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsCustomExecuteItem
 const alertAllHandler = createContextAction({
@@ -194,7 +194,7 @@ This handler should be used whenever an item's purpose is to edit some value.
 
 #### Exit LM execute handler
 
-The `exitLMExecuteHandler` is quite a peculiar handler, but can be useful in a couple of scenarios. When it's executed it essentially closes LaunchMenu, performs some callback action, and then possibly open LM up again. This behavior is for instance used by the [`copyExitPasteHandler`]() <!-- TODO: add reference --> which is used to paste some text within the program you were using before LaunchMenu.
+The `exitLMExecuteHandler` is quite a peculiar handler, but can be useful in a couple of scenarios. When it's executed it essentially closes LaunchMenu, performs some callback action, and then possibly open LM up again. This behavior is for instance used by the [`copyExitPasteHandler`](#copy-and-paste) which is used to paste some text within the program you were using before LaunchMenu.
 
 In case that any other execution of the `executeAction` adds to the user interface after `exitLMExecuteHandler` is used, LM will be opened up again automatically. Besides that, the bindings of the `exitLMExecuteHandler` may also indicate to open LM back up regardless or to keep it closed. Below is the interface of binding data accepted by this action:
 
@@ -218,7 +218,7 @@ export type IExitCallbackResponse = void | {
 
 #### Open menu execute handler
 
-The `openMenuExecuteHandler` is used to open a menu. This is what the [`createFolderMenuItem`]() <!-- TODO: add reference --> use for their primary function. This action allows for opening of multiple menus at once when multiple bindings for this action are present on the selection. When multiple menus are opened, the items of all menus are merged into one list of items, and the menus names are also merged into one comma separated name.
+The `openMenuExecuteHandler` is used to open a menu. This is what the [`createFolderMenuItem`](/docs/concepts/ui/menuitems#folder-menu-items) use for their primary function. This action allows for opening of multiple menus at once when multiple bindings for this action are present on the selection. When multiple menus are opened, the items of all menus are merged into one list of items, and the menus names are also merged into one comma separated name.
 
 As discussed in the main description of the [`executeAction`](#executeAction) execution callbacks can indicate whether they are passive. Bindings of the `openMenuExecuteHandler` can indicate that the menu should be closed when a non-passive item selection is executed. The executable of `openMenuExecuteHandler` resolves once the opened menu is closed, and whether it's passive depends on whether it was closed by executing such a selection with **only** non-passive items. If the menu was exited in any other way, the `openMenuExecuteHandler` is considered to have been passive, as it didn't close as a result of only non-passive actions. All of this is rather confusing, and fortunately something you generally don't have to worry about, but it's quite critical for intuitive navigation within nested menus in the context-menu.
 
@@ -330,7 +330,7 @@ There are several more ways that the `singlePromptExecuteHandler` could be used 
 
 #### Prompt execute handlers
 
-There are a bunch of different prompt execute handlers for different kinds of data inputs. These correspond to the different available [setting types]() <!-- TODO: add reference -->.
+There are a bunch of different prompt execute handlers for different kinds of data inputs. These correspond to the different available [setting types](/docs/concepts/settings#types).
 
 Below is the list of available prompt handlers:
 
@@ -377,7 +377,7 @@ export type IContextMenuItemData = {
 };
 ```
 
-In most cases items won't create bindings for this context-menu action directly, since that would result in separate context-items representing the same actions. It's still possible to do this for 1-off bindings however, as we've seen in the [`GlobalContextMenuBindings` section of the applet format page]() <!-- TODO: add reference -->. In most situations you will however want to make your action be a handler of the context-menu action:
+In most cases items won't create bindings for this context-menu action directly, since that would result in separate context-items representing the same actions. It's still possible to do this for 1-off bindings however, as we've seen in the [`GlobalContextMenuBindings` section of the applet format page](/docs/concepts/applet-format#globalcontextmenubindings). In most situations you will however want to make your action be a handler of the context-menu action:
 
 ```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsContextMenu
 const alertAllAction = createAction({
@@ -700,10 +700,10 @@ We will most likely augment this list at a later stage, when we know about more 
 
 The `getCategoryAction` is used by menus to obtain the category to put an item under. This is a rather simple action that merely serves as an interface to extract item data with. When an item provides multiple categories, the menu will extract the last category from the list using the `.getCategory` function that the `getCategoryAction` provides.
 
-The extraction of these categories and adding them to the menu is done by the individual [`IMenu` data models]() <!-- TODO: add reference -->.
-You can learn more about categories on the [menu page]() <!-- TODO: add reference -->.
+The extraction of these categories and adding them to the menu is done by the individual [`IMenu` data models](/docs/concepts/ui/menu).
+You can learn more about categories on the [menu page](/docs/concepts/ui/menu#categories).
 
-The [`createStandardMenuItem` factory]() <!-- TODO: add reference--> has a standard field for specifying categories, but below is an example where we manually specify the binding:
+The [`createStandardMenuItem` factory](/docs/concepts/ui/menuitems#standard-menu-items) has a standard field for specifying categories, but below is an example where we manually specify the binding:
 
 ```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsCategory
 const category = createStandardCategory({
@@ -721,7 +721,7 @@ const items = [
 
 ## Content action
 
-The `getContentAction` is used by [`UILayers`]() <!-- TODO: add reference--> to show the content of the currently selected item. The [`createStandardMenuItem` factory]() <!-- TODO: add reference--> has a standard field for specifying a content element, which creates a binding to the `scrollableContentHandler`. The `scrollableContentHandler` is a handler for `getContentAction` which generates content that can be scrolled by the user using the keyboard, as described on the [content page]() <!-- TODO: add reference -->.
+The `getContentAction` is used by [`UILayers`](/docs/concepts/ui/uilayers) to show the content of the currently selected item. The [`createStandardMenuItem` factory](/docs/concepts/ui/menuitems#standard-menu-items) has a standard field for specifying a content element, which creates a binding to the `scrollableContentHandler`. The `scrollableContentHandler` is a handler for `getContentAction` which generates content that can be scrolled by the user using the keyboard, as described on the [content page](/docs/concepts/ui/content).
 
 Below is an example that demonstrates how you can manually create these content bindings:
 
@@ -752,7 +752,7 @@ Actions can also be used to to provide a way of specifying event listeners on me
 
 ### Key handler action
 
-The `keyHandlerAction` can be used to listen for keyboard events in the current menu. Items in the context-menu of the currently selected item will usually also receive these events. The [menu controller]() <!-- TODO: add reference --> is responsible for calling these listeners, and the `createStandardMenuKeyHandler` factory takes care of this for you.
+The `keyHandlerAction` can be used to listen for keyboard events in the current menu. Items in the context-menu of the currently selected item will usually also receive these events. The [menu controller](/docs/concepts/ui/menu#controller) is responsible for calling these listeners, and the `createStandardMenuKeyHandler` factory takes care of this for you.
 
 Listening for these events is very simple:
 
@@ -808,7 +808,7 @@ export type ISyncItemKeyHandlerResponse =
       };
 ```
 
-We also have a `forwardKeyEventHandler` that can be used to forward key events to other menu items. This is used by the [`createFolderMenuItem`]() <!-- TODO: add reference --> in order to forward key events to sub-menus.
+We also have a `forwardKeyEventHandler` that can be used to forward key events to other menu items. This is used by the [`createFolderMenuItem`](/docs/concepts/ui/menuitems#folder-menu-items) in order to forward key events to sub-menus.
 
 Finally the `shortcutHandler` can be used to listen for specific shortcuts. It takes in a key pattern (or a function to obtain the key-pattern using the settings context) and an executable or executable action bindings to perform when the shortcut is triggered.
 This allows us to easily add shortcuts for items, including items that are added to context-menus:
@@ -866,7 +866,7 @@ const items = [
 
 Now each of these items will perform their action on their shortcut. The preferred way of creating shortcuts is by adding it to properties from the `createStandardMenuItem` factory, since it will make sure that the shortcut is visible on the item and displayed to the user. This function also receives the `IOContext` like the other two, so settings could be used here too. The second item shows off that the execution of the shortcut doesn't have to be the same as the primary execution of the item. In most cases you do want these to be equivalent however, which is why you can link them using the unique `itemID`. You can learn more about this in the [Identity action section](#identity-action).
 
-You can learn more about key handlers on the [key handlers page]() <!-- TODO: add reference -->.
+You can learn more about key handlers on the [key handlers page](/docs/concepts/interaction/key-handlers).
 
 ### Select action
 
@@ -883,7 +883,7 @@ export type ISelectable = {
 };
 ```
 
-This action is used by the individual [`IMenu` data models]() <!-- TODO: add reference --> to call the selection listeners of items whenever appropriate.
+This action is used by the individual [`IMenu` data models](/docs/concepts/ui/menu) to call the selection listeners of items whenever appropriate.
 When menus aren't properly destroyed, the `onSelectAction` may never be called with the event indicating it's no longer selected.
 
 Below is an example showing off how this listener can be used:
@@ -922,7 +922,7 @@ export type ICursorSelectable = {
 };
 ```
 
-This action is used by the individual [`IMenu` data models]() <!-- TODO: add reference --> to call the cursor listeners of items whenever appropriate.
+This action is used by the individual [`IMenu` data models](/docs/concepts/ui/menu) to call the cursor listeners of items whenever appropriate.
 When menus aren't properly destroyed, the `onCursorAction` may never be called with the event indicating it's no longer a cursor.
 
 Below is an example showing off how this listener can be used:
@@ -962,7 +962,7 @@ export type IMenuChangeable = {
 };
 ```
 
-This action is used by the individual [`IMenu` data models]() <!-- TODO: add reference --> to call the menu change listeners of items whenever these are added or removed from the menu.
+This action is used by the individual [`IMenu` data models](/docs/concepts/ui/menu) to call the menu change listeners of items whenever these are added or removed from the menu.
 When menus aren't properly destroyed, the `onMenuChangeAction` may never be called with the event indicating items are removed from the menu (since they aren't, the menu is just unused).
 
 Below is an example showing off how this listener can be used:
@@ -987,7 +987,7 @@ Now the items keep track of how many menus they are visible in, and you can see 
 
 ## Search action
 
-The `searchAction` can be used to provide `ISearchables`. This is used to obtain a collection of items that satisfy a search according to a given menu item. You can learn more about the search system as well as little bit about the search action on the [search system page]() <!-- TODO: add reference -->.
+The `searchAction` can be used to provide `ISearchables`. This is used to obtain a collection of items that satisfy a search according to a given menu item. You can learn more about the search system as well as little bit about the search action on the [search system page](/docs/concepts/interaction/search-system).
 
 ### Identity action
 
