@@ -157,7 +157,7 @@ export const setTaskPriority = createContextAction({
         const getExecuteBinding = () => 
             singlePromptExecuteHandler.createBinding({
                 fields, 
-                valueRetriever: field=>promptSelectExecuteHandler.createBinding({
+                valueRetriever: ({field})=>promptSelectExecuteHandler.createBinding({
                     field,
                     options: ["low", "medium", "high"],
                     createOptionView: level => createStandardMenuItem({ name: level }),
