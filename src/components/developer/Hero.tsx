@@ -29,7 +29,7 @@ export const Hero: FC = ({children}) => {
                     })}>
                     Make it. Make it now.
                 </Text>
-                <Link href="#downloads">
+                <Link href="/docs/guide/1.-overview">
                     <Button
                         variant="contained"
                         color="primary"
@@ -43,7 +43,7 @@ export const Hero: FC = ({children}) => {
                         Learn about all the modules available in LaunchMenu:
                     </Text>
                 </Box>
-                <Link href="/dev">
+                <Link href="/docs/api-overview">
                     <Button
                         variant="contained"
                         color="default"

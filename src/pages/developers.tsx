@@ -6,10 +6,12 @@ import {BackgroundSection} from "../components/home/BackgroundSection";
 import {FeatureCategory} from "../components/developer/features/FeatureCategory";
 import {SellingPoint} from "../components/home/hero/SellingPoint";
 import {HorizontalList} from "../components/home/HorizontalList";
-import {Link} from "../components/PlainLink";
 import {Feature} from "../components/developer/features/Feature";
 import {ScreenRecording} from "../services/mdx/components/ScreenRecording";
 import {InlineCode} from "../services/mdx/components/Code";
+import {Community} from "../components/developer/Community";
+import {Spacer} from "../components/Spacer";
+import {Link} from "../components/PlainLink";
 
 const Developers = () => (
     <Container>
@@ -20,13 +22,13 @@ const Developers = () => (
     name: "HelloWorld",
     description: "A minimal example applet",
     version: "0.0.0",
-    icon: <MyIcon />,
+    icon: <img width={30} src={Path.join(__dirname, "..", "images", "icon.png")} />,
 };
 
 export const settings = createSettings({
     version: "0.0.0",
     settings: () => createSettingsFolder({ ...info, children: {
-        name: createStringSetting({name: "Username", init: "Bob"}),
+        username: createStringSetting({name: "Username", init: "Bob"}),
     }}),
 });
 
@@ -34,19 +36,17 @@ const items = [
     createStandardMenuItem({
         name: "Hello world",
         onExecute: ({context}) => 
-            alert(\`Hello \${context.settings.get(settings).name.get()}!\`)
+            alert(\`Hello \${context.settings.get(settings).username.get()}!\`)
     }),
 ];
 
 export default declare({
     info,
     settings,
-    async search: (query, hook) => 
-        ({ children: searchAction.get(items) })
+    search: async (query, hook) => ({children: searchAction.get(items)}),
 });`}
                 language="tsx"
-                // TODO: add the real URL
-                source="https://github.com/search"
+                source="https://github.com/LaunchMenu/LM-applet-examples/blob/main/examples/demosBasics/src/index.tsx"
             />
         </Hero>
         <HorizontalList margin={2}>
@@ -137,86 +137,361 @@ export default declare({
                 </Feature>
             </FeatureCategory>
         </BackgroundSection>
-
+        <FeatureCategory
+            category="Menu items"
+            content={
+                <Fragment>
+                    <CodeBlock
+                        title="Item Creation"
+                        code={`const category = createStandardCategory({
+    name: "Hello"
+});
+const items = [
+    createStandardMenuItem({
+        name: "Hello world",
+        icon: <img width={30} src={Path.join(__dirname, "..", "images", "icon.png")} />,
+        content: <Box>Hello world!</Box>,
+        onExecute: () => alert(\`Hello john!\`),
+    }),
+    createFolderMenuItem({
+        name: "Some folder",
+        category,
+        children: [
+            createStandardMenuItem({
+                name: "Bye world",
+                description: "More items within this directory",
+                content: <Box>Bye world!</Box>,
+                onExecute: () => alert(\`Bye bob\`),
+            }),
+        ],
+    }),
+];`}
+                        language="tsx"
+                        source="https://github.com/LaunchMenu/LM-applet-examples/blob/main/examples/demosItems/src/index.tsx"
+                    />
+                </Fragment>
+            }>
+            <Feature
+                title="Standard items"
+                docs="/docs/concepts/ui/menuitems#standard-menu-items">
+                Standard factories exist for creating simple but very
+                customizable items. It automatically supports functionality
+                like: searching, categories, content and context-items.
+            </Feature>
+            <Feature
+                title="Custom items"
+                docs="/docs/concepts/ui/menuitems#custom-menu-items">
+                Despite standardized factories being provided, menu items can be
+                any react component with attached functionality. Menu-item
+                sub-components can be reused to reduce duplicate code, yet allow
+                you to customize whatever is necessary.
+            </Feature>
+            <Feature
+                title="Context-menu"
+                docs="/docs/concepts/interaction/common-actions#context-menu-action">
+                Using the <Link href="#action-system">action system</Link> any
+                additional functionality can be added to menu items.
+            </Feature>
+            <Feature
+                title="Categories"
+                docs="/docs/concepts/ui/menu#categories">
+                LaunchMenu supports simple item grouping using categories, to
+                neatly organize your menus.
+            </Feature>
+        </FeatureCategory>
         <BackgroundSection>
             <FeatureCategory
-                category="Action system"
+                category="Search system"
                 content={
                     <Fragment>
                         <CodeBlock
-                            title="setTaskPriority.ts"
-                            code={`import { createContextAction,  singlePromptExecuteHandler, promptSelectExecuteHandler, 
+                            title="Search"
+                            code={`// Use a cache to keep the same items when typing
+const resultCache = new SearchCache((name: string, image: string, species: string) =>
+    createStandardMenuItem({
+        name,
+        description: species,
+        content: <img width="100%" src={image} />,
+        onExecute: () => alert(\`\${name}!\`),
+    })
+);
+
+export default declare({
+    info,
+    settings,
+    search: async (query, hook) => {
+        const rawData = await fetch(\`https://rickandmortyapi.com/api/character/?\`);
+        const data = (await rawData.json()) as {
+            results: [{name: string; image: string; species: string}];
+        };
+        const items = data.results.map(({name, image, species}) =>
+            resultCache.get(name, image, species)
+        );
+        return {children: searchAction.get(items)};
+    },
+});`}
+                            language="tsx"
+                            source="https://github.com/LaunchMenu/LM-applet-examples/blob/main/examples/demosSearch/src/index.tsx"
+                        />
+                    </Fragment>
+                }>
+                <Feature
+                    title="Asynchronous searches"
+                    docs="/docs/concepts/interaction/search-system#searchables">
+                    Searches are always asynchronous, allowing you to fetch
+                    remote data.
+                </Feature>
+                <Feature
+                    title="Recursive searches"
+                    docs="/docs/concepts/interaction/search-system#recursive-searches">
+                    The search system is built for performing recursive
+                    searches, allowing you to add or remove a whole subtree of
+                    search results at once.
+                </Feature>
+                <Feature
+                    title="Dynamic searches"
+                    docs="/docs/concepts/interaction/search-system#searchables">
+                    Using{" "}
+                    <a href="https://tarvk.github.io/model-react/examples/build/">
+                        model-react
+                    </a>{" "}
+                    any search result can be added or removed after the search
+                    was performed, dynamically updating the results.
+                </Feature>
+            </FeatureCategory>
+        </BackgroundSection>
+
+        <FeatureCategory
+            category="Action system"
+            content={
+                <Fragment>
+                    <CodeBlock
+                        title="setTaskPriority.ts"
+                        code={`import { createContextAction,  singlePromptExecuteHandler, promptSelectExecuteHandler, 
     Priority, createStandardMenuItem } from "@launchmenu/core";
 import {Field} from "model-react";
 
-type ITaskPriority = "high" | "medium" | "low";
+export type ITaskPriority = "high" | "medium" | "low";
 export const setTaskPriority = createContextAction({
     name: "Set priority level",
     contextItem: { priority: Priority.MEDIUM /* Not to be confused with ITaskPriority */ },
     core: (fields: Field<ITaskPriority>[]) => {
-        const getExecuteBinding = () => 
-            singlePromptExecuteHandler.createBinding({
-                fields, 
-                valueRetriever: ({field})=>promptSelectExecuteHandler.createBinding({
+        const executeBinding = singlePromptExecuteHandler.createBinding({
+            fields,
+            valueRetriever: ({field}) =>
+                promptSelectExecuteHandler.createBinding({
                     field,
                     options: ["low", "medium", "high"],
-                    createOptionView: level => createStandardMenuItem({ name: level }),
-                })
-            });
+                    createOptionView: level => createStandardMenuItem({name: level}),
+                }),
+        });
 
         return {
             // Return the bindings for executing the action in the menu
-            actionBindings: getExecuteBindings,
-            // As well as some result for programmatic access for extension
-            result: { getExecuteBindings },
+            actionBindings: [executeBinding],
         };
     },
 });`}
-                            language="tsx"
-                            // TODO: add the real URL
-                            source="https://github.com/search"
-                        />
-                        <CodeBlock
-                            title="Action Usage"
-                            code={`import {createStandardMenuItem} from "@launchmenu/core";
-import {Field} from "model-react";
-import {setTaskPriority} from "./setTaskPriority";
-
+                        language="tsx"
+                        source="https://github.com/LaunchMenu/LM-applet-examples/blob/main/examples/demosActions/src/setTaskPriority.tsx"
+                    />
+                    <CodeBlock
+                        title="Action Usage"
+                        code={`import {ITaskPriority, createStandardMenuItem} from "@launchmenu/core";
 function createTaskMenuItem({name}: {name: string}) {
-    const level = new Field("medium");
+    const level = new Field<ITaskPriority>("medium");
     return createStandardMenuItem({
         name,
         description: hook => level.get(hook),
-        actionBindings: [setTaskPriority.createBinding(level)]
+        onExecute: () => alert(level.get()),
+        actionBindings: [setTaskPriority.createBinding(level)],
     });
 }
 
 const items = [
     createTaskMenuItem({name: "Meet Alice"}),
     createTaskMenuItem({name: "Make pancakes"}),
-    createTaskMenuItem({name: "Free Hat"})
-]`}
+    createTaskMenuItem({name: "Free Hat"}),
+];`}
+                        language="tsx"
+                        source="https://github.com/LaunchMenu/LM-applet-examples/blob/main/examples/demosActions/src/index.tsx"
+                        result={<ScreenRecording src="/videoTest2.mp4" />}
+                    />
+                </Fragment>
+            }>
+            <Feature
+                title="Powerful action system"
+                docs="/docs/concepts/interaction/actions">
+                LaunchMenu provides a generic action system. Menu items only
+                provide functionality through their action bindings. This
+                includes providing items to context menus, keyboard input
+                handling, search handling, execution handling, and even
+                selection event handling.
+            </Feature>
+            <Feature title="Multiple item selection">
+                The action system is especially designed to support combined
+                behavior of multiple selected actions. This makes sure users
+                don't have to repeat the same actions multiple times and instead
+                allows them to bulk operations.
+            </Feature>
+            <Feature
+                title="Action specialization"
+                docs="/docs/concepts/interaction/actions#action-handlers">
+                Actions can easily be extended in order to specialize them. This
+                allows one action in the context-menu to perform different - but
+                similar - tasks depending on the selected item.
+            </Feature>
+            <Feature
+                title="Item specialization"
+                docs="/docs/concepts/interaction/common-actions#item-overrides">
+                When an action is specialized, the context-menu item can also be
+                specialized. This way a more specific name can be displayed as
+                long as all selected items perform the exact same task.
+            </Feature>
+            <Feature
+                title="Undo/redo integration"
+                docs="/docs/concepts/interaction/common-actions#execute-action">
+                The primary execute action has built-in support for commands,
+                allowing the user to undo and redo their performed actions.
+            </Feature>
+        </FeatureCategory>
+
+        <BackgroundSection>
+            <FeatureCategory
+                category="Settings"
+                content={
+                    <Fragment>
+                        <CodeBlock
+                            title="Settings"
+                            code={`export const settings = createSettings({
+    version: "0.0.0",
+    settings: () =>
+        createSettingsFolder({
+            ...info,
+            children: {
+                username: createStringSetting({name: "Username", init: "Bob"}),
+            },
+        }),
+});
+
+const Content: FC<{text: string}> = ({text}) => {
+    const context = useIOContext();
+    const [hook] = useDataHook();
+    const name = context?.settings.get(settings).username.get(hook);
+    return (
+        <Box color="primary">
+            {text} {name}!
+        </Box>
+    );
+};
+
+const items = [
+    createStandardMenuItem({
+        name: "Hello world",
+        content: <Content text="Hello" />,
+        onExecute: ({context}) =>
+            alert(\`Hello \${context.settings.get(settings).username.get()}!\`),
+    }),
+];`}
                             language="tsx"
-                            // TODO: add the real URL
-                            source="https://github.com/search"
-                            result={<ScreenRecording src="/videoTest2.mp4" />}
+                            source="https://github.com/LaunchMenu/LM-applet-examples/blob/main/examples/demosSettings/src/index.tsx"
                         />
                     </Fragment>
                 }>
-                <Feature title="Powerful action system">
-                    LaunchMenu provides a generic action system. Menu items only
-                    provide functionality through their action. This includes
-                    providing items to context menus, keyboard input handling,
-                    search handling, execution handling, and even selection
-                    event handling.
+                <Feature
+                    title="Simple setting declarations"
+                    docs="/docs/concepts/settings">
+                    Easily create settings that users are able to alter to their
+                    likings, using the same menu items as used elsewhere.
                 </Feature>
-                <Feature title="Multiple item selection"></Feature>
-                <Feature title="Behavior bundling"></Feature>
-                <Feature title="Action extensions"></Feature>
-                <Feature title="Item specialization"></Feature>
-                <Feature title="Undo/redo integration"></Feature>
+                <Feature
+                    title="Simple setting usage"
+                    docs="/docs/concepts/settings">
+                    Obtain the setting values using the IOContext in a variety
+                    of places. Settings can also easily be subscribed to,
+                    instantly updating whatever depends on the setting.
+                </Feature>
+                <Feature
+                    title="Custom setting types"
+                    docs="/docs/concepts/settings#custom-settings">
+                    Since settings are simply menu-items, one can easily make
+                    their own setting type.
+                </Feature>
             </FeatureCategory>
         </BackgroundSection>
+
+        <FeatureCategory
+            category="Undo/redo system"
+            content={
+                <Fragment>
+                    <CodeBlock
+                        title="Undo/redo"
+                        code={`const createTimesItem = (name: string) => {
+    const times = new Field(1);
+    return createStandardMenuItem({
+        name: hook => \`\${name} x\${times.get(hook)}\`,
+        // Use a command to allow the user to revert the change
+        onExecute: () => new SetFieldCommand(times, times.get() + 1),
+    });
+};
+const items = [createTimesItem("Hello world"), createTimesItem("Bye world")];`}
+                        language="tsx"
+                        source="https://github.com/LaunchMenu/LM-applet-examples/blob/main/examples/demosUndoRedo/src/index.tsx"
+                    />
+                </Fragment>
+            }>
+            <Feature
+                title="Integrated undo/redo system"
+                status={{
+                    type: "comingSoon",
+                    tooltip:
+                        "No applet to control the undo/redo facility is available yet",
+                }}
+                docs="/docs/concepts/interaction/undo-redo">
+                Easily dispatch undoable commands from throughout your apple,
+                and allow users to make mistakes without any consequences.
+            </Feature>
+            <Feature
+                title="Asynchronous command execution"
+                docs="/docs/concepts/interaction/undo-redo#commands">
+                Commands are allow to execute asynchronously, and perform any
+                complex tasks.
+            </Feature>
+            <Feature
+                title="Channeled command execution"
+                docs="/docs/concepts/interaction/undo-redo#resources">
+                Since commands may execute asynchronously, "resources" can be
+                used to define different channels for unrelated commands to
+                execute in parallel.
+            </Feature>
+        </FeatureCategory>
+
+        <Spacer amount={100} />
+        <BackgroundSection>
+            <Spacer amount={100} />
+            <Community
+                title="Community"
+                links={[
+                    {
+                        name: "Github",
+                        url:
+                            "https://github.com/LaunchMenu/LaunchMenu/discussions",
+                    },
+                ]}>
+                As mentioned several times already, LaunchMenu is fully
+                open-source! We welcome any contributions to the project,
+                especially third party applets. In case that you want to
+                contribute to our official repository, we do recommend
+                discussing your ideas with us first however. This prevents you
+                from investing a lot of time into something that doesn't line up
+                with our vision. That said, we're open to most ideas, and
+                definitely to any discussions! So don't hesitate to join the
+                community, both as developer or as user, at one of the following
+                links:
+            </Community>
+        </BackgroundSection>
+
+        <Spacer amount={400} />
     </Container>
 );
 export default Developers;

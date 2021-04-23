@@ -40,6 +40,7 @@ const links = {
     dev: "/developers",
     download: "/#downloads",
     applets: "/#utility-applets",
+    community: "/developers#community",
     docs: "/docs",
     about: "/about",
     github: "https://github.com/LaunchMenu/LaunchMenu",
@@ -88,6 +89,15 @@ export const Navbar: FC<{
                         <ListItemText>
                             <Typography color="primary" variant="h6">
                                 Applets
+                            </Typography>
+                        </ListItemText>
+                    </PlainLink>
+                </ListItem>
+                <ListItem button>
+                    <PlainLink href={links.community}>
+                        <ListItemText>
+                            <Typography color="primary" variant="h6">
+                                Community
                             </Typography>
                         </ListItemText>
                     </PlainLink>
@@ -204,6 +214,13 @@ export const Navbar: FC<{
                                     <PlainLink href={links.applets}>
                                         <Typography variant="h6">
                                             Applets
+                                        </Typography>
+                                    </PlainLink>
+                                </Button>
+                                <Button color="primary">
+                                    <PlainLink href={links.community}>
+                                        <Typography variant="h6">
+                                            Community
                                         </Typography>
                                     </PlainLink>
                                 </Button>

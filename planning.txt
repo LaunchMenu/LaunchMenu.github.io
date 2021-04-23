@@ -249,7 +249,7 @@ in-depth:
         - [x] Content
     - Interaction
         - [x] Actions basics
-        - [ ] Common actions
+        - [x] Common actions
         - [x] search system
         - [x] Undo/redo
         - [x] Key events (+shortcuts)
