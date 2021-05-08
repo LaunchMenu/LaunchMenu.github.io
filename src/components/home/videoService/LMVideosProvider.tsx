@@ -1,5 +1,6 @@
 import {Field, IDataHook, useDataHook} from "model-react";
-import {FC, ReactNode, useCallback, useEffect, useRef} from "react";
+import {Fragment} from "react";
+import {FC, useCallback, useEffect, useRef} from "react";
 import useResizeObserver from "use-resize-observer";
 import {Fade} from "../../Fade";
 import {
@@ -43,14 +44,21 @@ export const LMVideosProvider: FC = ({children}) => {
                 width: number;
                 placeholder?: string;
             }) => {
-                const [h] = useDataHook();
+                const [h] = useDataHook({debounce: 200});
                 const currentVideos = videos.get(h);
                 const video = currentVideos[currentVideos.length - 1];
 
-                if (!video)
-                    return (
-                        <Fade childID="">
-                            {placeholder && (
+                return (
+                    <Fragment>
+                        {placeholder && (
+                            <div
+                                css={{
+                                    position: "absolute",
+                                    left: 0,
+                                    top: 0,
+                                    right: 0,
+                                    bottom: 0,
+                                }}>
                                 <img
                                     src={placeholder}
                                     width={width}
@@ -58,14 +66,14 @@ export const LMVideosProvider: FC = ({children}) => {
                                         display: "block",
                                     }}
                                 />
-                            )}
+                            </div>
+                        )}
+                        <Fade
+                            childID={video?.src ?? ""}
+                            css={{position: "relative", zIndex: 1}}>
+                            {video && <video.Video width={width} />}
                         </Fade>
-                    );
-
-                return (
-                    <Fade childID={video.src}>
-                        {<video.Video width={width} />}
-                    </Fade>
+                    </Fragment>
                 );
             },
             getBoundingRect: (h?: IDataHook) => boundingBox.get(h),

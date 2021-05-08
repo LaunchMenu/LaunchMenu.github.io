@@ -6,13 +6,13 @@ export const Fade: FC<{
     fadeChangeDuration?: number;
     fadeOutDuration?: number;
     childID: number | string;
-    css?: CSSObject;
+    className?: string;
     innerCss?: CSSObject;
 }> = ({
     fadeInDuration = 250,
     fadeChangeDuration = 250,
     fadeOutDuration = 250,
-    css,
+    className,
     innerCss,
     children,
     childID,
@@ -52,8 +52,10 @@ export const Fade: FC<{
     const top = childHistory[childHistory.length - 1];
     const [visibleId, setVisibleId] = useState("");
     useEffect(() => {
-        if (visibleId != top?.id)
-            setTimeout(() => setVisibleId(top?.id || ""), 10);
+        if (visibleId != top?.id) {
+            const ID = setTimeout(() => setVisibleId(top?.id || ""), 10);
+            return () => clearTimeout(ID);
+        }
     }, [top?.id]);
 
     // Handle all items becoming invisible
@@ -66,6 +68,7 @@ export const Fade: FC<{
     return (
         <div
             onTransitionEnd={onTransitionEnd}
+            className={className}
             css={{
                 display: "grid",
                 gridTemplateColumns: "1fr",
@@ -73,7 +76,6 @@ export const Fade: FC<{
                 transition: `opacity ${
                     containerVisible ? fadeInDuration : fadeOutDuration
                 }ms`,
-                ...css,
             }}>
             {childHistory.map(({id, child}, i) => {
                 const visible = nextVisible;
