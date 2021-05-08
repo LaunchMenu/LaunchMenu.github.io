@@ -142,9 +142,10 @@ export const FeatureVideoLayout: FC<{
 };
 
 // The LM Video data
-export const LMRadius = 10;
-export const LMWidth = 700;
-export const LMHeight = 450;
+export const LMRadius = 12;
+export const LMMargin = 18;
+export const LMWidth = 700 - LMMargin * 2;
+export const LMHeight = 450 - LMMargin * 2;
 export const LMPlayerWidth = LMWidth;
 
 export function useVideoSizeData<E extends HTMLElement>({

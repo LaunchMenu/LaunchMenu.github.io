@@ -36,14 +36,25 @@ import UndoIcon from "@material-ui/icons/Undo";
 import ThemeIcon from "@material-ui/icons/Palette";
 import CodeIcon from "@material-ui/icons/Code";
 import {Link} from "../components/PlainLink";
+import {promises as FS} from "fs";
+import Path from "path";
+import {FC} from "react";
 
-const Home = () => (
+const Home: FC<{timestamps: ITimestamps}> = ({
+    timestamps: {
+        contextMenus,
+        customize,
+        keyboardCentric,
+        multiSelect,
+        searchAnywhere,
+    },
+}) => (
     <Container>
         <LMVideosProvider>
             <Hero>
                 <FeatureVideo
-                    initVideo="videoTest4.mp4"
-                    videoPlaceholder="videoTest2.png"
+                    initVideo="demoVideos/introduction.webm"
+                    videoPlaceholder="demoVideos/home.png"
                 />
             </Hero>
 
@@ -63,9 +74,9 @@ const Home = () => (
                     title="Why LaunchMenu?"
                     body={
                         <Fragment>
-                            LaunchMenu is easy to use, free and allows you to
-                            increase your productivity. Customise the
-                            application to your needs with{" "}
+                            LaunchMenu is an easy to use and free application
+                            that allows you to increase your productivity.
+                            Customize the application to your needs with{" "}
                             <Link href="#Themes">advanced theming</Link> and{" "}
                             <Link href="#Settings">applet settings</Link>.
                         </Fragment>
@@ -88,8 +99,8 @@ const Home = () => (
             <BackgroundSection>
                 <FeatureCategory
                     category="Actively developed"
-                    video="videoTest2.mp4"
-                    videoPlaceholder="videoTest2.png">
+                    video="demoVideos/activelyDeveloped.webm"
+                    videoPlaceholder="demoVideos/home.png">
                     <Text>
                         LaunchMenu is actively developed. Some features are only
                         partially supported, we will use this legend to indicate
@@ -132,81 +143,81 @@ const Home = () => (
 
             <FeatureCategory
                 category="Keyboard centric"
-                video="videoTest3.mp4"
-                videoPlaceholder="videoTest2.png">
-                <Feature title="Select items" time={{start: 0, end: 1}}>
+                video="demoVideos/keyboardCentric.webm"
+                videoPlaceholder="demoVideos/home.png">
+                <Feature title="Select items" time={keyboardCentric.select}>
                     Use the arrow keys to navigate the menu.
                 </Feature>
                 <Feature
                     title="Execute item actions"
-                    time={{start: 1.3, end: 2}}>
+                    time={keyboardCentric.execute}>
                     Hit <Key>Enter ↵</Key> to perform the primary action of the
                     selected item.
                 </Feature>
                 <Feature
                     title="Step in and out of menus"
-                    time={{start: 2.3, end: 3}}>
+                    time={keyboardCentric.navigateMenus}>
                     Press the <Key>Tab ↹</Key> key to hop into a context menu
                     and <Key>Escape</Key> to exit out of it again.
                 </Feature>
                 <Feature
                     title="Customise any controls"
-                    time={{start: 3.3, end: 4}}>
-                    All controls are customisable to fit your needs! Join the
+                    time={keyboardCentric.customize}>
+                    All controls are customizable to fit your needs! Join the
                     ijkl-master race.
                 </Feature>
                 <Feature
                     title="Mnemonics"
-                    time={{start: 4.3, end: 5}}
+                    time={keyboardCentric.mnemonics}
                     status={"longTerm"}>
                     Navigate menus even faster by making use of Mnemonics.
                 </Feature>
                 <Feature
-                    title="Native VIM keys mode"
-                    time={{start: 5.3, end: 6}}
+                    title="Different key modes"
+                    time={keyboardCentric.keyboardModes}
                     status={{
                         type: "longTerm",
                         tooltip:
                             "An applet will have to be created to manage settings in bulk.",
                     }}>
                     LaunchMenu will have toggle-able custom keyboard layouts,
-                    including VIM as standard.
+                    including a standard VIM-like layout.
                 </Feature>
             </FeatureCategory>
 
             <BackgroundSection>
                 <FeatureCategory
                     category="Search anywhere"
-                    video="videoTest4.mp4"
-                    videoPlaceholder="videoTest2.png">
+                    video="demoVideos/searchAnywhere.webm"
+                    videoPlaceholder="demoVideos/home.png">
                     <Feature
                         title="All menus are searchable"
-                        time={{start: 0, end: 1}}>
+                        time={searchAnywhere.allMenus}>
                         No matter where you are, simply start typing to start
                         searching!
                     </Feature>
                     <Feature
                         title="Searches are recursive"
-                        time={{start: 1.3, end: 2}}>
+                        time={searchAnywhere.recursive}>
                         Searches look through the selected menu as well as all
                         sub-menus.
                     </Feature>
-                    <Feature title="Filters" time={{start: 2.3, end: 3}}>
+                    <Feature title="Filters" time={searchAnywhere.pattern}>
                         Searches can use patterns to automatically filter
                         results.
                     </Feature>
-                    <Feature title="Fuzzy Search" time={{start: 3.3, end: 4}}>
+                    <Feature title="Fuzzy Search" time={searchAnywhere.fuzzy}>
                         By default all searches use a fuzzy matching algorithm.
                     </Feature>
                     <Feature
-                        title="Prioritised searches"
-                        time={{start: 4.3, end: 5}}
+                        title="Prioritized searches"
+                        time={searchAnywhere.prioritized}
                         status={{
                             type: "longTerm",
                             tooltip:
                                 "This is something we ideally want, but have no infrastructure for.",
                         }}>
-                        All searches will be tracked and prioritised
+                        All searches will be tracked and prioritized
                         intelligently, bringing frequently used items closer to
                         the top of the list.
                     </Feature>
@@ -215,25 +226,25 @@ const Home = () => (
 
             <FeatureCategory
                 category="Context menus"
-                video="videoTest3.mp4"
-                videoPlaceholder="videoTest2.png">
-                <Feature title="Item actions" time={{start: 0, end: 1}}>
+                video="demoVideos/contextMenus.webm"
+                videoPlaceholder="demoVideos/home.png">
+                <Feature title="Item actions" time={contextMenus.itemActions}>
                     Items can have multiple actions, the primary action is
                     executed on <Key>Enter ↵</Key>.
                 </Feature>
-                <Feature title="Opening" time={{start: 1.3, end: 2}}>
+                <Feature title="Opening" time={contextMenus.contextMenu}>
                     A context menu can be opened, by pressing <Key>Tab ↹</Key>,
                     to show these actions.
                 </Feature>
-                <Feature title="Searching" time={{start: 2.3, end: 3}}>
+                <Feature title="Searching" time={contextMenus.search}>
                     Context menus, like all menus, can be searched in order to
                     quickly find actions.
                 </Feature>
-                <Feature title="Sub-menus" time={{start: 3.3, end: 4}}>
+                <Feature title="Sub-menus" time={contextMenus.subMenus}>
                     Context menus can contain sub-menus, which hide additional
                     actions which are rarely used.
                 </Feature>
-                <Feature title="UI Path" time={{start: 4.3, end: 5}}>
+                <Feature title="UI Path" time={contextMenus.path}>
                     The path shows where you are in the application.
                 </Feature>
             </FeatureCategory>
@@ -241,18 +252,18 @@ const Home = () => (
             <BackgroundSection>
                 <FeatureCategory
                     category="Multi-select"
-                    video="videoTest4.mp4"
-                    videoPlaceholder="videoTest2.png">
+                    video="demoVideos/multiSelect.webm"
+                    videoPlaceholder="demoVideos/home.png">
                     <Feature
                         title="Select and execute multiple items"
-                        time={{start: 0, end: 1}}>
+                        time={multiSelect.select}>
                         You can select multiple items by pressing or holding the{" "}
                         <Key>⇧ Shift</Key>. Press <Key> Enter ↵</Key> to execute
                         the primary action.
                     </Feature>
                     <Feature
                         title="Shared context menu"
-                        time={{start: 1.3, end: 2}}>
+                        time={multiSelect.menu}>
                         Opening a context menu will list actions from all the
                         selected items. Actions executed will operate on all
                         compatible items.
@@ -261,24 +272,24 @@ const Home = () => (
             </BackgroundSection>
 
             <FeatureCategory
-                category="Customise"
-                video="videoTest3.mp4"
-                videoPlaceholder="videoTest2.png">
-                <Feature title="Settings" time={{start: 0, end: 1}}>
+                category="Customize"
+                video="demoVideos/customize.webm"
+                videoPlaceholder="demoVideos/home.png">
+                <Feature title="Settings" time={customize.settings}>
                     Like all other items, settings can be searched, and altered
                     easily.
                 </Feature>
-                <Feature title="Keyboard Shortcuts" time={{start: 1.3, end: 2}}>
-                    All keyboard shortcuts / controls can be fully customised to
+                <Feature title="Keyboard Shortcuts" time={customize.shortcuts}>
+                    All keyboard shortcuts / controls can be fully customized to
                     suit your needs.
                 </Feature>
-                <Feature title="Customise applets" time={{start: 2.3, end: 3}}>
+                <Feature title="Customize applets" time={customize.customize}>
                     Like native LaunchMenu features, all applets - including 3rd
-                    party applets, will be customisable.
+                    party applets, will be customizable.
                 </Feature>
                 <Feature
                     title="Settings portability"
-                    time={{start: 3.3, end: 4}}
+                    time={customize.export}
                     status={{
                         type: "comingSoon",
                         tooltip:
@@ -289,7 +300,7 @@ const Home = () => (
                 </Feature>
                 <Feature
                     title="Applets"
-                    time={{start: 4.3, end: 5}}
+                    time={customize.applets}
                     status={{
                         type: "comingSoon",
                         tooltip:
@@ -301,14 +312,14 @@ const Home = () => (
                 </Feature>
                 <Feature
                     title="Themes"
-                    time={{start: 5.3, end: 6}}
+                    time={customize.theme}
                     status={{
                         type: "comingSoon",
                         tooltip:
                             "A theme infrastructure is present, but no UI yet.",
                     }}>
                     Colour and Style of the LaunchMenu app and applets will be
-                    customisable through themes.
+                    customizable through themes.
                 </Feature>
             </FeatureCategory>
         </LMVideosProvider>
@@ -505,3 +516,69 @@ const Home = () => (
 );
 
 export default Home;
+
+// Timestamp props retrieval and typing
+type ITimestamp = {start: number; end: number};
+type ITimestamps = {
+    keyboardCentric: {
+        select: ITimestamp;
+        execute: ITimestamp;
+        navigateMenus: ITimestamp;
+        customize: ITimestamp;
+        mnemonics: ITimestamp;
+        keyboardModes: ITimestamp;
+    };
+    searchAnywhere: {
+        allMenus: ITimestamp;
+        recursive: ITimestamp;
+        pattern: ITimestamp;
+        fuzzy: ITimestamp;
+        prioritized: ITimestamp;
+    };
+    contextMenus: {
+        itemActions: ITimestamp;
+        contextMenu: ITimestamp;
+        search: ITimestamp;
+        subMenus: ITimestamp;
+        path: ITimestamp;
+    };
+    multiSelect: {
+        select: ITimestamp;
+        menu: ITimestamp;
+    };
+    customize: {
+        settings: ITimestamp;
+        shortcuts: ITimestamp;
+        customize: ITimestamp;
+        export: ITimestamp;
+        applets: ITimestamp;
+        theme: ITimestamp;
+    };
+};
+export const getStaticProps = async (): Promise<{
+    props: {timestamps: ITimestamps};
+}> => {
+    async function getJSON(name: string) {
+        const file = await FS.readFile(
+            Path.join(
+                process.cwd(),
+                "public",
+                "demoVideos",
+                `${name} timestamps.json`
+            ),
+            "utf-8"
+        );
+        return JSON.parse(file);
+    }
+    return {
+        props: {
+            timestamps: {
+                keyboardCentric: await getJSON("keyboardCentric"),
+                contextMenus: await getJSON("contextMenus"),
+                multiSelect: await getJSON("multiSelect"),
+                searchAnywhere: await getJSON("searchAnywhere"),
+                customize: await getJSON("customize"),
+            },
+        },
+    };
+};
