@@ -30,6 +30,7 @@ export const PageIndex: FC<{ToC: ITOC}> = ({ToC}) => {
                     top: theme.mixins.toolbar.height,
                     position: "sticky",
                     paddingTop: theme.spacing(2),
+                    boxSizing: "border-box",
                     overflowY: "auto",
                     [theme.breakpoints.up("md")]: {
                         maxHeight: `calc(100vh - ${theme.mixins.toolbar.height}px)`,

@@ -35,6 +35,7 @@ import CalendarIcon from "@material-ui/icons/Event";
 import UndoIcon from "@material-ui/icons/Undo";
 import ThemeIcon from "@material-ui/icons/Palette";
 import CodeIcon from "@material-ui/icons/Code";
+import VideoIcon from "@material-ui/icons/Videocam";
 import {Link} from "../components/PlainLink";
 import {promises as FS} from "fs";
 import Path from "path";
@@ -481,6 +482,13 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                     description="Used to create new parallel sessions within LaunchMenu"
                     status="supported"
                     icon={<SessionsIcon />}
+                    category="core"
+                />
+                <AppletBlock
+                    name="LM Recorder"
+                    description="Used to create promotional videos"
+                    status="supported"
+                    icon={<VideoIcon />}
                     category="core"
                 />
                 <AppletBlock

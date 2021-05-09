@@ -14,6 +14,41 @@ Publishing will just follow the standard NPM procedure, so instructions can be f
 
 As of right now, users don't have the capability of installing your applet from within LaunchMenu yet. But this functionality will be added in the very near future. Meanwhile you can already work on perfecting your applet.
 
+### Promoting
+
+In order to create nice promotional videos, the [LM-recorder](/applets/core/lm-recorder) applet can be used. This applet allows you to programmatically script and record a video.
+
+Below is an example of what such a script could look like:
+
+```tsx title=recording/myVideo.tsx
+import React from "react";
+import {declareVideoScript, TitleScreen} from "@launchmenu/applet-lm-recorder";
+
+export default declareVideoScript(
+    async ({controller, recorder, visualizer, keyVisualizer, LM}) => {
+        await controller.resetLM();
+        const recordings = `${__dirname}/../../recordings`;
+        const recording = await recorder.recordLM(`${recordings}/demo.webm`);
+
+        await visualizer.show(<TitleScreen title="Hello world" />, {
+            duration: 3000,
+        });
+        await controller.wait(500);
+
+        await controller.type("Hello");
+        await controller.wait(5500);
+
+        await recording.stop();
+    }
+);
+```
+
+This script can then be executed from within LaunchMenu using the LM-recorder applet. Simply search for `record: my video` and it should appear in the results. When executed, this script will produce a video that you can distribute to promote your applet.
+
+Note that non of your other code should directly or indirectly (E.g. by importing this video script) reference the lm-recorder applet, since this is is only a development dependency.
+
+You can learn more about video recording on the [LM-recorder](/applets/core/lm-recorder) applet's own page.
+
 ## Personal usage
 
 In case you want to properly test your applet before publishing, or don't want to publish it at all, you can install your applet straight to your own installed version of LaunchMenu as well. In the future we will scripts to accomplish this in a dedicated applet-testing module, but for now you can manually copy the required scripts. The [LM-applet-quickstart](https://github.com/LaunchMenu/LM-applet-quickstart) comes with these script already configured.
