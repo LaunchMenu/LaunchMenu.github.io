@@ -17,7 +17,11 @@ export const FeatureCategory: FC<{category: string; content?: ReactNode}> = ({
             display="flex"
             py={2}
             flexWrap="wrap"
-            css={theme => ({marginTop: 200, gap: theme.spacing(2)})}>
+            css={theme => ({
+                marginTop: 200,
+                marginBottom: 100,
+                gap: theme.spacing(2),
+            })}>
             <Box
                 minWidth="fit-content"
                 flex={1}

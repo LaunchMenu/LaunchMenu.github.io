@@ -4,7 +4,7 @@ import Code from "@material-ui/icons/Code";
 import {FC} from "react";
 import Textfit from "react-textfit";
 import {useBodySize} from "../../../hooks/useBodySize";
-import Link from "next/link";
+import {Link, PlainLink} from "../../PlainLink";
 import {Text} from "../../textStyles/Text";
 
 export const Hero: FC = ({children}) => {
@@ -29,14 +29,14 @@ export const Hero: FC = ({children}) => {
                     })}>
                     Do it. Do it now.
                 </Text>
-                <Link href="#downloads">
+                <PlainLink href="#downloads">
                     <Button
                         variant="contained"
                         color="primary"
                         startIcon={<CloudDownload />}>
                         Download
                     </Button>
-                </Link>
+                </PlainLink>
 
                 <Box mt={4} mb={2}>
                     <Text>
@@ -44,7 +44,7 @@ export const Hero: FC = ({children}) => {
                         features that applets can take advantage of:
                     </Text>
                 </Box>
-                <Link href="/dev">
+                <PlainLink href="/dev">
                     <Button
                         variant="contained"
                         color="default"
@@ -52,7 +52,7 @@ export const Hero: FC = ({children}) => {
                         disableElevation>
                         Applet development
                     </Button>
-                </Link>
+                </PlainLink>
             </Box>
             <Box flex={1}>{children}</Box>
         </Box>

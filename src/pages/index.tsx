@@ -325,52 +325,6 @@ const Home: FC<{timestamps: ITimestamps}> = ({
             </FeatureCategory>
         </LMVideosProvider>
 
-        <BackgroundSection>
-            <Downloads>
-                <DownloadBlock
-                    title="Windows"
-                    status="supported"
-                    icon={<img src="/icons/windows.svg" />}
-                    description="LaunchMenu is primarily being developed and tested on Windows, so this platform has smallest chance of containing bugs."
-                    download="https://google.com" // TODO: add real URL
-                />
-                <DownloadBlock
-                    title="Linux"
-                    status="longTerm"
-                    icon={<img src="/icons/linux.svg" />}
-                    description="Linux support is planned, but not yet worked on. Help from Linux users will be needed to test the software, and fix OS specific issues."
-                    download="https://google.com" // TODO: add real URL
-                />
-                <DownloadBlock
-                    title="Mac"
-                    status="comingSoon"
-                    icon={<img src="/icons/apple.svg" />}
-                    description="Most features have been tested and adjusted to work on Mac, but this testing has been less extensive than on Windows."
-                    download="https://google.com" // TODO: add real URL
-                />
-            </Downloads>
-        </BackgroundSection>
-
-        <Spacer amount={200} />
-
-        <Recommendations>
-            <RecommendationBlock
-                quote="LaunchMenu is very convenient to use, and super fast to interact with. It unfortunately doesn't have many applets yet, but there's a lot of potential!"
-                name="Tar van Krieken"
-                role="Cofounder of LaunchMenu"
-            />
-            <RecommendationBlock
-                quote="Exactly what I wanted."
-                name="Sancarn"
-                role="Founder of LaunchMenu"
-            />
-            <RecommendationBlock
-                quote="We don't really have any users yet."
-                name="Tar van Krieken"
-                role="Cofounder of LaunchMenu"
-            />
-        </Recommendations>
-
         <Spacer amount={200} />
 
         <BackgroundSection>
@@ -519,7 +473,53 @@ const Home: FC<{timestamps: ITimestamps}> = ({
             </Applets>
         </BackgroundSection>
 
-        <Spacer amount={400} />
+        <Downloads>
+            <DownloadBlock
+                title="Windows"
+                status="supported"
+                icon={<img src="/icons/windows.svg" />}
+                description="LaunchMenu is primarily being developed and tested on Windows, so this platform has smallest chance of containing bugs."
+                download="https://google.com" // TODO: add real URL
+            />
+            <DownloadBlock
+                title="Linux"
+                status="longTerm"
+                icon={<img src="/icons/linux.svg" />}
+                description="Linux support is planned, but not yet worked on. Help from Linux users will be needed to test the software, and fix OS specific issues."
+                download="https://google.com" // TODO: add real URL
+            />
+            <DownloadBlock
+                title="Mac"
+                status="comingSoon"
+                icon={<img src="/icons/apple.svg" />}
+                description="Most features have been tested and adjusted to work on Mac, but this testing has been less extensive than on Windows."
+                download="https://google.com" // TODO: add real URL
+            />
+        </Downloads>
+
+        <Spacer amount={200} />
+
+        <BackgroundSection>
+            <Recommendations>
+                <RecommendationBlock
+                    quote="LaunchMenu is very convenient to use, and super fast to interact with. It unfortunately doesn't have many applets yet, but there's a lot of potential!"
+                    name="Tar van Krieken"
+                    role="Cofounder of LaunchMenu"
+                />
+                <RecommendationBlock
+                    quote="Exactly what I wanted."
+                    name="Sancarn"
+                    role="Founder of LaunchMenu"
+                />
+                <RecommendationBlock
+                    quote="We don't really have any users yet."
+                    name="Tar van Krieken"
+                    role="Cofounder of LaunchMenu"
+                />
+            </Recommendations>
+        </BackgroundSection>
+
+        <Spacer amount={200} />
     </Container>
 );
 

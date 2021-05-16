@@ -2,7 +2,10 @@
 
 The settings manager is in charge of providing the UI for changing both core settings, and applet specific settings.
 
-<ScreenShot src="/applets/dictionary/banner.png" alt="Notes banner" />
+<ScreenShot
+    src="/applets/settings-manager/banner.png"
+    alt="Settings-manager banner"
+/>
 
 ## Features
 
@@ -10,12 +13,11 @@ The settings manager is in charge of providing the UI for changing both core set
 
 Settings don't show up in the main search by default. This was decided in order to reduce the amount of clutter caused by these settings, since it will be relatively rare you want to change these.
 
-Instead the pattern `s:` must be used explicitely when you're looking for a specific setting:
+Instead the pattern `setting:` or `s:` must be used explicitly when you're looking for a specific setting:
 
 <ScreenShot
-    src="/applets/dictionary/definition search.png"
-    alt="Search only definitions"
-    section="field"
+    src="/applets/settings-manager/search pattern.png"
+    alt="Search only settings"
 />
 
 ### Browse settings
@@ -23,16 +25,15 @@ Instead the pattern `s:` must be used explicitely when you're looking for a spec
 If you want to just browse all settings, you can use the [applet-manager](/applets/core/applet-manager) to open all settings:
 
 <ScreenShot
-    src="/applets/dictionary/definition search.png"
-    alt="Search only definitions"
-    section="field"
+    src="/applets/settings-manager/allSettings.png"
+    alt="Browse settings"
 />
 
 ### Open settings for the current applet
 
 Settings can also be accessed through the global section of the context-menu. Here you can also find the settings of the applet you're currently using.
 
-<ScreenRecording src="/videoTest2.mp4" />
+<ScreenRecording src="/applets/settings-manager/appletSettings.webm" />
 
 Accessing the settings through the global context can be particularly useful in situations where you're deeply within nested menus.
 

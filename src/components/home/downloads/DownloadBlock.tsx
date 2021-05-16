@@ -1,4 +1,4 @@
-import {Box, Button} from "@material-ui/core";
+import {Box, Button, Paper} from "@material-ui/core";
 import {FC, ReactNode} from "react";
 import {H3} from "../../textStyles/H3";
 import {Text} from "../../textStyles/Text";
@@ -21,11 +21,11 @@ export const DownloadBlock: FC<{
         m={1}
         display="flex"
         flexDirection="column"
+        component={OutlinePaper}
         boxSizing="border-box"
         flexBasis={1}
         borderRadius={8}
         css={theme => ({
-            backgroundColor: theme.palette.background.default,
             minWidth: `min(100% - ${theme.spacing(1) * 2}px, 300px)`,
         })}>
         <span>
@@ -52,3 +52,5 @@ export const DownloadBlock: FC<{
         </a>
     </Box>
 );
+
+const OutlinePaper: FC = props => <Paper variant="outlined" {...props} />;

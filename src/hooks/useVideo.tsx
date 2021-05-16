@@ -2,21 +2,20 @@ import {Field, IDataHook} from "model-react";
 import {FC, Fragment, useEffect, useRef} from "react";
 import {IVideoComp} from "../components/home/videoService/LMVideosProvider";
 
-export function useVideo(
-    config: IVideoConfig
-): {
+export function useVideo(config: IVideoConfig): {
     Video: IVideoComp;
     controls: IVideoControls;
 } {
     const ref = useRef<HTMLVideoElement>(null);
 
-    const data = useRef<{
-        buffered: Field<number>;
-        time: Field<number>;
-        playing: Field<boolean>;
-        volume: Field<number>;
-        duration: Field<number>;
-    }>();
+    const data =
+        useRef<{
+            buffered: Field<number>;
+            time: Field<number>;
+            playing: Field<boolean>;
+            volume: Field<number>;
+            duration: Field<number>;
+        }>();
     const controls = useRef<IVideoControls>();
     if (!controls.current) {
         const buffered = new Field(0);

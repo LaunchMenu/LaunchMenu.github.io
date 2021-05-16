@@ -2,6 +2,7 @@ import {Box} from "@material-ui/core";
 import {FC} from "react";
 import {VideoControls} from "../../../components/VideoControls";
 import {useVideo} from "../../../hooks/useVideo";
+import {background3} from "../../../theme";
 
 export const Video: FC<{
     src: string;
@@ -17,7 +18,11 @@ export const Video: FC<{
     // const maxWidth =
     const {Video, controls} = useVideo({src});
     return (
-        <Box width="fit-content" position="relative" overflow="hidden">
+        <Box
+            width="fit-content"
+            css={{border: `2px solid ${background3}`}}
+            position="relative"
+            overflow="hidden">
             <Video
                 width={desiredWidth}
                 css={{
