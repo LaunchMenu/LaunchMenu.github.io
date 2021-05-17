@@ -16,11 +16,14 @@ export const Video: FC<{
     fullscreenControls = true,
 }) => {
     // const maxWidth =
-    const {Video, controls} = useVideo({src});
+    const {Video, controls} = useVideo({src, muted: !volumeControls});
     return (
         <Box
             width="fit-content"
-            css={{border: `2px solid ${background3}`}}
+            css={{
+                border: `2px solid ${background3}`,
+                width: desiredWidth ?? "100%",
+            }}
             position="relative"
             overflow="hidden">
             <Video

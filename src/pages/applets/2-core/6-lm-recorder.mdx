@@ -10,17 +10,17 @@ The recorder will try to find any valid recording script in the configured [scri
 
 The item representing a script will start running the script on item execution. Any UI provided by the recording applet will be hidden during recording.
 
-<ScreenRecording src="/videoTest2.mp4" />
+<Video src="/applets/lm-recorder/record.mp4" volumeControls={false} />
 
-#### Watching
+#### File watching
 
-A given script can be actively 'watched' using the `Watch record script` action. This will make the script automatically rerun when file changes are detected. When the file changes again before the previous recording has finished, the previous recording will be canceled.
+A given script can be actively 'watched' using the `Watch record script` action. This will make the script automatically rerun when file changes are detected. When the file is altered again before the previous recording has finished, the previous recording will be cancelled.
 
 This is primarily useful when you're writing and tweaking your script, in order to instantly see the updated version run.
 
 When you no longer want to watch the script, a `Exit watched script` action will be available in any context menu to stop watching.
 
-<ScreenRecording src="/videoTest2.mp4" />
+<Video src="/applets/lm-recorder/watchMode.mp4" volumeControls={false} />
 
 ### Audio recording
 
@@ -34,13 +34,13 @@ The recording procedure consists of 3 steps:
 
 The audio is saved to the configured [audio directory](#audio-directory).
 
-<ScreenRecording src="/videoTest2.mp4" />
+<Video src="/applets/lm-recorder/audioRecording.mp4" />
 
 ## Settings
 
 The LM recorder only contains a couple of settings: directories to saves files to/read files from and a shortcut for exiting record mode.
 
-<ScreenShot src="/applets/dictionary/banner.png" alt="Settings overview" />
+<ScreenShot src="/applets/lm-recorder/settings.png" alt="Settings overview" />
 
 ### Scripts directory
 
@@ -293,9 +293,9 @@ type IItemMatch = RegExp | ((item: IMenuItem, hook: IDataHook) => boolean);
 await controller.navigate([/settings manager/i, /base settings/i, /menu/i]);
 ```
 
-#### waitForOpen
+#### waitOpen
 
-The `controller.waitForOpen` function will return a promise that only resolves once LaunchMenu has been opened. This can be used to pause script execution and perform some manual tasks in the video, and continue the script once LaunchMenu was opened by the user.
+The `controller.waitOpen` function will return a promise that only resolves once LaunchMenu has been opened. Additionally the value `false` can be passed an argument to wait for LM to close. This can be used to pause script execution and perform some manual tasks in the video, and continue the script once LaunchMenu was opened by the user.
 
 #### wait
 
