@@ -129,7 +129,7 @@ Both of these functions expect you to return a partial applet config, which can 
 
 `init` is invoked only when your applet is first loaded. The currently running instance of `LaunchMenu` is provided as well as the settings of your applet. If you applet has to interact with the `LaunchMenu` instance, or has to take care of some global setup, it can be performed from within this function. You can specify a `onDispose` callback in the returned value, which will be executed when your applet is unloaded. This can occur when the user disables your applet, but also when a live reload is performed during development.
 
-The below example will initialize a file watcher, and dispose it on reload. The `LaunchMenu` instance isn't used.o
+The below example will initialize a file watcher, and dispose it on reload. The `LaunchMenu` instance isn't used.
 
 ```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/appletFormatInit
 export default declare({

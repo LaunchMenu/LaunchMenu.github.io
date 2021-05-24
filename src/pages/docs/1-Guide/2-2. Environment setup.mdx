@@ -80,9 +80,9 @@ See [adding dependencies](https://docs.npmjs.com/specifying-dependencies-and-dev
 
 ## TypeScript and lm-build-tools
 
-LaunchMenu applets are written in [TypeScript](https://www.typescriptlang.org/) (TS). It's also possible to make your applets in JavaScript, but we don't have any examples for javascript environment setup and we highly encourage the usage of TS.
+LaunchMenu applets are written in [TypeScript](https://www.typescriptlang.org/) (TS). It's also possible to make your applets in JavaScript (JS), but we don't have any examples for JS environment setup and we highly encourage the usage of TS.
 
-In order to use TS, we will have to translate our TS source code to JavaScript before we're able to execute it. For this we can use the TS compiler. In order to simplify the setup, we provide our own [lm-build-tools](https://www.npmjs.com/package/@launchmenu/build-tools) module that can be used for this.
+In order to use TS, we will have to translate our TS source code to JS before we're able to execute it. For this we can use the TS compiler. In order to simplify the setup, we provide our own [lm-build-tools](https://www.npmjs.com/package/@launchmenu/build-tools) module that can be used for this.
 
 To install and use the build tools, we should add the following lines to our `package.json`:
 
@@ -415,7 +415,7 @@ We now added all our configs and should be ready to go. Your directory should no
 - tsconfig.json
 ```
 
-```json title=tsconfig.json spoiler
+```json title=package.json spoiler
 {
     "name": "applet-hello-world",
     "private": true,
