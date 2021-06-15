@@ -49,7 +49,7 @@ There are three types of dependencies:
 
 Below is a config example with LaunchMenu dependencies added:
 
-```json title=package.json highlight=9:21
+```json title=package.json highlight=9:22
 {
     "name": "applet-hello-world",
     "private": true,
@@ -60,16 +60,17 @@ Below is a config example with LaunchMenu dependencies added:
     "license": "MIT",
     "dependencies": {},
     "peerDependencies": {
-        "@launchmenu/core": "^0.0.5-alpha.13"
+        "@launchmenu/core": "^0.1.2"
     },
     "devDependencies": {
-        "@launchmenu/core": "^0.0.5-alpha.13",
+        "@launchmenu/core": "^0.1.2",
         "electron": "^9.3.1",
-        "@launchmenu/applet-help": "^0.0.5-alpha.13",
-        "@launchmenu/applet-applet-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-session-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-settings-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-window-manager": "^0.0.5-alpha.13"
+        "@launchmenu/applet-help": "^0.1.2",
+        "@launchmenu/applet-applet-manager": "^0.1.2",
+        "@launchmenu/applet-session-manager": "^0.1.2",
+        "@launchmenu/applet-settings-manager": "^0.1.2",
+        "@launchmenu/applet-window-manager": "^0.1.2",
+        "@launchmenu/applet-lm-recorder": "^0.1.2"
     }
 }
 ```
@@ -105,17 +106,18 @@ To install and use the build tools, we should add the following lines to our `pa
     },
     "dependencies": {},
     "peerDependencies": {
-        "@launchmenu/core": "^0.0.5-alpha.13"
+        "@launchmenu/core": "^0.1.2"
     },
     "devDependencies": {
-        "@launchmenu/core": "^0.0.5-alpha.13",
+        "@launchmenu/core": "^0.1.2",
         "@launchmenu/build-tools": "^0.0.2",
         "electron": "^9.3.1",
-        "@launchmenu/applet-help": "^0.0.5-alpha.13",
-        "@launchmenu/applet-applet-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-session-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-settings-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-window-manager": "^0.0.5-alpha.13"
+        "@launchmenu/applet-help": "^0.1.2",
+        "@launchmenu/applet-applet-manager": "^0.1.2",
+        "@launchmenu/applet-session-manager": "^0.1.2",
+        "@launchmenu/applet-settings-manager": "^0.1.2",
+        "@launchmenu/applet-window-manager": "^0.1.2",
+        "@launchmenu/applet-lm-recorder": "^0.1.2"
     }
 }
 ```
@@ -201,22 +203,23 @@ To start using [react](https://reactjs.org/) for our UIs, we will have to add it
     },
     "dependencies": {},
     "peerDependencies": {
-        "@launchmenu/core": "^0.0.5-alpha.13",
+        "@launchmenu/core": "^0.1.2",
         "model-react": "^4.0.1",
         "react": "^17.0.0"
     },
     "devDependencies": {
-        "@launchmenu/core": "^0.0.5-alpha.13",
+        "@launchmenu/core": "^0.1.2",
         "@launchmenu/build-tools": "^0.0.2",
         "@types/react": "^17.0.0",
         "model-react": "^4.0.1",
         "react": "^17.0.0",
         "electron": "^9.3.1",
-        "@launchmenu/applet-help": "^0.0.5-alpha.13",
-        "@launchmenu/applet-applet-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-session-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-settings-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-window-manager": "^0.0.5-alpha.13"
+        "@launchmenu/applet-help": "^0.1.2",
+        "@launchmenu/applet-applet-manager": "^0.1.2",
+        "@launchmenu/applet-session-manager": "^0.1.2",
+        "@launchmenu/applet-settings-manager": "^0.1.2",
+        "@launchmenu/applet-window-manager": "^0.1.2",
+        "@launchmenu/applet-lm-recorder": "^0.1.2"
     }
 }
 ```
@@ -352,12 +355,12 @@ Next you want to add Jest dev dependencies to your `package.json`, as well as sc
     },
     "dependencies": {},
     "peerDependencies": {
-        "@launchmenu/core": "^0.0.5-alpha.13",
+        "@launchmenu/core": "^0.1.2",
         "model-react": "^4.0.1",
         "react": "^17.0.0"
     },
     "devDependencies": {
-        "@launchmenu/core": "^0.0.5-alpha.13",
+        "@launchmenu/core": "^0.1.2",
         "@launchmenu/build-tools": "^0.0.2",
         "@types/react": "^17.0.0",
         "model-react": "^4.0.1",
@@ -368,11 +371,12 @@ Next you want to add Jest dev dependencies to your `package.json`, as well as sc
         "@testing-library/react": "^10.0.3",
         "@types/jest": "^26.0.0",
         "electron": "^9.3.1",
-        "@launchmenu/applet-help": "^0.0.5-alpha.13",
-        "@launchmenu/applet-applet-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-session-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-settings-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-window-manager": "^0.0.5-alpha.13"
+        "@launchmenu/applet-help": "^0.1.2",
+        "@launchmenu/applet-applet-manager": "^0.1.2",
+        "@launchmenu/applet-session-manager": "^0.1.2",
+        "@launchmenu/applet-settings-manager": "^0.1.2",
+        "@launchmenu/applet-window-manager": "^0.1.2",
+        "@launchmenu/applet-lm-recorder": "^0.1.2"
     }
 }
 ```
@@ -434,22 +438,23 @@ We now added all our configs and should be ready to go. Your directory should no
     },
     "dependencies": {},
     "peerDependencies": {
-        "@launchmenu/core": "^0.0.5-alpha.13",
+        "@launchmenu/core": "^0.1.2",
         "model-react": "^4.0.1",
         "react": "^17.0.0"
     },
     "devDependencies": {
-        "@launchmenu/core": "^0.0.5-alpha.13",
+        "@launchmenu/core": "^0.1.2",
         "@launchmenu/build-tools": "^0.0.2",
         "@types/react": "^17.0.0",
         "model-react": "^4.0.1",
         "react": "^17.0.0",
         "electron": "^9.3.1",
-        "@launchmenu/applet-help": "^0.0.5-alpha.13",
-        "@launchmenu/applet-applet-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-session-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-settings-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-window-manager": "^0.0.5-alpha.13"
+        "@launchmenu/applet-help": "^0.1.2",
+        "@launchmenu/applet-applet-manager": "^0.1.2",
+        "@launchmenu/applet-session-manager": "^0.1.2",
+        "@launchmenu/applet-settings-manager": "^0.1.2",
+        "@launchmenu/applet-window-manager": "^0.1.2",
+        "@launchmenu/applet-lm-recorder": "^0.1.2"
     }
 }
 ```
@@ -508,12 +513,12 @@ And in case you also followed the prettier and jest steps, it should look like t
     },
     "dependencies": {},
     "peerDependencies": {
-        "@launchmenu/core": "^0.0.5-alpha.13",
+        "@launchmenu/core": "^0.1.2",
         "model-react": "^4.0.1",
         "react": "^17.0.0"
     },
     "devDependencies": {
-        "@launchmenu/core": "^0.0.5-alpha.13",
+        "@launchmenu/core": "^0.1.2",
         "@launchmenu/build-tools": "^0.0.2",
         "@types/react": "^17.0.0",
         "model-react": "^4.0.1",
@@ -524,11 +529,12 @@ And in case you also followed the prettier and jest steps, it should look like t
         "@testing-library/react": "^10.0.3",
         "@types/jest": "^26.0.0",
         "electron": "^9.3.1",
-        "@launchmenu/applet-help": "^0.0.5-alpha.13",
-        "@launchmenu/applet-applet-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-session-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-settings-manager": "^0.0.5-alpha.13",
-        "@launchmenu/applet-window-manager": "^0.0.5-alpha.13"
+        "@launchmenu/applet-help": "^0.1.2",
+        "@launchmenu/applet-applet-manager": "^0.1.2",
+        "@launchmenu/applet-session-manager": "^0.1.2",
+        "@launchmenu/applet-settings-manager": "^0.1.2",
+        "@launchmenu/applet-window-manager": "^0.1.2",
+        "@launchmenu/applet-lm-recorder": "^0.1.2"
     }
 }
 ```
@@ -598,4 +604,4 @@ module.exports = {
 
 And now that all of that is out of the way, we can finally start creating our first applet!
 
-<GuideNav prev="Guide/1.-Overview" next="Guide/3.-Applet-interface" />
+<GuideNav prev="guide/1.-overview" next="guide/3.-applet-interface" />

@@ -49,6 +49,8 @@ Note that non of your other code should directly or indirectly (E.g. by importin
 
 You can learn more about video recording on the [LM-recorder](/applets/core/lm-recorder) applet's own page.
 
+The quickstart repository also contains such a script, which was used to generate the video shown in this guide: [src/recordScripts/demo](https://github.com/LaunchMenu/LM-applet-quickstart/blob/main/src/recordScripts/demo.tsx).
+
 ## Personal usage
 
 In case you want to properly test your applet before publishing, or don't want to publish it at all, you can install your applet straight to your own installed version of LaunchMenu as well. In the future we will scripts to accomplish this in a dedicated applet-testing module, but for now you can manually copy the required scripts. The [LM-applet-quickstart](https://github.com/LaunchMenu/LM-applet-quickstart) comes with these script already configured.
@@ -221,8 +223,8 @@ And add the following scripts to your package.json:
 ```json title=package.json
 {
     "scripts": {
-        "installLocal": "electron scripts/installLocal.js",
-        "uninstallLocal": "electron scripts/uninstallLocal.js"
+        "install-local": "electron scripts/installLocal.js",
+        "uninstall-local": "electron scripts/uninstallLocal.js"
     }
 }
 ```
@@ -230,9 +232,11 @@ And add the following scripts to your package.json:
 Now you can locally install your applet by running:
 
 ```
-npm run installLocal
+npm run install-local
 ```
 
-This will ask you to select the directory that LaunchMenu is installed the first time that you run this (and it's saved in `script/installPath.json` for later use), and install your applet locally. The `uninstallLocal` script can later be used to uninstall it again.
+This will ask you to select the directory that LaunchMenu is installed the first time that you run this (and it's saved in `script/installPath.json` for later use), and install your applet locally. The `uninstall-local` script can later be used to uninstall it again.
 
-<GuideNav prev="Guide/8.-Actions" />
+Depending on where LaunchMenu is installed, you may have to run the terminal with admin privileges.
+
+<GuideNav prev="guide/8.-actions" />

@@ -147,7 +147,7 @@ In TypeScript you use the `:type` notation to declare the type of variable that 
 
 ### CSS
 
-This `Box` component also uses [Emotion's CSS prop object](https://emotion.sh/docs/css-prop#object-styles) to allow for inline CSS including selectors. Note that the `css` prop isn't supported for any react components other than `Box`.
+This `Box` component also uses [Emotion's CSS prop object](https://emotion.sh/docs/css-prop#object-styles) to allow for inline CSS including selectors. Note that the `css` prop isn't supported for all react components, only custom ones like `Box`.
 
 ```tsx title=boxCssExample.tsx spoiler
 const Content: FC<{text: string}> = ({text}) => {
@@ -173,6 +173,6 @@ const Content: FC<{text: string}> = ({text}) => {
 ```
 
 <GuideNav
-    prev="Guide/4.-Items-and-searches"
-    next="Guide/6.-UILayers-and-menus"
+    prev="guide/4.-items-and-searches"
+    next="guide/6.-uilayers-and-menus"
 />
