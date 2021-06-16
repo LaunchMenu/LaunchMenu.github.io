@@ -12,6 +12,7 @@ import {InlineCode} from "../services/mdx/components/Code";
 import {Community} from "../components/developer/Community";
 import {Spacer} from "../components/Spacer";
 import {Link} from "../components/PlainLink";
+import {Video} from "../services/mdx/components/Video";
 
 const Developers = () => (
     <Container>
@@ -47,6 +48,9 @@ export default declare({
 });`}
                 language="tsx"
                 source="https://github.com/LaunchMenu/LM-applet-examples/blob/main/examples/demosBasics/src/index.tsx"
+                result={
+                    <Video src="https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/demosBasics/recordings/demo.webm" />
+                }
             />
         </Hero>
         <HorizontalList margin={2}>
@@ -168,6 +172,9 @@ const items = [
 ];`}
                         language="tsx"
                         source="https://github.com/LaunchMenu/LM-applet-examples/blob/main/examples/demosItems/src/index.tsx"
+                        result={
+                            <Video src="https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/demosItems/recordings/demo.webm" />
+                        }
                     />
                 </Fragment>
             }>
@@ -220,10 +227,13 @@ export default declare({
     info,
     settings,
     search: async (query, hook) => {
-        const rawData = await fetch(\`https://rickandmortyapi.com/api/character/?\`);
-        const data = (await rawData.json()) as {
-            results: [{name: string; image: string; species: string}];
-        };
+        const rawData = await fetch(
+            \`https://rickandmortyapi.com/api/character?name=\${query.search}\`
+        );
+        const data: {
+            results: {name: string; image: string; species: string}[];
+        } = rawData.ok ? await rawData.json() : {results: []};
+
         const items = data.results.map(({name, image, species}) =>
             resultCache.get(name, image, species)
         );
@@ -232,6 +242,9 @@ export default declare({
 });`}
                             language="tsx"
                             source="https://github.com/LaunchMenu/LM-applet-examples/blob/main/examples/demosSearch/src/index.tsx"
+                            result={
+                                <Video src="https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/demosSearch/recordings/demo.webm" />
+                            }
                         />
                     </Fragment>
                 }>
@@ -315,7 +328,9 @@ const items = [
 ];`}
                         language="tsx"
                         source="https://github.com/LaunchMenu/LM-applet-examples/blob/main/examples/demosActions/src/index.tsx"
-                        result={<ScreenRecording src="/videoTest2.mp4" />}
+                        result={
+                            <Video src="https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/demosActions/recordings/demo.webm" />
+                        }
                     />
                 </Fragment>
             }>
@@ -395,6 +410,9 @@ const items = [
 ];`}
                             language="tsx"
                             source="https://github.com/LaunchMenu/LM-applet-examples/blob/main/examples/demosSettings/src/index.tsx"
+                            result={
+                                <Video src="https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/demosSettings/recordings/demo.webm" />
+                            }
                         />
                     </Fragment>
                 }>
@@ -437,6 +455,9 @@ const items = [
 const items = [createTimesItem("Hello world"), createTimesItem("Bye world")];`}
                         language="tsx"
                         source="https://github.com/LaunchMenu/LM-applet-examples/blob/main/examples/demosUndoRedo/src/index.tsx"
+                        result={
+                            <Video src="https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/demosUndoRedo/recordings/demo.webm" />
+                        }
                     />
                 </Fragment>
             }>
@@ -474,8 +495,7 @@ const items = [createTimesItem("Hello world"), createTimesItem("Bye world")];`}
                 links={[
                     {
                         name: "Github",
-                        url:
-                            "https://github.com/LaunchMenu/LaunchMenu/discussions",
+                        url: "https://github.com/LaunchMenu/LaunchMenu/discussions",
                     },
                 ]}>
                 As mentioned several times already, LaunchMenu is fully

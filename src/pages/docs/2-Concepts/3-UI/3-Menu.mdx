@@ -131,7 +131,7 @@ The main item search that queries all applets ignores these categories however, 
 
 A standard factory exists for creating categories with appropriate menu item styling called `createStandardCategory`. The example below shows how items can make use of these categories, when using the standard item factory:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuCategories
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuCategories video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/menuCategories/recordings/demo.webm
 const category = createStandardCategory({
     name: "My category",
     /** Metadata that's not displayed */
@@ -167,7 +167,7 @@ This factory will create items that also have some styling to appropriately visu
 
 The example below shows off a very basic interactive category, but the possible config data is roughly equivalent to what can be passed to [`createStandardMenuItem`](/docs/concepts/ui/menuitems#standard-menu-items).
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuAdvancedCategories
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuAdvancedCategories video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/menuAdvancedCategories/recordings/demo.webm
 const interactiveCategory = createAdvancedCategory({
     name: "My category",
     onExecute: () => alert("Category!"),
@@ -199,7 +199,7 @@ There is only 1 standard view for menus as of right now: `MenuView`. This is sim
 
 The example below is rather extensive, but shows off how a loading indicator could be added to a menu. The [`SearchMenu`](#searchmenu) (an implementation of `IMenu`) automatically adds a loading state metadata to `getItems`, allowing the view to show whether the menu is still searching. This metadata is transferred through the [model-react data hooks](https://tarvk.github.io/model-react/examples/build/).
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuViews spoiler
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuViews video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/menuViews/recordings/demo.webm spoiler
 const subitems = [
     createStandardMenuItem({
         name: "Potaters",
@@ -334,7 +334,7 @@ The `IMenu` interface also may specify a `getHighlight` function. When present, 
 
 The example below uses this to highlight some random text:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuSearchHighlight
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuSearchHighlight video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/menuSearchHighlight/recordings/demo.webm
 class HighlightMenu extends Menu {
     protected search: IQuery;
 
@@ -379,7 +379,7 @@ Now when `example` is opened, it will automatically highlight `world` in its ite
 
 most of the interaction with the menu is performed through keyboard controls. We have one primary factory called `createStandardMenuKeyHandler` which allows you to create a standard keyboard controller for any menu. When using the [`UILayer` class](/docs/concepts/ui/uilayers#uilayer-class) this controller will automatically be created for any specified menus without views, but it's also possible to create your own controller or customize this standard controller:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuKeyHandler
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuKeyHandler video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/menuKeyHandler/recordings/demo.webm
 const settings = createSettings({
     version: "0.0.0",
     settings: () =>
@@ -589,7 +589,7 @@ export class Menu extends AbstractMenu {
 
 We've used the standard `Menu` implementation in most of our examples, but here it is again:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuMenu
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuMenu video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/menuMenu/recordings/demo.webm
 export default declare({
     info,
     settings,
@@ -640,7 +640,7 @@ export class ProxiedMenu extends AbstractMenu {
 
 The example below shows how the source of menu items can be setup before creating a menu, and even maintain itself without having to know about the menu:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuProxiedMenu
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuProxiedMenu video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/menuProxiedMenu/recordings/demo.webm
 function createItem(name: string): IMenuItem {
     const item = createStandardMenuItem({
         name,
@@ -758,7 +758,7 @@ export class PrioritizedMenu extends AbstractMenu {
 
 The example below shows basic usage of the `PrioritizedMenu` and `IPrioritizedMenuItem`s:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuPrioritizedMenu
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuPrioritizedMenu video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/menuPrioritizedMenu/recordings/demo.webm
 const items = [
     {
         priority: Priority.MEDIUM,
@@ -816,7 +816,7 @@ export class ProxiedPrioritizedMenu extends PrioritizedMenu {
 
 The example below shows how the source of menu items can be setup before creating a menu, and even maintain itself without having to know about the menu:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuProxiedPrioritizedMenu
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuProxiedPrioritizedMenu video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/menuProxiedPrioritizedMenu/recordings/demo.webm
 function createItem(name: string): IPrioritizedMenuItem {
     const item: IPrioritizedMenuItem = {
         priority: Math.random(),
@@ -935,7 +935,7 @@ export class SearchMenu extends PrioritizedMenu {
 
 The example below shows how you can use the search menu to search for a given term within a selection of items:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuSearchMenu
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuSearchMenu video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/menuSearchMenu/recordings/demo.webm
 const items = [
     createStandardMenuItem({
         name: "Hello world",

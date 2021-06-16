@@ -172,7 +172,7 @@ Note that `useState` and other component based state management should be avoide
 
 Data storage should therefor be done in react life-cycle independent facilities, such as using [model-react fields](https://tarvk.github.io/model-react/examples/build/#Field).
 
-This choice may be worth reconsidering, but so far it hasn't been problematic in my experience.
+The choice of arbitrarily demounting elements (and thus breaking react life-cycle dependent state management) may be worth reconsidering, but so far it hasn't been problematic in my experience.
 
 ## Paths
 
@@ -180,7 +180,7 @@ UI layers can specify a path to give the user a rough idea of where in the appli
 
 Below is an example showing some paths specified to a `UILayer` instance, which extends `AbstractUILayer`:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/UILayerPath
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/UILayerPath video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/UILayerPath/recordings/demo.webm
 export default declare({
     info,
     settings,
@@ -313,7 +313,7 @@ Whenever a `IMenu` -, `ITextField` -, or `IContent` instance is passed to the UI
 
 The generated key handlers can take care of automatically closing the layer and calling `onClose` too, if `handleClose` is set to true. `handleClose` defaults to false for provided field and content instances, but defaults to true if a menu is present.
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/UILayerModelCompletion
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/UILayerModelCompletion video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/UILayerModelCompletion/recordings/demo.webm
 export default declare({
     info,
     settings,
@@ -344,7 +344,7 @@ By default a menu opened by a `UILayer` is searchable. This is achieved by using
 
 We can easily stop a menu from being searched, by specifying `searchable: false`:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/UILayerSearching
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/UILayerSearching video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/UILayerSearching/recordings/demo.webm
 export default declare({
     info,
     settings,
@@ -376,7 +376,7 @@ In this example, whenever you open the `example` applet, it will add 2 UILayers.
 
 Any menu opened by a `UILayer` will automatically show the selected item's content in the content area. This content will override the content that was provided separately, unless `hideItemContent: true` is supplied.
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/UILayerMenuContent
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/UILayerMenuContent video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/UILayerMenuContent/recordings/demo.webm
 const items = [
     createStandardMenuItem({
         name: "Hello world",
@@ -419,7 +419,7 @@ A somewhat advanced concept is the concept of overlays. The premise is quite sim
 
 This simple idea however leaves us with 1 problem: when we open multiple layers that all have an overlay for the content, the content below becomes increasingly less visible. This isn't a huge problem, but still not favorable in our opinion. This is why we added the concept of `overlayGroups`. These groups are simply JavaScript symbols, specifying some group identifier. Then when we have multiple views of the same group stacked on top of each other, only the bottom view belonging to this group will be rendered.
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/UILayerOverlays spoiler
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/UILayerOverlays video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/UILayerOverlays/recordings/demo.webm spoiler
 export default declare({
     info,
     settings,
@@ -524,7 +524,7 @@ These visual overlays are independent of keyboard interaction, which is addresse
 
 By default any UILayer will catch all events that are emitted. This is to prevent things in other layers from accidentally triggering. There are however several situations in which you do want things in layers below to trigger, which is why you can explicitly disable this by specifying `catchAllKeys: false`.
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/UILayerKeyBarrier spoiler
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/UILayerKeyBarrier video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/UILayerKeyBarrier/recordings/demo.webm spoiler
 export default declare({
     info,
     settings,
@@ -609,7 +609,7 @@ You can make a `IUILayer` totally from scratch if you like, and implement the en
 
 In the example below, we created a custom `GambleLayer` which can take care of providing a view and key handlers for a given menu. The UI provided for the menu is quite custom and rather special however, since you can no longer navigate with the up and down keys, and have to use a 'launcher' instead using the space bar.
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/UILayerCustomLayer spoiler
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/UILayerCustomLayer video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/UILayerCustomLayer/recordings/demo.webm spoiler
 const items = new Array(30).fill(0).map((_, i) =>
     createStandardMenuItem({
         name: `Item ${i}`,
@@ -709,13 +709,11 @@ class GambleLayer extends AbstractUILayer {
             handler: handleItemKeyListeners,
             destroy: destroyItemListenersHandler,
         } = setupItemKeyListenerHandler(menu);
-        const {
-            handler: handleContextMenu,
-            destroy: destroyContextMenuHandler,
-        } = setupContextMenuHandler(menu, {
-            useContextItemKeyHandlers: true,
-            pattern: () => fieldSettings.openContextMenu.get(),
-        });
+        const {handler: handleContextMenu, destroy: destroyContextMenuHandler} =
+            setupContextMenuHandler(menu, {
+                useContextItemKeyHandlers: true,
+                pattern: () => fieldSettings.openContextMenu.get(),
+            });
 
         // Return the listener
         return {
@@ -757,9 +755,7 @@ class GambleLayer extends AbstractUILayer {
      * @param selectNext The function to call to select the next item in the menu
      * @returns The data to manage the launcher
      */
-    protected setupLauncher(
-        selectNext: () => void
-    ): {
+    protected setupLauncher(selectNext: () => void): {
         getCharge: IDataRetriever<number>;
         destroy: () => void;
         fire: () => void;
@@ -842,7 +838,7 @@ The only drawback of this system is that all sections are combined in one list, 
 
 Below is an example of a custom layer that represents an applet, and makes use of the `MenuSearch` layer to allow for searching:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/UILayerReuseLayer
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/UILayerReuseLayer video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/UILayerReuseLayer/recordings/demo.webm
 class MyApplication extends UnifiedAbstractUILayer {
     protected data = new Field([] as IUILayerData[]);
 
@@ -871,10 +867,8 @@ class MyApplication extends UnifiedAbstractUILayer {
         ];
 
         const menu = new Menu(context, items);
-        const {
-            handler: menuHandler,
-            destroy: destroyMenuHandler,
-        } = createStandardMenuKeyHandler(menu, {onExit: close});
+        const {handler: menuHandler, destroy: destroyMenuHandler} =
+            createStandardMenuKeyHandler(menu, {onExit: close});
         const menuData = {
             ID: uuid(),
             menu,
@@ -923,7 +917,7 @@ In this example, whenever the `example` applet is opened, it will open our `MyAp
 
 Note that the above example is meant to show off layer reusing. However because the situation above is rather simple and didn't do anything custom for views or handlers, a similar effect could've been achieved using the `UILayer` class:
 
-```ts title=UILayerExtendingExample.tsx
+```tsx title=UILayerExtendingExample.tsx
 class MyApplication extends UILayer {
     /** Creates a new cool application thing */
     public constructor() {

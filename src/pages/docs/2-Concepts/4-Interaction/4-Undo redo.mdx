@@ -9,7 +9,7 @@ The execute action also has built-in support for command execution, which you ca
 
 Below is an example of using one of the simplest built-in commands, the `SetFieldCommand`:
 
-```tsx title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/undoRedo
+```tsx title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/undoRedo video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/undoRedo/recordings/demo.webm
 const count = new Field(0);
 const content = <Loader>{h => count.get(h)}</Loader>;
 const items = [
@@ -133,7 +133,7 @@ The easiest way of taking care of this state tracking and ensuring commands are 
 
 Below is ane example of how one can create a custom command:
 
-```tsx title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/undoRedoCommands
+```tsx title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/undoRedoCommands video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/undoRedoCommands/recordings/demo.webm
 class RandomIncrementCommand extends Command {
     public metadata = {
         name: "Random increment",
@@ -216,7 +216,7 @@ Compound commands can be used to combine multiple commands into one. This way, w
 
 Below is an example of how to use these compound commands:
 
-```tsx title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/undoRedoCompoundCommand
+```tsx title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/undoRedoCompoundCommand video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/undoRedoCompoundCommand/recordings/demo.webm
 const count1 = new Field(0);
 const count2 = new Field(0);
 const content = (
@@ -285,7 +285,7 @@ The `preparingForExecution` and `preparingForRevert` states mentioned in the [co
 
 Below is an example that shows off usage of 2 independent resources.
 
-```tsx title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/undoRedoResources
+```tsx title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/undoRedoResources video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/undoRedoResources/recordings/demo.webm
 class DelayedRandomIncrementCommand extends Command {
     public metadata = {
         name: "Random increment",
@@ -391,6 +391,8 @@ export default declare({
 ```
 
 Now `Increment parallelized` and `Increment serialized` can both be used to change the value of `count1` and `count2` at once. These commands now have a fake delay however, and you will notice it takes some time for the values to update. When using `Increment parallelized` both the commands will receive a different resource, allowing them to be executed at the same time. When this button is spammed, you will see that execution will start lagging behind, since each resource still only allow 1 active command at a time. When `Increment serialized` the default `applicationResource` that `Command` instances usually have is used, meaning that everything is entirely sequential.
+
+Note that when undo/redo is spammed after having used both the serialized and parallelized incrementor, the first/final result is no longer guaranteed to be consistent. This is because both the parallelized and serialized increment types enforce a certain execution order for their own resource, but there is no constraint between the two types that says a certain order between them has to be respected. Therefor one shouldn't mix different resources for the same elements (in this case fields) in practice. As long as a single resource is chosen and used consistently, the correct execution order is guaranteed.
 
 ### Deadlocks
 

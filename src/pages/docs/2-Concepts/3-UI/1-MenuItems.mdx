@@ -102,7 +102,7 @@ export type IStandardMenuItemData = {
 
 We can then make use of these factories in order to create simple menu items for our applets:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuItemsStandard
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuItemsStandard video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/menuItemsStandard/recordings/demo.webm
 const items = [
     createStandardMenuItem({
         name: "Hello world",
@@ -129,7 +129,7 @@ const items = [
 
 In case our standard menu item doesn't fit your needs, you can build one from scratch. You're still able to reuse some of components of the [standard menu item factory](https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/menus/items/createStandardMenuItem.tsx).
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuItemsCustom
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuItemsCustom video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/menuItemsCustom/recordings/demo.webm
 function createImageMenuItem({
     name,
     image,
@@ -200,7 +200,7 @@ Children of menu items can be expressed in 3 ways:
 -   A list of children, if it's not important to later invidual access children
 -   A [data retriever/virtual data source](https://tarvk.github.io/model-react/examples/build/#Virtual_data_sources) list of children, if your data changes dynamically
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuItemsFolder
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuItemsFolder video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/menuItemsFolder/recordings/demo.webm
 // Object children
 const people = createFolderMenuItem({
     name: "People",
@@ -263,7 +263,7 @@ Lastly we have a menu item type that can be used to store data at the same time 
 
 These field menu items allow us to easily create a menu of properties that the user can update. LaunchMenu comes with several built-in types of field items, but also has a [`createFieldMenuItem` factory function](https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/menus/items/inputs/createFieldMenuItem.tsx) to create your own.
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuItemsCustomField
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuItemsCustomField video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/menuItemsCustomField/recordings/demo.webm
 function createCheckboxMenuItem({
     init,
     tags = [],

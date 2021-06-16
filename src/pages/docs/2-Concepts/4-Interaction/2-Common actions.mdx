@@ -122,7 +122,7 @@ Because all actions in LaunchMenu are extensible, you can easily extend the exec
 
 The example below shows a simple example that alerts the data provided by multiple items in a single prompt:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsCustomExecuteHandler
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsCustomExecuteHandler  video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsCustomExecuteHandler/recordings/demo.webm
 const alertAllHandler = createAction({
     name: "Alert all",
     parents: [executeAction],
@@ -157,7 +157,7 @@ Now if you select multiple of these items, you will see that their contents will
 
 The execute action also has a context-menu item. We are able to override this item for our custom handler however. This is discussed in more detail in the [item overrides section](#item-overrides), but the code below is a quick example:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsCustomExecuteItem
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsCustomExecuteItem video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsCustomExecuteItem/recordings/demo.webm
 const alertAllHandler = createContextAction({
     name: "Alert all",
     parents: [executeAction],
@@ -286,7 +286,7 @@ export type ISinglePromptExecuteData<T> = {
 
 This action can easily be used to make an action that can change multiple fields at once:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsSinglePrompt
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsSinglePrompt video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsSinglePrompt/recordings/demo.webm
 type IRotation = 0 | 90 | 180 | 270;
 const setImageRotationAction = createAction({
     name: "Set image rotation",
@@ -379,7 +379,7 @@ export type IContextMenuItemData = {
 
 In most cases items won't create bindings for this context-menu action directly, since that would result in separate context-items representing the same actions. It's still possible to do this for 1-off bindings however, as we've seen in the [`GlobalContextMenuBindings` section of the applet format page](/docs/concepts/applet-format#globalcontextmenubindings). In most situations you will however want to make your action be a handler of the context-menu action:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsContextMenu
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsContextMenu video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsContextMenu/recordings/demo.webm
 const alertAllAction = createAction({
     name: "Alert all",
     parents: [contextMenuAction],
@@ -437,7 +437,7 @@ The context-menu will also add categories to the menu to show how many of the se
 
 Since context items are quite common, we have a slightly nicer shorthand to the above example by using the `createContextAction` factory:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsContextMenuShorthand
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsContextMenuShorthand video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsContextMenuShorthand/recordings/demo.webm
 const alertAllAction = createContextAction({
     name: "Alert all",
     contextItem: {
@@ -510,31 +510,28 @@ type IDirectContextItem =
 And the result of our action will have to return some way of executing the context-item. This can either be a list of bindings, or simply an execute callback like in the example above. The exact interface of `core` now looks like this:
 
 ```ts title=IContextActionTransformer.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/actions/contextMenuAction/_types/IContextActionTransformer.ts spoiler
-export type IContextActionTransformer<
-    I,
-    O,
-    AB extends IActionBinding | void
-> = {
-    /**
-     * Applies this action transformer to the given bindings, used internally for the `get` method
-     * @param bindingData The data of bindings to apply the transformer to
-     * @param indices The indices of the passed data, which can be used to compute the indices for child bindings
-     * @param hook A data hook to listen for changes
-     * @param items The input items that actions can use to extract extra data
-     * @returns The action result and any possible child bindings
-     */
-    (
-        bindingData: I[],
-        indices: number[],
-        hook: IDataHook,
-        items: IActionTarget[]
-    ): IActionResult<AB, O> & {
-        /** A default execute function for the context menu item */
-        execute?: IExecutable;
-        /** Action bindings to be used by the context menu item */
-        actionBindings?: ISubscribable<IActionBinding[]>;
+export type IContextActionTransformer<I, O, AB extends IActionBinding | void> =
+    {
+        /**
+         * Applies this action transformer to the given bindings, used internally for the `get` method
+         * @param bindingData The data of bindings to apply the transformer to
+         * @param indices The indices of the passed data, which can be used to compute the indices for child bindings
+         * @param hook A data hook to listen for changes
+         * @param items The input items that actions can use to extract extra data
+         * @returns The action result and any possible child bindings
+         */
+        (
+            bindingData: I[],
+            indices: number[],
+            hook: IDataHook,
+            items: IActionTarget[]
+        ): IActionResult<AB, O> & {
+            /** A default execute function for the context menu item */
+            execute?: IExecutable;
+            /** Action bindings to be used by the context menu item */
+            actionBindings?: ISubscribable<IActionBinding[]>;
+        };
     };
-};
 ```
 
 ### Item overrides
@@ -556,7 +553,7 @@ The specifics are quite difficult to grasp, so let's consider a couple of exampl
 Here `A` is our initial action, which will show up in the context-menu. For this example, all other actions in the graph also create their own context-menu item, but all specify `override: A`. Overall, the menu will always show the most specialized item that applies to all of the provided bindings.
 We will consider a couple of different situations to explore this. In each of these situations the list of letters indicates a collection of bindings for which we open the context menu, followed by the menu item that will be shown in that situation. So for instance when we say `[A, D]: A`, this means that if we have a selection of items of which 1 item contains a binding for `A` and 1 contains a binding for `B`, then we will see the item as defined by `A` in the context-menu. Here are a couple of situations and how they will work out:
 
-```ts
+```ts showHeader=false
 [A]: A
 [B]: B
 [C]: C
@@ -573,7 +570,7 @@ As we can see, in most situations when an item is a handler for multiple actions
 
 Now that we've seen how this works out in some complex cases, let's see things in practice using some simple scenario:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsContextMenuOverride
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsContextMenuOverride video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsContextMenuOverride/recordings/demo.webm
 const alertAllAction = createContextAction({
     name: "Alert all",
     contextItem: {
@@ -631,7 +628,7 @@ So when you want to create an item that shows in such a context-menu folder rath
 This `createContextFolderHandler` even allows you to specify the parent action - which defaults to the `contextmenuAction` - such that you can create nested menus.
 The example below shows off how a menu and even a nested menu can easily be created:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsContextMenuFolders
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsContextMenuFolders video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsContextMenuFolders/recordings/demo.webm
 const folder1 = createContextFolderHandler({
     name: "Folder 1",
     priority: [Priority.HIGH, Priority.MEDIUM],
@@ -705,7 +702,7 @@ You can learn more about categories on the [menu page](/docs/concepts/ui/menu#ca
 
 The [`createStandardMenuItem` factory](/docs/concepts/ui/menuitems#standard-menu-items) has a standard field for specifying categories, but below is an example where we manually specify the binding:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsCategory
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsCategory video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsCategory/recordings/demo.webm
 const category = createStandardCategory({
     name: "Some category",
     description: "Some category for demonstration purposes",
@@ -725,7 +722,7 @@ The `getContentAction` is used by [`UILayers`](/docs/concepts/ui/uilayers) to sh
 
 Below is an example that demonstrates how you can manually create these content bindings:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsContent
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsContent video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsContent/recordings/demo.webm
 const items = [
     createStandardMenuItem({
         name: "Hello world",
@@ -756,7 +753,7 @@ The `keyHandlerAction` can be used to listen for keyboard events in the current 
 
 Listening for these events is very simple:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsKeyHandler
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsKeyHandler video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsKeyHandler/recordings/demo.webm
 const items = [
     createStandardMenuItem({
         name: "Hello world",
@@ -764,8 +761,8 @@ const items = [
         actionBindings: [
             keyHandlerAction.createBinding({
                 onKey: event => {
-                    if (event.key.char && !event.shift) {
-                        console.log(event.key.char);
+                    if (event.key.char && event.type == "up" && !event.shift) {
+                        alert(event.key.char);
                         return true;
                     }
                     return false;
@@ -776,7 +773,7 @@ const items = [
 ];
 ```
 
-This example will log the typed keys in the console whenever this item is visible and captures these events.
+This example will display an alert and captures events for every released character whenever this item is visible (and the event wasn't already captured).
 
 The `keyHandlerAction` accepts binding data that adheres to the following interface:
 
@@ -813,7 +810,7 @@ We also have a `forwardKeyEventHandler` that can be used to forward key events t
 Finally the `shortcutHandler` can be used to listen for specific shortcuts. It takes in a key pattern (or a function to obtain the key-pattern using the settings context) and an executable or executable action bindings to perform when the shortcut is triggered.
 This allows us to easily add shortcuts for items, including items that are added to context-menus:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsShortcuts
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsShortcuts video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsShortcuts/recordings/demo.webm
 const settings = createSettings({
     version: "0.0.0",
     settings: () =>
@@ -888,7 +885,7 @@ When menus aren't properly destroyed, the `onSelectAction` may never be called w
 
 Below is an example showing off how this listener can be used:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsListenerSelect
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsListenerSelect video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsListenerSelect/recordings/demo.webm
 const createItem = (name: string) => {
     const selected = new Field(0);
     return createStandardMenuItem({
@@ -927,7 +924,7 @@ When menus aren't properly destroyed, the `onCursorAction` may never be called w
 
 Below is an example showing off how this listener can be used:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsListenerSelect
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsListenerCursor video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsListenerCursor/recordings/demo.webm
 const createItem = (name: string) => {
     const selected = new Field(0);
     return createStandardMenuItem({
@@ -967,15 +964,15 @@ When menus aren't properly destroyed, the `onMenuChangeAction` may never be call
 
 Below is an example showing off how this listener can be used:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsListenerSelect
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsListenerMenuChange video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsListenerMenuChange/recordings/demo.webm
 const createItem = (name: string) => {
-    const selected = new Field(0);
+    const menuCount = new Field(0);
     return createStandardMenuItem({
-        name: h => (selected.get(h) > 0 ? `(${name})` : name),
+        name: h => `${name}: ${menuCount.get(h)}`,
         onExecute: () => alert(name),
         actionBindings: [
-            onCursorAction.createBinding(sel => {
-                selected.set((sel ? 1 : -1) + selected.get());
+            onMenuChangeAction.createBinding((menu, added) => {
+                menuCount.set((added ? 1 : -1) + menuCount.get());
             }),
         ],
     });
@@ -1001,8 +998,8 @@ The `menuItemIdentityAction` is a handler for the `identityAction` which special
 
 The example below demonstrates how the `menuItemIdentityAction` can now be used to copy and alter an existing item:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsIdentityAugment
-const baseItem = [
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsIdentityAugment video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsIdentityAugment/recordings/demo.webm
+const baseItems = [
     createStandardMenuItem({
         name: "Hello world",
         onExecute: () => alert("Hello"),
@@ -1013,7 +1010,7 @@ const baseItem = [
     }),
 ];
 
-const item = baseItem.map(item =>
+const items = baseItems.map(item =>
     menuItemIdentityAction.copyItem(item, [
         scrollableContentHandler.createBinding(<Box>My cool content</Box>),
     ])
@@ -1024,7 +1021,7 @@ Now when we search in the `example` applet, the search results will have content
 
 Now in case that we need to have access to the menu items that an action was executed on, we can apply this `menuItemIdentityAction` :
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsIdentityUsage
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsIdentityUsage video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsIdentityUsage/recordings/demo.webm
 const top3ExecuteHandler = createAction({
     name: "Top 3",
     parents: [sequentialExecuteHandler],
@@ -1084,7 +1081,7 @@ Additionally there is a `copyAction` which itself doesn't really have any behavi
 
 The example below shows off how to either add copying as a primary function, or as a context menu action:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsCopy
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/commonActionsCopy video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/commonActionsCopy/recordings/demo.webm
 const items = [
     createStandardMenuItem({
         name: "Copy in context",

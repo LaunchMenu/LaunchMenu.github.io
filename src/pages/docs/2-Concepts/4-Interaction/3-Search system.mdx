@@ -65,7 +65,7 @@ Each searchable can only return a single result directly, but by returning sub-s
 
 The [search function](/docs/Concepts/Applet-format#search) of applets uses the same interface as the `search` function of searchables. So we can easily test out some simple search behavior:
 
-```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchHookBasic
+```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchHookBasic video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/searchHookBasic/recordings/demo.webm
 const text = new Field("orange");
 const item = createStandardMenuItem({name: h => text.get(h)});
 
@@ -157,7 +157,7 @@ Priorities can be compared using the [`hasHigherOrEqualPriority` function](https
 
 Now if we want to return multiple results, we can create a set of searchables that we can return as children. These searchables can also have sub searchables themselves.
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchNested
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchNested video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/searchNested/recordings/demo.webm
 // A collection of items and searchables that always return no matter what the query is
 const staticSubSearchables: IMenuSearchable[] = [
     "Bob",
@@ -232,7 +232,7 @@ export type IPatternMatch = {
 
 You can create a pattern matcher using the built-in `createStandardSearchPatternMatcher` function, or take care of matching patterns yourself:
 
-```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchPattern
+```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchPattern video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/searchPattern/recordings/demo.webm
 const patternMatcher = createStandardSearchPatternMatcher({
     name: "my pattern",
     matcher: /^orange:/,
@@ -250,24 +250,26 @@ export default declare({
             };
         }
 
-        // If this pattern doesn't match, manually create a custom match
-        return {
-            patternMatch: {
-                name: "my other pattern",
-                highlight: [
-                    {
-                        start: 0,
-                        end: query.search.length,
-                        style: {color: "purple"},
-                    },
-                ],
-            },
-        };
+        // If this pattern doesn't match, but the query start with 'o', manually create a custom match
+        if (query.search[0] == "o")
+            return {
+                patternMatch: {
+                    name: "my other pattern",
+                    highlight: [
+                        {
+                            start: 0,
+                            end: query.search.length,
+                            style: {color: "purple"},
+                        },
+                    ],
+                },
+            };
+        return {};
     },
 });
 ```
 
-In this example if you search for anything, the `my other pattern` will be used by default, and highlighted purple. If you search for `"orange: smth"`, `my pattern` is used instead, only highlighting the `orange:` part. You can also use the match of this standard pattern to extract the actual searched text, in this case ` smth`.
+In this example if you search for anything starting with `o`, the `my other pattern` will be used by default. This results in all the text being highlighted in purple. If you search for `"orange: smth"`, `my pattern` is used instead, only highlighting the `orange:` part. You can also use the match of this standard pattern to extract the actual searched text, in this case ` smth`.
 
 ## Search executer
 
@@ -337,49 +339,54 @@ class SearchExecuter<Q, I> {
 
 We could manually use a search executer and LaunchMenu instance to create a dedicated menu for a specific search:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchExecuter
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchExecuter video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/searchExecuter/recordings/demo.webm
 export default declare({
     info,
     settings,
-    init: ({LM}) => session => {
-        const menu = new PrioritizedMenu(session.context, []);
+    init:
+        ({LM}) =>
+        session => {
+            const menu = new PrioritizedMenu(session.context, []);
 
-        // Create the searchables to be searched
-        const getSearchables = (hook?: IDataHook) =>
-            LM.getAppletManager()
-                .getApplets(hook)
-                // Only get the applets that are valid searchables
-                .filter(
-                    (
-                        applet: IApplet | IMenuSearchable
-                    ): applet is IApplet & IMenuSearchable => !!applet.search
-                );
-        const rootSearchable: IMenuSearchable = {
-            ID: "root",
-            search: async (query, hook) => ({children: getSearchables(hook)}),
-        };
+            // Create the searchables to be searched
+            const getSearchables = (hook?: IDataHook) =>
+                LM.getAppletManager()
+                    .getApplets(hook)
+                    // Only get the applets that are valid searchables
+                    .filter(
+                        (
+                            applet: IApplet | IMenuSearchable
+                        ): applet is IApplet & IMenuSearchable =>
+                            !!applet.search
+                    );
+            const rootSearchable: IMenuSearchable = {
+                ID: "root",
+                search: async (query, hook) => ({
+                    children: getSearchables(hook),
+                }),
+            };
 
-        // Create the search executor to perform the search
-        const executer = new SearchExecuter({
-            searchable: rootSearchable,
-            onAdd: item => menu.addItem(item),
-            onRemove: item => menu.removeItem(item),
-        });
+            // Create the search executor to perform the search
+            const executer = new SearchExecuter({
+                searchable: rootSearchable,
+                onAdd: item => menu.addItem(item),
+                onRemove: item => menu.removeItem(item),
+            });
 
-        // Search for any setting matching "open"
-        executer.setQuery({search: "s:open", context: session.context});
+            // Search for any setting matching "open"
+            executer.setQuery({search: "s:open", context: session.context});
 
-        // Return the `open` function that can be used to open the menu in the session's context
-        return {
-            open({onClose}) {
-                session.context.open(
-                    new UILayer(() => ({menu, onClose}), {
-                        path: "Settings with open",
-                    })
-                );
-            },
-        };
-    },
+            // Return the `open` function that can be used to open the menu in the session's context
+            return {
+                open({onClose}) {
+                    session.context.open(
+                        new UILayer(() => ({menu, onClose}), {
+                            path: "Settings with open",
+                        })
+                    );
+                },
+            };
+        },
 });
 ```
 
@@ -395,7 +402,7 @@ This is why we've included a [`FuzzyRater` class](https://github.com/LaunchMenu/
 
 This class can be used to directly extract priorities, as well as to highlight pieces of text.
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchFuzzyRater
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchFuzzyRater video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/searchFuzzyRater/recordings/demo.webm
 
 const Content: FC<{text: string}> = ({text}) => {
     const context = useIOContext();
@@ -458,7 +465,7 @@ This example isn't great, mostly due to the `SearchHighlighter` which is mostly 
 
 The search action can be used to retrieve a set of searchables given a set of menu items. This is used internally for searching in arbitrary menus by applying this action to all their items. Applets can also make use of this action in order to not manually implement their own searchables.
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchAction
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchAction video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/searchAction/recordings/demo.webm
 const items = [
     createStandardMenuItem({
         name: "Hello world",
@@ -499,7 +506,7 @@ It then applies a search method that can be configured through the settings. By 
 
 Your applet can provide an additional search method, which the user is then able to select through their settings.
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchSimpleHandler
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/searchSimpleHandler video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/searchSimpleHandler/recordings/demo.webm
 // Create a custom search method, in this case testing for reverse sub-matches
 const reverseSearchMethod: ISimpleSearchMethod = {
     name: "Reverse",

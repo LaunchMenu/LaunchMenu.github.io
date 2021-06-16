@@ -68,7 +68,7 @@ Finally the controller is a simple [key handler](/docs/concepts/interaction/key-
 
 For simple usage of the content class, all you have to do is create the data structure and open it using a [UILayer](/docs/concepts/ui/uilayers) class instance, which will take care of creating the `createStandardContentKeyHandler` and `ContentView`:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/content
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/content video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/content/recordings/demo.webm
 export default declare({
     info,
     settings,
@@ -99,7 +99,7 @@ The content view is rather simple, and just measures the content react element a
 
 There isn't too much you can to alter the content, apart from adding some elements around it or changing properties like fonts. Below is an example where we just added a sort of watermark:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/contentView
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/contentView video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/contentView/recordings/demo.webm
 export default declare({
     info,
     settings,
@@ -144,7 +144,7 @@ The keyboard controller is very simple and will just allow for scrolling the con
 
 Because there isn't too much that can be added to the normal content handler, I took this opportunity to demonstrate how to extend the content data model as well as the key handler. The example below allows you to define sections within your content, and allows the user to scroll to sections using `ctrl + page-up` and `ctrl + page-down`:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/contentController spoiler
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/contentController video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/contentController/recordings/demo.webm spoiler
 const settings = createSettings({
     version: "0.0.0",
     settings: () =>

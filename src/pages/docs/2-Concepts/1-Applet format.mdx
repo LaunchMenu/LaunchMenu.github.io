@@ -4,7 +4,7 @@ Applets should have one default export at their entry, which is an object adheri
 
 The following is a basic example of a valid minimal applet declaration:
 
-```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/appletFormat
+```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/appletFormat video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/appletFormat/recordings/demo.webm
 import {createSettings, createSettingsFolder, declare} from "@launchmenu/core";
 
 const info = {
@@ -58,7 +58,7 @@ Finally an applet is able to globally augment the context menu. This works by pr
 
 Below are two examples of how these bindings can be used:
 
-```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/appletFormatGlobalContextBinding
+```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/appletFormatGlobalContextBinding video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/appletFormatGlobalContextBinding/recordings/demo.webm
 const myAction = createContextAction({
     name: "My action",
     contextItem: {
@@ -83,7 +83,7 @@ export default declare({
 });
 ```
 
-```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/appletFormatGlobalContextBindingDirect
+```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/appletFormatGlobalContextBindingDirect video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/appletFormatGlobalContextBindingDirect/recordings/demo.webm
 export default declare({
     info,
     settings,
@@ -131,7 +131,7 @@ Both of these functions expect you to return a partial applet config, which can 
 
 The below example will initialize a file watcher, and dispose it on reload. The `LaunchMenu` instance isn't used.
 
-```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/appletFormatInit
+```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/appletFormatInit video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/appletFormatInit/recordings/demo.webm
 export default declare({
     info,
     settings,
@@ -200,7 +200,7 @@ To learn more about the `LaunchMenu` instance, see the in-depth [LaunchMenu page
 
 The below example will be able to change the search field value of the session on execution of the items:
 
-```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/appletFormatWithSession
+```ts title=src/index.ts source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/appletFormatWithSession video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/appletFormatWithSession/recordings/demo.webm
 export default declare({
     info,
     settings,

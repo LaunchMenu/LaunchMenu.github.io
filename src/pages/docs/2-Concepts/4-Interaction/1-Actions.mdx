@@ -35,7 +35,7 @@ In case you want some more background on the system and see where simpler approa
 
 In all these examples we only focus on providing the functionality from the item's perspective, we ignore all the aspects that LaunchMenu would have to coordinate to connect these pieces of data.
 
-We could try to simply use objects as menu items, and have them contain a set of callbacks. Then we can have the menu and context-menu make use of those callbacks E.g.:
+To start off with, we could try to simply use objects as menu items and have them contain a set of callbacks. Then we can have the menu and context-menu make use of those callbacks E.g.:
 
 ```tsx title=callbackItems.tsx
 const myItem = {
@@ -72,7 +72,7 @@ const myItem2 = {
 };
 ```
 
-This allows items to specify arbitrary context-menu items, but still doesn't satisfy requirement 2. We can't tell what each action of an item represents, and thus have no way of removing duplicate items.
+This allows items to specify arbitrary context-menu items, but still doesn't satisfy requirement 2. We can't tell what each action of an item represents, and thus have no way of removing duplicate items (when multiple items are selected when opening the context menu).
 
 This could be solved by separating the 'view' part, I.e. the actual thing that will be rendered in the context-menu:
 
@@ -100,7 +100,7 @@ const myItem2 = {
 };
 ```
 
-Now the two views are equivalent based on their identity, so we can detect that these actions represent the same functionality. Requirement 3 still isn't fulfilled however, since this would only allow one `onExecute` to run before the other, never resulting on both texts being in the clipboard at once.
+Now the two views are equivalent based on their identity, so we can detect that these actions represent the same functionality. Requirement 3 still isn't fulfilled however, since this would only allow one `onExecute` to run before the other, never resulting in both texts being in the clipboard at once.
 
 If we instead specify the data to copy, rather than how to copy it, we could solve this issue. We make the copy `action` also specify how to perform the copy, based on a list of data. This data would be retrieved from the list of selected items in the menu:
 

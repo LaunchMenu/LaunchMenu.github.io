@@ -6,7 +6,7 @@ Instead of using the normal `createFolderMenuItem` and e.g. `createBooleanMenuIt
 
 We then use the `createSettings` function to simply declare our settings together with some additional version management data. From then on these settings can be accessed from various places. Below is an example using a simple string setting.
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/settings
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/settings video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/settings/recordings/demo.webm
 const settings = createSettings({
     version: "0.0.0",
     settings: () =>
@@ -125,7 +125,7 @@ You can create your own instance of a `SettingsContext` and add it to an `IOCont
 
 Below is an example showing off how some base settings can be overridden locally:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/settingsOverride
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/settingsOverride video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/settingsOverride/recordings/demo.webm
 export default declare({
     info,
     settings,
@@ -298,7 +298,8 @@ export class SettingsFile<
         V extends IJSON = IJSON
     >
     extends VersionedFieldsFile<TSettingsTree<F["children"]>, V>
-    implements ISettingConfigurer {
+    implements ISettingConfigurer
+{
     public settings: F;
 
     /**
@@ -518,7 +519,7 @@ export type IColorMenuItemData = {
 
 Since settings are just field menu items, we can easily create our own custom setting types. The values of these settings aren't even limited to JSON, as we are allowed to specify a serialized getter and setter for data storage.
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/settingsCustom
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/settingsCustom video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/settingsCustom/recordings/demo.webm
 type IStringMenuItemData = {
     /** The default value for the field */
     init: Date;
@@ -624,7 +625,7 @@ Now when we open the `example` applet, we can search for `hello world` and see t
 
 You can also have a look at the custom [field menu item example](/docs/concepts/ui/menuitems#field-menu-items) on the menu items page. This is essentially a setting, except that you will additionally have to add the following config to the field item:
 
-```ts title=settingsItemProperties.ts
+```ts title=settingsItemProperties.ts showHeader=false
 icon: "settings",
 searchPattern: settingPatternMatcher,
 resetable: true,

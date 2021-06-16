@@ -77,7 +77,7 @@ And since all of these are quite common, we're passing the context around to as 
 
 This context is passed around explicitely, in order to allow yoou to override parts of the context. For instance, if some component that you want to use makes use of the undo/redo facility, but you don't want to mix the usage history of this component with the global one, you can supply your own undo/redo facility.
 
-Overriding some part of the context is rather easy, by using the `IOContext` class and specifying what the parent context is:
+Overriding some part of the context is done easily, by using the `IOContext` class and specifying what the parent context is:
 
 ```ts title=contextOverrideExample.ts
 const context = // ... some existing context
@@ -96,7 +96,7 @@ One can also create an antirely new context. To this context you may pass your o
 
 In the example below a custom context is created, and used to render a LaunchMenu layout within the section that's usually only contains the content of LaunchMenu. We then add a fake watermark on top of the entire UI, and open an existing applet using our custom context:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/baseContext
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/baseContext video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/baseContext/recordings/demo.webm
 const WaterMarked: FC<{context: IOContext}> = ({context}) => {
     const [key, setKey] = useState(1);
 

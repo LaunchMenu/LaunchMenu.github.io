@@ -97,6 +97,11 @@ export class LaunchMenu {
      * @returns The settings manager
      */
     public getSettingsManager(): SettingsManager;
+    /**
+     * Retrieves the global key handler that can be used to register keyboard callbacks even when LM is hidden
+     * @returns The global keyboard handler
+     */
+    public getGlobalKeyHandler(): GlobalKeyHandler;
 }
 ```
 

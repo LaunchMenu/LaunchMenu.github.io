@@ -25,7 +25,7 @@ export type IDisposableKeyEventListener = {
 
 Below is an example from the [menus page](/docs/concepts/ui/menu) where we can see disposal of such a handler:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuKeyHandler
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/menuKeyHandler video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/menuKeyHandler/recordings/demo.webm
 export default declare({
     info,
     settings,
@@ -195,7 +195,7 @@ Usage of these "raw" events should be limited since it makes it harder for users
 
 Below is an example of how these raw events could be used:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/keyHandlerEvents
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/keyHandlerEvents video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/keyHandlerEvents/recordings/demo.webm
 export default declare({
     info,
     settings,
@@ -302,7 +302,7 @@ The `.matchesModifier` method can be used to detect this pattern as a modifier. 
 
 Below is an example showing off usage of different key patterns:
 
-```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/keyHandlerPatterns
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/keyHandlerPatterns video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/keyHandlerPatterns/recordings/demo.webm
 const settings = createSettings({
     version: "0.0.0",
     settings: () =>
@@ -452,13 +452,8 @@ LaunchMenu also has some support for capturing global key events, which are even
 
 The `globalKeyHandler` instance is essentially a singleton instance of the `GlobalKeyHandler` class and can be used to capture specific key patterns, or listen for all events. Key patterns are supported on every OS, but capturing of all events isn't yet available on Linux.
 
-```ts title=globalKeyHandler.ts
-/**
- * The manager to handle global key events (events that occur even when LM isn't focused)
- */
-export const globalKeyHandler = new GlobalKeyHandler();
-
-class GlobalKeyHandler {
+```ts title=GlobalKeyHandler.ts src=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/keyHandler/globalKeyHandler/globalKeyHandler.ts
+export class GlobalKeyHandler {
     /**
      * Adds a global key listeners that listens to all events
      * @param callback The key press callback
@@ -495,8 +490,40 @@ Depending on the OS the user is on, not all key patterns are valid as global sho
 
 The `.areListenersSupported` method can be used to check whether the OS supports adding general keyboard listeners.
 
-If you want to setup global shortcuts, there is no need to use this class however. A more convenient `createGlobalKeyPatternSetting` exists which can be used for creating a user alterable pattern, and has a built-in function to register callbacks for when the event triggers:
+If you want to setup global shortcuts, there is no need to use this class however. A more convenient `createGlobalKeyPatternSetting` function exists which can be used for creating a user alterable pattern. This internally makes use of the` GlobalKeyHandlerClass`, and has a built-in function to register callbacks for when the event triggers:
 
-```ts
-TODO: add example once global key handlers are merged
+```ts title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/keyHandlerGlobal
+const settings = createSettings({
+    version: "0.0.0",
+    settings: () =>
+        createSettingsFolder({
+            ...info,
+            children: {
+                globalAlert: createGlobalKeyPatternSetting({
+                    name: "Global alert",
+                    init: new KeyPattern("ctrl+i"),
+                }),
+            },
+        }),
+});
+
+export default declare({
+    info,
+    settings,
+    init: ({settings}) => {
+        const removeKeyHandler = settings.globalAlert.onTrigger(() => {
+            alert("Triggered");
+        });
+
+        return {
+            onDispose() {
+                removeKeyHandler();
+            },
+        };
+    },
+});
 ```
+
+Now when you startup the program and press `ctrl+i` an alert window will pop up, even if LM wasn't visible/focused.
+
+Note that if you don't close the alert in this demo while testing, LM will become unresponsive since `alert` is a blocking function call.

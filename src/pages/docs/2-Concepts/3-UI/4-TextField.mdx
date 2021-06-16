@@ -63,7 +63,7 @@ Finally the controller is a simple [key handler](/docs/concepts/interaction/key-
 
 For simple usage of a text field, all you have to do is create the data structure and open it using a [UILayer](/docs/concepts/ui/uilayers) class instance, which will take care of creating the `createStandardTextFieldKeyHandler` and `TextFieldView`:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/textField
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/textField video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/textField/recordings/demo.webm
 export default declare({
     info,
     settings,
@@ -97,7 +97,7 @@ The text view is quite complex and entirely custom. We use this custom solution 
 
 It is possible to create a custom view from scratch, but it will be quite some effort. The standard view is built-up from several nested components however, so it may be possible to use part of the existing code. Feel free to check the [source code](https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/components/fields/TextFieldView.tsx) to find out more. We recommend to try to minimize customizations, and possibly just change some css like in the example below:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/textFieldCustomView
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/textFieldCustomView video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/textFieldCustomView/recordings/demo.webm
 export default declare({
     info,
     settings,
@@ -134,7 +134,7 @@ Now whenever the `example` applet is opened, it will show a text field where the
 
 The keyboard handler is relatively simple an can easily be augmented and customized because of its modularity. In order to customize it, simply copy [the source code](https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/textFields/interaction/keyHandler/createStandardTextFieldKeyHandler.ts) and take out what you don't need. To augment it, wrap it in your own key handler like in the example below:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/textFieldCustomController
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/textFieldCustomController video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/textFieldCustomController/recordings/demo.webm
 export default declare({
     info,
     settings,
@@ -158,7 +158,7 @@ export default declare({
                             index != -1 &&
                             ["down", "repeat"].includes(event.type)
                         ) {
-                            insertText(field, index + "");
+                            new InsertTextCommand(field, index + "").execute();
                             return true;
                         }
 
@@ -192,7 +192,7 @@ The `EditorField` component is a wrapper for the [ace text editor](https://ace.c
 
 Since the text field area of LaunchMenu has a fixed height, it's not suited for a multiline setup. We can however pass these views and handlers as content data just fine:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/textFieldMultiline
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/textFieldMultiline video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/textFieldMultiline/recordings/demo.webm
 export default declare({
     info,
     settings,
@@ -283,7 +283,7 @@ In order to perform syntax highlighting, you will have to do some lexical analys
 
 Below is an example of a simple math lexer:
 
-```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/textFieldHighlightLexer
+```tsx title=src/index.tsx source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/textFieldHighlightLexer video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/textFieldHighlightLexer/recordings/demo.webm
 const {tokenList} = createHighlightTokens({
     lBracket: {
         pattern: /\(/,
@@ -316,9 +316,6 @@ export default declare({
         context.open(
             new UILayer(
                 () => ({
-                    menu: new Menu(context, []),
-                    searchable: false,
-
                     field,
                     highlighter: new HighlightLexer(tokenList),
                     handleClose: true,
@@ -340,7 +337,7 @@ In order to augment the syntax highlighting with some grammar validation, the `H
 
 This parser can also immediately be used to parse the user's input and turn it into some structured output. Below is an example of a simple calculator:
 
-```tsx title=src/index.tsx source=source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/textFieldHighlightGrammar spoiler
+```tsx title=src/index.tsx source=source=https://github.com/LaunchMenu/LM-applet-examples/tree/main/examples/textFieldHighlightGrammar video=https://raw.github.com/LaunchMenu/LM-applet-examples/main/examples/textFieldHighlightGrammar/recordings/demo.webm spoiler
 const {tokens, tokenList} = createHighlightTokens({
     lBracket: {
         pattern: /\(/,
@@ -426,9 +423,6 @@ export default declare({
         context.open(
             new UILayer(
                 () => ({
-                    menu: new Menu(context, []),
-                    searchable: false,
-
                     field,
                     highlighter: parser,
                     handleClose: true,

@@ -12,6 +12,7 @@ Covered environment topics:
 -   [NPM](#npm)
 -   [Typescript and lm-build-tools](#typescript-and-lm-build-tools)
 -   [React](#react)
+-   [Applet selection](#applet-selection)
 -   [Prettier](#prettier)
 -   [Jest](#jest)
 
@@ -274,6 +275,26 @@ If you're not at all familiar with React, we recommend learning the basic concep
 
 An important difference between JavaScript and TypeScript when it comes to jsx is that TypeScript doesn't directly allow for jsx in all its files. If you want to use jsx in your TypeScript file, you have to change the file extension from `.ts` to `.tsx`.
 
+## Applet selection
+
+In order to actually open your applet with LaunchMenu while testing, you will have to tell the locally installed version what applets to load in. It looks for a `data/settings/applet.json` file relative to the directory it was launched in. This file should contain a json object with the names and file paths of the applets to load.
+
+So in the same directory as the package.json file, one should create the file below:
+
+```json title=data/settings/applets.json
+{
+    "applet-applet-manager": "node_modules/@launchmenu/applet-applet-manager",
+    "applet-session-manager": "node_modules/@launchmenu/applet-session-manager",
+    "applet-settings-manager": "node_modules/@launchmenu/applet-settings-manager",
+    "applet-window-manager": "node_modules/@launchmenu/applet-window-manager",
+    "applet-lm-recorder": "node_modules/@launchmenu/applet-lm-recorder",
+    "applet-help": "node_modules/@launchmenu/applet-help",
+    "hello-world": "./"
+}
+```
+
+This specifies all core-applets used for normal functioning of LaunchMenu, as well as your own applet that you will be testing. The names used for these applets don't really matter, as long as they are unique.
+
 ## Prettier
 
 [Prettier](https://prettier.io/) is not at all required in your project, but we highly recommend using some code formatter if you will make your applet Open-source. Within [VSCode](https://code.visualstudio.com/) - and probably many other IDEs too - you can configure your code to be formatted on save. This way you don't have to worry about any of the formatting, and your code remains consistently readable what syntax is concerned.
@@ -417,6 +438,9 @@ We now added all our configs and should be ready to go. Your directory should no
 ```
 - package.json
 - tsconfig.json
+- data
+  - settings
+    - applets.json
 ```
 
 ```json title=package.json spoiler
@@ -482,11 +506,26 @@ We now added all our configs and should be ready to go. Your directory should no
 }
 ```
 
+```json title=data/settings/applets.json spoiler
+{
+    "applet-applet-manager": "node_modules/@launchmenu/applet-applet-manager",
+    "applet-session-manager": "node_modules/@launchmenu/applet-session-manager",
+    "applet-settings-manager": "node_modules/@launchmenu/applet-settings-manager",
+    "applet-window-manager": "node_modules/@launchmenu/applet-window-manager",
+    "applet-lm-recorder": "node_modules/@launchmenu/applet-lm-recorder",
+    "applet-help": "node_modules/@launchmenu/applet-help",
+    "hello-world": "./"
+}
+```
+
 And in case you also followed the prettier and jest steps, it should look like this:
 
 ```
 - package.json
 - tsconfig.json
+- data
+  - settings
+    - applets.json
 - .prettierrc.json
 - jest.config.js
 ```
@@ -559,6 +598,18 @@ And in case you also followed the prettier and jest steps, it should look like t
         "noImplicitAny": true
     },
     "types": ["node"]
+}
+```
+
+```json title=data/settings/applets.json spoiler
+{
+    "applet-applet-manager": "node_modules/@launchmenu/applet-applet-manager",
+    "applet-session-manager": "node_modules/@launchmenu/applet-session-manager",
+    "applet-settings-manager": "node_modules/@launchmenu/applet-settings-manager",
+    "applet-window-manager": "node_modules/@launchmenu/applet-window-manager",
+    "applet-lm-recorder": "node_modules/@launchmenu/applet-lm-recorder",
+    "applet-help": "node_modules/@launchmenu/applet-help",
+    "hello-world": "./"
 }
 ```
 
