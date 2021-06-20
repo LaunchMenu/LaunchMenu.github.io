@@ -15,11 +15,14 @@ export default class MyDocument extends Document {
         return (
             <Html lang="en">
                 <Head>
+                    <meta name="robots" content="index, follow" />
+
                     {/* PWA primary color */}
                     <meta
                         name="theme-color"
                         content={theme.palette.primary.main}
                     />
+
                     <link
                         rel="stylesheet"
                         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"

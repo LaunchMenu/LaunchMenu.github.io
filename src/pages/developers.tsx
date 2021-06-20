@@ -7,15 +7,39 @@ import {FeatureCategory} from "../components/developer/features/FeatureCategory"
 import {SellingPoint} from "../components/home/hero/SellingPoint";
 import {HorizontalList} from "../components/home/HorizontalList";
 import {Feature} from "../components/developer/features/Feature";
-import {ScreenRecording} from "../services/mdx/components/ScreenRecording";
 import {InlineCode} from "../services/mdx/components/Code";
 import {Community} from "../components/developer/Community";
 import {Spacer} from "../components/Spacer";
 import {Link} from "../components/PlainLink";
 import {Video} from "../services/mdx/components/Video";
+import {AutoPlayVideo} from "../components/AutoPlayVideo";
+import Head from "next/head";
 
 const Developers = () => (
     <Container>
+        <Head>
+            <meta
+                property="og:url"
+                content="https://launchmenu.github.io/developers"
+                key="og-url"
+            />
+            <meta
+                property="og:description"
+                content="Create easy and fast to use applets using LaunchMenu"
+                key="og-description"
+            />
+            <meta
+                property="description"
+                content="Create easy and fast to use applets using LaunchMenu"
+                key="description"
+            />
+            <meta
+                name="keywords"
+                content="Open Source, Utility, Keyboard, Applets, Development"
+                key="keywords"
+            />
+        </Head>
+
         <Hero>
             <CodeBlock
                 title="HelloWorld.ts"
@@ -96,7 +120,15 @@ export default declare({
         <BackgroundSection>
             <FeatureCategory
                 category="Ease of development"
-                content={<Fragment></Fragment>}>
+                content={
+                    <AutoPlayVideo
+                        src="development/environment.mp4"
+                        maxWidth={600}
+                        css={{
+                            boxShadow: "0px 0px 30px -5px rgba(0,0,0,0.3)",
+                        }}
+                    />
+                }>
                 <Feature title="Composable approach">
                     LaunchMenu has been created as a set of independent building
                     blocks. This allows for more reuse, and more customization.
