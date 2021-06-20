@@ -5,17 +5,31 @@ import {ITOC} from "../TOCremarkPlugin";
 import {Box} from "@material-ui/core";
 import {PageIndexProvider} from "./PageIndexContext";
 import {PageIndex} from "./PageIndex";
+import Head from "next/head";
+import {ReactNode} from "react";
 
 export default function MarkdownPage({
     source,
     ToC,
+    head,
+    url,
 }: {
     source: MdxRemote.Source;
     ToC: ITOC;
+    url?: string;
+    head?: ReactNode;
 }) {
+    console.log(url);
     const content = hydrate(source, {components: markdownComponents});
     return (
         <PageIndexProvider>
+            {url && (
+                <Head>
+                    <meta property="og:url" content={url} key="url" />
+                </Head>
+            )}
+            {head}
+
             <Box
                 display="flex"
                 css={theme => ({
@@ -38,5 +52,11 @@ export default function MarkdownPage({
                 <PageIndex ToC={ToC} />
             </Box>
         </PageIndexProvider>
+    );
+}
+
+export function createMarkdownPageComponent(head: ReactNode) {
+    return (props: {source: MdxRemote.Source; ToC: ITOC}) => (
+        <MarkdownPage {...props} head={head} />
     );
 }

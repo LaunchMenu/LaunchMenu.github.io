@@ -44,7 +44,7 @@ export const Hero: FC = ({children}) => {
                         features that applets can take advantage of:
                     </Text>
                 </Box>
-                <PlainLink href="/dev">
+                <PlainLink href="/developers">
                     <Button
                         variant="contained"
                         color="default"

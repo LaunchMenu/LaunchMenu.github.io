@@ -19,10 +19,8 @@ export const Community: FC<{
             {children}
             <ul>
                 {links.map(({name, url}, i) => (
-                    <li>
-                        <a key={i} href={url}>
-                            {name}
-                        </a>
+                    <li key={i}>
+                        <a href={url}>{name}</a>
                     </li>
                 ))}
             </ul>

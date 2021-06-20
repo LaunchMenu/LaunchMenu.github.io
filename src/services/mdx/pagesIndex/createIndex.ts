@@ -10,6 +10,7 @@ export async function createIndex(
     selected: string[] = []
 ): Promise<IIndex> {
     const item = await createNavItem(getPagesDir(dir));
+    selected = [...selected];
 
     if (item && "children" in item && item.children) {
         // Make the specified path selected

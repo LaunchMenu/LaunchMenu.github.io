@@ -40,6 +40,7 @@ import {Link} from "../components/PlainLink";
 import {promises as FS} from "fs";
 import Path from "path";
 import {FC} from "react";
+import Head from "next/head";
 
 const Home: FC<{timestamps: ITimestamps}> = ({
     timestamps: {
@@ -51,6 +52,10 @@ const Home: FC<{timestamps: ITimestamps}> = ({
     },
 }) => (
     <Container>
+        <Head>
+            <meta property="og:url" content="https://launchmenu.github.io/" />
+        </Head>
+
         <LMVideosProvider>
             <Hero>
                 <FeatureVideo
@@ -75,9 +80,9 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                     title="Why LaunchMenu?"
                     body={
                         <Fragment>
-                            LaunchMenu is an easy to use and free application
-                            that allows you to increase your productivity.
-                            Customize the application to your needs with{" "}
+                            LaunchMenu is free, easy to use and allows you to
+                            increase your productivity. Customize the
+                            application to your needs with{" "}
                             <Link href="#Themes">advanced theming</Link> and{" "}
                             <Link href="#Settings">applet settings</Link>.
                         </Fragment>
@@ -91,7 +96,7 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                             come preinstalled but additional 3rd party applets
                             will be available. LaunchMenu relies on applets to
                             serve users, and doesn't limit developers in
-                            providing their desired user experience.
+                            providing their own desired user experience.
                         </Fragment>
                     }
                 />
@@ -103,11 +108,11 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                     video="demoVideos/activelyDeveloped.webm"
                     videoPlaceholder="demoVideos/home.png">
                     <Text>
-                        LaunchMenu is actively developed. Some features are only
-                        partially supported, we will use this legend to indicate
-                        what features are supported and what features are
-                        planned. You can hover your mouse over the symbol for
-                        more information:
+                        LaunchMenu is actively developed. At present, some
+                        features are only partially supported. We will use this
+                        legend to indicate what features are supported and what
+                        features are planned. You can hover your mouse over the
+                        symbol for more information:
                         <ul
                             css={theme => ({
                                 listStyleType: "none",
@@ -158,8 +163,8 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                 <Feature
                     title="Step in and out of menus"
                     time={keyboardCentric.navigateMenus}>
-                    Press the <Key>Tab ↹</Key> key to hop into a context menu
-                    and <Key>Escape</Key> to exit out of it again.
+                    Press <Key>Tab ↹</Key> to hop into a context menu and{" "}
+                    <Key>Escape</Key> to return to the previous menu.
                 </Feature>
                 <Feature
                     title="Customise any controls"
@@ -182,7 +187,7 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                             "An applet will have to be created to manage settings in bulk.",
                     }}>
                     LaunchMenu will have toggle-able custom keyboard layouts,
-                    including a standard VIM-like layout.
+                    including a VIM inspired layout.
                 </Feature>
             </FeatureCategory>
 
@@ -234,16 +239,15 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                     executed on <Key>Enter ↵</Key>.
                 </Feature>
                 <Feature title="Opening" time={contextMenus.contextMenu}>
-                    A context menu can be opened, by pressing <Key>Tab ↹</Key>,
-                    to show these actions.
+                    A context menu containing these actions can be opened, by
+                    pressing <Key>Tab ↹</Key>.
                 </Feature>
                 <Feature title="Searching" time={contextMenus.search}>
-                    Context menus, like all menus, can be searched in order to
-                    quickly find actions.
+                    Context menus, like all menus, can be searched.
                 </Feature>
                 <Feature title="Sub-menus" time={contextMenus.subMenus}>
-                    Context menus can contain sub-menus, which hide additional
-                    actions which are rarely used.
+                    Context menus can contain sub-menus, reducing clutter by
+                    hiding rarely used actions.
                 </Feature>
                 <Feature title="UI Path" time={contextMenus.path}>
                     The path shows where you are in the application.
@@ -258,9 +262,9 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                     <Feature
                         title="Select and execute multiple items"
                         time={multiSelect.select}>
-                        You can select multiple items by pressing or holding the{" "}
-                        <Key>⇧ Shift</Key>. Press <Key> Enter ↵</Key> to execute
-                        the primary action.
+                        You can select multiple items by pressing or holding{" "}
+                        <Key>⇧ Shift</Key>. These items can be executed by
+                        pressing <Key>Enter ↵</Key>.
                     </Feature>
                     <Feature
                         title="Shared context menu"
@@ -277,16 +281,15 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                 video="demoVideos/customize.webm"
                 videoPlaceholder="demoVideos/home.png">
                 <Feature title="Settings" time={customize.settings}>
-                    Like all other items, settings can be searched, and altered
-                    easily.
+                    Settings can be searched, and altered easily.
                 </Feature>
                 <Feature title="Keyboard Shortcuts" time={customize.shortcuts}>
-                    All keyboard shortcuts / controls can be fully customized to
-                    suit your needs.
+                    All keyboard shortcuts and controls can be fully customized
+                    to suit your needs.
                 </Feature>
                 <Feature title="Customize applets" time={customize.customize}>
                     Like native LaunchMenu features, all applets - including 3rd
-                    party applets, will be customizable.
+                    party applets, can be customizable.
                 </Feature>
                 <Feature
                     title="Settings portability"
@@ -297,7 +300,7 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                             "Settings are saved as json, but no UI is present yet.",
                     }}>
                     Settings will be portable, allowing you to import and export
-                    settings.
+                    them.
                 </Feature>
                 <Feature
                     title="Applets"
@@ -305,9 +308,9 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                     status={{
                         type: "comingSoon",
                         tooltip:
-                            "An applet infrastructure is present, but no UI yet.",
+                            "The applet infrastructure is there, but no UI is present yet.",
                     }}>
-                    LaunchMenu will have an applet manager, which allows the
+                    LaunchMenu has an applet manager, which will allow the
                     installation and removal of both official and 3rd party
                     applets.
                 </Feature>
@@ -317,9 +320,9 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                     status={{
                         type: "comingSoon",
                         tooltip:
-                            "A theme infrastructure is present, but no UI yet.",
+                            "The theme infrastructure is there, but no UI is present yet.",
                     }}>
-                    Colour and Style of the LaunchMenu app and applets will be
+                    The colour and style of LaunchMenu and its applets will be
                     customizable through themes.
                 </Feature>
             </FeatureCategory>
@@ -338,7 +341,7 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                 />
                 <AppletBlock
                     name="Notes"
-                    description="A simple notes manager that supports markdown content rendering"
+                    description="A simple notes manager that supports rendering numerous formats including markdown"
                     status="supported"
                     icon={<NoteIcon />}
                     category="utility"
@@ -440,7 +443,7 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                 />
                 <AppletBlock
                     name="LM Recorder"
-                    description="Used to create promotional videos"
+                    description="Used by developers to create demo videos of their applets in action"
                     status="supported"
                     icon={<VideoIcon />}
                     category="core"
@@ -482,17 +485,17 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                 download="https://google.com" // TODO: add real URL
             />
             <DownloadBlock
+                title="Mac"
+                status="supported"
+                icon={<img src="/icons/apple.svg" />}
+                description="Most features have been tested and adjusted to work on Mac, but this testing has been less extensive than on Windows."
+                download="https://google.com" // TODO: add real URL
+            />
+            <DownloadBlock
                 title="Linux"
                 status="longTerm"
                 icon={<img src="/icons/linux.svg" />}
                 description="Linux support is planned, but not yet worked on. Help from Linux users will be needed to test the software, and fix OS specific issues."
-                download="https://google.com" // TODO: add real URL
-            />
-            <DownloadBlock
-                title="Mac"
-                status="comingSoon"
-                icon={<img src="/icons/apple.svg" />}
-                description="Most features have been tested and adjusted to work on Mac, but this testing has been less extensive than on Windows."
                 download="https://google.com" // TODO: add real URL
             />
         </Downloads>
