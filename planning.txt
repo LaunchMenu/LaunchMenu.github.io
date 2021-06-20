@@ -207,7 +207,6 @@ Developers page:
 
 
 
-
 Resources:
     Alternatives:
         https://www.alfredapp.com/
