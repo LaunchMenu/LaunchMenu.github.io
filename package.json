@@ -5,7 +5,7 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "clean": "rimraf .next out",
+        "clean": "rimraf docs",
         "build": "npm run clean && next build && next export -o docs/"
     },
     "dependencies": {
