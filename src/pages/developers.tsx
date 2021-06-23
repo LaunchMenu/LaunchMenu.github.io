@@ -529,18 +529,22 @@ const items = [createTimesItem("Hello world"), createTimesItem("Bye world")];`}
                         name: "Github",
                         url: "https://github.com/LaunchMenu/LaunchMenu/discussions",
                     },
+                    {
+                        name: "Matrix chat",
+                        url: "https://matrix.to/#/!oKdXnjYicRtcwpbwAl:matrix.org?via=matrix.org?",
+                    },
                 ]}>
-                As mentioned several times already, LaunchMenu is fully
-                open-source! We welcome any contributions to the project,
-                especially third party applets. In case that you want to
-                contribute to our official repository, we do recommend
-                discussing your ideas with us first however. This prevents you
-                from investing a lot of time into something that doesn't line up
-                with our vision. That said, we're open to most ideas, and
-                definitely to any discussions! So don't hesitate to join the
-                community, both as developer or as user, at one of the following
-                links:
+                As mentioned before, LaunchMenu is fully open-source! We welcome
+                any contributions to the project, especially third party
+                applets. In case that you want to contribute to our official
+                repository, we do recommend discussing your ideas with us first
+                however. This prevents you from investing a lot of time into
+                something that doesn't line up with our vision. That said, we're
+                open to most ideas, and definitely to any discussions! So don't
+                hesitate to join the community, both as developer or as user, at
+                one of the following links:
             </Community>
+            <Spacer amount={100} />
         </BackgroundSection>
 
         <Spacer amount={400} />

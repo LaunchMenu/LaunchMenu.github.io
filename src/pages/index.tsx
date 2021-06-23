@@ -482,21 +482,21 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                 status="supported"
                 icon={<img src="/icons/windows.svg" />}
                 description="LaunchMenu is primarily being developed and tested on Windows, so this platform has smallest chance of containing bugs."
-                download="https://google.com" // TODO: add real URL
+                download="https://github.com/LaunchMenu/LaunchMenu/releases/download/v0.1.4/LaunchMenu.Setup.exe"
             />
             <DownloadBlock
                 title="Mac"
                 status="supported"
                 icon={<img src="/icons/apple.svg" />}
                 description="Most features have been tested and adjusted to work on Mac, but this testing has been less extensive than on Windows."
-                download="https://google.com" // TODO: add real URL
+                download="https://github.com/LaunchMenu/LaunchMenu/releases/download/v0.1.4/LaunchMenu.Setup.dmg"
             />
             <DownloadBlock
                 title="Linux"
                 status="longTerm"
                 icon={<img src="/icons/linux.svg" />}
                 description="Linux support is planned, but not yet worked on. Help from Linux users will be needed to test the software, and fix OS specific issues."
-                download="https://google.com" // TODO: add real URL
+                download="https://github.com/LaunchMenu/LaunchMenu/issues/130"
             />
         </Downloads>
 
