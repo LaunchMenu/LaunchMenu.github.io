@@ -22,6 +22,10 @@ export default class MyDocument extends Document {
                         name="theme-color"
                         content={theme.palette.primary.main}
                     />
+                    <meta
+                        name="google-site-verification"
+                        content="ZsnwJE1oEGTcztt0zU1_4H9WbP8JE28fZKvCY72I1dk"
+                    />
 
                     <link
                         rel="stylesheet"
