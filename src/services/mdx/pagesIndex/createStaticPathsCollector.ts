@@ -5,12 +5,9 @@ import {getPagesDir} from "./getPagesDir";
 export function createStaticPathsCollector(dir: string) {
     return async () => {
         const paths = await getFiles(getPagesDir(dir));
-        const unprefixedPaths = paths.map(path =>
-            path.map(node => cleanupPath(node))
-        );
-
+        paths.forEach(path => console.log(path));
         return {
-            paths: unprefixedPaths.map(path => ({params: {id: path}})),
+            paths: paths.map(id => ({params: {id}})),
             fallback: false,
         };
     };
@@ -25,12 +22,13 @@ async function getFiles(
         await Promise.all(
             files.map(async fileName => {
                 const file = Path.join(dir, fileName);
+                const cleanedFileName = cleanupPath(fileName);
                 const stat = await FS.lstat(file);
                 if (stat.isDirectory())
-                    return getFiles(file, [...urlPath, fileName]);
+                    return getFiles(file, [...urlPath, cleanedFileName]);
                 else if (Path.extname(fileName) == ".mdx") {
-                    if (fileName == "index.mdx") return [urlPath];
-                    return [[...urlPath, fileName]];
+                    if (fileName == "index.mdx") return [[...urlPath, "index"]];
+                    return [[...urlPath, cleanedFileName]];
                 } else return [];
             })
         )
