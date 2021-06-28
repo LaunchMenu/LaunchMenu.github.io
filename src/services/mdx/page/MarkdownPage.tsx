@@ -19,7 +19,6 @@ export default function MarkdownPage({
     url?: string;
     head?: ReactNode;
 }) {
-    console.log(url);
     const content = hydrate(source, {components: markdownComponents});
     return (
         <PageIndexProvider>

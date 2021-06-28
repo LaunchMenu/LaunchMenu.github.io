@@ -1,0 +1,1491 @@
+<!DOCTYPE html><html lang="en"><head><meta name="robots" content="index, follow"/><meta name="theme-color" content="#008DFA"/><meta name="google-site-verification" content="ZsnwJE1oEGTcztt0zU1_4H9WbP8JE28fZKvCY72I1dk"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap"/><meta charSet="utf-8"/><meta name="keywords" content="OS, Open Source, Utility, Keyboard"/><meta property="og:title" content="LaunchMenu"/><meta property="og:type" content="website"/><meta property="og:image" content="https://launchmenu.github.io/logo/logo-icon.png"/><meta property="og:image:alt" content="The logo of LaunchMenu"/><title>LaunchMenu</title><link rel="icon" href="/logo/logo-icon.ico"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta property="og:url" content="https://launchmenu.github.io/applets/utility/dictionary"/><meta property="og:description" content="LaunchMenu provides functionality in the form of applets"/><meta property="description" content="LaunchMenu provides functionality in the form of applets"/><meta name="keywords" content="Open Source, Utility, Keyboard, Applets, Official"/><meta name="next-head-count" content="13"/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/main-a903baea2cea93500d03.js" as="script"/><link rel="preload" href="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework.ad842be869046c28dcf8.js" as="script"/><link rel="preload" href="/_next/static/chunks/commons.c55c432be71414616455.js" as="script"/><link rel="preload" href="/_next/static/chunks/4f56c2054a11670459b03d22f52f09116db8303a.5b9e21c93f51b4faf5c9.js" as="script"/><link rel="preload" href="/_next/static/chunks/c48d6d7939cb57d2c3035355e0187f76734f377d.8fba51568389daa0ad1b.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-48a1f2a090d235669d7b.js" as="script"/><link rel="preload" href="/_next/static/chunks/20e8ffb29f0aec565363113899013a227271bd38.f2778e8796f992381e00.js" as="script"/><link rel="preload" href="/_next/static/chunks/0c958c70d983363caaddc2fb72f284f5fab6fc6d.b7f67c8c47fd35831772.js" as="script"/><link rel="preload" href="/_next/static/chunks/cc042352c9f3ee10d679ab4615bae53acae87f32.ce685e0ce7ca7d23ba21.js" as="script"/><link rel="preload" href="/_next/static/chunks/0a64fabb8f7cd96eee353a8d87448ea3a8de367c.67b2bf5eaee9cb09efd9.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/applets/%5B%5B...id%5D%5D-73ea480506bd354fd6ed.js" as="script"/><style id="jss-server-side">.MuiSvgIcon-root {
+  fill: currentColor;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  font-size: 1.5rem;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  flex-shrink: 0;
+  user-select: none;
+}
+.MuiSvgIcon-colorPrimary {
+  color: #008DFA;
+}
+.MuiSvgIcon-colorSecondary {
+  color: #0078d4;
+}
+.MuiSvgIcon-colorAction {
+  color: rgba(0, 0, 0, 0.54);
+}
+.MuiSvgIcon-colorError {
+  color: #f44336;
+}
+.MuiSvgIcon-colorDisabled {
+  color: rgba(0, 0, 0, 0.26);
+}
+.MuiSvgIcon-fontSizeInherit {
+  font-size: inherit;
+}
+.MuiSvgIcon-fontSizeSmall {
+  font-size: 1.25rem;
+}
+.MuiSvgIcon-fontSizeLarge {
+  font-size: 2.1875rem;
+}
+.MuiCollapse-container {
+  height: 0;
+  overflow: hidden;
+  transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.MuiCollapse-entered {
+  height: auto;
+  overflow: visible;
+}
+.MuiCollapse-hidden {
+  visibility: hidden;
+}
+.MuiCollapse-wrapper {
+  display: flex;
+}
+.MuiCollapse-wrapperInner {
+  width: 100%;
+}
+.MuiPaper-root {
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: #fff;
+}
+.MuiPaper-rounded {
+  border-radius: 4px;
+}
+.MuiPaper-outlined {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.MuiPaper-elevation0 {
+  box-shadow: none;
+}
+.MuiPaper-elevation1 {
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation2 {
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation3 {
+  box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation4 {
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation5 {
+  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation6 {
+  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation7 {
+  box-shadow: 0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation8 {
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation9 {
+  box-shadow: 0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation10 {
+  box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation11 {
+  box-shadow: 0px 6px 7px -4px rgba(0,0,0,0.2),0px 11px 15px 1px rgba(0,0,0,0.14),0px 4px 20px 3px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation12 {
+  box-shadow: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 12px 17px 2px rgba(0,0,0,0.14),0px 5px 22px 4px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation13 {
+  box-shadow: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 13px 19px 2px rgba(0,0,0,0.14),0px 5px 24px 4px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation14 {
+  box-shadow: 0px 7px 9px -4px rgba(0,0,0,0.2),0px 14px 21px 2px rgba(0,0,0,0.14),0px 5px 26px 4px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation15 {
+  box-shadow: 0px 8px 9px -5px rgba(0,0,0,0.2),0px 15px 22px 2px rgba(0,0,0,0.14),0px 6px 28px 5px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation16 {
+  box-shadow: 0px 8px 10px -5px rgba(0,0,0,0.2),0px 16px 24px 2px rgba(0,0,0,0.14),0px 6px 30px 5px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation17 {
+  box-shadow: 0px 8px 11px -5px rgba(0,0,0,0.2),0px 17px 26px 2px rgba(0,0,0,0.14),0px 6px 32px 5px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation18 {
+  box-shadow: 0px 9px 11px -5px rgba(0,0,0,0.2),0px 18px 28px 2px rgba(0,0,0,0.14),0px 7px 34px 6px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation19 {
+  box-shadow: 0px 9px 12px -6px rgba(0,0,0,0.2),0px 19px 29px 2px rgba(0,0,0,0.14),0px 7px 36px 6px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation20 {
+  box-shadow: 0px 10px 13px -6px rgba(0,0,0,0.2),0px 20px 31px 3px rgba(0,0,0,0.14),0px 8px 38px 7px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation21 {
+  box-shadow: 0px 10px 13px -6px rgba(0,0,0,0.2),0px 21px 33px 3px rgba(0,0,0,0.14),0px 8px 40px 7px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation22 {
+  box-shadow: 0px 10px 14px -6px rgba(0,0,0,0.2),0px 22px 35px 3px rgba(0,0,0,0.14),0px 8px 42px 7px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation23 {
+  box-shadow: 0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation24 {
+  box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12);
+}
+.MuiButtonBase-root {
+  color: inherit;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  display: inline-flex;
+  outline: 0;
+  padding: 0;
+  position: relative;
+  align-items: center;
+  user-select: none;
+  border-radius: 0;
+  vertical-align: middle;
+  -moz-appearance: none;
+  justify-content: center;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.MuiButtonBase-root::-moz-focus-inner {
+  border-style: none;
+}
+.MuiButtonBase-root.Mui-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+@media print {
+  .MuiButtonBase-root {
+    color-adjust: exact;
+  }
+}
+  .MuiAppBar-root {
+    width: 100%;
+    display: flex;
+    z-index: 1100;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .MuiAppBar-positionFixed {
+    top: 0;
+    left: auto;
+    right: 0;
+    position: fixed;
+  }
+@media print {
+  .MuiAppBar-positionFixed {
+    position: absolute;
+  }
+}
+  .MuiAppBar-positionAbsolute {
+    top: 0;
+    left: auto;
+    right: 0;
+    position: absolute;
+  }
+  .MuiAppBar-positionSticky {
+    top: 0;
+    left: auto;
+    right: 0;
+    position: sticky;
+  }
+  .MuiAppBar-positionStatic {
+    position: static;
+  }
+  .MuiAppBar-positionRelative {
+    position: relative;
+  }
+  .MuiAppBar-colorDefault {
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #f5f5f5;
+  }
+  .MuiAppBar-colorPrimary {
+    color: #FFFFFF;
+    background-color: #008DFA;
+  }
+  .MuiAppBar-colorSecondary {
+    color: #FFFFFF;
+    background-color: #0078d4;
+  }
+  .MuiAppBar-colorInherit {
+    color: inherit;
+  }
+  .MuiAppBar-colorTransparent {
+    color: inherit;
+    background-color: transparent;
+  }
+
+  .jss3 {  }
+  .jss4 {  }
+  .jss5 {  }
+  .jss6 {  }
+  .jss7 {  }
+  .jss8 {  }
+  .jss9 {
+    display: flex;
+    flex-direction: row;
+  }
+  .jss34 {  }
+  .jss35 {
+    padding-bottom: 16px;
+  }
+  .jss36 {
+    flex: 1;
+    flex-shrink: 1;
+  }
+  .jss37 {
+    display: flex;
+  }
+  .jss38 {
+    flex-grow: 1;
+    min-width: 0%;
+    flex-shrink: 1;
+  }
+  .jss39 {
+    height: 80vh;
+  }
+  .MuiTypography-root {
+    margin: 0;
+  }
+  .MuiTypography-body2 {
+    font-size: 0.875rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+  }
+  .MuiTypography-body1 {
+    font-size: 1rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+  }
+  .MuiTypography-caption {
+    font-size: 0.75rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.66;
+    letter-spacing: 0.03333em;
+  }
+  .MuiTypography-button {
+    font-size: 0.875rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    text-transform: none;
+  }
+  .MuiTypography-h1 {
+    font-size: 6rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 300;
+    line-height: 1.167;
+    letter-spacing: -0.01562em;
+  }
+  .MuiTypography-h2 {
+    font-size: 3.75rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.00833em;
+  }
+  .MuiTypography-h3 {
+    font-size: 3rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.167;
+    letter-spacing: 0em;
+  }
+  .MuiTypography-h4 {
+    font-size: 2.125rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.235;
+    letter-spacing: 0.00735em;
+  }
+  .MuiTypography-h5 {
+    font-size: 1.5rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.334;
+    letter-spacing: 0em;
+  }
+  .MuiTypography-h6 {
+    font-size: 1.25rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: 0.0075em;
+  }
+  .MuiTypography-subtitle1 {
+    font-size: 1rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.75;
+    letter-spacing: 0.00938em;
+  }
+  .MuiTypography-subtitle2 {
+    font-size: 0.875rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1.57;
+    letter-spacing: 0.00714em;
+  }
+  .MuiTypography-overline {
+    font-size: 0.75rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 2.66;
+    letter-spacing: 0.08333em;
+    text-transform: uppercase;
+  }
+  .MuiTypography-srOnly {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+  }
+  .MuiTypography-alignLeft {
+    text-align: left;
+  }
+  .MuiTypography-alignCenter {
+    text-align: center;
+  }
+  .MuiTypography-alignRight {
+    text-align: right;
+  }
+  .MuiTypography-alignJustify {
+    text-align: justify;
+  }
+  .MuiTypography-noWrap {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .MuiTypography-gutterBottom {
+    margin-bottom: 0.35em;
+  }
+  .MuiTypography-paragraph {
+    margin-bottom: 16px;
+  }
+  .MuiTypography-colorInherit {
+    color: inherit;
+  }
+  .MuiTypography-colorPrimary {
+    color: #008DFA;
+  }
+  .MuiTypography-colorSecondary {
+    color: #0078d4;
+  }
+  .MuiTypography-colorTextPrimary {
+    color: rgba(0, 0, 0, 0.87);
+  }
+  .MuiTypography-colorTextSecondary {
+    color: rgba(0, 0, 0, 0.54);
+  }
+  .MuiTypography-colorError {
+    color: #f44336;
+  }
+  .MuiTypography-displayInline {
+    display: inline;
+  }
+  .MuiTypography-displayBlock {
+    display: block;
+  }
+  .MuiButton-root {
+    color: rgba(0, 0, 0, 0.87);
+    padding: 6px 16px;
+    font-size: 0.875rem;
+    min-width: 64px;
+    box-sizing: border-box;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1.75;
+    border-radius: 4px;
+    letter-spacing: 0.02857em;
+    text-transform: none;
+  }
+  .MuiButton-root:hover {
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+  .MuiButton-root.Mui-disabled {
+    color: rgba(0, 0, 0, 0.26);
+  }
+@media (hover: none) {
+  .MuiButton-root:hover {
+    background-color: transparent;
+  }
+}
+  .MuiButton-root:hover.Mui-disabled {
+    background-color: transparent;
+  }
+  .MuiButton-label {
+    width: 100%;
+    display: inherit;
+    align-items: inherit;
+    justify-content: inherit;
+  }
+  .MuiButton-text {
+    padding: 6px 8px;
+  }
+  .MuiButton-textPrimary {
+    color: white;
+  }
+  .MuiButton-textPrimary:hover {
+    background-color: rgba(0, 141, 250, 0.04);
+  }
+@media (hover: none) {
+  .MuiButton-textPrimary:hover {
+    background-color: transparent;
+  }
+}
+  .MuiButton-textSecondary {
+    color: #0078d4;
+  }
+  .MuiButton-textSecondary:hover {
+    background-color: rgba(0, 120, 212, 0.04);
+  }
+@media (hover: none) {
+  .MuiButton-textSecondary:hover {
+    background-color: transparent;
+  }
+}
+  .MuiButton-outlined {
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    padding: 5px 15px;
+  }
+  .MuiButton-outlined.Mui-disabled {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  .MuiButton-outlinedPrimary {
+    color: #008DFA;
+    border: 1px solid rgba(0, 141, 250, 0.5);
+  }
+  .MuiButton-outlinedPrimary:hover {
+    border: 1px solid #008DFA;
+    background-color: rgba(0, 141, 250, 0.04);
+  }
+@media (hover: none) {
+  .MuiButton-outlinedPrimary:hover {
+    background-color: transparent;
+  }
+}
+  .MuiButton-outlinedSecondary {
+    color: #0078d4;
+    border: 1px solid rgba(0, 120, 212, 0.5);
+  }
+  .MuiButton-outlinedSecondary:hover {
+    border: 1px solid #0078d4;
+    background-color: rgba(0, 120, 212, 0.04);
+  }
+  .MuiButton-outlinedSecondary.Mui-disabled {
+    border: 1px solid rgba(0, 0, 0, 0.26);
+  }
+@media (hover: none) {
+  .MuiButton-outlinedSecondary:hover {
+    background-color: transparent;
+  }
+}
+  .MuiButton-contained {
+    color: rgba(0, 0, 0, 0.87);
+    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+    background-color: #e0e0e0;
+  }
+  .MuiButton-contained:hover {
+    box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+    background-color: #d5d5d5;
+  }
+  .MuiButton-contained.Mui-focusVisible {
+    box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
+  }
+  .MuiButton-contained:active {
+    box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+  }
+  .MuiButton-contained.Mui-disabled {
+    color: rgba(0, 0, 0, 0.26);
+    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0.12);
+  }
+@media (hover: none) {
+  .MuiButton-contained:hover {
+    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+    background-color: #e0e0e0;
+  }
+}
+  .MuiButton-contained:hover.Mui-disabled {
+    background-color: rgba(0, 0, 0, 0.12);
+  }
+  .MuiButton-containedPrimary {
+    color: #FFFFFF;
+    background-color: #008DFA;
+  }
+  .MuiButton-containedPrimary:hover {
+    background-color: #006BBE;
+  }
+@media (hover: none) {
+  .MuiButton-containedPrimary:hover {
+    background-color: #008DFA;
+  }
+}
+  .MuiButton-containedSecondary {
+    color: #FFFFFF;
+    background-color: #0078d4;
+  }
+  .MuiButton-containedSecondary:hover {
+    background-color: #006BBE;
+  }
+@media (hover: none) {
+  .MuiButton-containedSecondary:hover {
+    background-color: #0078d4;
+  }
+}
+  .MuiButton-disableElevation {
+    box-shadow: none;
+  }
+  .MuiButton-disableElevation:hover {
+    box-shadow: none;
+  }
+  .MuiButton-disableElevation.Mui-focusVisible {
+    box-shadow: none;
+  }
+  .MuiButton-disableElevation:active {
+    box-shadow: none;
+  }
+  .MuiButton-disableElevation.Mui-disabled {
+    box-shadow: none;
+  }
+  .MuiButton-colorInherit {
+    color: inherit;
+    border-color: currentColor;
+  }
+  .MuiButton-textSizeSmall {
+    padding: 4px 5px;
+    font-size: 0.8125rem;
+  }
+  .MuiButton-textSizeLarge {
+    padding: 8px 11px;
+    font-size: 0.9375rem;
+  }
+  .MuiButton-outlinedSizeSmall {
+    padding: 3px 9px;
+    font-size: 0.8125rem;
+  }
+  .MuiButton-outlinedSizeLarge {
+    padding: 7px 21px;
+    font-size: 0.9375rem;
+  }
+  .MuiButton-containedSizeSmall {
+    padding: 4px 10px;
+    font-size: 0.8125rem;
+  }
+  .MuiButton-containedSizeLarge {
+    padding: 8px 22px;
+    font-size: 0.9375rem;
+  }
+  .MuiButton-fullWidth {
+    width: 100%;
+  }
+  .MuiButton-startIcon {
+    display: inherit;
+    margin-left: -4px;
+    margin-right: 8px;
+  }
+  .MuiButton-startIcon.MuiButton-iconSizeSmall {
+    margin-left: -2px;
+  }
+  .MuiButton-endIcon {
+    display: inherit;
+    margin-left: 8px;
+    margin-right: -4px;
+  }
+  .MuiButton-endIcon.MuiButton-iconSizeSmall {
+    margin-right: -2px;
+  }
+  .MuiButton-iconSizeSmall > *:first-child {
+    font-size: 18px;
+  }
+  .MuiButton-iconSizeMedium > *:first-child {
+    font-size: 20px;
+  }
+  .MuiButton-iconSizeLarge > *:first-child {
+    font-size: 22px;
+  }
+  .MuiContainer-root {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+@media (min-width:700px) {
+  .MuiContainer-root {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+  .MuiContainer-disableGutters {
+    padding-left: 0;
+    padding-right: 0;
+  }
+@media (min-width:400px) {
+  .MuiContainer-fixed {
+    max-width: 400px;
+  }
+}
+@media (min-width:700px) {
+  .MuiContainer-fixed {
+    max-width: 700px;
+  }
+}
+@media (min-width:1000px) {
+  .MuiContainer-fixed {
+    max-width: 1000px;
+  }
+}
+@media (min-width:1300px) {
+  .MuiContainer-fixed {
+    max-width: 1300px;
+  }
+}
+@media (min-width:2500px) {
+  .MuiContainer-fixed {
+    max-width: 2500px;
+  }
+}
+@media (min-width:400px) {
+  .MuiContainer-maxWidthXs {
+    max-width: 444px;
+  }
+}
+@media (min-width:700px) {
+  .MuiContainer-maxWidthSm {
+    max-width: 700px;
+  }
+}
+@media (min-width:1000px) {
+  .MuiContainer-maxWidthMd {
+    max-width: 1000px;
+  }
+}
+@media (min-width:1300px) {
+  .MuiContainer-maxWidthLg {
+    max-width: 1300px;
+  }
+}
+@media (min-width:2500px) {
+  .MuiContainer-maxWidthXl {
+    max-width: 2500px;
+  }
+}
+  .MuiDrawer-docked {
+    flex: 0 0 auto;
+  }
+  .MuiDrawer-paper {
+    top: 0;
+    flex: 1 0 auto;
+    height: 100%;
+    display: flex;
+    outline: 0;
+    z-index: 1200;
+    position: fixed;
+    overflow-y: auto;
+    flex-direction: column;
+    -webkit-overflow-scrolling: touch;
+  }
+  .MuiDrawer-paperAnchorLeft {
+    left: 0;
+    right: auto;
+  }
+  .MuiDrawer-paperAnchorRight {
+    left: auto;
+    right: 0;
+  }
+  .MuiDrawer-paperAnchorTop {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    height: auto;
+    max-height: 100%;
+  }
+  .MuiDrawer-paperAnchorBottom {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: auto;
+    max-height: 100%;
+  }
+  .MuiDrawer-paperAnchorDockedLeft {
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  .MuiDrawer-paperAnchorDockedTop {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  .MuiDrawer-paperAnchorDockedRight {
+    border-left: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  .MuiDrawer-paperAnchorDockedBottom {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  .MuiGrid-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+  }
+  .MuiGrid-item {
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .MuiGrid-zeroMinWidth {
+    min-width: 0;
+  }
+  .MuiGrid-direction-xs-column {
+    flex-direction: column;
+  }
+  .MuiGrid-direction-xs-column-reverse {
+    flex-direction: column-reverse;
+  }
+  .MuiGrid-direction-xs-row-reverse {
+    flex-direction: row-reverse;
+  }
+  .MuiGrid-wrap-xs-nowrap {
+    flex-wrap: nowrap;
+  }
+  .MuiGrid-wrap-xs-wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+  .MuiGrid-align-items-xs-center {
+    align-items: center;
+  }
+  .MuiGrid-align-items-xs-flex-start {
+    align-items: flex-start;
+  }
+  .MuiGrid-align-items-xs-flex-end {
+    align-items: flex-end;
+  }
+  .MuiGrid-align-items-xs-baseline {
+    align-items: baseline;
+  }
+  .MuiGrid-align-content-xs-center {
+    align-content: center;
+  }
+  .MuiGrid-align-content-xs-flex-start {
+    align-content: flex-start;
+  }
+  .MuiGrid-align-content-xs-flex-end {
+    align-content: flex-end;
+  }
+  .MuiGrid-align-content-xs-space-between {
+    align-content: space-between;
+  }
+  .MuiGrid-align-content-xs-space-around {
+    align-content: space-around;
+  }
+  .MuiGrid-justify-xs-center {
+    justify-content: center;
+  }
+  .MuiGrid-justify-xs-flex-end {
+    justify-content: flex-end;
+  }
+  .MuiGrid-justify-xs-space-between {
+    justify-content: space-between;
+  }
+  .MuiGrid-justify-xs-space-around {
+    justify-content: space-around;
+  }
+  .MuiGrid-justify-xs-space-evenly {
+    justify-content: space-evenly;
+  }
+  .MuiGrid-spacing-xs-1 {
+    width: calc(100% + 8px);
+    margin: -4px;
+  }
+  .MuiGrid-spacing-xs-1 > .MuiGrid-item {
+    padding: 4px;
+  }
+  .MuiGrid-spacing-xs-2 {
+    width: calc(100% + 16px);
+    margin: -8px;
+  }
+  .MuiGrid-spacing-xs-2 > .MuiGrid-item {
+    padding: 8px;
+  }
+  .MuiGrid-spacing-xs-3 {
+    width: calc(100% + 24px);
+    margin: -12px;
+  }
+  .MuiGrid-spacing-xs-3 > .MuiGrid-item {
+    padding: 12px;
+  }
+  .MuiGrid-spacing-xs-4 {
+    width: calc(100% + 32px);
+    margin: -16px;
+  }
+  .MuiGrid-spacing-xs-4 > .MuiGrid-item {
+    padding: 16px;
+  }
+  .MuiGrid-spacing-xs-5 {
+    width: calc(100% + 40px);
+    margin: -20px;
+  }
+  .MuiGrid-spacing-xs-5 > .MuiGrid-item {
+    padding: 20px;
+  }
+  .MuiGrid-spacing-xs-6 {
+    width: calc(100% + 48px);
+    margin: -24px;
+  }
+  .MuiGrid-spacing-xs-6 > .MuiGrid-item {
+    padding: 24px;
+  }
+  .MuiGrid-spacing-xs-7 {
+    width: calc(100% + 56px);
+    margin: -28px;
+  }
+  .MuiGrid-spacing-xs-7 > .MuiGrid-item {
+    padding: 28px;
+  }
+  .MuiGrid-spacing-xs-8 {
+    width: calc(100% + 64px);
+    margin: -32px;
+  }
+  .MuiGrid-spacing-xs-8 > .MuiGrid-item {
+    padding: 32px;
+  }
+  .MuiGrid-spacing-xs-9 {
+    width: calc(100% + 72px);
+    margin: -36px;
+  }
+  .MuiGrid-spacing-xs-9 > .MuiGrid-item {
+    padding: 36px;
+  }
+  .MuiGrid-spacing-xs-10 {
+    width: calc(100% + 80px);
+    margin: -40px;
+  }
+  .MuiGrid-spacing-xs-10 > .MuiGrid-item {
+    padding: 40px;
+  }
+  .MuiGrid-grid-xs-auto {
+    flex-grow: 0;
+    max-width: none;
+    flex-basis: auto;
+  }
+  .MuiGrid-grid-xs-true {
+    flex-grow: 1;
+    max-width: 100%;
+    flex-basis: 0;
+  }
+  .MuiGrid-grid-xs-1 {
+    flex-grow: 0;
+    max-width: 8.333333%;
+    flex-basis: 8.333333%;
+  }
+  .MuiGrid-grid-xs-2 {
+    flex-grow: 0;
+    max-width: 16.666667%;
+    flex-basis: 16.666667%;
+  }
+  .MuiGrid-grid-xs-3 {
+    flex-grow: 0;
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .MuiGrid-grid-xs-4 {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+  }
+  .MuiGrid-grid-xs-5 {
+    flex-grow: 0;
+    max-width: 41.666667%;
+    flex-basis: 41.666667%;
+  }
+  .MuiGrid-grid-xs-6 {
+    flex-grow: 0;
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+  .MuiGrid-grid-xs-7 {
+    flex-grow: 0;
+    max-width: 58.333333%;
+    flex-basis: 58.333333%;
+  }
+  .MuiGrid-grid-xs-8 {
+    flex-grow: 0;
+    max-width: 66.666667%;
+    flex-basis: 66.666667%;
+  }
+  .MuiGrid-grid-xs-9 {
+    flex-grow: 0;
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+  .MuiGrid-grid-xs-10 {
+    flex-grow: 0;
+    max-width: 83.333333%;
+    flex-basis: 83.333333%;
+  }
+  .MuiGrid-grid-xs-11 {
+    flex-grow: 0;
+    max-width: 91.666667%;
+    flex-basis: 91.666667%;
+  }
+  .MuiGrid-grid-xs-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+@media (min-width:700px) {
+  .MuiGrid-grid-sm-auto {
+    flex-grow: 0;
+    max-width: none;
+    flex-basis: auto;
+  }
+  .MuiGrid-grid-sm-true {
+    flex-grow: 1;
+    max-width: 100%;
+    flex-basis: 0;
+  }
+  .MuiGrid-grid-sm-1 {
+    flex-grow: 0;
+    max-width: 8.333333%;
+    flex-basis: 8.333333%;
+  }
+  .MuiGrid-grid-sm-2 {
+    flex-grow: 0;
+    max-width: 16.666667%;
+    flex-basis: 16.666667%;
+  }
+  .MuiGrid-grid-sm-3 {
+    flex-grow: 0;
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .MuiGrid-grid-sm-4 {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+  }
+  .MuiGrid-grid-sm-5 {
+    flex-grow: 0;
+    max-width: 41.666667%;
+    flex-basis: 41.666667%;
+  }
+  .MuiGrid-grid-sm-6 {
+    flex-grow: 0;
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+  .MuiGrid-grid-sm-7 {
+    flex-grow: 0;
+    max-width: 58.333333%;
+    flex-basis: 58.333333%;
+  }
+  .MuiGrid-grid-sm-8 {
+    flex-grow: 0;
+    max-width: 66.666667%;
+    flex-basis: 66.666667%;
+  }
+  .MuiGrid-grid-sm-9 {
+    flex-grow: 0;
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+  .MuiGrid-grid-sm-10 {
+    flex-grow: 0;
+    max-width: 83.333333%;
+    flex-basis: 83.333333%;
+  }
+  .MuiGrid-grid-sm-11 {
+    flex-grow: 0;
+    max-width: 91.666667%;
+    flex-basis: 91.666667%;
+  }
+  .MuiGrid-grid-sm-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+@media (min-width:1000px) {
+  .MuiGrid-grid-md-auto {
+    flex-grow: 0;
+    max-width: none;
+    flex-basis: auto;
+  }
+  .MuiGrid-grid-md-true {
+    flex-grow: 1;
+    max-width: 100%;
+    flex-basis: 0;
+  }
+  .MuiGrid-grid-md-1 {
+    flex-grow: 0;
+    max-width: 8.333333%;
+    flex-basis: 8.333333%;
+  }
+  .MuiGrid-grid-md-2 {
+    flex-grow: 0;
+    max-width: 16.666667%;
+    flex-basis: 16.666667%;
+  }
+  .MuiGrid-grid-md-3 {
+    flex-grow: 0;
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .MuiGrid-grid-md-4 {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+  }
+  .MuiGrid-grid-md-5 {
+    flex-grow: 0;
+    max-width: 41.666667%;
+    flex-basis: 41.666667%;
+  }
+  .MuiGrid-grid-md-6 {
+    flex-grow: 0;
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+  .MuiGrid-grid-md-7 {
+    flex-grow: 0;
+    max-width: 58.333333%;
+    flex-basis: 58.333333%;
+  }
+  .MuiGrid-grid-md-8 {
+    flex-grow: 0;
+    max-width: 66.666667%;
+    flex-basis: 66.666667%;
+  }
+  .MuiGrid-grid-md-9 {
+    flex-grow: 0;
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+  .MuiGrid-grid-md-10 {
+    flex-grow: 0;
+    max-width: 83.333333%;
+    flex-basis: 83.333333%;
+  }
+  .MuiGrid-grid-md-11 {
+    flex-grow: 0;
+    max-width: 91.666667%;
+    flex-basis: 91.666667%;
+  }
+  .MuiGrid-grid-md-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+@media (min-width:1300px) {
+  .MuiGrid-grid-lg-auto {
+    flex-grow: 0;
+    max-width: none;
+    flex-basis: auto;
+  }
+  .MuiGrid-grid-lg-true {
+    flex-grow: 1;
+    max-width: 100%;
+    flex-basis: 0;
+  }
+  .MuiGrid-grid-lg-1 {
+    flex-grow: 0;
+    max-width: 8.333333%;
+    flex-basis: 8.333333%;
+  }
+  .MuiGrid-grid-lg-2 {
+    flex-grow: 0;
+    max-width: 16.666667%;
+    flex-basis: 16.666667%;
+  }
+  .MuiGrid-grid-lg-3 {
+    flex-grow: 0;
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .MuiGrid-grid-lg-4 {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+  }
+  .MuiGrid-grid-lg-5 {
+    flex-grow: 0;
+    max-width: 41.666667%;
+    flex-basis: 41.666667%;
+  }
+  .MuiGrid-grid-lg-6 {
+    flex-grow: 0;
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+  .MuiGrid-grid-lg-7 {
+    flex-grow: 0;
+    max-width: 58.333333%;
+    flex-basis: 58.333333%;
+  }
+  .MuiGrid-grid-lg-8 {
+    flex-grow: 0;
+    max-width: 66.666667%;
+    flex-basis: 66.666667%;
+  }
+  .MuiGrid-grid-lg-9 {
+    flex-grow: 0;
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+  .MuiGrid-grid-lg-10 {
+    flex-grow: 0;
+    max-width: 83.333333%;
+    flex-basis: 83.333333%;
+  }
+  .MuiGrid-grid-lg-11 {
+    flex-grow: 0;
+    max-width: 91.666667%;
+    flex-basis: 91.666667%;
+  }
+  .MuiGrid-grid-lg-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+@media (min-width:2500px) {
+  .MuiGrid-grid-xl-auto {
+    flex-grow: 0;
+    max-width: none;
+    flex-basis: auto;
+  }
+  .MuiGrid-grid-xl-true {
+    flex-grow: 1;
+    max-width: 100%;
+    flex-basis: 0;
+  }
+  .MuiGrid-grid-xl-1 {
+    flex-grow: 0;
+    max-width: 8.333333%;
+    flex-basis: 8.333333%;
+  }
+  .MuiGrid-grid-xl-2 {
+    flex-grow: 0;
+    max-width: 16.666667%;
+    flex-basis: 16.666667%;
+  }
+  .MuiGrid-grid-xl-3 {
+    flex-grow: 0;
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .MuiGrid-grid-xl-4 {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+  }
+  .MuiGrid-grid-xl-5 {
+    flex-grow: 0;
+    max-width: 41.666667%;
+    flex-basis: 41.666667%;
+  }
+  .MuiGrid-grid-xl-6 {
+    flex-grow: 0;
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+  .MuiGrid-grid-xl-7 {
+    flex-grow: 0;
+    max-width: 58.333333%;
+    flex-basis: 58.333333%;
+  }
+  .MuiGrid-grid-xl-8 {
+    flex-grow: 0;
+    max-width: 66.666667%;
+    flex-basis: 66.666667%;
+  }
+  .MuiGrid-grid-xl-9 {
+    flex-grow: 0;
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+  .MuiGrid-grid-xl-10 {
+    flex-grow: 0;
+    max-width: 83.333333%;
+    flex-basis: 83.333333%;
+  }
+  .MuiGrid-grid-xl-11 {
+    flex-grow: 0;
+    max-width: 91.666667%;
+    flex-basis: 91.666667%;
+  }
+  .MuiGrid-grid-xl-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+@media (min-width:400px) and (max-width:699.95px) {
+  .jss19 {
+    display: none;
+  }
+}
+@media (min-width:400px) {
+  .jss20 {
+    display: none;
+  }
+}
+@media (max-width:699.95px) {
+  .jss21 {
+    display: none;
+  }
+}
+@media (min-width:700px) and (max-width:999.95px) {
+  .jss22 {
+    display: none;
+  }
+}
+@media (min-width:700px) {
+  .jss23 {
+    display: none;
+  }
+}
+@media (max-width:999.95px) {
+  .jss24 {
+    display: none;
+  }
+}
+@media (min-width:1000px) and (max-width:1299.95px) {
+  .jss25 {
+    display: none;
+  }
+}
+@media (min-width:1000px) {
+  .jss26 {
+    display: none;
+  }
+}
+@media (max-width:1299.95px) {
+  .jss27 {
+    display: none;
+  }
+}
+@media (min-width:1300px) and (max-width:2499.95px) {
+  .jss28 {
+    display: none;
+  }
+}
+@media (min-width:1300px) {
+  .jss29 {
+    display: none;
+  }
+}
+@media (max-width:2499.95px) {
+  .jss30 {
+    display: none;
+  }
+}
+@media (min-width:2500px) {
+  .jss31 {
+    display: none;
+  }
+}
+@media (min-width:2500px) {
+  .jss32 {
+    display: none;
+  }
+}
+@media (min-width:400px) {
+  .jss33 {
+    display: none;
+  }
+}
+  .MuiList-root {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    list-style: none;
+  }
+  .MuiList-padding {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .MuiList-subheader {
+    padding-top: 0;
+  }
+  .MuiListItem-root {
+    width: 100%;
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    text-align: left;
+    align-items: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    justify-content: flex-start;
+    text-decoration: none;
+  }
+  .MuiListItem-root.Mui-focusVisible {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+  .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+  .MuiListItem-root.Mui-disabled {
+    opacity: 0.5;
+  }
+  .MuiListItem-container {
+    position: relative;
+  }
+  .MuiListItem-dense {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  .MuiListItem-alignItemsFlexStart {
+    align-items: flex-start;
+  }
+  .MuiListItem-divider {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    background-clip: padding-box;
+  }
+  .MuiListItem-gutters {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .MuiListItem-button {
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  }
+  .MuiListItem-button:hover {
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+@media (hover: none) {
+  .MuiListItem-button:hover {
+    background-color: transparent;
+  }
+}
+  .MuiListItem-secondaryAction {
+    padding-right: 48px;
+  }
+  .MuiListItemText-root {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .MuiListItemText-multiline {
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+  .MuiListItemText-inset {
+    padding-left: 56px;
+  }
+  .MuiToolbar-root {
+    display: flex;
+    position: relative;
+    align-items: center;
+  }
+  .MuiToolbar-gutters {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+@media (min-width:700px) {
+  .MuiToolbar-gutters {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+  .MuiToolbar-regular {
+    height: 56px;
+  }
+  .MuiToolbar-dense {
+    min-height: 48px;
+  }
+  .jss1 {
+    display: block;
+  }
+@media (max-width:999.95px) {
+  .jss1 {
+    display: none;
+  }
+}
+  .jss2 {
+    display: none;
+  }
+@media (max-width:999.95px) {
+  .jss2 {
+    display: block;
+  }
+}
+  .jss10 {
+    display: flex;
+  }
+@media (min-width:1000px) {
+  .jss11 {
+    top: 56px;
+    width: 240px;
+    position: sticky;
+    align-self: flex-start;
+  }
+}
+  .jss12 {
+    margin-left: 240px;
+  }
+@media (min-width:1000px) {
+  .jss12 {
+    width: calc(100% - 240px);
+  }
+}
+  .jss13 {
+    display: flex;
+  }
+  .jss14 {
+    margin-right: 16px;
+  }
+@media (min-width:1000px) {
+  .jss14 {
+    display: none;
+  }
+}
+  .jss15 {
+    height: 56px;
+  }
+  .jss16 {
+    height: 56px;
+    display: flex;
+    padding: 16px;
+    align-items: center;
+  }
+  .jss17 {
+    width: 240px;
+  }
+  .jss18 {
+    padding: 8px;
+    flex-grow: 1;
+    font-size: 1rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+  }
+@media (min-width:700px) {
+  .jss18 {
+    padding: 24px;
+  }
+}</style></head><body><div id="__next"><div class="layout"><style data-emotion="css-global yhsyn8">body,html{margin:0;padding:0;height:100%;width:100%;font-family:"Roboto","Helvetica","Arial",sans-serif;font-weight:400;font-size:1rem;line-height:1.5;letter-spacing:0.00938em;}</style><header class="MuiPaper-root MuiAppBar-root MuiAppBar-positionSticky MuiAppBar-colorPrimary MuiPaper-elevation4"><style data-emotion="css 1kr6hcb">@media (max-width:999.95px){.css-1kr6hcb{min-height:0;}}</style><div class="MuiToolbar-root MuiToolbar-regular css-1kr6hcb MuiToolbar-gutters"><div class="MuiBox-root jss3 jss2" style="width:100%"><div class="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-space-between"><style data-emotion="css 1u4hpl4">.css-1u4hpl4{display:inline;}</style><div class="MuiBox-root jss4 css-1u4hpl4"><style data-emotion="css 13udsys">.css-13udsys{height:100%;}</style><button class="MuiButtonBase-root MuiButton-root MuiButton-text css-13udsys MuiButton-textPrimary" tabindex="0" type="button"><span class="MuiButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary" tabindex="0" type="button"><span class="MuiButton-label"><style data-emotion="css nn640c">.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}</style><a href="/" class="css-nn640c"><h5 class="MuiTypography-root MuiTypography-h5">LaunchMenu</h5></a></span></button></div><div class="MuiBox-root jss5"><button class="MuiButtonBase-root MuiButton-root MuiButton-text css-13udsys MuiButton-textPrimary" tabindex="0" type="button"><span class="MuiButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg></span></button></div></div></div><div class="MuiBox-root jss6 jss1" style="width:100%"><div class="MuiContainer-root MuiContainer-maxWidthLg"><div class="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-space-between"><div class="MuiBox-root jss7 css-1u4hpl4"><button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary" tabindex="0" type="button"><span class="MuiButton-label"><a href="/" class="css-nn640c"><h5 class="MuiTypography-root MuiTypography-h5">LaunchMenu</h5></a></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary" tabindex="0" type="button" style="margin-left:20px"><span class="MuiButton-label"><a href="/developers" class="css-nn640c"><h6 class="MuiTypography-root MuiTypography-h6">Dev</h6></a></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary" tabindex="0" type="button"><span class="MuiButton-label"><a href="/#downloads" class="css-nn640c"><h6 class="MuiTypography-root MuiTypography-h6">Download</h6></a></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary" tabindex="0" type="button"><span class="MuiButton-label"><a href="/#utility-applets" class="css-nn640c"><h6 class="MuiTypography-root MuiTypography-h6">Applets</h6></a></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary" tabindex="0" type="button"><span class="MuiButton-label"><a href="/developers#community" class="css-nn640c"><h6 class="MuiTypography-root MuiTypography-h6">Community</h6></a></span></button></div><style data-emotion="css 1xhj18k">.css-1xhj18k{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;}</style><div class="MuiBox-root jss8 css-1xhj18k"><button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary" tabindex="0" type="button"><span class="MuiButton-label"><a href="/docs" class="css-nn640c"><h6 class="MuiTypography-root MuiTypography-h6">Docs</h6></a></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary" tabindex="0" type="button"><span class="MuiButton-label"><a href="/about" class="css-nn640c"><h6 class="MuiTypography-root MuiTypography-h6">About</h6></a></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary" tabindex="0" type="button"><span class="MuiButton-label"><span class="MuiButton-startIcon MuiButton-iconSizeMedium"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"></path></svg></span><a href="https://github.com/LaunchMenu/LaunchMenu" class="css-nn640c"><a target="_blank" style="color:inherit;text-decoration:inherit"><h6 class="MuiTypography-root MuiTypography-h6">GitHub</h6></a></a></span></button></div></div></div></div></div></header><div class="MuiContainer-root MuiContainer-maxWidthLg"><div class="MuiBox-root jss9"><nav class="jss11" aria-label="folders"><div class="jss23"></div><div class="jss24"><style data-emotion="css 1dahv4q">.css-1dahv4q{overflow-y:auto;height:calc(100vh - 56px);}</style><div class="MuiBox-root jss34 css-1dahv4q"><div class="MuiBox-root jss35"><ul class="MuiList-root MuiList-padding"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:0"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">utility</span></div></div><div class="MuiCollapse-container MuiCollapse-entered" style="min-height:0px"><div class="MuiCollapse-wrapper"><div class="MuiCollapse-wrapperInner"><div class="MuiList-root"><style data-emotion="css nn640c">.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}</style><a href="/applets/utility/dictionary" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:24px"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"><style data-emotion="css rk2x2w">.css-rk2x2w{font-weight:800;color:#008DFA;}</style><span class="css-rk2x2w">dictionary</span></span></div></div></a><a href="/applets/utility/notes" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:24px"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">notes</span></div></div></a><a href="/applets/utility/file-manager" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:24px"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">file manager</span></div></div></a><a href="/applets/utility/internet-search" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:24px"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">internet search</span></div></div></a><a href="/applets/utility/calculator" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:24px"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">calculator</span></div></div></a><a href="/applets/utility/translator" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:24px"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">translator</span></div></div></a><a href="/applets/utility/snippets" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:24px"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">snippets</span></div></div></a><a href="/applets/utility/time-tracker" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:24px"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">time tracker</span></div></div></a><a href="/applets/utility/calendar" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:24px"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">calendar</span></div></div></a></div></div></div></div><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:0"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path></svg><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">core</span></div></div></ul></div></div></div></nav><style data-emotion="css p6ss53">.css-p6ss53{max-width:100%;min-width:0;}@media (min-width:1000px){.css-p6ss53{padding-left:16px;}}</style><div class="MuiBox-root jss36 css-p6ss53"><style data-emotion="css llk2rv">@media (max-width:999.95px){.css-llk2rv{-webkit-flex-direction:column-reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;}}</style><div class="MuiBox-root jss37 css-llk2rv"><style data-emotion="css 1pwpcnr">@media (min-width:1000px){.css-1pwpcnr{padding-right:16px;}}</style><div class="MuiBox-root jss38 css-1pwpcnr"><div><section><style data-emotion="css nn640c">.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}</style><a href="#dictionary" class="css-nn640c"><h1>Dictionary</h1></a><p>The dictionary allows users to:</p><ul><li>Check spelling of words</li><li>Check the definition of words</li><li>Get usage examples of words</li></ul><p>The dictionary also has limited multi-language support.</p><div></div><style data-emotion="css wrw7x8">.css-wrw7x8{width:664px;height:414px;position:relative;z-index:1;background-color:white;overflow:hidden;border-radius:12px;box-shadow:0px 0px 30px -5px rgba(0,0,0,0.3);}@media (min-width:1000px){.css-wrw7x8{margin:16px;}}</style><div class="css-wrw7x8"><style data-emotion="css 1i0a99i">.css-1i0a99i{margin-left:0;margin-top:0;}</style><div class="css-1i0a99i"><img alt="Dictionary banner" src="/applets/dictionary/search.png" width="664"/></div></div><p>This applet displays data obtained from <a href="https://www.wiktionary.org/" class="css-0">Wiktionary</a>. Thanks to all the contributors at Wiktionary who made this possible!</p><p><img alt="Powered by wiktionary" src="/applets/dictionary/wiktionaryBanner.png" style="max-width:100%"/></p><section><style data-emotion="css nn640c">.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}</style><a href="#usage-example" class="css-nn640c"><h2>Usage example</h2></a><style data-emotion="css 1vrs79m">.css-1vrs79m{border:2px solid #EEEEEE;width:100%;max-width:100%;}</style><div class="MuiBox-root jss41 css-1vrs79m"><style data-emotion="css qhzqsw">.css-qhzqsw{max-width:100%;width:100%;display:block;}</style><video class="css-qhzqsw" muted=""><source src="/applets/dictionary/usage.webm" type="video/mp4"/><p>Your browser doesn&#x27;t support HTML5 video. Here is a<!-- --> <a href="/applets/dictionary/usage.webm">link to the video</a> instead.</p></video><style data-emotion="css 1o4n3gn">.css-1o4n3gn{position:absolute;left:0;right:0;bottom:0;top:0;}</style><style data-emotion="css tpej70">.css-tpej70{pointer-events:none;position:absolute;left:0;right:0;bottom:0;top:0;}</style><div class="MuiBox-root jss42 css-tpej70"><style data-emotion="css 6s3hx">.css-6s3hx{color:#008DFA;}.css-6s3hx >*{position:absolute;}</style><div class="MuiBox-root jss43 css-6s3hx"><style data-emotion="css 1lbyebv">.css-1lbyebv{background-color:#fff;box-shadow:0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);}</style><div class="MuiBox-root jss44 css-1lbyebv" style="transform:scale(0)"><style data-emotion="css 1riqxhg">.css-1riqxhg{font-size:60px;}</style><svg class="MuiSvgIcon-root css-1riqxhg" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></div></div></div></div></section><section><style data-emotion="css nn640c">.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}</style><a href="#features" class="css-nn640c"><h2>Features</h2></a><section><style data-emotion="css nn640c">.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}</style><a href="#search-for-words" class="css-nn640c"><h3>Search for words</h3></a><p>Simply enter your query in the main search field, and find any similar results!</p><div></div><style data-emotion="css wrw7x8">.css-wrw7x8{width:664px;height:414px;position:relative;z-index:1;background-color:white;overflow:hidden;border-radius:12px;box-shadow:0px 0px 30px -5px rgba(0,0,0,0.3);}@media (min-width:1000px){.css-wrw7x8{margin:16px;}}</style><div class="css-wrw7x8"><style data-emotion="css 1i0a99i">.css-1i0a99i{margin-left:0;margin-top:0;}</style><div class="css-1i0a99i"><img alt="Search words" src="/applets/dictionary/search.png" width="664"/></div></div><p>In addition, the pattern <style data-emotion="css an0xih">.css-an0xih{display:inline-block;background-color:#EEEEEE;word-break:break-word;}</style><code class="css-an0xih">define:</code> followed by your query can be used to only get definition results.</p><div></div><style data-emotion="css q1nji8">.css-q1nji8{width:664px;height:60px;position:relative;z-index:1;background-color:white;overflow:hidden;border-radius:12px;box-shadow:0px 0px 30px -5px rgba(0,0,0,0.3);}@media (min-width:1000px){.css-q1nji8{margin:16px;}}</style><div class="css-q1nji8"><style data-emotion="css 1i0a99i">.css-1i0a99i{margin-left:0;margin-top:0;}</style><div class="css-1i0a99i"><img alt="Search only definitions" src="/applets/dictionary/patternSearch.png" width="664"/></div></div><p>Finally, you can also search for only definitions by opening Dictionary using the <a href="/applets/core/applet-manager" class="css-0">applet-manager</a>.</p><div></div><style data-emotion="css wrw7x8">.css-wrw7x8{width:664px;height:414px;position:relative;z-index:1;background-color:white;overflow:hidden;border-radius:12px;box-shadow:0px 0px 30px -5px rgba(0,0,0,0.3);}@media (min-width:1000px){.css-wrw7x8{margin:16px;}}</style><div class="css-wrw7x8"><style data-emotion="css 1i0a99i">.css-1i0a99i{margin-left:0;margin-top:0;}</style><div class="css-1i0a99i"><video width="664" muted=""><source src="/applets/dictionary/openApplet.webm" type="video/mp4"/><p>Your browser doesn&#x27;t support HTML5 video. Here is a<!-- --> <a href="/applets/dictionary/openApplet.webm">link to the video</a> instead.</p></video><style data-emotion="css 1o4n3gn">.css-1o4n3gn{position:absolute;left:0;right:0;bottom:0;top:0;}</style><style data-emotion="css tpej70">.css-tpej70{pointer-events:none;position:absolute;left:0;right:0;bottom:0;top:0;}</style><div class="MuiBox-root jss45 css-tpej70"><style data-emotion="css 6s3hx">.css-6s3hx{color:#008DFA;}.css-6s3hx >*{position:absolute;}</style><div class="MuiBox-root jss46 css-6s3hx"><style data-emotion="css 1lbyebv">.css-1lbyebv{background-color:#fff;box-shadow:0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);}</style><div class="MuiBox-root jss47 css-1lbyebv" style="transform:scale(0)"><style data-emotion="css 1riqxhg">.css-1riqxhg{font-size:60px;}</style><svg class="MuiSvgIcon-root css-1riqxhg" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></div></div></div></div></div></section><section><style data-emotion="css nn640c">.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}</style><a href="#navigate-definition" class="css-nn640c"><h3>Navigate definition</h3></a><p>Open the context menu on a definition item, this will show the definitions folder.</p><p>This will list different types of definitions (e.g. noun, verb, interjection etc.). Open this to list a set of definitions for this usage of the word.</p></section><section><style data-emotion="css nn640c">.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}</style><a href="#find-usage-examples" class="css-nn640c"><h3>Find usage examples</h3></a><p>When opening a context menu on a definition, there is an examples menu which can be used to find examples of using that word.</p></section><section><style data-emotion="css nn640c">.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}</style><a href="#paste-results" class="css-nn640c"><h3>Paste results</h3></a><p>The default action of all things in this applet will copy the content to the clipboard and pastes it in the previously active window.</p></section><section><style data-emotion="css nn640c">.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}</style><a href="#search-words-in-other-languages" class="css-nn640c"><h3>Search words in other languages</h3></a><p>Dictionary has limited functionality for finding words in other languages. Some definitions are available for other languages, but descriptions will still be presented in English.</p><p>You can search words in different languages using the <style data-emotion="css an0xih">.css-an0xih{display:inline-block;background-color:#EEEEEE;word-break:break-word;}</style><code class="css-an0xih">define:</code> syntax with an additional country code or name. For example to search the definition of <style data-emotion="css an0xih">.css-an0xih{display:inline-block;background-color:#EEEEEE;word-break:break-word;}</style><code class="css-an0xih">hallo</code> in German we can use <style data-emotion="css an0xih">.css-an0xih{display:inline-block;background-color:#EEEEEE;word-break:break-word;}</style><code class="css-an0xih">define&nbsp;de:&nbsp;hallo</code>.</p><p>You can also change the default language of Dictionary using the <style data-emotion="css an0xih">.css-an0xih{display:inline-block;background-color:#EEEEEE;word-break:break-word;}</style><code class="css-an0xih">Default&nbsp;language</code> setting.</p></section></section><section><style data-emotion="css nn640c">.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}</style><a href="#roadmap" class="css-nn640c"><h2>Roadmap</h2></a><p>We would like to support many more features in the future, but these were too eleborate for the initial release.</p><section><style data-emotion="css nn640c">.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}</style><a href="#wiktionary-document-scraping-utility" class="css-nn640c"><h3>Wiktionary document scraping utility</h3></a><p>The developement of a system to asynchronously load similar words (e.g. synonyms and antonyms) to the LaunchMenu results. This was what we <a href="https://github.com/LaunchMenu/LaunchMenu/tree/master/packages/applets/dictionary/src/scraper" class="css-0">initially used</a> before using the dedicated Wiktionary API, however it was slow. This wouldn&#x27;t matter if it was only adding additional information. This could also act as a stepping stone towards a better Wiktionary API.</p></section><section><style data-emotion="css nn640c">.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}</style><a href="#better-wiktionary-api" class="css-nn640c"><h3>Better Wiktionary API</h3></a><p>Contribute to Wiktionary&#x27;s API to allow for extraction of more data such as antonyms and synonyms in a simple way.</p></section></section></section></div><div class="MuiBox-root jss39"></div></div><style data-emotion="css av0cij">.css-av0cij{-webkit-flex-basis:240px;-ms-flex-preferred-size:240px;flex-basis:240px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;}</style><div class="css-av0cij"><style data-emotion="css 8m1mo">.css-8m1mo{top:56px;-webkit-position:sticky;position:sticky;padding-top:16px;box-sizing:border-box;overflow-y:auto;}@media (min-width:1000px){.css-8m1mo{max-height:calc(100vh - 56px);}}</style><div class="css-8m1mo"><style data-emotion="css xxtbf7">.css-xxtbf7{font-weight:800;}</style><style data-emotion="css h6vo28">.css-h6vo28{color:rgba(0, 0, 0, 0.65);font-weight:800;}</style><p class="MuiTypography-root css-h6vo28 MuiTypography-body1">Table of Contents</p><ul class="MuiList-root MuiList-padding"><style data-emotion="css nn640c">.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}</style><a href="#usage-example" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:0"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Usage example</span></div></div></a><div class="MuiList-root"></div><a href="#features" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:0"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Features</span></div></div></a><div class="MuiList-root"><a href="#search-for-words" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:24px"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Search for words</span></div></div></a><div class="MuiList-root"></div><a href="#navigate-definition" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:24px"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Navigate definition</span></div></div></a><div class="MuiList-root"></div><a href="#find-usage-examples" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:24px"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Find usage examples</span></div></div></a><div class="MuiList-root"></div><a href="#paste-results" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:24px"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Paste results</span></div></div></a><div class="MuiList-root"></div><a href="#search-words-in-other-languages" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:24px"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Search words in other languages</span></div></div></a><div class="MuiList-root"></div></div><a href="#roadmap" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:0"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Roadmap</span></div></div></a><div class="MuiList-root"><a href="#wiktionary-document-scraping-utility" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:24px"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Wiktionary document scraping utility</span></div></div></a><div class="MuiList-root"></div><a href="#better-wiktionary-api" class="css-nn640c"><div class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button" tabindex="0" role="button" aria-disabled="false" style="padding:0;padding-left:24px"><div class="MuiListItemText-root"><span class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock">Better Wiktionary API</span></div></div></a><div class="MuiList-root"></div></div></ul></div></div></div></div></div></div></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"url":"https://launchmenu.github.io/applets/utility/dictionary","source":{"compiledSource":"\"use strict\";\n\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i \u003c arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\n\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i \u003c sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) \u003e= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\n\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i \u003c sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) \u003e= 0) continue; target[key] = source[key]; } return target; }\n\n/* @jsxRuntime classic */\n\n/* @jsx mdx */\nvar layoutProps = {};\nvar MDXLayout = \"wrapper\";\n\nfunction MDXContent(_ref) {\n  var components = _ref.components,\n      props = _objectWithoutProperties(_ref, [\"components\"]);\n\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\n    components: components,\n    mdxType: \"MDXLayout\"\n  }), mdx(\"section\", {\n    \"name\": \"Dictionary\",\n    \"depth\": 1\n  }, mdx(\"h1\", {\n    parentName: \"section\"\n  }, \"Dictionary\"), mdx(\"p\", {\n    parentName: \"section\"\n  }, \"The dictionary allows users to:\"), mdx(\"ul\", {\n    parentName: \"section\"\n  }, mdx(\"li\", {\n    parentName: \"ul\"\n  }, \"Check spelling of words\"), mdx(\"li\", {\n    parentName: \"ul\"\n  }, \"Check the definition of words\"), mdx(\"li\", {\n    parentName: \"ul\"\n  }, \"Get usage examples of words\")), mdx(\"p\", {\n    parentName: \"section\"\n  }, \"The dictionary also has limited multi-language support.\"), mdx(ScreenShot, {\n    src: \"/applets/dictionary/search.png\",\n    alt: \"Dictionary banner\",\n    mdxType: \"ScreenShot\"\n  }), mdx(\"p\", {\n    parentName: \"section\"\n  }, \"This applet displays data obtained from \", mdx(\"a\", {\n    parentName: \"p\",\n    \"href\": \"https://www.wiktionary.org/\"\n  }, \"Wiktionary\"), \". Thanks to all the contributors at Wiktionary who made this possible!\"), mdx(\"p\", {\n    parentName: \"section\"\n  }, mdx(\"img\", {\n    parentName: \"p\",\n    \"src\": \"/applets/dictionary/wiktionaryBanner.png\",\n    \"alt\": \"Powered by wiktionary\"\n  })), mdx(\"section\", {\n    parentName: \"section\",\n    \"name\": \"Usage example\",\n    \"depth\": 2\n  }, mdx(\"h2\", {\n    parentName: \"section\"\n  }, \"Usage example\"), mdx(Video, {\n    src: \"/applets/dictionary/usage.webm\",\n    volumeControls: false,\n    mdxType: \"Video\"\n  })), mdx(\"section\", {\n    parentName: \"section\",\n    \"name\": \"Features\",\n    \"depth\": 2\n  }, mdx(\"h2\", {\n    parentName: \"section\"\n  }, \"Features\"), mdx(\"section\", {\n    parentName: \"section\",\n    \"name\": \"Search for words\",\n    \"depth\": 3\n  }, mdx(\"h3\", {\n    parentName: \"section\"\n  }, \"Search for words\"), mdx(\"p\", {\n    parentName: \"section\"\n  }, \"Simply enter your query in the main search field, and find any similar results!\"), mdx(ScreenShot, {\n    src: \"/applets/dictionary/search.png\",\n    alt: \"Search words\",\n    mdxType: \"ScreenShot\"\n  }), mdx(\"p\", {\n    parentName: \"section\"\n  }, \"In addition, the pattern \", mdx(\"inlineCode\", {\n    parentName: \"p\"\n  }, \"define:\"), \" followed by your query can be used to only get definition results.\"), mdx(ScreenShot, {\n    src: \"/applets/dictionary/patternSearch.png\",\n    alt: \"Search only definitions\",\n    section: \"field\",\n    mdxType: \"ScreenShot\"\n  }), mdx(\"p\", {\n    parentName: \"section\"\n  }, \"Finally, you can also search for only definitions by opening Dictionary using the \", mdx(\"a\", {\n    parentName: \"p\",\n    \"href\": \"/applets/core/applet-manager\"\n  }, \"applet-manager\"), \".\"), mdx(ScreenRecording, {\n    src: \"/applets/dictionary/openApplet.webm\",\n    mdxType: \"ScreenRecording\"\n  })), mdx(\"section\", {\n    parentName: \"section\",\n    \"name\": \"Navigate definition\",\n    \"depth\": 3\n  }, mdx(\"h3\", {\n    parentName: \"section\"\n  }, \"Navigate definition\"), mdx(\"p\", {\n    parentName: \"section\"\n  }, \"Open the context menu on a definition item, this will show the definitions folder.\"), mdx(\"p\", {\n    parentName: \"section\"\n  }, \"This will list different types of definitions (e.g. noun, verb, interjection etc.). Open this to list a set of definitions for this usage of the word.\")), mdx(\"section\", {\n    parentName: \"section\",\n    \"name\": \"Find usage examples\",\n    \"depth\": 3\n  }, mdx(\"h3\", {\n    parentName: \"section\"\n  }, \"Find usage examples\"), mdx(\"p\", {\n    parentName: \"section\"\n  }, \"When opening a context menu on a definition, there is an examples menu which can be used to find examples of using that word.\")), mdx(\"section\", {\n    parentName: \"section\",\n    \"name\": \"Paste results\",\n    \"depth\": 3\n  }, mdx(\"h3\", {\n    parentName: \"section\"\n  }, \"Paste results\"), mdx(\"p\", {\n    parentName: \"section\"\n  }, \"The default action of all things in this applet will copy the content to the clipboard and pastes it in the previously active window.\")), mdx(\"section\", {\n    parentName: \"section\",\n    \"name\": \"Search words in other languages\",\n    \"depth\": 3\n  }, mdx(\"h3\", {\n    parentName: \"section\"\n  }, \"Search words in other languages\"), mdx(\"p\", {\n    parentName: \"section\"\n  }, \"Dictionary has limited functionality for finding words in other languages. Some definitions are available for other languages, but descriptions will still be presented in English.\"), mdx(\"p\", {\n    parentName: \"section\"\n  }, \"You can search words in different languages using the \", mdx(\"inlineCode\", {\n    parentName: \"p\"\n  }, \"define:\"), \" syntax with an additional country code or name. For example to search the definition of \", mdx(\"inlineCode\", {\n    parentName: \"p\"\n  }, \"hallo\"), \" in German we can use \", mdx(\"inlineCode\", {\n    parentName: \"p\"\n  }, \"define de: hallo\"), \".\"), mdx(\"p\", {\n    parentName: \"section\"\n  }, \"You can also change the default language of Dictionary using the \", mdx(\"inlineCode\", {\n    parentName: \"p\"\n  }, \"Default language\"), \" setting.\"))), mdx(\"section\", {\n    parentName: \"section\",\n    \"name\": \"Roadmap\",\n    \"depth\": 2\n  }, mdx(\"h2\", {\n    parentName: \"section\"\n  }, \"Roadmap\"), mdx(\"p\", {\n    parentName: \"section\"\n  }, \"We would like to support many more features in the future, but these were too eleborate for the initial release.\"), mdx(\"section\", {\n    parentName: \"section\",\n    \"name\": \"Wiktionary document scraping utility\",\n    \"depth\": 3\n  }, mdx(\"h3\", {\n    parentName: \"section\"\n  }, \"Wiktionary document scraping utility\"), mdx(\"p\", {\n    parentName: \"section\"\n  }, \"The developement of a system to asynchronously load similar words (e.g. synonyms and antonyms) to the LaunchMenu results. This was what we \", mdx(\"a\", {\n    parentName: \"p\",\n    \"href\": \"https://github.com/LaunchMenu/LaunchMenu/tree/master/packages/applets/dictionary/src/scraper\"\n  }, \"initially used\"), \" before using the dedicated Wiktionary API, however it was slow. This wouldn't matter if it was only adding additional information. This could also act as a stepping stone towards a better Wiktionary API.\")), mdx(\"section\", {\n    parentName: \"section\",\n    \"name\": \"Better Wiktionary API\",\n    \"depth\": 3\n  }, mdx(\"h3\", {\n    parentName: \"section\"\n  }, \"Better Wiktionary API\"), mdx(\"p\", {\n    parentName: \"section\"\n  }, \"Contribute to Wiktionary's API to allow for extraction of more data such as antonyms and synonyms in a simple way.\")))));\n}\n\n;\nMDXContent.isMDXComponent = true;","renderedOutput":"\u003csection\u003e\u003cstyle data-emotion=\"css nn640c\"\u003e.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}\u003c/style\u003e\u003ca href=\"#dictionary\" class=\"css-nn640c\"\u003e\u003ch1\u003eDictionary\u003c/h1\u003e\u003c/a\u003e\u003cp\u003eThe dictionary allows users to:\u003c/p\u003e\u003cul\u003e\u003cli\u003eCheck spelling of words\u003c/li\u003e\u003cli\u003eCheck the definition of words\u003c/li\u003e\u003cli\u003eGet usage examples of words\u003c/li\u003e\u003c/ul\u003e\u003cp\u003eThe dictionary also has limited multi-language support.\u003c/p\u003e\u003cdiv\u003e\u003c/div\u003e\u003cstyle data-emotion=\"css wrw7x8\"\u003e.css-wrw7x8{width:664px;height:414px;position:relative;z-index:1;background-color:white;overflow:hidden;border-radius:12px;box-shadow:0px 0px 30px -5px rgba(0,0,0,0.3);}@media (min-width:1000px){.css-wrw7x8{margin:16px;}}\u003c/style\u003e\u003cdiv class=\"css-wrw7x8\"\u003e\u003cstyle data-emotion=\"css 1i0a99i\"\u003e.css-1i0a99i{margin-left:0;margin-top:0;}\u003c/style\u003e\u003cdiv class=\"css-1i0a99i\"\u003e\u003cimg alt=\"Dictionary banner\" src=\"/applets/dictionary/search.png\" width=\"664\"/\u003e\u003c/div\u003e\u003c/div\u003e\u003cp\u003eThis applet displays data obtained from \u003ca href=\"https://www.wiktionary.org/\" class=\"css-0\"\u003eWiktionary\u003c/a\u003e. Thanks to all the contributors at Wiktionary who made this possible!\u003c/p\u003e\u003cp\u003e\u003cimg alt=\"Powered by wiktionary\" src=\"/applets/dictionary/wiktionaryBanner.png\" style=\"max-width:100%\"/\u003e\u003c/p\u003e\u003csection\u003e\u003cstyle data-emotion=\"css nn640c\"\u003e.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}\u003c/style\u003e\u003ca href=\"#usage-example\" class=\"css-nn640c\"\u003e\u003ch2\u003eUsage example\u003c/h2\u003e\u003c/a\u003e\u003cstyle data-emotion=\"css 1vrs79m\"\u003e.css-1vrs79m{border:2px solid #EEEEEE;width:100%;max-width:100%;}\u003c/style\u003e\u003cdiv class=\"MuiBox-root jss41 css-1vrs79m\"\u003e\u003cstyle data-emotion=\"css qhzqsw\"\u003e.css-qhzqsw{max-width:100%;width:100%;display:block;}\u003c/style\u003e\u003cvideo class=\"css-qhzqsw\" muted=\"\"\u003e\u003csource src=\"/applets/dictionary/usage.webm\" type=\"video/mp4\"/\u003e\u003cp\u003eYour browser doesn\u0026#x27;t support HTML5 video. Here is a\u003c!-- --\u003e \u003ca href=\"/applets/dictionary/usage.webm\"\u003elink to the video\u003c/a\u003e instead.\u003c/p\u003e\u003c/video\u003e\u003cstyle data-emotion=\"css 1o4n3gn\"\u003e.css-1o4n3gn{position:absolute;left:0;right:0;bottom:0;top:0;}\u003c/style\u003e\u003cstyle data-emotion=\"css tpej70\"\u003e.css-tpej70{pointer-events:none;position:absolute;left:0;right:0;bottom:0;top:0;}\u003c/style\u003e\u003cdiv class=\"MuiBox-root jss42 css-tpej70\"\u003e\u003cstyle data-emotion=\"css 6s3hx\"\u003e.css-6s3hx{color:#008DFA;}.css-6s3hx \u003e*{position:absolute;}\u003c/style\u003e\u003cdiv class=\"MuiBox-root jss43 css-6s3hx\"\u003e\u003cstyle data-emotion=\"css 1lbyebv\"\u003e.css-1lbyebv{background-color:#fff;box-shadow:0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);}\u003c/style\u003e\u003cdiv class=\"MuiBox-root jss44 css-1lbyebv\" style=\"transform:scale(0)\"\u003e\u003cstyle data-emotion=\"css 1riqxhg\"\u003e.css-1riqxhg{font-size:60px;}\u003c/style\u003e\u003csvg class=\"MuiSvgIcon-root css-1riqxhg\" focusable=\"false\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"\u003e\u003cpath d=\"M8 5v14l11-7z\"\u003e\u003c/path\u003e\u003c/svg\u003e\u003c/div\u003e\u003c/div\u003e\u003c/div\u003e\u003c/div\u003e\u003c/section\u003e\u003csection\u003e\u003cstyle data-emotion=\"css nn640c\"\u003e.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}\u003c/style\u003e\u003ca href=\"#features\" class=\"css-nn640c\"\u003e\u003ch2\u003eFeatures\u003c/h2\u003e\u003c/a\u003e\u003csection\u003e\u003cstyle data-emotion=\"css nn640c\"\u003e.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}\u003c/style\u003e\u003ca href=\"#search-for-words\" class=\"css-nn640c\"\u003e\u003ch3\u003eSearch for words\u003c/h3\u003e\u003c/a\u003e\u003cp\u003eSimply enter your query in the main search field, and find any similar results!\u003c/p\u003e\u003cdiv\u003e\u003c/div\u003e\u003cstyle data-emotion=\"css wrw7x8\"\u003e.css-wrw7x8{width:664px;height:414px;position:relative;z-index:1;background-color:white;overflow:hidden;border-radius:12px;box-shadow:0px 0px 30px -5px rgba(0,0,0,0.3);}@media (min-width:1000px){.css-wrw7x8{margin:16px;}}\u003c/style\u003e\u003cdiv class=\"css-wrw7x8\"\u003e\u003cstyle data-emotion=\"css 1i0a99i\"\u003e.css-1i0a99i{margin-left:0;margin-top:0;}\u003c/style\u003e\u003cdiv class=\"css-1i0a99i\"\u003e\u003cimg alt=\"Search words\" src=\"/applets/dictionary/search.png\" width=\"664\"/\u003e\u003c/div\u003e\u003c/div\u003e\u003cp\u003eIn addition, the pattern \u003cstyle data-emotion=\"css an0xih\"\u003e.css-an0xih{display:inline-block;background-color:#EEEEEE;word-break:break-word;}\u003c/style\u003e\u003ccode class=\"css-an0xih\"\u003edefine:\u003c/code\u003e followed by your query can be used to only get definition results.\u003c/p\u003e\u003cdiv\u003e\u003c/div\u003e\u003cstyle data-emotion=\"css q1nji8\"\u003e.css-q1nji8{width:664px;height:60px;position:relative;z-index:1;background-color:white;overflow:hidden;border-radius:12px;box-shadow:0px 0px 30px -5px rgba(0,0,0,0.3);}@media (min-width:1000px){.css-q1nji8{margin:16px;}}\u003c/style\u003e\u003cdiv class=\"css-q1nji8\"\u003e\u003cstyle data-emotion=\"css 1i0a99i\"\u003e.css-1i0a99i{margin-left:0;margin-top:0;}\u003c/style\u003e\u003cdiv class=\"css-1i0a99i\"\u003e\u003cimg alt=\"Search only definitions\" src=\"/applets/dictionary/patternSearch.png\" width=\"664\"/\u003e\u003c/div\u003e\u003c/div\u003e\u003cp\u003eFinally, you can also search for only definitions by opening Dictionary using the \u003ca href=\"/applets/core/applet-manager\" class=\"css-0\"\u003eapplet-manager\u003c/a\u003e.\u003c/p\u003e\u003cdiv\u003e\u003c/div\u003e\u003cstyle data-emotion=\"css wrw7x8\"\u003e.css-wrw7x8{width:664px;height:414px;position:relative;z-index:1;background-color:white;overflow:hidden;border-radius:12px;box-shadow:0px 0px 30px -5px rgba(0,0,0,0.3);}@media (min-width:1000px){.css-wrw7x8{margin:16px;}}\u003c/style\u003e\u003cdiv class=\"css-wrw7x8\"\u003e\u003cstyle data-emotion=\"css 1i0a99i\"\u003e.css-1i0a99i{margin-left:0;margin-top:0;}\u003c/style\u003e\u003cdiv class=\"css-1i0a99i\"\u003e\u003cvideo width=\"664\" muted=\"\"\u003e\u003csource src=\"/applets/dictionary/openApplet.webm\" type=\"video/mp4\"/\u003e\u003cp\u003eYour browser doesn\u0026#x27;t support HTML5 video. Here is a\u003c!-- --\u003e \u003ca href=\"/applets/dictionary/openApplet.webm\"\u003elink to the video\u003c/a\u003e instead.\u003c/p\u003e\u003c/video\u003e\u003cstyle data-emotion=\"css 1o4n3gn\"\u003e.css-1o4n3gn{position:absolute;left:0;right:0;bottom:0;top:0;}\u003c/style\u003e\u003cstyle data-emotion=\"css tpej70\"\u003e.css-tpej70{pointer-events:none;position:absolute;left:0;right:0;bottom:0;top:0;}\u003c/style\u003e\u003cdiv class=\"MuiBox-root jss45 css-tpej70\"\u003e\u003cstyle data-emotion=\"css 6s3hx\"\u003e.css-6s3hx{color:#008DFA;}.css-6s3hx \u003e*{position:absolute;}\u003c/style\u003e\u003cdiv class=\"MuiBox-root jss46 css-6s3hx\"\u003e\u003cstyle data-emotion=\"css 1lbyebv\"\u003e.css-1lbyebv{background-color:#fff;box-shadow:0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);}\u003c/style\u003e\u003cdiv class=\"MuiBox-root jss47 css-1lbyebv\" style=\"transform:scale(0)\"\u003e\u003cstyle data-emotion=\"css 1riqxhg\"\u003e.css-1riqxhg{font-size:60px;}\u003c/style\u003e\u003csvg class=\"MuiSvgIcon-root css-1riqxhg\" focusable=\"false\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"\u003e\u003cpath d=\"M8 5v14l11-7z\"\u003e\u003c/path\u003e\u003c/svg\u003e\u003c/div\u003e\u003c/div\u003e\u003c/div\u003e\u003c/div\u003e\u003c/div\u003e\u003c/section\u003e\u003csection\u003e\u003cstyle data-emotion=\"css nn640c\"\u003e.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}\u003c/style\u003e\u003ca href=\"#navigate-definition\" class=\"css-nn640c\"\u003e\u003ch3\u003eNavigate definition\u003c/h3\u003e\u003c/a\u003e\u003cp\u003eOpen the context menu on a definition item, this will show the definitions folder.\u003c/p\u003e\u003cp\u003eThis will list different types of definitions (e.g. noun, verb, interjection etc.). Open this to list a set of definitions for this usage of the word.\u003c/p\u003e\u003c/section\u003e\u003csection\u003e\u003cstyle data-emotion=\"css nn640c\"\u003e.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}\u003c/style\u003e\u003ca href=\"#find-usage-examples\" class=\"css-nn640c\"\u003e\u003ch3\u003eFind usage examples\u003c/h3\u003e\u003c/a\u003e\u003cp\u003eWhen opening a context menu on a definition, there is an examples menu which can be used to find examples of using that word.\u003c/p\u003e\u003c/section\u003e\u003csection\u003e\u003cstyle data-emotion=\"css nn640c\"\u003e.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}\u003c/style\u003e\u003ca href=\"#paste-results\" class=\"css-nn640c\"\u003e\u003ch3\u003ePaste results\u003c/h3\u003e\u003c/a\u003e\u003cp\u003eThe default action of all things in this applet will copy the content to the clipboard and pastes it in the previously active window.\u003c/p\u003e\u003c/section\u003e\u003csection\u003e\u003cstyle data-emotion=\"css nn640c\"\u003e.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}\u003c/style\u003e\u003ca href=\"#search-words-in-other-languages\" class=\"css-nn640c\"\u003e\u003ch3\u003eSearch words in other languages\u003c/h3\u003e\u003c/a\u003e\u003cp\u003eDictionary has limited functionality for finding words in other languages. Some definitions are available for other languages, but descriptions will still be presented in English.\u003c/p\u003e\u003cp\u003eYou can search words in different languages using the \u003cstyle data-emotion=\"css an0xih\"\u003e.css-an0xih{display:inline-block;background-color:#EEEEEE;word-break:break-word;}\u003c/style\u003e\u003ccode class=\"css-an0xih\"\u003edefine:\u003c/code\u003e syntax with an additional country code or name. For example to search the definition of \u003cstyle data-emotion=\"css an0xih\"\u003e.css-an0xih{display:inline-block;background-color:#EEEEEE;word-break:break-word;}\u003c/style\u003e\u003ccode class=\"css-an0xih\"\u003ehallo\u003c/code\u003e in German we can use \u003cstyle data-emotion=\"css an0xih\"\u003e.css-an0xih{display:inline-block;background-color:#EEEEEE;word-break:break-word;}\u003c/style\u003e\u003ccode class=\"css-an0xih\"\u003edefine\u0026nbsp;de:\u0026nbsp;hallo\u003c/code\u003e.\u003c/p\u003e\u003cp\u003eYou can also change the default language of Dictionary using the \u003cstyle data-emotion=\"css an0xih\"\u003e.css-an0xih{display:inline-block;background-color:#EEEEEE;word-break:break-word;}\u003c/style\u003e\u003ccode class=\"css-an0xih\"\u003eDefault\u0026nbsp;language\u003c/code\u003e setting.\u003c/p\u003e\u003c/section\u003e\u003c/section\u003e\u003csection\u003e\u003cstyle data-emotion=\"css nn640c\"\u003e.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}\u003c/style\u003e\u003ca href=\"#roadmap\" class=\"css-nn640c\"\u003e\u003ch2\u003eRoadmap\u003c/h2\u003e\u003c/a\u003e\u003cp\u003eWe would like to support many more features in the future, but these were too eleborate for the initial release.\u003c/p\u003e\u003csection\u003e\u003cstyle data-emotion=\"css nn640c\"\u003e.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}\u003c/style\u003e\u003ca href=\"#wiktionary-document-scraping-utility\" class=\"css-nn640c\"\u003e\u003ch3\u003eWiktionary document scraping utility\u003c/h3\u003e\u003c/a\u003e\u003cp\u003eThe developement of a system to asynchronously load similar words (e.g. synonyms and antonyms) to the LaunchMenu results. This was what we \u003ca href=\"https://github.com/LaunchMenu/LaunchMenu/tree/master/packages/applets/dictionary/src/scraper\" class=\"css-0\"\u003einitially used\u003c/a\u003e before using the dedicated Wiktionary API, however it was slow. This wouldn\u0026#x27;t matter if it was only adding additional information. This could also act as a stepping stone towards a better Wiktionary API.\u003c/p\u003e\u003c/section\u003e\u003csection\u003e\u003cstyle data-emotion=\"css nn640c\"\u003e.css-nn640c{-webkit-text-decoration:none;text-decoration:none;color:inherit;}\u003c/style\u003e\u003ca href=\"#better-wiktionary-api\" class=\"css-nn640c\"\u003e\u003ch3\u003eBetter Wiktionary API\u003c/h3\u003e\u003c/a\u003e\u003cp\u003eContribute to Wiktionary\u0026#x27;s API to allow for extraction of more data such as antonyms and synonyms in a simple way.\u003c/p\u003e\u003c/section\u003e\u003c/section\u003e\u003c/section\u003e","scope":{}},"ToC":[{"name":"Dictionary","children":[{"name":"Usage example","children":[]},{"name":"Features","children":[{"name":"Search for words","children":[]},{"name":"Navigate definition","children":[]},{"name":"Find usage examples","children":[]},{"name":"Paste results","children":[]},{"name":"Search words in other languages","children":[]}]},{"name":"Roadmap","children":[{"name":"Wiktionary document scraping utility","children":[]},{"name":"Better Wiktionary API","children":[]}]}]}],"index":{"rootPath":"/applets","items":[{"name":"utility","opened":true,"children":[{"name":"dictionary","selected":true},{"name":"notes"},{"name":"file-manager"},{"name":"internet-search"},{"name":"calculator"},{"name":"translator"},{"name":"snippets"},{"name":"time-tracker"},{"name":"calendar"}]},{"name":"core","opened":false,"children":[{"name":"help"},{"name":"applet-manager"},{"name":"settings-manager"},{"name":"window-manager"},{"name":"session-manager"},{"name":"lm-recorder"},{"name":"theme-manager"},{"name":"undo-redo-manager"},{"name":"user-scripts"}]}]}},"__N_SSG":true},"page":"/applets/[[...id]]","query":{"id":["utility","dictionary"]},"buildId":"SbwSnKx00Z1-QNpkDbpfj","nextExport":false,"isFallback":false,"gsp":true}</script><script nomodule="" src="/_next/static/chunks/polyfills-e893e522365b6e0e5fa4.js"></script><script src="/_next/static/chunks/main-a903baea2cea93500d03.js" async=""></script><script src="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" async=""></script><script src="/_next/static/chunks/framework.ad842be869046c28dcf8.js" async=""></script><script src="/_next/static/chunks/commons.c55c432be71414616455.js" async=""></script><script src="/_next/static/chunks/4f56c2054a11670459b03d22f52f09116db8303a.5b9e21c93f51b4faf5c9.js" async=""></script><script src="/_next/static/chunks/c48d6d7939cb57d2c3035355e0187f76734f377d.8fba51568389daa0ad1b.js" async=""></script><script src="/_next/static/chunks/pages/_app-48a1f2a090d235669d7b.js" async=""></script><script src="/_next/static/chunks/20e8ffb29f0aec565363113899013a227271bd38.f2778e8796f992381e00.js" async=""></script><script src="/_next/static/chunks/0c958c70d983363caaddc2fb72f284f5fab6fc6d.b7f67c8c47fd35831772.js" async=""></script><script src="/_next/static/chunks/cc042352c9f3ee10d679ab4615bae53acae87f32.ce685e0ce7ca7d23ba21.js" async=""></script><script src="/_next/static/chunks/0a64fabb8f7cd96eee353a8d87448ea3a8de367c.67b2bf5eaee9cb09efd9.js" async=""></script><script src="/_next/static/chunks/pages/applets/%5B%5B...id%5D%5D-73ea480506bd354fd6ed.js" async=""></script><script src="/_next/static/SbwSnKx00Z1-QNpkDbpfj/_buildManifest.js" async=""></script><script src="/_next/static/SbwSnKx00Z1-QNpkDbpfj/_ssgManifest.js" async=""></script></body></html>

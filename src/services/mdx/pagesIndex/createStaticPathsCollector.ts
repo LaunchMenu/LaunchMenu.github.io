@@ -5,7 +5,6 @@ import {getPagesDir} from "./getPagesDir";
 export function createStaticPathsCollector(dir: string) {
     return async () => {
         const paths = await getFiles(getPagesDir(dir));
-        paths.forEach(path => console.log(path));
         return {
             paths: paths.map(id => ({params: {id}})),
             fallback: false,
