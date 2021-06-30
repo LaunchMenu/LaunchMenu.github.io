@@ -44,13 +44,14 @@ export const Collaborator: FC<{
     instagram,
     email,
     phone,
+    inline,
 }) => {
     const ref = useHashPos(name);
     return (
         <section ref={ref}>
             <div
                 css={theme => ({
-                    marginTop: theme.spacing(3),
+                    marginTop: inline ? undefined : theme.spacing(3),
                     display: "flex",
                     alignItems: "center",
 

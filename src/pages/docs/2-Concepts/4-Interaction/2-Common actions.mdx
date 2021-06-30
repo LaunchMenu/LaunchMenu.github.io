@@ -510,28 +510,31 @@ type IDirectContextItem =
 And the result of our action will have to return some way of executing the context-item. This can either be a list of bindings, or simply an execute callback like in the example above. The exact interface of `core` now looks like this:
 
 ```ts title=IContextActionTransformer.ts source=https://github.com/LaunchMenu/LaunchMenu/blob/master/packages/core/src/actions/contextMenuAction/_types/IContextActionTransformer.ts spoiler
-export type IContextActionTransformer<I, O, AB extends IActionBinding | void> =
-    {
-        /**
-         * Applies this action transformer to the given bindings, used internally for the `get` method
-         * @param bindingData The data of bindings to apply the transformer to
-         * @param indices The indices of the passed data, which can be used to compute the indices for child bindings
-         * @param hook A data hook to listen for changes
-         * @param items The input items that actions can use to extract extra data
-         * @returns The action result and any possible child bindings
-         */
-        (
-            bindingData: I[],
-            indices: number[],
-            hook: IDataHook,
-            items: IActionTarget[]
-        ): IActionResult<AB, O> & {
-            /** A default execute function for the context menu item */
-            execute?: IExecutable;
-            /** Action bindings to be used by the context menu item */
-            actionBindings?: ISubscribable<IActionBinding[]>;
-        };
+export type IContextActionTransformer<
+    I,
+    O,
+    AB extends IActionBinding | void
+> = {
+    /**
+     * Applies this action transformer to the given bindings, used internally for the `get` method
+     * @param bindingData The data of bindings to apply the transformer to
+     * @param indices The indices of the passed data, which can be used to compute the indices for child bindings
+     * @param hook A data hook to listen for changes
+     * @param items The input items that actions can use to extract extra data
+     * @returns The action result and any possible child bindings
+     */
+    (
+        bindingData: I[],
+        indices: number[],
+        hook: IDataHook,
+        items: IActionTarget[]
+    ): IActionResult<AB, O> & {
+        /** A default execute function for the context menu item */
+        execute?: IExecutable;
+        /** Action bindings to be used by the context menu item */
+        actionBindings?: ISubscribable<IActionBinding[]>;
     };
+};
 ```
 
 ### Item overrides
@@ -742,6 +745,15 @@ const items = [
     }),
 ];
 ```
+
+## Is selectable action
+
+The `isSelectableAction` is used to determine whether a given item should be selectable in the menu. Both the [`executeAction`](#execute-action) and [`getContentAction`](#content-action) create a binding for this action, such that when an item is executable or contains content it will automatically be selectable.
+
+One can explicitly make the item non-selectable even though it already has a binding to be selectable by adding a binding saying it's not selectable: `isSelectableAction.createBinding(false)`. This works because the result of the `isSelectableAction` is true if and only if:
+
+-   The item has 1 or more bindings for the is selectable action
+-   The item has no bindings with value `false`
 
 ## Listeners
 
