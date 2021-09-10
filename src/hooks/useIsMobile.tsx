@@ -11,7 +11,7 @@ function hasMinSize(width: number): boolean {
 export function useIsMobile(): boolean {
     const [mobile, setMobile] = useState(false);
     const theme = useTheme();
-    const minDesktopWidth = theme.breakpoints.width("lg");
+    const minDesktopWidth = theme.breakpoints.values["lg"];
 
     useEffect(() => {
         // Only update this data after a delay, to prevent SSR desync

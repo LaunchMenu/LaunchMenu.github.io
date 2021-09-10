@@ -2,9 +2,15 @@ import {promises as FS} from "fs";
 import Path from "path";
 import {getPagesDir} from "./getPagesDir";
 
-export function createStaticPathsCollector(dir: string) {
+/**
+ * Creates the function that obtains all the static paths
+ * @param dir The directory path relative to the src/pages directory (or remoteFiles)
+ * @param remote Whether to obtain the files from the remote directory
+ * @returns The function to obtain all the paths
+ */
+export function createStaticPathsCollector(dir: string, remote?: boolean) {
     return async () => {
-        const paths = await getFiles(getPagesDir(dir));
+        const paths = await getFiles(getPagesDir(dir, remote));
         return {
             paths: paths.map(id => ({params: {id}})),
             fallback: false,
@@ -17,6 +23,7 @@ async function getFiles(
     urlPath: string[] = []
 ): Promise<string[][]> {
     const files = await FS.readdir(dir);
+    console.log(dir, files);
     return (
         await Promise.all(
             files.map(async fileName => {
@@ -26,7 +33,7 @@ async function getFiles(
                 if (stat.isDirectory())
                     return getFiles(file, [...urlPath, cleanedFileName]);
                 else if (Path.extname(fileName) == ".mdx") {
-                    if (fileName == "index.mdx") return [[...urlPath, "index"]];
+                    if (fileName == "index.mdx") return [[...urlPath]];
                     return [[...urlPath, cleanedFileName]];
                 } else return [];
             })
