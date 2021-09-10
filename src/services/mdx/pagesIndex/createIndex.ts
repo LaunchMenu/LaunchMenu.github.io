@@ -42,7 +42,7 @@ async function createNavItem(dir: string): Promise<INavItem | undefined> {
     const name = cleanupPath(Path.basename(dir), false);
 
     if (!stat.isDirectory()) {
-        if (Path.extname(dir) == ".mdx")
+        if (Path.extname(dir) == ".mdx" && name != "index")
             return {
                 name,
             };
