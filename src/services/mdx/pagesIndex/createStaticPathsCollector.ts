@@ -23,7 +23,6 @@ async function getFiles(
     urlPath: string[] = []
 ): Promise<string[][]> {
     const files = await FS.readdir(dir);
-    console.log(dir, files);
     return (
         await Promise.all(
             files.map(async fileName => {
