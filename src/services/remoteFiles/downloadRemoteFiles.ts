@@ -4,15 +4,15 @@ import FSE from "fs-extra";
 import Path from "path";
 import JSZip, {JSZipObject} from "jszip";
 
+const branch = "feature/localDocs";
+
+const localPath = Path.join(process.cwd(), "tempRemoteFiles");
+const zipPath = Path.join(localPath, "LMRepo.zip");
+
 /**
  * Downloads the remotes files from the master branch
  */
 export async function downloadRemoteFiles(): Promise<void> {
-    const branch = "feature/localDocs";
-
-    const localPath = Path.join(process.cwd(), "tempRemoteFiles");
-    const zipPath = Path.join(localPath, "LMRepo.zip");
-
     // Download the zip
     console.log("Downloading remote docs");
     await FSP.rmdir(localPath, {recursive: true});
@@ -63,12 +63,14 @@ export async function downloadRemoteFiles(): Promise<void> {
             );
         })
     );
+}
 
-    // Copy the resources dir to the docs
+/**
+ * Copies the remote resource to the output
+ */
+export async function copyResourcesToOutput() {
     await FSE.copy(
         Path.join(localPath, "resources"),
         Path.join(process.cwd(), "docs")
     );
 }
-
-downloadRemoteFiles();
