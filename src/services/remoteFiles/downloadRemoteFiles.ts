@@ -4,7 +4,7 @@ import FSE from "fs-extra";
 import Path from "path";
 import JSZip, {JSZipObject} from "jszip";
 
-const branch = "feature/localDocs";
+const branch = "master";
 
 const localPath = Path.join(process.cwd(), "tempRemoteFiles");
 const zipPath = Path.join(localPath, "LMRepo.zip");

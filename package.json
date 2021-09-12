@@ -5,8 +5,8 @@
     "private": true,
     "scripts": {
         "dev": "ts-node src/server.ts",
-        "clean": "rimraf docs",
         "build": "npm run clean && npm run download-remote && next build && next export -o docs/ && npm run copy-remote-resources",
+        "clean": "rimraf docs",
         "download-remote": "ts-node src/services/remoteFiles/buildFiles/performDownloadRemoteFiles.ts",
         "copy-remote-resources": "ts-node src/services/remoteFiles/buildFiles/performCopyResources.ts"
     },
