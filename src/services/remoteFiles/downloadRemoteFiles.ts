@@ -36,7 +36,6 @@ export async function downloadRemoteFiles(): Promise<void> {
         /\//g,
         "-"
     )}/docs/website`;
-    // const repoDocsPath = `LaunchMenu-${branch.replace(/\//g, "-")}`;
     const docsFolder = zip.folder(repoDocsPath);
     if (!docsFolder)
         throw new Error("No docs/website folder was found in the repository");
