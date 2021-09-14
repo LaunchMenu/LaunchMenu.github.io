@@ -5,11 +5,19 @@ import {IIndex} from "../../../components/sideIndex/Sidebar";
 import {cleanupPath} from "./createStaticPathsCollector";
 import {getPagesDir} from "./getPagesDir";
 
+/**
+ * Creates the index data for a given directory
+ * @param dir The directory path relative to the src/pages directory (or remoteFiles)
+ * @param selected The file that should be selected on the index
+ * @param remote Whether to obtain the files from the remote directory
+ * @returns The computed index
+ */
 export async function createIndex(
     dir: string,
-    selected: string[] = []
+    selected: string[] = [],
+    remote?: boolean
 ): Promise<IIndex> {
-    const item = await createNavItem(getPagesDir(dir));
+    const item = await createNavItem(getPagesDir(dir, remote));
     selected = [...selected];
 
     if (item && "children" in item && item.children) {

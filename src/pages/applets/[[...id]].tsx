@@ -23,5 +23,5 @@ const MarkdownPage = createMarkdownPageComponent(
     </Head>
 );
 export default MarkdownPage;
-export const getStaticProps = createStaticMdxPropsRetriever("applets");
-export const getStaticPaths = createStaticPathsCollector("applets");
+export const getStaticProps = createStaticMdxPropsRetriever("applets", true);
+export const getStaticPaths = createStaticPathsCollector("applets", true);

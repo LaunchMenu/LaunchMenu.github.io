@@ -25,11 +25,19 @@ const provider = {
     props: {},
 };
 
+/**
+ * Compiles the markdown for a given path
+ * @param dir The path to the page relative to the src/pages directory (or remoteFiles)
+ * @param urlPath The url that corresponds to this file path
+ * @param remote Whether to obtain the files from the remote directory
+ * @returns The compiled markdown, and the table of contents for the page
+ */
 export async function compileMarkdown(
     dir: string,
-    urlPath?: string[]
+    urlPath?: string[],
+    remote?: boolean
 ): Promise<{source: MdxRemote.Source; ToC: ITOC}> {
-    let dirPath = getPagesDir(dir);
+    let dirPath = getPagesDir(dir, remote);
 
     if (urlPath) {
         // Obtain the actual file path given the url path
