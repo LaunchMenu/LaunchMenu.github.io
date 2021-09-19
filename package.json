@@ -6,6 +6,7 @@
     "scripts": {
         "dev": "ts-node src/server.ts",
         "build": "npm run clean && npm run download-remote && next build && next export -o docs/ && npm run copy-remote-resources",
+        "start": "http-server docs",
         "clean": "rimraf docs",
         "download-remote": "ts-node src/services/remoteFiles/buildFiles/performDownloadRemoteFiles.ts",
         "copy-remote-resources": "ts-node src/services/remoteFiles/buildFiles/performCopyResources.ts"
@@ -46,6 +47,7 @@
         "express": "^4.17.1",
         "follow-redirects": "^1.14.3",
         "fs-extra": "^10.0.0",
+        "http-server": "^13.0.2",
         "rimraf": "^3.0.2",
         "symlink-dir": "^5.0.1",
         "ts-node": "^10.2.1",
