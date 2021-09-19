@@ -4,9 +4,10 @@ import FSE from "fs-extra";
 import Path from "path";
 import JSZip, {JSZipObject} from "jszip";
 
-const branch = "master";
+/** The remote LM branch to get doc/examples from */
+export const remoteBranch = "master";
 
-const localPath = Path.join(process.cwd(), "tempRemoteFiles");
+const localPath = Path.join(process.cwd(), "tempRemoteDocs");
 const zipPath = Path.join(localPath, "LMRepo.zip");
 
 /**
@@ -22,7 +23,7 @@ export async function downloadRemoteFiles(): Promise<void> {
     await new Promise((res, rej) => {
         https
             .request(
-                `https://github.com/LaunchMenu/LaunchMenu/archive/refs/heads/${branch}.zip`,
+                `https://github.com/LaunchMenu/LaunchMenu/archive/refs/heads/${remoteBranch}.zip`,
                 response =>
                     response.pipe(file).on("close", res).on("error", rej)
             )
@@ -32,7 +33,7 @@ export async function downloadRemoteFiles(): Promise<void> {
     // Copy docs contents of zip
     console.log("Unzipping remote docs");
     const zip = await JSZip.loadAsync(await FSP.readFile(zipPath));
-    const repoDocsPath = `LaunchMenu-${branch.replace(
+    const repoDocsPath = `LaunchMenu-${remoteBranch.replace(
         /\//g,
         "-"
     )}/docs/website`;

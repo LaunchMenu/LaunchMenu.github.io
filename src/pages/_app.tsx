@@ -6,10 +6,17 @@ import {theme} from "../theme";
 import {MuiThemeProvider, StylesProvider} from "@material-ui/core";
 import {IIndex} from "../components/sideIndex/Sidebar";
 import Head from "next/head";
+import {
+    CodeReferenceProvider,
+    ICodeRefCollection,
+} from "../services/mdx/components/CodeReference";
 
 export default function App({Component, pageProps}: AppProps) {
     let nav: IIndex | undefined = (pageProps as IPageIndexProps).index;
     if (nav?.items.length == 0) nav = undefined;
+
+    const codeRef: ICodeRefCollection =
+        (pageProps as IPageIndexProps).code ?? {};
 
     return (
         <Fragment>
@@ -44,19 +51,22 @@ export default function App({Component, pageProps}: AppProps) {
                     key="og-image-alt"
                 />
             </Head>
-            <StylesProvider injectFirst>
-                <ThemeProvider theme={theme}>
-                    <MuiThemeProvider theme={theme}>
-                        <Layout index={nav}>
-                            <Component {...pageProps} />
-                        </Layout>
-                    </MuiThemeProvider>
-                </ThemeProvider>
-            </StylesProvider>
+            <CodeReferenceProvider code={codeRef}>
+                <StylesProvider injectFirst>
+                    <ThemeProvider theme={theme}>
+                        <MuiThemeProvider theme={theme}>
+                            <Layout index={nav}>
+                                <Component {...pageProps} />
+                            </Layout>
+                        </MuiThemeProvider>
+                    </ThemeProvider>
+                </StylesProvider>
+            </CodeReferenceProvider>
         </Fragment>
     );
 }
 
 export type IPageIndexProps = {
     index?: IIndex;
+    code?: ICodeRefCollection;
 };

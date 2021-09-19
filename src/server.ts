@@ -10,7 +10,11 @@ const app = next({dev});
 const handle = app.getRequestHandler();
 
 expressApp.use(
-    express.static(Path.join(process.cwd(), "tempRemoteFiles", "resources"))
+    express.static(Path.join(process.cwd(), "tempRemoteDocs", "resources"))
+);
+expressApp.use(
+    "/examples",
+    express.static(Path.join(process.cwd(), "tempRemoteExamples"))
 );
 expressApp.all("*", (req, res) => {
     return handle(req, res);
