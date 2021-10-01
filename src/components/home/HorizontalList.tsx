@@ -8,7 +8,7 @@ export const HorizontalList: FC<{margin?: number; className?: string}> = ({
 }) => (
     <Grid
         container
-        justify="space-between"
+        justifyContent="space-between"
         direction="row"
         css={theme => ({
             marginTop: theme.spacing(margin),
