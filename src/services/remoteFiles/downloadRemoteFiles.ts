@@ -5,8 +5,7 @@ import Path from "path";
 import JSZip, {JSZipObject} from "jszip";
 
 /** The remote LM branch to get doc/examples from */
-// export const remoteBranch = "master";
-export const remoteBranch = "feature/localExamples";
+export const remoteBranch = "master";
 
 const localDocsPath = Path.join(process.cwd(), "tempRemoteDocs");
 const localExamplesPath = Path.join(process.cwd(), "tempRemoteExamples");
