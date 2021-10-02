@@ -347,6 +347,13 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                     category="utility"
                 />
                 <AppletBlock
+                    name="Calculator"
+                    description="A simple calculator for quick arithmetic"
+                    status="supported"
+                    icon={<MathIcon />}
+                    category="utility"
+                />
+                <AppletBlock
                     name="File manager"
                     description="An advanced file manager to find and manipulate files"
                     status="longTerm"
@@ -358,13 +365,6 @@ const Home: FC<{timestamps: ITimestamps}> = ({
                     description="A general purpose internet search to quickly lookup facts"
                     status="longTerm"
                     icon={<InternetSearchIcon />}
-                    category="utility"
-                />
-                <AppletBlock
-                    name="Calculator"
-                    description="A simple calculator for quick arithmetic"
-                    status="longTerm"
-                    icon={<MathIcon />}
                     category="utility"
                 />
                 <AppletBlock
