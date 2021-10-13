@@ -104,5 +104,6 @@ yarn-error.log*
 .env.production.local
 
 # Temporary remote files used when building
-tempRemoteFiles
+tempRemoteDocs
+tempRemoteExamples
 .localRemoteFilesPath

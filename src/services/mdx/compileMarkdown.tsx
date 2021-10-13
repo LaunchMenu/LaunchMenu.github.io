@@ -12,18 +12,20 @@ import {theme} from "../../theme";
 import {ThemeProvider} from "@emotion/react";
 import {TOCRemarkPlugin, ITOC} from "./TOCremarkPlugin";
 import {PageIndexProvider} from "./page/PageIndexContext";
+import {
+    ICodeRefCollection,
+    ServerSideCodeReferenceProvider,
+} from "./components/CodeReference";
 
-const Provider: FC = ({children}) => (
-    <ThemeProvider theme={theme}>
-        <MuiThemeProvider theme={theme}>
-            <PageIndexProvider>{children}</PageIndexProvider>
-        </MuiThemeProvider>
-    </ThemeProvider>
+const Provider: FC<{code: ICodeRefCollection}> = ({children, code}) => (
+    <ServerSideCodeReferenceProvider code={code}>
+        <ThemeProvider theme={theme}>
+            <MuiThemeProvider theme={theme}>
+                <PageIndexProvider>{children}</PageIndexProvider>
+            </MuiThemeProvider>
+        </ThemeProvider>
+    </ServerSideCodeReferenceProvider>
 );
-const provider = {
-    component: Provider,
-    props: {},
-};
 
 /**
  * Compiles the markdown for a given path
@@ -36,7 +38,7 @@ export async function compileMarkdown(
     dir: string,
     urlPath?: string[],
     remote?: boolean
-): Promise<{source: MdxRemote.Source; ToC: ITOC}> {
+): Promise<{source: MdxRemote.Source; ToC: ITOC; code: ICodeRefCollection}> {
     let dirPath = getPagesDir(dir, remote);
 
     if (urlPath) {
@@ -65,14 +67,19 @@ export async function compileMarkdown(
     }
 
     const ToC = [] as ITOC;
+    const code: ICodeRefCollection = {};
     return {
         source: await renderToString(source, {
             components: markdownComponents,
-            provider,
+            provider: {
+                component: Provider,
+                props: {code},
+            },
             mdxOptions: {
                 remarkPlugins: [sectionize, [TOCRemarkPlugin, {output: ToC}]],
             },
         }),
         ToC,
+        code,
     };
 }

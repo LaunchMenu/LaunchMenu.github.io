@@ -16,6 +16,7 @@ import {InlineCode} from "./Code";
 import {ComponentReference} from "./ComponentReference";
 import {GuideNav} from "./GuideNav";
 import {Tooltip} from "@material-ui/core";
+import {CodeReference} from "./CodeReference";
 import {Text} from "../../../components/textStyles/Text";
 
 const autoFitImageRenderer: FC<{
@@ -121,4 +122,5 @@ export const markdownComponents = {
     ComponentReference,
     GuideNav,
     Tooltip: TooltipRenderer,
+    CodeReference,
 };
