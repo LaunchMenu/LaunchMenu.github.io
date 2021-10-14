@@ -140,10 +140,7 @@ export const Navbar: FC<{
                     [theme.breakpoints.down("sm")]: {minHeight: 0},
                 })}>
                 <Box className={styles.showMobile} style={{width: "100%"}}>
-                    <Grid
-                        container
-                        direction="row"
-                        justifyContent="space-between">
+                    <Grid container direction="row" justify="space-between">
                         <Box
                             css={{
                                 display: "inline",
@@ -183,10 +180,7 @@ export const Navbar: FC<{
                 </Box>
                 <Box className={styles.hideMobile} style={{width: "100%"}}>
                     <Container>
-                        <Grid
-                            container
-                            direction="row"
-                            justifyContent="space-between">
+                        <Grid container direction="row" justify="space-between">
                             <Box
                                 css={{
                                     display: "inline",

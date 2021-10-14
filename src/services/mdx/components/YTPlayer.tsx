@@ -14,9 +14,7 @@ import {useCallback} from "react";
 import {useBodySize} from "../../../hooks/useBodySize";
 
 type IVideoData = {title: string; ID: string; image: string; index: number};
-async function getVideoData(
-    ID: string
-): Promise<{
+async function getVideoData(ID: string): Promise<{
     title: string;
     image: string;
     author: string;

@@ -11,7 +11,11 @@ export async function setupRemoteFilesSymlink(): Promise<void> {
         process.cwd(),
         ".localRemoteFilesPath"
     );
-    const tempRemoteFilesPath = Path.join(process.cwd(), "tempRemoteFiles");
+    const tempRemoteDocsPath = Path.join(process.cwd(), "tempRemoteDocs");
+    const tempRemoteExamplesPath = Path.join(
+        process.cwd(),
+        "tempRemoteExamples"
+    );
 
     async function promptPath(): Promise<string> {
         const rl = readline.createInterface({
@@ -44,6 +48,7 @@ export async function setupRemoteFilesSymlink(): Promise<void> {
 
     // Keep asking for the path as long as it can't be found
     let docsPath: string;
+    let examplesPath: string;
     while (true) {
         try {
             FS.access(localPath);
@@ -66,18 +71,50 @@ export async function setupRemoteFilesSymlink(): Promise<void> {
             continue;
         }
 
+        try {
+            examplesPath = Path.join(localPath, "examples");
+            FS.access(examplesPath);
+        } catch (e) {
+            console.log(
+                `The specified path to the LaunchMenu repo (${localPath}) does not contain an examples directory, please specify a new path`
+            );
+            localPath = await promptPath();
+            continue;
+        }
+
         break;
     }
 
-    // Create the symlink to the directory
+    // Create the symlink to the docs directory
+    let linkDocs = true;
     try {
-        await FS.access(tempRemoteFilesPath);
-        const data = await FS.lstat(tempRemoteFilesPath);
+        await FS.access(tempRemoteDocsPath);
+        const data = await FS.lstat(tempRemoteDocsPath);
         const isLink = data.isSymbolicLink();
-        if (isLink && (await FS.readlink(tempRemoteFilesPath)) == docsPath)
-            return;
+        if (isLink && (await FS.readlink(tempRemoteDocsPath)) == docsPath)
+            linkDocs = false;
     } catch (e) {}
 
-    await FS.rmdir(tempRemoteFilesPath, {recursive: true});
-    await symlink(docsPath, tempRemoteFilesPath);
+    if (linkDocs) {
+        await FS.rmdir(tempRemoteDocsPath, {recursive: true});
+        await symlink(docsPath, tempRemoteDocsPath);
+    }
+
+    // Create the symlink to the examples directory
+    let linkExamples = true;
+    try {
+        await FS.access(tempRemoteExamplesPath);
+        const data = await FS.lstat(tempRemoteExamplesPath);
+        const isLink = data.isSymbolicLink();
+        if (
+            isLink &&
+            (await FS.readlink(tempRemoteExamplesPath)) == examplesPath
+        )
+            linkExamples = false;
+    } catch (e) {}
+
+    if (linkExamples) {
+        await FS.rmdir(tempRemoteExamplesPath, {recursive: true});
+        await symlink(examplesPath, tempRemoteExamplesPath);
+    }
 }

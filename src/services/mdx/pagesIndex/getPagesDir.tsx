@@ -7,6 +7,6 @@ import Path from "path";
  * @returns The absolute path
  */
 export function getPagesDir(dir: string, remote?: boolean): string {
-    if (remote) return Path.join(process.cwd(), "tempRemoteFiles", dir);
+    if (remote) return Path.join(process.cwd(), "tempRemoteDocs", dir);
     return Path.join(process.cwd(), "src", "pages", dir);
 }
